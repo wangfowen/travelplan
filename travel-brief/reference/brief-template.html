@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CITY — Travel Brief</title>
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --text: #1c1b19;
+    --muted: #6b6863;
+    --line: #e5e1db;
+    --accent: #9a5b34;
+    --flag-bg: #fdf3ec;
+    --star: #b5892f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1917;
+      --surface: #232220;
+      --text: #ece9e4;
+      --muted: #a09b93;
+      --line: #35332f;
+      --accent: #d99b6c;
+      --flag-bg: #2c241d;
+      --star: #d8b25e;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem 1.25rem 4rem;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
+  }
+  main { max-width: 46rem; margin: 0 auto; }
+
+  header { border-bottom: 2px solid var(--text); padding-bottom: 1rem; margin-bottom: 2.5rem; }
+  h1 { font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1.1; margin: 0 0 .4rem; letter-spacing: -.02em; }
+  .meta { color: var(--muted); font-size: .85rem; }
+
+  h2 {
+    font-size: 1.3rem; margin: 3rem 0 .25rem; letter-spacing: -.01em;
+    padding-bottom: .4rem; border-bottom: 1px solid var(--line);
+  }
+  h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 1.75rem 0 .5rem; }
+  p { margin: .6rem 0; }
+
+  ul { padding-left: 1.1rem; margin: .5rem 0; }
+  li { margin: .75rem 0; }
+  li b { font-weight: 650; }
+
+  a { color: inherit; text-underline-offset: 2px; text-decoration-color: var(--line); }
+  a:hover { text-decoration-color: var(--accent); }
+
+  /* Rating badge — sits inline after a place name. Omit entirely if unconfirmed. */
+  .rating {
+    display: inline-block; white-space: nowrap;
+    font-size: .78rem; font-weight: 600; color: var(--star);
+    margin-left: .35rem;
+  }
+  .rating .count { color: var(--muted); font-weight: 400; }
+
+  /* Date badge — events only. Confirmed dates for the travel year, never a guess. */
+  .when {
+    display: inline-block; white-space: nowrap;
+    font-size: .78rem; font-weight: 650; color: var(--accent);
+    margin-left: .35rem;
+  }
+
+  /* Source tag — required on every Things-to-do and Food entry.
+     Stack several when a place shows up in more than one source. */
+  .src {
+    display: inline-block; font-size: .7rem; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--muted); border: 1px solid var(--line); border-radius: 4px;
+    padding: .05rem .3rem; margin-left: .35rem; vertical-align: 1px;
+  }
+  .src a { text-decoration: none; }
+
+  .note { color: var(--muted); font-size: .85rem; font-style: italic; }
+  .unconfirmed { color: var(--accent); font-weight: 600; }
+
+  /* Callout — use to flag a source category that was unreachable this run */
+  .callout {
+    background: var(--flag-bg); border: 1px solid var(--line); border-radius: 8px;
+    padding: .7rem 1rem; margin: 1rem 0; font-size: .88rem; color: var(--muted);
+  }
+
+  /* Book-ahead table — must stay scrollable on narrow screens */
+  .table-wrap { overflow-x: auto; margin: 1rem 0; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: .92rem; }
+  th, td { text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 600; }
+  td.lead { white-space: nowrap; font-weight: 650; }
+  tr.urgent td.lead { color: var(--accent); }
+
+  .phrases { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  .phrases td { padding: .45rem .6rem .45rem 0; border-bottom: 1px solid var(--line); }
+  .phrases .native { font-weight: 600; }
+  .phrases .phon { color: var(--muted); font-style: italic; white-space: nowrap; }
+
+  /* Verdict — the transit-vs-rides call at the end of Getting around */
+  .verdict {
+    border-left: 3px solid var(--accent); background: var(--surface);
+    border-radius: 0 8px 8px 0; padding: .7rem 1rem; margin: 1rem 0; font-size: .92rem;
+  }
+  .verdict b { color: var(--accent); }
+
+  .facts { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: .35rem 1rem; margin: 1rem 0; }
+  .facts dl { display: grid; grid-template-columns: max-content 1fr; gap: .5rem 1.25rem; margin: .8rem 0; }
+  .facts dt { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); padding-top: .15rem; }
+  .facts dd { margin: 0; }
+
+  @media (max-width: 30rem) {
+    .facts dl { grid-template-columns: 1fr; gap: .15rem; }
+    .facts dd { margin-bottom: .7rem; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <header>
+    <h1>CITY</h1>
+    <div class="meta">COUNTRY · TRAVEL DATES · researched DATE</div>
+  </header>
+
+  <!--
+    CONVENTIONS
+    · Every place name is a Google Maps link:
+        https://www.google.com/maps/search/?api=1&query=Name+City
+    · Rating badge follows the name, ALWAYS with the review count — a bare
+      "4.9 ★" hides whether that's 12 reviews or 12,000. NEVER invent either.
+      Google ratings only; never substitute a TripAdvisor/Yelp score.
+    · EVERY Things-to-do, Events and Food entry carries a .src tag. Stack all that apply
+      when a place shows up in several sources — that agreement is the signal.
+      Vocabulary: reddit (linked) · atlas obscura · eater (linked)
+                  · michelin ★ YEAR · 50 best #N YEAR (name the list if it isn't
+                    World restaurants: "50 best bars #12 YEAR", "asia's 50 best #7 YEAR")
+                  · 50 best discovery (on the Discovery platform but UNRANKED —
+                    weaker signal, never write a rank for it)
+                  · <named publication> · my pick
+      There is NO generic "guides" tag — name the actual publication.
+      Never source from TripAdvisor / Yelp / Wanderlog / listicle farms.
+    · Every list sorted by rating, descending. Unrated entries last.
+    · DESCRIPTIONS DESCRIBE — they never argue for the entry. The selection
+      bars decide what goes in; being in the brief is the endorsement. So no
+      "world-class", "must-see", "worth the trip", "not just another X",
+      "people rave about it". Lead with the concrete fact — a date, material,
+      technique, dish, number — that makes the thing what it is.
+      One line, two at most.
+    · 3-5 entries per group, fewer if that's all that's genuinely worth it.
+      Do not pad to fill a group. Omit a whole group rather than fill it.
+  -->
+
+  <!-- ── 1. THINGS TO DO — grouped by priority, sorted by rating within group ── -->
+  <h2>Things to do</h2>
+
+  <h3>Unique to CITY</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Name+City">Name</a></b>
+      <span class="rating">4.7 ★ <span class="count">(3.1k)</span></span>
+      <span class="src"><a href="https://reddit.com/r/...">reddit</a></span>
+      <span class="src">atlas obscura</span>
+      <br>What it is, in the one concrete detail that exists only here.
+      <span class="note">Two tags — surfaced by both sources.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Name+City">Name</a></b>
+      <span class="rating">4.4 ★ <span class="count">(880)</span></span>
+      <span class="src">atlas obscura</span>
+      <br>The odd thing about it, stated plainly.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Name+City">Name</a></b>
+      <span class="src">my pick</span>
+      <br>What it is. <span class="note">Unrated — could not confirm a Google rating.</span>
+    </li>
+  </ul>
+
+  <!-- Nature: world-class hikes and sights ONLY. If the city has none,
+       DELETE this whole group — do not list pleasant parks to fill it. -->
+  <h3>Nature</h3>
+  <ul>
+    <li><b><a href="#">Name</a></b> <span class="rating">4.8 ★ <span class="count">(5.2k)</span></span> <span class="src"><a href="#">reddit</a></span><br>What it is and its scale — terrain, distance, elevation, what you see.</li>
+  </ul>
+
+  <!-- Museums: art + history in ONE group. Only unique-to-here, genuinely
+       interesting, or world class. Often just 1-2 entries — that's correct. -->
+  <h3>Museums</h3>
+  <ul>
+    <li><b><a href="#">Name</a></b> <span class="rating">4.6 ★ <span class="count">(1.9k)</span></span> <span class="src"><a href="#">reddit</a></span> <span class="src">atlas obscura</span><br>What the collection actually holds, and the specific holding that is only here.</li>
+  </ul>
+
+  <!-- Tours: locally-run only. Aggregator/chain listings are dropped, not
+       captioned — so no "local operator" label is needed on the survivors. -->
+  <h3>Tours <span class="note">— walking and biking, locally run</span></h3>
+  <ul>
+    <li>
+      <b><a href="#">Operator — tour name</a></b>
+      <span class="rating">4.9 ★ <span class="count">(620)</span></span>
+      <span class="src"><a href="#">reddit</a></span>
+      <br>Format, length, what it covers. Book at <a href="#">their own site</a>.
+    </li>
+  </ul>
+
+  <!-- ── 2. EVENTS AND FESTIVALS ─────────────────────────
+       ONLY events falling inside the traveler's dates, and only ones unique
+       to this place — a local tradition, a festival the city is known for, a
+       seasonal phenomenon, a genuine one-off. NOT touring acts, club nights,
+       markets, or anything a comparable city also has.
+       DELETE this entire section if nothing clears the bar. That is the
+       normal outcome and is better than a padded section.
+       Dates must be CONFIRMED for the travel year — recurring festivals move.
+       Anything ticketed here also gets a Book-ahead row. ── -->
+  <h2>Events and festivals <span class="note">— during your dates</span></h2>
+  <ul>
+    <li>
+      <b><a href="https://official-event-page.example">Festival name</a></b>
+      <span class="when">DATE RANGE</span>
+      <span class="src"><a href="https://reddit.com/r/...">reddit</a></span>
+      <br>What physically happens at it — the ritual, the format, the thing you'd watch. Held at
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Venue+City">Venue</a>.
+      <em>Tickets:</em> where and whether they sell out.
+    </li>
+    <li>
+      <b>Event name</b>
+      <span class="src">local publication</span>
+      <br>What it is. <span class="note">Recurs annually in this month; this year's dates not yet confirmed — check the official page.</span>
+    </li>
+  </ul>
+
+  <!-- ── 3. FOOD ─────────────────────────────────────── -->
+  <h2>Food</h2>
+
+  <!-- The places they'd be sorriest to miss, REGARDLESS of category, price or
+       format — NOT the fine-dining tier. A canteen, a grill house, a bakery
+       and one ambitious kitchen belong in this list together. If every entry
+       is the same kind of place (all tasting menus, all €50+), it got sorted
+       by prestige instead of by food — rebuild it. At least one entry should
+       be somewhere a local eats on an ordinary weekday.
+       Include only places genuinely raved about. A listing alone is not a
+       reason to include something; a beloved place on no list belongs here.
+       Each restaurant appears ONCE across all seven food sections — and in the
+       section that says the most about it, not the weakest one that fits. -->
+  <h3>Top picks</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Name+City">Name</a></b>
+      <span class="rating">4.8 ★ <span class="count">(1.2k)</span></span>
+      <span class="src"><a href="https://reddit.com/r/...">reddit</a></span>
+      <span class="src">michelin ★ 2026</span>
+      <br>Cuisine, technique or format, and one or two dishes to order.
+      <span class="note">Recurred across N independent threads.</span>
+    </li>
+    <li>
+      <b><a href="#">Name</a></b>
+      <span class="rating">4.7 ★ <span class="count">(2.4k)</span></span>
+      <span class="src"><a href="#">reddit</a></span>
+      <span class="src"><a href="#">eater</a></span>
+      <br>What the kitchen does and what to order.
+      <span class="note">No award tag, and none needed — the rating and source tags carry reception, so prose doesn't restate it.</span>
+    </li>
+  </ul>
+
+  <!-- Everyday institutions: where the city eats its own food on a Tuesday —
+       canteen, market-hall counter, domestic chain, workers' lunch hall.
+       The bar is "institution here, couldn't be transplanted", NOT ambitious
+       cooking. Cheap and unglamorous is the profile, not a strike against it.
+       A big review count at a middling rating is the SIGNATURE of this
+       category (9k at 4.4 beats 300 at 4.8 for what it tells you) — don't let
+       the rating sort bury it. Michelin/50 Best/Eater won't surface these;
+       go looking on Reddit and judge by how many people name it, not how
+       excited they sound. -->
+  <h3>Everyday institutions</h3>
+  <ul>
+    <li>
+      <b><a href="#">Name</a></b> <span class="rating">4.4 ★ <span class="count">(9.1k)</span></span>
+      <span class="src"><a href="#">reddit</a></span>
+      <br>What it serves and the format — self-service line, market counter, set lunch — and the dish to put on the tray.
+      <span class="note">Named by five separate commenters across two threads.</span>
+    </li>
+  </ul>
+
+  <!-- GENUINELY unusual cooking only. "Seasonal tasting menu of local produce"
+       is the house style of every ambitious restaurant on earth and does NOT
+       qualify — nor does an open kitchen, a chef's table, or the restaurant's
+       own farm (settings and supply chains, not cooking). If the only thing
+       separating an entry from a Top pick is that it's expensive and ambitious,
+       it goes in Top picks or nowhere. Frequently empty — delete if so. -->
+  <h3>Creative and interesting</h3>
+  <ul>
+    <li>
+      <b><a href="#">Name</a></b> <span class="rating">4.7 ★ <span class="count">(940)</span></span>
+      <span class="src">50 best #34 2026</span>
+      <br>The unusual thing itself: the technique, the ingredient set, the format.
+    </li>
+  </ul>
+
+  <h3>Local dishes to try</h3>
+  <ul>
+    <li>
+      <b>Dish name.</b> What it is, in one line.
+      <em>Where:</em> <a href="#">Place</a> <span class="rating">4.6 ★ <span class="count">(2.8k)</span></span>,
+      <a href="#">Place</a> <span class="rating">4.4 ★ <span class="count">(700)</span></span>.
+    </li>
+  </ul>
+
+  <!-- Asian food: wanted anywhere in the world, so it's the standing exception
+       to "a non-local cuisine must be unavailable at home". BUT the bar is high
+       and the default is to DELETE this section. No mediocre ramen, no
+       supermarket sushi, no generic wok stir-fries, and "best Thai in a city
+       with no Thai food" is not a recommendation. Needs real evidence: a cook
+       making their own cuisine, a diaspora that eats there, expat/diaspora
+       Reddit threads naming it, or a rating that holds up citywide.
+       Be regionally specific — Hakata tonkotsu, Sichuan, Isaan, Kerala — not
+       "Asian" and usually not "Chinese". Zero entries is common and correct. -->
+  <h3>Asian food</h3>
+  <ul>
+    <li>
+      <b><a href="#">Name</a></b> <span class="rating">4.6 ★ <span class="count">(1.1k)</span></span>
+      <span class="src"><a href="#">reddit</a></span>
+      <br>The specific regional style, who is cooking it, and the dish to order.
+      <span class="note">Vouched for by name in an expat/diaspora thread.</span>
+    </li>
+  </ul>
+
+  <h3>Cafés and bakeries</h3>
+  <ul>
+    <li><b><a href="#">Name</a></b> <span class="rating">4.7 ★ <span class="count">(1.5k)</span></span> <span class="src"><a href="#">eater</a></span> <span class="src"><a href="#">in your pocket</a></span><br>The specific bake or drink to order.</li>
+  </ul>
+
+  <h3>Cocktail bars and breweries</h3>
+  <ul>
+    <li><b><a href="#">Name</a></b> <span class="rating">4.6 ★ <span class="count">(880)</span></span> <span class="src"><a href="#">reddit</a></span> <span class="src">50 best bars #12 2026</span><br>What they make — house style, a signature drink, the beer they brew.</li>
+  </ul>
+
+  <!-- ── 4. WHERE TO STAY ─────────────────────────────
+       2-3 neighborhoods, NOT a survey. Criteria: walkable or on a transit line
+       that runs; QUIET (a nightlife strip is disqualifying, not a feature);
+       ordinary daily life in reach — supermarket, gym, somewhere to run.
+       Test: could they live here for a week?
+       Proximity to the sights is NOT a criterion — never list or rank on it.
+       No "best for: first visit / nightlife / families" matrix; that's written
+       for a generic audience, not this traveler.
+       Flag "avoid" only where they'd genuinely book it and regret it. -->
+  <h2>Where to stay</h2>
+  <ul>
+    <li><b>Neighborhood.</b> What it's actually like to be there. <em>Day to day:</em> groceries, gym, running route. <em>Tradeoff:</em> what you give up.</li>
+  </ul>
+
+  <!-- ── 5. BOOK AHEAD ───────────────────────────────── -->
+  <!-- ONLY entries with sourced evidence of day-of difficulty. Otherwise omit the row. -->
+  <h2>Book ahead</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>What</th><th>Lead time</th><th>How</th><th>Why we know</th></tr>
+      </thead>
+      <tbody>
+        <tr class="urgent">
+          <td>Restaurant / site</td>
+          <td class="lead">3 months</td>
+          <td>Channel</td>
+          <td>Evidence: booking page shows no availability inside 8 weeks.</td>
+        </tr>
+        <tr>
+          <td>Another</td>
+          <td class="lead">2 weeks</td>
+          <td>Channel</td>
+          <td>Operator states a 14-day cutoff.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- If nothing qualifies, replace the table with one line saying so. -->
+
+  <!-- ── 6. PRACTICAL ────────────────────────────────── -->
+  <h2>Practical</h2>
+  <div class="facts">
+    <dl>
+      <dt>Tap water</dt><dd>Potable / not — plus the local caveat.</dd>
+      <dt>Tipping</dt><dd>Expected or not, how much, where.</dd>
+    </dl>
+  </div>
+
+  <!-- Getting around: TWO rows and the call — Transit, Rides, Verdict.
+       Payment, fares and hours are one-liners inside the Transit row, NOT rows
+       of their own; ride prices live inside the Rides row. Walking and bike
+       share go in the verdict, since they're part of the answer.
+       Every fare gets a USD conversion and a year. -->
+  <h3>Getting around</h3>
+  <div class="facts">
+    <dl>
+      <dt>Transit</dt><dd>Modes that exist (metro lines, tram, bus, rail, ferry) and whether the network reaches where a visitor actually goes. How you pay — contactless / named local card / named app / cash to driver, whether tickets must be validated and the fine, and say if foreign-issued cards fail on the readers. Single X (≈$Y) · day pass X (≈$Y) <span class="note">(YEAR)</span>. When service stops at night.</dd>
+      <dt>Rides</dt><dd>Apps that actually operate here, by name — or whether street-hailing / metered taxis are the norm, and if the meter gets used. Short cross-town X (≈$Y) · airport–centre X (≈$Y) <span class="note">(YEAR)</span>. Airport-taxi overcharge if there is one.</dd>
+    </dl>
+  </div>
+  <div class="verdict">
+    <b>Verdict:</b> transit / rides / walk + rides for the edges — the one-line reason, comparing the costs above. Fold in whether the centre is walkable end to end and how long that takes, plus a bike-share scheme by name if there's a usable one.
+  </div>
+
+  <!-- ── 7. COUNTRY BACKGROUND ───────────────────────── -->
+  <h2>COUNTRY</h2>
+  <div class="facts">
+    <dl>
+      <dt>GDP</dt><dd>$X total · $Y per capita <span class="note">(Source, YEAR)</span></dd>
+      <dt>Economy</dt><dd>Driver, driver, driver.</dd>
+      <dt>Languages</dt><dd>Main language; how far English gets you.</dd>
+    </dl>
+  </div>
+
+  <h3>Tech scene</h3>
+  <ul>
+    <li><b><a href="#">Company</a></b> — what it does. Raised $X (YEAR); valuation / unicorn status / exit.</li>
+  </ul>
+
+  <h3>History in five beats</h3>
+  <ul>
+    <li><b>Period.</b> What happened, and what of it you can still see.</li>
+  </ul>
+
+  <!-- Culture: 3–4 entries, fewer is better, no floor. Reaching for a fifth is
+       the signal to stop, not to lower the bar.
+       Concrete fact first — if the line stays true after swapping the country
+       name, it is not an entry. Then the encounter test: will they actually run
+       into this, or does it explain something they'd misread? If neither, it's
+       trivia. Three kinds that keep sneaking in and must not: shopping/souvenir
+       logistics (which streets sell amber); one-off news items and municipal
+       gestures (a street renamed to needle an embassy); traditions that live
+       somewhere the traveler isn't going. No do's-and-don'ts. -->
+  <h3>Culture</h3>
+  <ul>
+    <li><b>The thing.</b> The concrete detail — what people do, when, and what a visitor would notice or get wrong.</li>
+  </ul>
+
+  <h3>Phrases</h3>
+  <table class="phrases">
+    <tr><td class="native">Native</td><td class="phon">pho-NE-tic</td><td>English</td></tr>
+  </table>
+
+</main>
+</body>
+</html>
