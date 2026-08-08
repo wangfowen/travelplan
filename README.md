@@ -56,9 +56,11 @@ Rebuild the zip after any edit:
 ./build.sh
 ```
 
-Then in Claude — Settings → Capabilities → Skills → **Upload skill**, and pick `dist/travel-brief.zip`.
+Then in Claude — Settings → Customize → Skills → **Upload skill**, and pick `dist/travel-brief.zip`. The upload runs a short security scan (1–2 minutes) before the skill is usable.
 
 Re-uploading replaces the previous version.
+
+The uploader rejects a SKILL.md whose frontmatter `description` contains angle brackets (they read as XML tags) — write placeholders as `[place]`, not `<place>`.
 
 ## Installing into Claude Code
 

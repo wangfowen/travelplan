@@ -1,6 +1,6 @@
 ---
 name: travel-brief
-description: Research a travel destination and produce a single-page briefing artifact covering things to do, events falling in the travel dates (festivals, concerts, shows, exhibitions), restaurants, neighborhoods, what to book ahead, practical basics including how to get around on transit versus rides, and country background including local culture. Takes a city and the travel dates, and asks for either if not given. Use when the user names a city or country they are planning to visit, asks for trip research, a travel brief, or "what should I know about <place>".
+description: Research a travel destination and produce a single-page briefing artifact covering things to do, events falling in the travel dates (festivals, concerts, shows, exhibitions), restaurants, neighborhoods, what to book ahead, practical basics including how to get around on transit versus rides, and country background including local culture. Takes a city and the travel dates, and asks for either if not given. Use when the user names a city or country they are planning to visit, asks for trip research, a travel brief, or "what should I know about [place]".
 ---
 
 # Travel Brief
