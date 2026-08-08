@@ -1,6 +1,6 @@
 ---
 name: travel-brief
-description: Research a travel destination and produce a single-page briefing artifact covering things to do, local events and festivals falling in the travel dates, restaurants, neighborhoods, what to book ahead, practical basics including how to get around on transit versus rides, and country background including local culture. Takes a city and the travel dates, and asks for either if not given. Use when the user names a city or country they are planning to visit, asks for trip research, a travel brief, or "what should I know about <place>".
+description: Research a travel destination and produce a single-page briefing artifact covering things to do, events falling in the travel dates (festivals, concerts, shows, exhibitions), restaurants, neighborhoods, what to book ahead, practical basics including how to get around on transit versus rides, and country background including local culture. Takes a city and the travel dates, and asks for either if not given. Use when the user names a city or country they are planning to visit, asks for trip research, a travel brief, or "what should I know about <place>".
 ---
 
 # Travel Brief
@@ -16,8 +16,8 @@ Required: **a city and the travel dates.** If they name only a country, ask whic
 One specific traveler. Their taste decides what goes in and what gets cut:
 
 - **Things to do:** unique-to-this-place first, then world-class nature, then museums that are themselves worth the trip. Never generic attractions available in any capital.
-- **Nature:** only world-class — the kind that is a reason to go. A pleasant city park is not. Most cities have none, and then the group is omitted.
-- **Museums:** one group — art, history, and science together. High bar — interesting museums not seen elsewhere, or genuinely world-class ones. One or two entries is the normal length.
+- **Views and nature:** nature only world-class — the kind that is a reason to go; a pleasant city park is not, and most cities have none. Views are city-scaled and the one exemption from the uniqueness test: most cities do have one or two spots genuinely worth going to just to take the city in.
+- **Museums and galleries:** one group — art, history, and science together. High bar — interesting museums not seen elsewhere, or genuinely world-class ones. One or two entries is the normal length. A real gallery scene can add one more.
 - **Tours:** walking/biking run by locals or small independent operators. Aggregators and multi-city chains (GetYourGuide, Viator, SANDEMANs, big bus companies) never appear — a filter, not a preference, so survivors need no "local" label. Food tours only where the city is genuinely known for food.
 - **Food:** the bar is **how good the food is** — not the room, the ambiance, the award, or the sourcing story ("seasonal", "locally sourced", "own farm" describe procurement, not flavour, and are neither reasons to include nor what a description leads with). A €10 canteen plate that exists only here beats a competent nine-course menu. The per-section bars and the cuisine, chain, and tasting-menu rules live in the Food section of the research procedure.
 - **Where to stay:** somewhere to live out of for a week — walkable or on real transit, quiet, with groceries, a gym, and somewhere to run in reach. Nightlife is a mark against, and closeness to the sights is close to irrelevant.
@@ -35,7 +35,7 @@ Selection bars decide what goes in; the description's only job is **what the thi
 - **No superlatives or endorsement language** ("world-class", "unmissable", "a must", "raved about"). Presence in the brief is the endorsement; a sentence arguing for inclusion gets deleted.
 - **Lead with the concrete fact.** "The only surviving wooden synagogue in the country, interior painted 1780" beats "exceptional heritage architecture". A date, material, technique, dish, or number does the work the adjective was faking.
 - **No comparisons to what you rejected** ("not just another park") and **no reception talk** ("widely loved") — the rating and tags carry reception.
-- **Restaurants:** cuisine, technique, format, one or two dishes to order. **Events:** what physically happens and what makes it particular to this place.
+- **Restaurants:** cuisine, technique, format, one or two dishes to order. **Events:** what physically happens, and — for Cultural — what makes it particular to this place.
 
 Test: if the sentence would be true of a mediocre place in the same category, it describes nothing — rewrite it with a fact.
 
@@ -87,7 +87,7 @@ If the extension is not connected, say so plainly — the user can connect it an
 
 Run in this order — it is materially cheaper and faster than interleaving:
 
-1. **Fan out subagents in parallel** for the editorial legwork: Michelin + 50 Best + World of Mouth, events calendar + local press, neighborhoods + transit + country background. Subagents **return raw text findings** — they do not publish artifacts, and they do not chase Google ratings (that is step 3; doing it early wastes searches on candidates that get cut, and WebSearch mostly surfaces banned aggregator numbers anyway). Search each source category separately — the point is consistent coverage, not speed.
+1. **Fan out subagents in parallel** for the editorial legwork: Michelin + 50 Best + World of Mouth, events calendar + venue seasons + local press, neighborhoods + transit + country background. Subagents **return raw text findings** — they do not publish artifacts, and they do not chase Google ratings (that is step 3; doing it early wastes searches on candidates that get cut, and WebSearch mostly surfaces banned aggregator numbers anyway). Search each source category separately — the point is consistent coverage, not speed.
 2. **Do the Reddit pass yourself, serially, in the browser.** The browser is one shared resource with one tab group — parallel agents navigate each other's tabs out from under themselves.
 3. **Select, then verify.** Draft every shortlist first from the combined findings. Then verify ratings **only for places in the draft**, via batched Google Maps lookups in the browser (see Ratings and links) — which also catches permanently closed venues. Verifying candidates you will cut is the main way runs blow their budget.
 4. **Assemble, publish, summarize** in chat.
@@ -100,27 +100,30 @@ Run in this order — it is materially cheaper and faster than interleaving:
 
 Structured like Food: **Top picks fed by the category groups.** Every candidate lands first in a category; the absolute must-dos get promoted to Top picks; each entry appears once — a must-do museum sits in Top picks, not Museums. Six groups, in order, rating-sorted within each, 3–4 entries each (see Be short):
 
-1. **Top picks** — the absolute must-dos, regardless of category: the three to five things they would be sorriest to have missed. Fed by Unique to this city, Nature, Museums, and Tours — never by Day trips.
-2. **Unique to this city** — explicitly the catch-all: everything worth going for that the other categories don't catch. The test stays "exists here and effectively nowhere else" — the singular sights, spaces, and experiences that aren't a museum, nature, or a tour. The main feeder of Top picks; give it the most room.
-3. **Nature** — world-class only; usually omitted.
-4. **Museums** — one combined group: art, history, and science together. Interesting museums not seen elsewhere, and/or world-class ones. One or two entries is the correct length.
+1. **Top picks** — the absolute must-dos, regardless of category: the three to five things they would be sorriest to have missed. Fed by Unique to this city, Views and nature, Museums and galleries, and Tours — never by Day trips.
+2. **Unique to this city** — explicitly the catch-all: everything worth going for that the other categories don't catch. The test stays "exists here and effectively nowhere else" — the singular sights, spaces, and experiences that aren't a museum, nature, or a tour. Immersive and experiential art (a Meow Wolf, a teamLab) lands here, and a handful of global locations does not disqualify it — the test stays "can't see this at home." The main feeder of Top picks; give it the most room.
+3. **Views and nature** — two bars. Nature keeps the world-class bar: a reason to go in itself, which most cities have none of. Views are city-scaled: the one or two spots to actually take the city in — a hilltop, a waterfront walk, a rooftop — preferring the free spot locals use over the paid observation deck, unless the deck is itself the singular experience. One to three entries in most cities.
+4. **Museums and galleries** — one combined group: art, history, and science together. Interesting museums not seen elsewhere, and/or world-class ones. One or two entries is the correct length. A real gallery scene earns one more entry — a gallery district or a first-Friday gallery walk written as a single line naming its two or three anchor spaces; individual commercial galleries almost never qualify alone.
 5. **Tours** — named local operators only.
 6. **Day trips** — separate, and never promoted into Top picks: a top pick is a reason to be in this city, a day trip is a reason to leave it. Zero to two, only when the destination is itself a reason to be in this region (an island castle, a UNESCO landscape) and reachable as a genuine day trip. Give the transit route and time from the city.
 
 Three passes feed the candidate pool, every entry tagged with all sources that surfaced it:
 
-- **Reddit** (per Reaching Reddit): things to do, itineraries, the city or country subreddit. **Collect suggestions only** — not Reddit's warnings, tourist-trap callouts, or locals-vs-tourists discourse. Weight what recurs across independent threads; link the thread you took each entry from.
+- **Reddit** (per Reaching Reddit): things to do, itineraries, the city or country subreddit — plus two dedicated queries the general threads miss: `immersive art <city>` and `best view of <city>`. **Collect suggestions only** — not Reddit's warnings, tourist-trap callouts, or locals-vs-tourists discourse. Weight what recurs across independent threads; link the thread you took each entry from.
 - **Atlas Obscura**: `site:atlasobscura.com <city>` — the genuinely odd entries, not the ones that are just the city's main museum.
 - **Named local press**: the city's own what's-on and culture coverage — the same publications the Events pass reads double as a things-to-do source; tag by publication name.
 - **Your own picks**, tagged `my pick`.
 
-### 2. Events and festivals
+### 2. Events
 
-Only events **inside the travel window**, and only ones unique to this place — a reason to be in this city on those dates rather than any other city: a local saint's day or seasonal rite, a festival the city is actually known for, a seasonal phenomenon, a genuine one-off (major loan exhibition, anniversary, landmark reopening).
+Everything here is date-dependent: only what falls **inside the travel window**, in four subsections. A subsection with nothing is deleted heading-and-all, and losing the whole section is a normal outcome for most cities in most weeks — no "nothing major, but you could check X", no list of what you ruled out. Each entry: name, confirmed dates, one line on what physically happens, tickets or not, official link, venue Maps link, source tags. **Confirm every candidate's dates or run on its official page** — recurring events move, so never print a date you have not confirmed for the travel year (write "this year's dates unconfirmed" instead). An entry with sellout-risk tickets also gets a Book-ahead row.
 
-**Excluded without exception:** club nights and DJ sets, touring acts that play thirty other cities, food-truck rallies, farmers'/craft/seasonal markets (unless that market is itself famous), running events. Omitting the whole section is the expected outcome for most cities in most weeks — no "nothing major, but you could check X", no list of what you ruled out.
+1. **Cultural** — events unique to this place: a local saint's day or seasonal rite, a festival the city is actually known for, a seasonal phenomenon, a genuine one-off (anniversary, landmark reopening). The test: a reason to be in this city on those dates rather than any other city. Excluded without exception: club nights and DJ sets, food-truck rallies, farmers'/craft/seasonal markets (unless that market is itself famous), running events, and touring productions — those belong in Music or Shows if anywhere.
+2. **Music** — artists playing the window and music festivals. The bar is an act or lineup the traveler would plan an evening around — a name with a real following or a festival with an identity — not every pub gig; touring is fine here, that is what concerts are. Discovery: the season calendars of the city's main halls and arenas, plus a concert listings service (Songkick, Bandsintown) as a finder only — then confirm on the venue's or artist's own page.
+3. **Shows** — what's on stage during the window: musicals and theater runs, opera/ballet/symphony from resident companies' seasons, notable stand-up. The bar: a production they can't see at home, a resident company's season, a landmark venue where attending anything is the point (the Staatsoper, the Globe), or a comedian with a real following. Check the season calendars of the city's two or three flagship venues for the dates.
+4. **Exhibitions** — the major temporary or loan exhibition on during the window: the show the museum itself is billing as the event of the season, not the permanent collection (that lives in Things to do).
 
-Research: the tourism board's calendar for the month and year; named local press; the Reddit pass (`what's happening in <city> <month> <year>`); then **confirm each candidate's dates on its official page** — recurring festivals move, so never print a date you have not confirmed for the travel year (write "this year's dates unconfirmed" instead). Each entry: name, confirmed dates, one line on what physically happens, tickets or not, official link, venue Maps link, source tags. An event with sellout-risk tickets also gets a Book-ahead row.
+Research: the tourism board's calendar for the month and year; named local press; flagship venue and club season calendars; the Reddit pass (`what's happening in <city> <month> <year>`).
 
 ### 3. Food
 
@@ -217,12 +220,12 @@ Run this pass over the finished draft, in order, before assembling the artifact.
 
 1. **Departure test, every Top pick:** once home, could they replicate this meal? If yes, move it to its category section or cut it — awards and Reddit unanimity do not exempt it.
 2. **Spread check, Top picks:** not all tasting menus, not all €50+, not derivable from the Michelin guide alone; at least one entry is somewhere a local eats on an ordinary weekday.
-3. **Things-to-do Top picks:** every entry was promoted from a category group (Unique, Nature, Museums, Tours), none is a day trip, and nothing appears in both Top picks and its category.
+3. **Things-to-do Top picks:** every entry was promoted from a category group (Unique, Views and nature, Museums and galleries, Tours), none is a day trip, and nothing appears in both Top picks and its category.
 4. **Ambitious-kitchen slot:** if the brief includes one ambitious kitchen, it is the one interpreting the national cuisine, not the placeless tasting menu — regardless of which holds the award.
 5. **Tally vs. draft:** every place named in any read thread — including local-language threads and threads opened for another reason — is either in the brief or was consciously ruled out for a reason that isn't "chain", "touristy", "not ambitious", or "wrong part of town".
 6. **Query completeness:** every standing-tier section got its own pass — the per-cuisine Asian queries, the café/sourdough/coffee queries, the cocktail/craft-beer queries, and the Maps category search for Healthy staples — a section drafted from one weak candidate is a failed search, not a thin city.
 7. **Format and dish coverage:** every native venue format and everyday dish named at the start of the Food pass is represented in the brief or was consciously ruled out — an unsearched or unrepresented one is a research gap, not an editorial choice.
-8. **Events:** every printed date confirmed on the event's own page for the travel year, or marked "this year's dates unconfirmed". Nothing outside the travel window.
+8. **Events:** every printed date or run confirmed on the event's or venue's own page for the travel year, or marked "this year's dates unconfirmed". Nothing outside the travel window; empty subsections deleted heading-and-all.
 9. **Ratings:** every rating has a review count; none invented; every list sorted by rating descending, unrated last.
 10. **Source tags:** every Things to do, Events, and Food entry carries all its tags; every reddit tag links its thread; no aggregator-sourced entries or numbers.
 11. **Empty sections:** anything that didn't clear the bar is deleted heading-and-all, leaving no trace — except Book ahead's "nothing needs advance booking" line and source-availability callouts.
@@ -235,7 +238,7 @@ One self-contained HTML artifact, following `reference/brief-template.html`. In 
 
 - Title: `<City> — Travel Brief`. Header shows travel dates, research date, and one line of expected weather for the dates (typical high/low, rain likelihood, daylight — climate normals from own knowledge are fine, labeled per Accuracy rules).
 - A one-line anchor nav under the header so each section is one tap away on a phone.
-- Any section or group with nothing that cleared the bar is dropped heading-and-all, with no sentence noting the omission (Events, Nature, and Day trips are the usual cases; a food section can be empty too, but only after its own query pass ran and came back dry).
+- Any section or group with nothing that cleared the bar is dropped heading-and-all, with no sentence noting the omission (Events subsections, nature entries, and Day trips are the usual cases; a food section can be empty too, but only after its own query pass ran and came back dry).
 - Readable on a phone; works in light and dark themes; no external requests — all CSS inline, nothing remote loaded (links out are fine).
 - Every place name links to Google Maps; ratings render as a visible badge; every Things-to-do, Events, and Food entry shows all its source tags; reddit tags link to their thread.
 - Book-ahead entries render as a table with a visible lead-time column.

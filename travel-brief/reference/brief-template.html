@@ -174,7 +174,8 @@
 
   <!-- Top picks: the absolute must-dos regardless of category — the 3-5
        things they'd be sorriest to have missed. Promoted from Unique to
-       this city, Nature, Museums, and Tours. NEVER from Day trips: a top
+       this city, Views and nature, Museums and galleries, and Tours.
+       NEVER from Day trips: a top
        pick is a reason to be in this city, a day trip is a reason to
        leave it. -->
   <h3>Top picks</h3>
@@ -189,8 +190,10 @@
   </ul>
 
   <!-- Unique to this city: the catch-all — everything worth going for that
-       Museums, Nature, and Tours don't catch. Test stays "exists here and
-       effectively nowhere else": the singular sights, spaces, experiences.
+       the other groups don't catch. Test stays "exists here and effectively
+       nowhere else": the singular sights, spaces, experiences — including
+       immersive/experiential art (a Meow Wolf, a teamLab); a handful of
+       global locations does not disqualify it.
        The main feeder of Top picks; give it the most room. -->
   <h3>Unique to CITY</h3>
   <ul>
@@ -215,17 +218,23 @@
     </li>
   </ul>
 
-  <!-- Nature: world-class hikes and sights ONLY. If the city has none,
-       DELETE this whole group — do not list pleasant parks to fill it. -->
-  <h3>Nature</h3>
+  <!-- Views and nature: two bars. Nature stays world-class ONLY — do not
+       list pleasant parks. Views are city-scaled: the 1-2 spots to actually
+       take the city in (hilltop, waterfront walk, rooftop), preferring the
+       free spot locals use over the paid deck unless the deck is itself the
+       singular experience. 1-3 entries in most cities. -->
+  <h3>Views and nature</h3>
   <ul>
-    <li><b><a href="#">Name</a></b> <span class="rating">4.8 ★ <span class="count">(5.2k)</span></span> <span class="src"><a href="#">reddit</a></span><br>What it is and its scale — terrain, distance, elevation, what you see.</li>
+    <li><b><a href="#">Name</a></b> <span class="rating">4.8 ★ <span class="count">(5.2k)</span></span> <span class="src"><a href="#">reddit</a></span><br>What it is and what you see from it — or for nature: terrain, distance, elevation.</li>
   </ul>
 
-  <!-- Museums: art, history AND science in ONE group. Interesting museums
-       not seen elsewhere, and/or world-class ones. Often just 1-2 entries —
-       that's correct. -->
-  <h3>Museums</h3>
+  <!-- Museums and galleries: art, history AND science in ONE group.
+       Interesting museums not seen elsewhere, and/or world-class ones.
+       Often just 1-2 entries — that's correct. A real gallery scene earns
+       one more entry: the district or gallery-walk as a single line naming
+       its 2-3 anchor spaces. Individual commercial galleries almost never
+       qualify alone. -->
+  <h3>Museums and galleries</h3>
   <ul>
     <li><b><a href="#">Name</a></b> <span class="rating">4.6 ★ <span class="count">(1.9k)</span></span> <span class="src"><a href="#">reddit</a></span> <span class="src">atlas obscura</span><br>What the collection actually holds, and the specific holding that is only here.</li>
   </ul>
@@ -254,16 +263,21 @@
     </li>
   </ul>
 
-  <!-- ── 2. EVENTS AND FESTIVALS ─────────────────────────
-       ONLY events falling inside the traveler's dates, and only ones unique
-       to this place — a local tradition, a festival the city is known for, a
-       seasonal phenomenon, a genuine one-off. NOT touring acts, club nights,
-       markets, or anything a comparable city also has.
-       DELETE this entire section if nothing clears the bar. That is the
-       normal outcome and is better than a padded section.
-       Dates must be CONFIRMED for the travel year — recurring festivals move.
-       Anything ticketed here also gets a Book-ahead row. ── -->
-  <h2 id="events">Events and festivals <span class="note">— during your dates</span></h2>
+  <!-- ── 2. EVENTS ─────────────────────────
+       Everything here is date-dependent: ONLY what falls inside the
+       traveler's dates, in four subsections. DELETE any empty subsection
+       heading-and-all; deleting the entire section is the normal outcome
+       for most cities in most weeks and beats a padded one.
+       Dates and runs must be CONFIRMED on the official page for the travel
+       year — recurring events move.
+       Anything with sellout-risk tickets here also gets a Book-ahead row. ── -->
+  <h2 id="events">Events <span class="note">— during your dates</span></h2>
+
+  <!-- Cultural: events unique to this place — a local tradition, a festival
+       the city is known for, a seasonal phenomenon, a genuine one-off.
+       NOT club nights, markets, running events, or anything a comparable
+       city also has; touring productions go in Music or Shows if anywhere. -->
+  <h3>Cultural</h3>
   <ul>
     <li>
       <b><a href="https://official-event-page.example">Festival name</a></b>
@@ -277,6 +291,53 @@
       <b>Event name</b>
       <span class="src">local publication</span>
       <br>What it is. <span class="note">Recurs annually in this month; this year's dates not yet confirmed — check the official page.</span>
+    </li>
+  </ul>
+
+  <!-- Music: artists playing the window and music festivals. The bar is an
+       act or lineup worth planning an evening around — not every pub gig.
+       Touring is fine here. Confirm on the venue's or artist's own page. -->
+  <h3>Music</h3>
+  <ul>
+    <li>
+      <b><a href="https://official-venue-page.example">Artist or festival</a></b>
+      <span class="when">DATE</span>
+      <span class="src">venue calendar</span>
+      <br>Who they are in one line. At
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Venue+City">Venue</a>.
+      <em>Tickets:</em> where and whether they sell out.
+    </li>
+  </ul>
+
+  <!-- Shows: what's on stage during the window — musicals and theater runs,
+       opera/ballet/symphony from resident seasons, notable stand-up. Bar: a
+       production they can't see at home, a resident company, a landmark
+       venue where attending anything is the point, or a comedian with a
+       real following. -->
+  <h3>Shows</h3>
+  <ul>
+    <li>
+      <b><a href="https://official-venue-page.example">Production</a></b>
+      <span class="when">RUN OR PERFORMANCE DATES</span>
+      <span class="src">venue calendar</span>
+      <br>What it is and where it's on. At
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Venue+City">Venue</a>.
+      <em>Tickets:</em> where and whether they sell out.
+    </li>
+  </ul>
+
+  <!-- Exhibitions: the major temporary/loan exhibition on during the window
+       — the show the museum itself bills as the event of the season, not
+       the permanent collection (that lives in Things to do). -->
+  <h3>Exhibitions</h3>
+  <ul>
+    <li>
+      <b><a href="https://official-museum-page.example">Exhibition name</a></b>
+      <span class="when">RUN DATES</span>
+      <span class="src">museum calendar</span>
+      <br>What's in it and why it's a one-off. At
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Museum+City">Museum</a>.
+      <em>Tickets:</em> timed entry or walk-in.
     </li>
   </ul>
 
