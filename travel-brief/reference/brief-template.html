@@ -41,6 +41,12 @@
   h1 { font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1.1; margin: 0 0 .4rem; letter-spacing: -.02em; }
   .meta { color: var(--muted); font-size: .85rem; }
 
+  /* Anchor nav — one tap to each section on a phone */
+  .toc { margin-top: .75rem; font-size: .8rem; line-height: 1.9; }
+  .toc a { color: var(--muted); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: .15rem .6rem; margin: 0 .25rem .25rem 0; display: inline-block; white-space: nowrap; }
+  .toc a:hover { color: var(--accent); border-color: var(--accent); }
+  h2 { scroll-margin-top: 1rem; }
+
   h2 {
     font-size: 1.3rem; margin: 3rem 0 .25rem; letter-spacing: -.01em;
     padding-bottom: .4rem; border-bottom: 1px solid var(--line);
@@ -125,6 +131,12 @@
   <header>
     <h1>CITY</h1>
     <div class="meta">COUNTRY · TRAVEL DATES · researched DATE</div>
+    <!-- One line of expected weather for the dates. Climate normals from own
+         knowledge are fine — label per Accuracy rules. -->
+    <div class="meta">Typical MONTH: XX°/XX°C highs/lows · rain likelihood · daylight until XX:XX</div>
+    <nav class="toc">
+      <a href="#do">Things to do</a><a href="#events">Events</a><a href="#food">Food</a><a href="#stay">Stay</a><a href="#book">Book ahead</a><a href="#practical">Practical</a><a href="#country">COUNTRY</a>
+    </nav>
   </header>
 
   <!--
@@ -155,9 +167,31 @@
       Do not pad to fill a group. Omit a whole group rather than fill it.
   -->
 
-  <!-- ── 1. THINGS TO DO — grouped by priority, sorted by rating within group ── -->
-  <h2>Things to do</h2>
+  <!-- ── 1. THINGS TO DO — Top picks fed by the category groups below it;
+       each entry appears ONCE (a must-do museum sits in Top picks, not
+       Museums). Sorted by rating within each group. ── -->
+  <h2 id="do">Things to do</h2>
 
+  <!-- Top picks: the absolute must-dos regardless of category — the 3-5
+       things they'd be sorriest to have missed. Promoted from Unique to
+       this city, Nature, Museums, and Tours. NEVER from Day trips: a top
+       pick is a reason to be in this city, a day trip is a reason to
+       leave it. -->
+  <h3>Top picks</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Name+City">Name</a></b>
+      <span class="rating">4.8 ★ <span class="count">(6.4k)</span></span>
+      <span class="src"><a href="https://reddit.com/r/...">reddit</a></span>
+      <span class="src">atlas obscura</span>
+      <br>What it is, in the one concrete detail that exists only here.
+    </li>
+  </ul>
+
+  <!-- Unique to this city: the catch-all — everything worth going for that
+       Museums, Nature, and Tours don't catch. Test stays "exists here and
+       effectively nowhere else": the singular sights, spaces, experiences.
+       The main feeder of Top picks; give it the most room. -->
   <h3>Unique to CITY</h3>
   <ul>
     <li>
@@ -188,8 +222,9 @@
     <li><b><a href="#">Name</a></b> <span class="rating">4.8 ★ <span class="count">(5.2k)</span></span> <span class="src"><a href="#">reddit</a></span><br>What it is and its scale — terrain, distance, elevation, what you see.</li>
   </ul>
 
-  <!-- Museums: art + history in ONE group. Only unique-to-here, genuinely
-       interesting, or world class. Often just 1-2 entries — that's correct. -->
+  <!-- Museums: art, history AND science in ONE group. Interesting museums
+       not seen elsewhere, and/or world-class ones. Often just 1-2 entries —
+       that's correct. -->
   <h3>Museums</h3>
   <ul>
     <li><b><a href="#">Name</a></b> <span class="rating">4.6 ★ <span class="count">(1.9k)</span></span> <span class="src"><a href="#">reddit</a></span> <span class="src">atlas obscura</span><br>What the collection actually holds, and the specific holding that is only here.</li>
@@ -207,6 +242,18 @@
     </li>
   </ul>
 
+  <!-- Day trips: separate from the groups above and NEVER promoted into Top
+       picks. 0-2 entries, only when the destination is itself a reason to
+       be in this region and reachable as a genuine day trip. Transit route and
+       time are part of the entry. DELETE the group if nothing qualifies. -->
+  <h3>Day trips</h3>
+  <ul>
+    <li>
+      <b><a href="#">Name</a></b> <span class="rating">4.7 ★ <span class="count">(30k)</span></span> <span class="src"><a href="#">reddit</a></span>
+      <br>What it is, in the concrete detail that makes it the reason to go. <em>Getting there:</em> 30 min by train from Central Station, then a 25-min walk.
+    </li>
+  </ul>
+
   <!-- ── 2. EVENTS AND FESTIVALS ─────────────────────────
        ONLY events falling inside the traveler's dates, and only ones unique
        to this place — a local tradition, a festival the city is known for, a
@@ -216,7 +263,7 @@
        normal outcome and is better than a padded section.
        Dates must be CONFIRMED for the travel year — recurring festivals move.
        Anything ticketed here also gets a Book-ahead row. ── -->
-  <h2>Events and festivals <span class="note">— during your dates</span></h2>
+  <h2 id="events">Events and festivals <span class="note">— during your dates</span></h2>
   <ul>
     <li>
       <b><a href="https://official-event-page.example">Festival name</a></b>
@@ -234,17 +281,35 @@
   </ul>
 
   <!-- ── 3. FOOD ─────────────────────────────────────── -->
-  <h2>Food</h2>
+  <h2 id="food">Food</h2>
 
-  <!-- The places they'd be sorriest to miss, REGARDLESS of category, price or
-       format — NOT the fine-dining tier. A canteen, a grill house, a bakery
+  <!-- Local dishes OPEN the Food section — the city's dish canon as
+       orientation before any restaurant appears. 3-5, stable run to run,
+       drawn from the format map's everyday-dish list and the dedicated
+       Reddit query, never from recall. Dishes a local would insist a
+       first-timer tries, plus anything whose seasonal window overlaps the
+       dates (name the window). A venue that deserves its own entry gets it
+       in a section BELOW and is only referenced here. -->
+  <h3>Local dishes to try</h3>
+  <ul>
+    <li>
+      <b>Dish name.</b> What it is, in one line.
+      <em>Where:</em> <a href="#">Place</a> <span class="rating">4.6 ★ <span class="count">(2.8k)</span></span>,
+      <a href="#">Place</a> <span class="rating">4.4 ★ <span class="count">(700)</span></span>.
+    </li>
+  </ul>
+
+  <!-- The absolute must-gos: the places they'd be sorriest to miss, REGARDLESS
+       of category, price or format — NOT the fine-dining tier. Fed by the
+       Everyday-institutions and Creative pools: a top pick is almost always
+       the best of one of those two lists. A canteen, a grill house, a bakery
        and one ambitious kitchen belong in this list together. If every entry
        is the same kind of place (all tasting menus, all €50+), it got sorted
        by prestige instead of by food — rebuild it. At least one entry should
        be somewhere a local eats on an ordinary weekday.
        Include only places genuinely raved about. A listing alone is not a
        reason to include something; a beloved place on no list belongs here.
-       Each restaurant appears ONCE across all seven food sections — and in the
+       Each restaurant appears ONCE across all eight food sections — and in the
        section that says the most about it, not the weakest one that fits. -->
   <h3>Top picks</h3>
   <ul>
@@ -268,8 +333,11 @@
 
   <!-- Everyday institutions: where the city eats its own food on a Tuesday —
        canteen, market-hall counter, domestic chain, workers' lunch hall.
-       The bar is "institution here, couldn't be transplanted", NOT ambitious
-       cooking. Cheap and unglamorous is the profile, not a strike against it.
+       Optimized for WHAT TASTES GOOD in an untransplantable local
+       institution — "where locals actually go" is corroborating evidence,
+       not the objective: locals also optimize for price and nostalgia, so a
+       locals' favourite that tastes mediocre stays out, and tourists loving
+       a place is not a strike. Cheap and unglamorous is the profile.
        A big review count at a middling rating is the SIGNATURE of this
        category (9k at 4.4 beats 300 at 4.8 for what it tells you) — don't let
        the rating sort bury it. Michelin/50 Best/Eater won't surface these;
@@ -285,12 +353,15 @@
     </li>
   </ul>
 
-  <!-- GENUINELY unusual cooking only. "Seasonal tasting menu of local produce"
-       is the house style of every ambitious restaurant on earth and does NOT
-       qualify — nor does an open kitchen, a chef's table, or the restaurant's
-       own farm (settings and supply chains, not cooking). If the only thing
-       separating an entry from a Top pick is that it's expensive and ambitious,
-       it goes in Top picks or nowhere. Frequently empty — delete if so. -->
+  <!-- Cooking no one else is doing: an interesting take on the local cuisine,
+       a fusion that could only happen here, an unfamiliar technique or format.
+       NOVELTY is the ranking key — between two good kitchens, the one doing
+       something the city's other kitchens aren't wins. "Seasonal tasting menu
+       of local produce" is the house style of every ambitious restaurant on
+       earth and does NOT qualify — nor does an open kitchen, a chef's table,
+       or the restaurant's own farm (settings and supply chains, not cooking).
+       The best entry here often graduates to Top picks; this section holds
+       the rest. Delete only if no kitchen is doing something of its own. -->
   <h3>Creative and interesting</h3>
   <ul>
     <li>
@@ -300,24 +371,18 @@
     </li>
   </ul>
 
-  <h3>Local dishes to try</h3>
-  <ul>
-    <li>
-      <b>Dish name.</b> What it is, in one line.
-      <em>Where:</em> <a href="#">Place</a> <span class="rating">4.6 ★ <span class="count">(2.8k)</span></span>,
-      <a href="#">Place</a> <span class="rating">4.4 ★ <span class="count">(700)</span></span>.
-    </li>
-  </ul>
-
-  <!-- Asian food: wanted anywhere in the world, so it's the standing exception
-       to "a non-local cuisine must be unavailable at home". BUT the bar is high
-       and the default is to DELETE this section. No mediocre ramen, no
-       supermarket sushi, no generic wok stir-fries, and "best Thai in a city
-       with no Thai food" is not a recommendation. Needs real evidence: a cook
-       making their own cuisine, a diaspora that eats there, expat/diaspora
-       Reddit threads naming it, or a rating that holds up citywide.
-       Be regionally specific — Hakata tonkotsu, Sichuan, Isaan, Kerala — not
-       "Asian" and usually not "Chinese". Zero entries is common and correct. -->
+  <!-- Asian food: a standing section researched on its own — EAST AND
+       SOUTHEAST ASIAN ONLY (Japanese, Chinese, Korean, Thai, Vietnamese,
+       Malaysian, Indonesian). South Asian (Indian, Nepalese, Pakistani,
+       Sri Lankan) does not appear, even with a real diaspora story.
+       The bar is AUTHENTIC: a cook making their own cuisine for people who
+       grew up on it. No mediocre ramen, no supermarket sushi, no generic wok
+       stir-fries, and "best Thai in a city with no Thai food" is not a
+       recommendation. Needs real evidence: a diaspora that eats there,
+       expat/diaspora Reddit threads naming it, or a rating that holds up
+       citywide. Be regionally specific — Hakata tonkotsu, Sichuan, Isaan —
+       not "Asian" and usually not "Chinese". Delete only if the dedicated
+       per-cuisine queries ran and came back dry. -->
   <h3>Asian food</h3>
   <ul>
     <li>
@@ -328,14 +393,41 @@
     </li>
   </ul>
 
+  <!-- Cafés and bakeries: a standing section researched on its own. Three
+       things to look for, each on its own query: SOURDOUGH (real naturally-
+       leavened bread), GOOD PASTRIES (proper lamination, or the local
+       specialty bake done seriously), GOOD COFFEE (a specialty roaster or a
+       shop that treats it as one). One place clearing two or three bars
+       beats three clearing one. Craft is the whole test — "would earn its
+       place at home too" is fine here. -->
   <h3>Cafés and bakeries</h3>
   <ul>
-    <li><b><a href="#">Name</a></b> <span class="rating">4.7 ★ <span class="count">(1.5k)</span></span> <span class="src"><a href="#">eater</a></span> <span class="src"><a href="#">in your pocket</a></span><br>The specific bake or drink to order.</li>
+    <li><b><a href="#">Name</a></b> <span class="rating">4.7 ★ <span class="count">(1.5k)</span></span> <span class="src"><a href="#">eater</a></span> <span class="src"><a href="#">in your pocket</a></span><br>The specific bake or drink to order — and which of bread / pastry / coffee it clears.</li>
   </ul>
 
+  <!-- Healthy staples: a standing section researched on its own (Maps is the
+       primary finder). The repeatable healthy default for a week of eating
+       out — GOOD MACROS AND ACTUALLY TASTY: grilled protein, vegetables,
+       bowls done well, food you'd choose rather than concede to. Provenance
+       irrelevant; a good regional healthy chain qualifies despite the chain
+       test. 1-2 entries, with Reddit expat/living-here threads as the
+       secondary source — editorial sources are biased against these. DELETE
+       if the city has no genuinely good option; a mediocre salad chain is
+       not a staple. -->
+  <h3>Healthy staples</h3>
+  <ul>
+    <li><b><a href="#">Name</a></b> <span class="rating">4.6 ★ <span class="count">(2.1k)</span></span> <span class="src"><a href="#">reddit</a></span><br>The format, and the order that makes it a repeatable default.</li>
+  </ul>
+
+  <!-- Cocktail bars and breweries: a standing section researched on its own.
+       The bar is INTERESTING — doing things no one else is doing: a house
+       fermentation program, a menu built on local ingredients no other bar
+       touches, a brewing style particular to here. "Well-executed classics
+       in a nice room" exists in every city and does not qualify. 50 Best
+       Bars rank is provenance, not the reason. DELETE if no real scene. -->
   <h3>Cocktail bars and breweries</h3>
   <ul>
-    <li><b><a href="#">Name</a></b> <span class="rating">4.6 ★ <span class="count">(880)</span></span> <span class="src"><a href="#">reddit</a></span> <span class="src">50 best bars #12 2026</span><br>What they make — house style, a signature drink, the beer they brew.</li>
+    <li><b><a href="#">Name</a></b> <span class="rating">4.6 ★ <span class="count">(880)</span></span> <span class="src"><a href="#">reddit</a></span> <span class="src">50 best bars #12 2026</span><br>The interesting thing they make — the program, the ferment, the style no one else pours.</li>
   </ul>
 
   <!-- ── 4. WHERE TO STAY ─────────────────────────────
@@ -347,14 +439,14 @@
        No "best for: first visit / nightlife / families" matrix; that's written
        for a generic audience, not this traveler.
        Flag "avoid" only where they'd genuinely book it and regret it. -->
-  <h2>Where to stay</h2>
+  <h2 id="stay">Where to stay</h2>
   <ul>
     <li><b>Neighborhood.</b> What it's actually like to be there. <em>Day to day:</em> groceries, gym, running route. <em>Tradeoff:</em> what you give up.</li>
   </ul>
 
   <!-- ── 5. BOOK AHEAD ───────────────────────────────── -->
   <!-- ONLY entries with sourced evidence of day-of difficulty. Otherwise omit the row. -->
-  <h2>Book ahead</h2>
+  <h2 id="book">Book ahead</h2>
   <div class="table-wrap">
     <table>
       <thead>
@@ -379,11 +471,12 @@
   <!-- If nothing qualifies, replace the table with one line saying so. -->
 
   <!-- ── 6. PRACTICAL ────────────────────────────────── -->
-  <h2>Practical</h2>
+  <h2 id="practical">Practical</h2>
   <div class="facts">
     <dl>
       <dt>Tap water</dt><dd>Potable / not — plus the local caveat.</dd>
       <dt>Tipping</dt><dd>Expected or not, how much, where.</dd>
+      <dt>Cash &amp; cards</dt><dd>Tap-to-pay everywhere, or where cash is still needed (markets, small places, transit).</dd>
     </dl>
   </div>
 
@@ -404,7 +497,7 @@
   </div>
 
   <!-- ── 7. COUNTRY BACKGROUND ───────────────────────── -->
-  <h2>COUNTRY</h2>
+  <h2 id="country">COUNTRY</h2>
   <div class="facts">
     <dl>
       <dt>GDP</dt><dd>$X total · $Y per capita <span class="note">(Source, YEAR)</span></dd>

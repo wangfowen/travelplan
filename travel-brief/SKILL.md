@@ -9,336 +9,235 @@ Research a destination against a fixed checklist and publish the result as a sin
 
 ## Input
 
-Two things are required: **a city and the travel dates.**
-
-- If they name only a country, ask which city or cities before researching — most of the brief is city-scoped.
-- If they do not give dates, **ask for them before researching.** Dates drive the Events section and the Book-ahead lead times, and both are wrong or unwritable without them. Approximate dates are fine ("mid-May", "the first week of October") — say that when you ask, so the user does not think you need an itinerary.
-
-Ask for whatever is missing in one message, then research. Do not start the brief and ask afterwards.
+Required: **a city and the travel dates.** If they name only a country, ask which city — most of the brief is city-scoped. If they give no dates, ask before researching — Events and Book-ahead are unwritable without them; approximate dates ("mid-May") are fine, and say so when asking. Ask for everything missing in one message, then research.
 
 ## Traveler profile
 
-The brief is written for one specific traveler. Their taste drives what gets included and what gets cut:
+One specific traveler. Their taste decides what goes in and what gets cut:
 
-- **Things to do.** Highest priority is what is *unique to this place and unavailable anywhere else*. After that: world-class nature, then museums that are themselves worth the trip.
-- **Museums** are one category, not split by art/history. The bar is high: include a museum only if it is unique to this place, covers something genuinely interesting, or is world class. A competent regional museum with a standard collection does not go in, however well reviewed.
-- **Nature** is not included for its own sake. Only world-class hikes and sights — the ones that are a reason to go. A pleasant city park is not one. **If nothing in the city clears that bar, omit the Nature section entirely** rather than filling it with green space — silently, with no line explaining the omission.
-- **Tours.** Walking and biking tours run by locals or small independent operators. Aggregator listings and multi-city chains (GetYourGuide, Viator, SANDEMANs, big bus companies) do not go in the brief at all — this is a filter, not a preference, so there is no need to label the survivors as local. Food tours are welcome when the tour itself is interesting and the city is genuinely known for food.
-- **Food.** The bar is **how good the food is**, and nothing else. Not the room, not the ambiance, not the seasonality, not the farm the vegetables came from, not the award. A tasting menu of foraged seasonal produce in a beautiful space is worth nothing here if the cooking is merely competent — and "seasonal", "locally sourced" and "own farm" describe procurement, not flavour, so they are not reasons to include a place and not what the description should lead with. Two things earn a spot: **cooking that is genuinely excellent**, and **food that is distinctive to this place** — the everyday institution where the country actually eats its own food.
-- **Tasting menus are not a category worth chasing.** They are the default format of every ambitious restaurant on earth, which makes them the least distinguishing thing about a city. One or two, when the cooking is the reason, is plenty for a whole brief. A food section that is mostly tasting menus has described the global fine-dining circuit rather than this city.
-- **A cuisine that is not the local one has to earn its place twice.** Good Italian in Vilnius, good French in Bangkok, good steak in Lisbon — the traveler can eat that at home, so "it is very good" is not sufficient. It has to be doing something unavailable at home: an unexpected crossover, a diaspora cuisine with real roots in this city, a technique applied to ingredients it never meets elsewhere. Indian cooking built on Lithuanian produce earns it. A well-executed Neapolitan pizzeria does not, whatever its rating. (Asian food is the standing exception — see its own section under Food.)
-- **Everyday institutions count as much as ambitious kitchens.** A canteen, a market-hall counter, a workers' lunch hall, a beloved domestic chain — if it is where locals eat the national dishes, it belongs in the brief, often above a tasting menu. This traveler will remember a €10 plate of grey peas at the local canteen longer than a competent nine-course menu, because the canteen only exists here.
-- **Where to stay.** Somewhere they could imagine living for a week, not somewhere convenient to the sights. Walkable or on a real transit line, quiet, with ordinary daily-life infrastructure in reach — a supermarket, a gym, somewhere to run. A party district is a mark against, not a draw, and closeness to the attractions is close to irrelevant.
-- **Not wanted.** Generic city attractions available in any European/Asian/American capital, and "hidden gem" cafés indistinguishable from ones at home. **On chains, the test is "interchangeable with home," not "has multiple locations."** An international franchise, or a local imitation of one, is out. A chain that exists only in this country and is the mass vehicle for its national cooking is the opposite — its scale is evidence it is an institution, and it goes in.
+- **Things to do:** unique-to-this-place first, then world-class nature, then museums that are themselves worth the trip. Never generic attractions available in any capital.
+- **Nature:** only world-class — the kind that is a reason to go. A pleasant city park is not. Most cities have none, and then the group is omitted.
+- **Museums:** one group — art, history, and science together. High bar — interesting museums not seen elsewhere, or genuinely world-class ones. One or two entries is the normal length.
+- **Tours:** walking/biking run by locals or small independent operators. Aggregators and multi-city chains (GetYourGuide, Viator, SANDEMANs, big bus companies) never appear — a filter, not a preference, so survivors need no "local" label. Food tours only where the city is genuinely known for food.
+- **Food:** the bar is **how good the food is** — not the room, the ambiance, the award, or the sourcing story ("seasonal", "locally sourced", "own farm" describe procurement, not flavour, and are neither reasons to include nor what a description leads with). A €10 canteen plate that exists only here beats a competent nine-course menu. The per-section bars and the cuisine, chain, and tasting-menu rules live in the Food section of the research procedure.
+- **Where to stay:** somewhere to live out of for a week — walkable or on real transit, quiet, with groceries, a gym, and somewhere to run in reach. Nightlife is a mark against, and closeness to the sights is close to irrelevant.
 
 ## Be short
 
-Every section is a shortlist, not a survey. Include something only if you would genuinely tell a friend to go. **Three to five entries per group is the target, and fewer is better than padded** — a group with two strong entries beats one with six where three are filler.
+Every section is a shortlist. Include something only if you would genuinely tell a friend to go. Three to five entries per group is the target, and **fewer beats padded** — two strong entries beat six with filler.
 
-**An omitted section leaves no trace.** If a group has nothing that clears the bar, delete the heading and move on — do not write a line explaining that you looked and found nothing, and do not name what you rejected or why. "Nature: nothing near this city clears a world-class bar, so this section is omitted" is exactly the sentence not to write. The reader is not auditing your process; a section that is not there reads as "not applicable here," which is the whole message.
-
-Two things are not covered by this rule, and both still get written:
-
-- A section whose *absence is itself the answer to a question the traveler is asking*. Book ahead is the case: "nothing here needs booking in advance" is a useful fact that saves them worrying, so that one gets its single line (see below). No other section qualifies.
-- A **source** that produced nothing, as opposed to a section that did — "Eater has no coverage of this city," "Reddit was unreachable this run." That is a note about the brief's evidence base, it tells the reader why the tags skew the way they do, and it is required under **Source tags** above. Keep those. The rule here is about not narrating your *selection* decisions, not about hiding your sourcing.
+**An omitted section leaves no trace.** If nothing clears the bar, delete the heading and move on — no line saying you looked, no naming what you rejected. The reader is not auditing the process; absence reads as "not applicable here", which is the whole message. Two exceptions still get written: Book ahead's "nothing needs advance booking" line (that absence answers a question the traveler is asking), and source-level notes ("Eater has no coverage of this city", "Reddit was unreachable — attempts listed") — those explain the evidence base and are required under Source tags.
 
 ## How to write an entry
 
-The selection bars in this skill decide **what goes in**. They are not what you write. Once something is in the brief, the reader already knows you vouch for it — the description's whole job is to say **what the thing is and what is distinctive about it**, in one line or two.
+Selection bars decide what goes in; the description's only job is **what the thing is and what is distinctive about it** — one line, two at the ceiling, scanned on a phone.
 
-Describe, do not sell. Concretely, that means:
+- **No superlatives or endorsement language** ("world-class", "unmissable", "a must", "raved about"). Presence in the brief is the endorsement; a sentence arguing for inclusion gets deleted.
+- **Lead with the concrete fact.** "The only surviving wooden synagogue in the country, interior painted 1780" beats "exceptional heritage architecture". A date, material, technique, dish, or number does the work the adjective was faking.
+- **No comparisons to what you rejected** ("not just another park") and **no reception talk** ("widely loved") — the rating and tags carry reception.
+- **Restaurants:** cuisine, technique, format, one or two dishes to order. **Events:** what physically happens and what makes it particular to this place.
 
-- **No superlatives or endorsement language.** Cut "world-class", "genuinely unique", "unmissable", "a must", "worth the trip", "one of the best in Europe", "in a way no other museum does", "clears the bar", "raved about". If you find yourself writing why something deserves its place, delete the sentence — the entry's presence already says that.
-- **Lead with the concrete fact that makes it distinctive.** "The only surviving wooden synagogue in the country, interior painted 1780" beats "a truly exceptional example of regional heritage architecture". A specific noun, date, technique, material, or number does the work that an adjective was trying to do.
-- **No comparison to what you rejected.** "Not just a nice park" and "unlike the usual tourist trap" describe your filtering process, which is not information.
-- **No hedged enthusiasm.** "Widely loved", "people rave about it", "much talked about" are about reception, not the thing. Reception is already carried by the rating and the source tags — do not restate it in prose.
-- **For restaurants**, say what the cooking is: cuisine, technique, format, and one or two dishes to order. Not the award, not the acclaim.
-- **For events**, say what happens at it and what makes it particular to this place. "Residents float candlelit wreaths down the river at dusk" — not "a beloved local celebration".
-
-A useful test: if the sentence would still be true of a different, mediocre place in the same category, it is not describing anything. Rewrite it with a fact.
-
-Keep it tight — one line is normal, two is the ceiling. The reader is scanning on a phone.
+Test: if the sentence would be true of a mediocre place in the same category, it describes nothing — rewrite it with a fact.
 
 ## Ratings and links
 
-Every named place — attraction, restaurant, café, bar, bakery, tour operator — gets, where obtainable:
+Every named place gets a Google Maps link — `https://www.google.com/maps/search/?api=1&query=<url-encoded name + city>` — and its Google rating **with the review count**: `4.6 ★ (2,341)`. The count is not optional — 4.9 from 12 reviews and from 12,000 are different facts; write `(count unknown)` when only the rating is confirmable.
 
-- A **Google Maps link**. Build it as `https://www.google.com/maps/search/?api=1&query=<url-encoded name + city>`. This form is stable and does not require a place ID.
-- Its **Google star rating with the review count**, e.g. `4.6 ★ (2,341)`. Search for it — do not recall it from memory.
+**Verify ratings in the browser on Google Maps, not by web search.** Open the Maps query URL and read the page (`get_page_text`): it returns the live rating, count, price band, and — crucially — whether the place is **permanently closed**, which catches dead venues editorial sources still list. Batch several lookups per `browser_batch` call (navigate → wait 2s → get_page_text, repeated). Web search for ratings mostly surfaces aggregator numbers (Wanderlog, RestaurantGuru), which are banned as substitutes, and it burns budget the brief needs elsewhere.
 
-**The review count is not optional.** A bare `4.9 ★` is close to useless — 4.9 from 12 reviews and 4.9 from 12,000 are different facts. Always show both numbers together. If you can confirm a rating but not its count, write the count as `(count unknown)` so the gap is visible rather than hidden.
-
-**Never invent a rating.** If a search does not surface the current Google rating, omit the rating for that entry rather than estimating. A fabricated number here is worse than a missing one. Review counts drift, so approximate counts (`~2.3k`) are fine.
-
-**Google ratings only.** Do not substitute a TripAdvisor or Yelp score when the Google rating is missing — different scales, different populations, not comparable, and not a source this traveler trusts. Write "no rating found" and move on.
-
-**Sort every list by rating, descending**, so the best-rated entry appears first. Where the section is grouped by category (see Things to do), sort within each group. Entries with no confirmed rating go at the bottom of their group.
+Never invent a rating — omit it instead. **Google only**: no TripAdvisor/Yelp/aggregator substitutes; write "no rating found" and move on. Approximate counts (`~2.3k`) are fine. **Sort every list by rating, descending**; unrated entries go last in their group.
 
 ## Source tags
 
-**Every entry in Things to do, Events and Food carries a visible source tag** — no exceptions, including your own recommendations. The tag says where the entry came from:
+**Every entry in Things to do, Events and Food carries a visible source tag** — no exceptions, including your own recommendations:
 
 | Tag | Means |
 |---|---|
 | `reddit` | Surfaced on Reddit. Link the thread on the tag itself. |
 | `atlas obscura` | From an Atlas Obscura entry. |
 | `michelin` | On the Michelin guide — append the year (`michelin ★ 2026`, `michelin bib 2026`). |
-| `50 best` | Ranked on a 50 Best list — append year and rank, and say which list when it is not the World restaurants one (`50 best #34 2026`, `50 best bars #12 2026`, `asia's 50 best #7 2026`). |
-| `50 best discovery` | On the 50 Best Discovery platform but **not ranked on any list**. A weaker signal — see below. |
+| `50 best` | Ranked on a 50 Best list — append year and rank, and name the list when it is not the World restaurants one (`50 best bars #12 2026`, `asia's 50 best #7 2026`). |
+| `50 best discovery` | On the 50 Best Discovery platform but **not ranked on any list**. |
 | `eater` | Covered by Eater. Link the article. |
-| *named publication* | Any other real editorial source, tagged by its actual name — `lrt`, `condé nast`, `in your pocket`, `falstaff`. Link it. |
+| `world of mouth` | Recommended on World of Mouth (chef/expert database). Link the restaurant's page there. |
+| `beli` | Pasted by the traveler from their Beli app — user-supplied, never searched. |
+| *named publication* | Any other real editorial source, by its actual name — `lrt`, `condé nast`, `in your pocket`. Link it. |
 | `my pick` | Your own knowledge, not surfaced by any search. |
 
-**50 Best Discovery is a different thing from the ranked lists.** It is 50 Best's year-round platform of venues that Academy members voted for or recommended without those venues placing on a ranked list — roughly 3,000+ restaurants and bars worldwide, organised as city guides. That makes it far more useful than the top-50 lists for any city outside the handful that produce ranked entries, and it is the main reason to check 50 Best for a mid-sized city at all.
-
-It is also a much weaker signal than a rank, and the two must not be blurred. Tag a Discovery-only venue `50 best discovery`, never plain `50 best`, and never invent a rank for it. Being on Discovery is not on its own a reason to include a place — the volume is in the thousands. Treat it as one corroborating source among several, useful mainly when it agrees with Reddit or local press.
-
-**There is no generic `guides` tag.** It was removed because it hid the distinction that matters — whether a recommendation came from a real editorial voice or from a scraped listicle. Name the actual publication, or use `my pick` if it is really your own judgment. If a place surfaced only somewhere you would not want to cite by name, that is a signal not to include it.
-
-**Do not source from large review aggregators.** TripAdvisor, Yelp, Wanderlog, RestaurantGuru and the SEO listicle farms that rewrite them are not acceptable sources — they are not a signal this traveler trusts, and their ratings must not stand in for a Google rating either. Prefer Reddit, Atlas Obscura, Eater, Michelin, 50 Best, local press, and city tourism boards.
-
-**If a place appears in more than one source, show every applicable tag.** A restaurant Reddit raves about that Eater also covered gets both `reddit` and `eater`. Cross-source agreement is the most useful signal in the brief, and stacked tags are how the reader sees it.
-
-Tags describe provenance, not endorsement — a `michelin` tag is not a reason to include something. See the Food rules below.
-
-If a source category is unreachable during research, say so plainly in a callout near the affected section rather than silently substituting another source under the wrong tag.
+- **50 Best Discovery** is the unranked year-round platform (3,000+ venues in city guides) — usually the only part of 50 Best that returns anything outside the major capitals, and a much weaker signal than a rank. Never write a rank for it, and never treat it alone as a reason to include — it is corroboration, useful when it agrees with Reddit or local press.
+- **There is no generic `guides` tag.** Name the publication or use `my pick`. If the only source is one you would not cite by name, that is a signal to cut the entry.
+- **Never source from aggregators** — TripAdvisor, Yelp, Wanderlog, RestaurantGuru, and the listicle farms that rewrite them: not for entries, not for ratings.
+- **Stack every applicable tag.** Cross-source agreement is the strongest signal in the brief, and stacked tags are how the reader sees it. Tags are provenance, not endorsement.
+- A source category that is unreachable during research gets a plain callout near the affected section, never a silent substitution under the wrong tag.
 
 ## Reaching Reddit
 
-Reddit is the most valuable source in this brief and the most likely to fail.
+Reddit is the most valuable source in this brief and the most likely to fail. Verified as of Aug 2026:
 
-**Known as of August 2026:** direct fetches of `reddit.com` are refused at the tool level, with a message naming the domain (`unable to fetch from www.reddit.com`) rather than an HTTP error. This is a deliberate blocklist, not rate limiting or bot detection — retrying, changing user agent, or using `.json` / `old.reddit.com` endpoints does not help. Public front-ends (redlib, safereddit) were dead when last checked, and `curl` reaches the host but gets a bot-block interstitial.
+- Server-side fetches of `reddit.com` are refused at the tool level — a deliberate blocklist, not rate limiting. Retries, user-agent changes, `.json`/`old.reddit.com` do not help; public front-ends (redlib, safereddit) were dead when last checked; `curl` gets a bot interstitial.
+- `site:reddit.com` inside a query string is **ignored** by the search backend and returns travel listicles — which is how earlier runs concluded "Reddit unreachable" without ever querying Reddit.
+- **Browser control works.** Claude in Chrome drives the user's logged-in browser, which clears the block — and costs **zero web-search budget**. Stay inside Reddit's own search UI:
+  1. `https://www.reddit.com/r/<citysubreddit>/search/?q=<query>&restrict_sr=1&sort=top&t=year` — drop `restrict_sr=1` when the local sub is thin. `get_page_text` returns results with vote and comment counts.
+  2. Pick threads by **comment count, not upvotes** — recommendations live in the comments; a 3-upvote thread with 24 comments beats a 200-upvote photo post. Prefer threads from the last ~2 years.
+  3. Navigate + `get_page_text` per thread, batched in one `browser_batch` call. Close your tabs when done.
 
-Also: **`site:reddit.com` inside a query string does not work.** The search backend ignores it and returns travel-listicle results, which is how earlier runs concluded "Reddit unreachable" while never actually querying Reddit.
+If the extension is not connected, say so plainly — the user can connect it and re-run. Only then fall back: domain-filtered search (`WebSearch` with `allowed_domains: ["reddit.com"]`, never a `site:` prefix) to at least surface thread URLs, or ask the user to paste threads, naming what you would search. When Reddit is genuinely unavailable, lean harder on Eater and named local press — not aggregators. **Never report a source as unreachable or blocked without naming the specific attempts you made.**
 
-**Browser control is the route that works — verified August 2026.** Claude in Chrome (`mcp__claude-in-chrome__*` in Claude Code, the browser extension on claude.ai) drives the user's own logged-in browser rather than fetching server-side, which is why it clears the block. Search results and full comment threads both read fine.
+## Workflow
 
-Use Reddit's own search UI in the browser and stay inside it. **This costs zero web-search budget** — a significant advantage given how search-hungry the rest of the brief is.
+Run in this order — it is materially cheaper and faster than interleaving:
 
-1. Navigate to `https://www.reddit.com/r/<citysubreddit>/search/?q=<query>&restrict_sr=1&sort=top&t=year`. Swap `restrict_sr=1` out to search all of Reddit when the local subreddit is thin. `get_page_text` returns the result list with vote and comment counts.
-2. Pick threads by comment count, not upvotes — recommendations live in the comments, and a 3-upvote thread with 24 comments beats a 200-upvote photo post.
-3. `find` the thread link to get its href, then navigate and `get_page_text`. Batch the navigate + read into one `browser_batch` call.
-4. Close tabs you opened when done.
+1. **Fan out subagents in parallel** for the editorial legwork: Michelin + 50 Best + World of Mouth, events calendar + local press, neighborhoods + transit + country background. Subagents **return raw text findings** — they do not publish artifacts, and they do not chase Google ratings (that is step 3; doing it early wastes searches on candidates that get cut, and WebSearch mostly surfaces banned aggregator numbers anyway). Search each source category separately — the point is consistent coverage, not speed.
+2. **Do the Reddit pass yourself, serially, in the browser.** The browser is one shared resource with one tab group — parallel agents navigate each other's tabs out from under themselves.
+3. **Select, then verify.** Draft every shortlist first from the combined findings. Then verify ratings **only for places in the draft**, via batched Google Maps lookups in the browser (see Ratings and links) — which also catches permanently closed venues. Verifying candidates you will cut is the main way runs blow their budget.
+4. **Assemble, publish, summarize** in chat.
 
-If the extension is not connected, say so plainly rather than reporting Reddit as blocked — the user can connect it and re-run. Only then fall back:
-
-- **Domain-filtered search.** Use the search tool's domain-restriction parameter, never a `site:` prefix — in Claude Code that is `WebSearch` with `allowed_domains: ["reddit.com"]`. This may surface thread titles and URLs even when fetching is refused, which is still useful for pointing the browser at the right threads.
-- **Ask the user to paste threads.** Say what you would search for. This is a better outcome than silently shipping a brief with no Reddit signal.
-
-Never report Reddit as unreachable without naming the specific attempts you made.
-
-**Do the Reddit pass serially, in one agent.** The browser is a single shared resource with one tab group — parallel subagents driving it will navigate each other's tabs out from under themselves. Fan out the rest of the research (ratings, Michelin, Eater, local press, events calendars, country background) across subagents as usual, but keep Reddit in a single sequential pass and hand its results to whoever assembles the brief.
-
-**When Reddit is unavailable, lean harder on Eater and named local press** rather than backfilling with aggregators. Those sources cover much of the same ground — where people actually eat and go — and remain reachable.
-
-**Watch the search budget.** A session has a fixed web-search allowance and this skill is search-hungry — a full brief can exhaust it, especially when farmed out to parallel subagents. Spend it on Reddit and on Google ratings first; those are the two things nothing else substitutes for. If searches start returning budget errors, stop and tell the user rather than quietly writing a thinner brief.
-
-**Never claim a source was blocked when you did not try it.** Reporting "unreachable" for something you never queried, or that merely returned no results, is worse than reporting nothing — it sends the user chasing an infrastructure problem that does not exist. Say which specific attempts you made.
+**Watch the search budget.** It is session-wide, and subagent fanout can exhaust it. Reddit-in-browser and Maps-in-browser cost none of it; spend WebSearch on editorial sources, events, and country facts. If searches start bouncing off the limit, tell the user rather than silently shipping a thinner brief.
 
 ## Research procedure
 
-Work through the sections below using web search. Search each source category separately rather than issuing one broad query — the point of this skill is consistent coverage, not speed.
-
 ### 1. Things to do
 
-Four groups, in this order, sorted by rating within each:
+Structured like Food: **Top picks fed by the category groups.** Every candidate lands first in a category; the absolute must-dos get promoted to Top picks; each entry appears once — a must-do museum sits in Top picks, not Museums. Six groups, in order, rating-sorted within each, 3–4 entries each (see Be short):
 
-1. **Unique to this city** — things that exist here and effectively nowhere else. The heart of the brief; give it the most room.
-2. **Nature** — world-class hikes and sights only. **Omit this group entirely if the city has none** rather than listing parks to fill it, and without a note saying you did.
-3. **Museums** — art and history together in one group. Include only museums that are unique to this place, cover something genuinely interesting, or are world class. Skip small regional museums and standard collections you could see anywhere. This group is often only one or two entries, and that is the correct length.
-4. **Tours** — walking and biking, run by locals or small independent operators. Name the operator. Drop aggregator and chain listings entirely rather than including them with a caveat; since every tour listed is local by definition, do not tag them as such. Food tours only if the city warrants one.
+1. **Top picks** — the absolute must-dos, regardless of category: the three to five things they would be sorriest to have missed. Fed by Unique to this city, Nature, Museums, and Tours — never by Day trips.
+2. **Unique to this city** — explicitly the catch-all: everything worth going for that the other categories don't catch. The test stays "exists here and effectively nowhere else" — the singular sights, spaces, and experiences that aren't a museum, nature, or a tour. The main feeder of Top picks; give it the most room.
+3. **Nature** — world-class only; usually omitted.
+4. **Museums** — one combined group: art, history, and science together. Interesting museums not seen elsewhere, and/or world-class ones. One or two entries is the correct length.
+5. **Tours** — named local operators only.
+6. **Day trips** — separate, and never promoted into Top picks: a top pick is a reason to be in this city, a day trip is a reason to leave it. Zero to two, only when the destination is itself a reason to be in this region (an island castle, a UNESCO landscape) and reachable as a genuine day trip. Give the transit route and time from the city.
 
-Three or four entries per group, and only ones genuinely worth the traveler's time — see **Be short** above.
+Three passes feed the candidate pool, every entry tagged with all sources that surfaced it:
 
-Draw candidates from three passes, and tag every entry with all sources that surfaced it:
-
-- **Reddit.** Work the ladder in **Reaching Reddit** above — domain-filtered search first, never a bare `site:` prefix. Query for things to do, itineraries, and the city or country subreddit. Weight recommendations recurring across multiple independent threads over a single enthusiastic comment. Prefer threads from the last ~2 years. **Collect suggestions only** — the traveler does not want Reddit's warnings, tourist-trap callouts, or locals-vs-tourists commentary. Just what to go see. Link the thread you took it from.
-- **Atlas Obscura.** Search `site:atlasobscura.com <city>`. Pull the genuinely odd entries, not the ones that are just the city's main museum.
-- **Your own picks.** Add recommendations from your own knowledge that the above missed, tagged `my pick` — they are your judgment, not a citation.
+- **Reddit** (per Reaching Reddit): things to do, itineraries, the city or country subreddit. **Collect suggestions only** — not Reddit's warnings, tourist-trap callouts, or locals-vs-tourists discourse. Weight what recurs across independent threads; link the thread you took each entry from.
+- **Atlas Obscura**: `site:atlasobscura.com <city>` — the genuinely odd entries, not the ones that are just the city's main museum.
+- **Named local press**: the city's own what's-on and culture coverage — the same publications the Events pass reads double as a things-to-do source; tag by publication name.
+- **Your own picks**, tagged `my pick`.
 
 ### 2. Events and festivals
 
-What is happening in the city **during the user's dates specifically** — not a year-round calendar. Check each date against the trip window before including anything; a festival two weeks after they leave is noise.
+Only events **inside the travel window**, and only ones unique to this place — a reason to be in this city on those dates rather than any other city: a local saint's day or seasonal rite, a festival the city is actually known for, a seasonal phenomenon, a genuine one-off (major loan exhibition, anniversary, landmark reopening).
 
-**The bar is the same as Things to do: unique to this place.** Include an event only if it is a reason to be in this city on those dates rather than any other city. Good candidates:
+**Excluded without exception:** club nights and DJ sets, touring acts that play thirty other cities, food-truck rallies, farmers'/craft/seasonal markets (unless that market is itself famous), running events. Omitting the whole section is the expected outcome for most cities in most weeks — no "nothing major, but you could check X", no list of what you ruled out.
 
-- Festivals particular to the city or country — a saint's day, a harvest or seasonal rite, a local carnival, a tradition with a name locals would recognize.
-- One-off or annual cultural events with real standing: a film, music, literature or arts festival the city is actually known for.
-- Seasonal phenomena tied to the place — a bloom, a migration, a light season, an opening or closing day that only happens here.
-- A genuinely notable one-time occurrence in that window: a major exhibition on loan, an anniversary, a landmark reopening.
-
-**Excluded, without exception:** generic club nights and DJ sets, touring acts and stadium concerts that play thirty other cities, food-truck rallies, farmers' markets, craft fairs, seasonal markets indistinguishable from ones anywhere else, running events, and anything a comparable city has its own version of. A Christmas market is only in scope if that particular market is itself famous.
-
-**Omit the whole section if nothing clears the bar** — heading included, so the brief goes straight from Things to do to Food. This is the expected outcome for most cities in most weeks. Do not write "nothing major is scheduled, but you could check X," and do not list the festivals you checked and ruled out for falling outside the window.
-
-Research it:
-
-- Search the city tourism board's events calendar for the specific month and year.
-- Search named local press and city-listings publications for the month — these carry the things the tourism board misses.
-- Ask on the Reddit pass: `what's happening in <city> <month> <year>`, `<city> festivals <month>`. Reddit is good at surfacing the local tradition nobody writes an English-language page about.
-- Search the festival by name once you have a candidate, to confirm this year's dates. **Recurring festivals move** — do not assume last year's dates carry over, and do not carry a date from your own memory.
-
-For each event include: name, **confirmed dates**, one line on what actually happens at it and what makes it particular to this place, whether it needs tickets, and a link to the official page. Where the event has a fixed venue, link it to Google Maps as usual. Source-tag entries the same way as everything else.
-
-**Never state dates you have not confirmed for the user's travel year.** If you find a festival that plausibly falls in the window but cannot confirm this year's dates, say exactly that in the entry rather than printing a date. And if an event needs tickets that sell out, it belongs in **Book ahead** as well.
+Research: the tourism board's calendar for the month and year; named local press; the Reddit pass (`what's happening in <city> <month> <year>`); then **confirm each candidate's dates on its official page** — recurring festivals move, so never print a date you have not confirmed for the travel year (write "this year's dates unconfirmed" instead). Each entry: name, confirmed dates, one line on what physically happens, tickets or not, official link, venue Maps link, source tags. An event with sellout-risk tickets also gets a Book-ahead row.
 
 ### 3. Food
 
-Seven sections, each sorted by rating, each a shortlist. Search all four source categories before writing any of them:
+**Map the city's native formats first.** Before any source pass, write down the venue formats and everyday dishes this city invented or lives on — the seafood beer hall, the charcoal-chicken takeaway, the standing sandwich counter, the grill house, the market canteen — and run one query per format, on Reddit and on Maps. Generic best-restaurant queries miss whole formats, and the city's most-loved institutions live inside them; a format left unsearched is a category silently missing from the brief.
 
-- **Reddit** — best restaurants, where to eat, the local subreddit. Work the ladder in **Reaching Reddit**. Ask the everyday question as well as the best-of one: `where do locals actually eat in <city>`, `<city> cheap local food`, `most Latvian/Thai/Portuguese meal in <city>`. Ask the Asian question separately, since it never surfaces on its own: `best asian food <city>`, `best ramen/sushi/chinese/thai/vietnamese <city>`, and the diaspora framing — `where do the chinese/japanese/korean expats eat in <city>` — which is the query that finds the real one. **Weight what recurs across independent threads above a single enthusiastic comment** — and note that the everyday institution is named flatly rather than raved about, so judge it by how many separate people name it, not by how excited they sound.
+Then search all six source categories before writing anything:
 
-  **Before you write the food sections, check the recurrence list against the draft.** If the place named by the most separate commenters is missing, or has been demoted to a supporting mention under a dish, that is a filtering error until proven otherwise — name the reason you cut it, and if the reason is "it is a chain" or "the cooking is not ambitious", it is not a reason. Cross-source and cross-thread agreement is the strongest signal in this brief; a draft that buries the top-recurring place has thrown away its best evidence.
-- **Eater** — search `eater.com <city>`, and the city's Eater map/guide pages if it has a local edition. Eater covers where people actually eat rather than where guides say to, so it is worth a pass of its own.
-- **Michelin** — the current guide for the city, stars and Bib Gourmand.
-- **50 Best** — four things, not one:
-  - **World's 50 Best Restaurants**, including the extended 51–100.
-  - The **relevant regional restaurants list** — Asia's, Latin America's, Middle East & North Africa's, and so on.
-  - **World's 50 Best Bars**, its 51–100, and the regional bars list where one exists (Asia's, North America's). This feeds the cocktail bars section.
-  - **50 Best Discovery** — the city guide at `theworlds50best.com/discovery`, covering both restaurants and bars. Most cities have Discovery entries and no ranked ones, so for anywhere outside the major capitals this is the only part of 50 Best that will return anything. Search `50 best discovery <city>` and read the city page.
+- **Reddit** — the best-of queries plus the everyday ones (`where do locals actually eat in <city>`, `<city> cheap local food`), plus the standing-tier queries since those sections never surface on their own: the Asian queries — **one query per cuisine** (`best ramen <city>`, `best sichuan <city>`, `best pho <city>`…): a combined `ramen sushi chinese thai` query matches nothing on Reddit's search and returns zero results, and a zero-result query means re-run it split, not move on — plus the diaspora framing (`where do the chinese/korean expats eat in <city>` — the query that finds the real one), the café queries (`best bakery <city>`, `best sourdough <city>`, `best specialty coffee <city>`), and the bar queries (`best cocktail bar <city>`, `craft beer <city>`). Healthy staples runs on Maps instead — see its section. **Run the food queries in the local language too** (`melhor <format> <city>`, `restaurantes bons e baratos`): locals answer locals in their own language, and the flatly-named neighborhood institutions — especially diaspora ones — often appear *only* in those threads. Weight recurrence across independent threads over single enthusiastic comments — institutions get named flatly ("just go to X"), so keep an explicit tally of how many distinct commenters name each place across threads, not how excited they sound. The tally is one signal, not a ranking — but every place near the top of it gets consciously ruled in or out, never silently dropped. A recommendation harvested from a thread that was opened for another reason — a neighborhood thread, a concert-trip thread — enters the tally like any other; where the thread pointed is not part of the evidence. **Before writing, check the tally against the draft:** if the most-named place is missing or demoted to a dish mention, that is a filtering error until proven otherwise — and "it is a chain" or "the cooking is not ambitious" are not reasons.
+- **Eater** — `eater.com <city>` and its map/guide pages. Often absent outside Eater's cities — then say so in the brief.
+- **Michelin** — the **full city selection, not just the awards**: stars, Bib Gourmand, and the plain recommended tier. The recommended tier is where the institutions land — a city's legendary seafood hall is often in the guide without a star, and querying only stars and Bibs skips it entirely.
+- **50 Best** — the World list and its 51–100, the relevant regional list, the Bars lists, and the **Discovery** city guide at `theworlds50best.com/discovery` (usually the only one with entries).
+- **World of Mouth** — the chef-recommendation database: app-first but publicly readable at `worldofmouth.app/destinations/<city>` plus its "best restaurants in <city>" article. Recommendations come from named chefs, sommeliers and food writers, and the selection reaches the institution tier — the classic seafood hall, the grill house — not just fine dining. Link the restaurant's own page on the tag.
+- **Named local press** — the city's own food coverage, by name: the local Time Out edition, the national newspaper's restaurant critic, the city's food magazine, the serious local blogs you would cite. Plus **Culinary Backstreets** where it covers the city — local bureau writers on everyday food culture, the one international outlet that reliably covers the institution tier. This layer catches the beloved neighborhood kitchens sitting between the everyday institutions and the Michelin tier — routinely invisible to Eater, Michelin, and Reddit's tourist-facing threads alike.
 
-  Ranked entries get `50 best` with the list, year and rank; Discovery-only entries get `50 best discovery` and no rank. See **Source tags** for why the distinction matters and how little weight Discovery carries alone.
+**Beli is app-only and stays out of the research loop.** It has no web surface — browser automation drives Chrome, not a phone app — so its rankings and leaderboards are unreachable; never imply it was checked. If the traveler uses Beli, they can paste their city leaderboard or lists into the chat: treat that as a real source, tag it `beli`, and weight it as the traveler's own network rather than editorial.
 
-Then distribute what you found across the sections below, tagging each entry with every source it appeared in.
+Distribute into eight sections, tagging every source. **Each restaurant appears once**, in the section that says most about it — Everyday institutions over Local dishes, Top picks over Creative. The sections split into two tiers:
 
-- **Top picks.** The three to five places the traveler would be sorriest to miss — **regardless of category, price, format or cuisine**. This section leads the food coverage. Draw from all sources and tag accordingly: `reddit`, `eater`, `michelin ★ 2026`, `50 best #34 2026`, or several at once.
+- **The headline tier — Top picks, Creative and interesting, Everyday institutions.** One shared candidate pool: everything the source passes surfaced. Creative and Everyday institutions are real sections in their own right *and* the feeders for Top picks — a top pick is almost always the best of one of those two lists. Three rules apply to this tier (and only this tier):
+  - **A non-local cuisine must earn its place twice.** The traveler can eat good Italian at home, so "very good" is not enough — it must do something unavailable at home: a real crossover, a diaspora cuisine with roots in this city, a technique meeting ingredients it never meets elsewhere. (East and Southeast Asian food is exempt — it has its own standing section below.)
+  - **Chains:** the test is "interchangeable with home", not "multiple locations". International franchises are out; a domestic chain that is the mass vehicle for the national cooking is an institution, and goes in.
+  - **Tasting menus** are the default format of ambitious restaurants everywhere — the least distinguishing thing about a city. One or two per brief, when the cooking is the reason, is plenty. Among ambitious kitchens, the one interpreting the national cuisine outranks the placeless international tasting menu — modern local cooking is the thing that exists only here, and an award does not override this ordering.
+- **The standing tier — Asian food, Cafés and bakeries, Healthy staples, Cocktail bars and breweries.** These answer "if I feel like X in this city, where do I go" — so each is **researched independently with its own dedicated queries**, never filtered out of the general pool, and each earns its place even when nothing in it would make the headline tier. "Distinctive to this place" and the non-local rule do not apply here; each section has its own bar, stated below. A section whose queries never ran is a research gap, not a thin city.
 
-  **This is not the fine-dining tier.** A canteen, a market-hall counter, a grill house, a bakery and one ambitious kitchen can all sit in this list together, and the strongest version of this section usually does. The question is "would I tell a friend they have to eat here", not "which of these is the most serious restaurant."
+**Local dishes belongs to neither tier** — it is the city's dish canon, not a venue list, and it **opens the Food section** as orientation before any restaurant appears; the venue sections follow it.
 
-  **If every entry is the same kind of place, the section is wrong.** All tasting menus, all €50+, all one price band — that means the list got sorted by prestige rather than by how much the food is worth eating. Before publishing, check the spread: at least one entry should be somewhere a local eats on an ordinary weekday, and if the whole list could have been generated from the Michelin guide alone, rebuild it.
+The sections, in render order:
 
-  **A listing is not a reason to include something.** Only include a restaurant here when it is genuinely raved about — recurring across independent Reddit threads, a strong rating, or specific praise for the food itself. A starred restaurant nobody enthuses about does not belong; a beloved place on no list does. When a place carries an award tag, the description still describes the cooking — see **How to write an entry**.
-- **Everyday institutions.** Where the city eats its own food on an ordinary Tuesday: canteens and self-service halls, market-hall counters, a long-running domestic chain, a workers' lunch place, a bakery-counter lunch. The bar is that **it is an institution here and could not be transplanted** — not that the cooking is ambitious. Cheap, unglamorous, and enormously popular is the profile, and none of those are marks against it.
-
-  **Look for it deliberately — this section will not fill itself.** The research passes are biased toward it being empty: Michelin and 50 Best do not list canteens, Eater rarely covers them, and Reddit names them in flat, unexcited language ("just go to X", "all the locals eat there") that reads as weak signal next to an enthusiastic paragraph about a tasting menu. Ask the question directly: *where do people eat lunch here, and what is the place that exists in this country and nowhere else?*
-
-  **A high review count with a middling rating is the signature of an institution**, not a warning — 9,000 reviews at 4.4 is a different and often more interesting fact than 300 reviews at 4.8. Do not let the rating sort talk you out of the entry.
-- **Creative and interesting.** Only genuinely unusual cooking — an unfamiliar technique, an ingredient pairing you would not expect, a format that does not exist elsewhere.
-
-  **"Seasonal tasting menu of local produce" is not unusual.** It is the house style of every ambitious restaurant in every city, so it does not qualify a place for this section no matter how well executed. Nor does an open kitchen, a chef's table, a restaurant's own farm, or a room in a converted historic building — those are settings and supply chains, not cooking. If the only thing separating an entry from a Top pick is that it is expensive and ambitious, it belongs in Top picks or nowhere.
-
-  This section is frequently empty, and that is the correct outcome in most cities. Same tagging rules apply.
-- **Local dishes.** The dishes genuinely specific to this city or country — what they are, and one or two specific places to eat each. This is about the dish first, the restaurant second.
-
-  **This section is not a parking spot for a restaurant that deserved its own entry.** Naming a place here as "where to eat the dish" demotes it to a supporting mention. If the venue is itself the point, give it an entry in Top picks or Everyday institutions and reference it from here.
-- **Asian food.** This traveler wants good Asian food wherever in the world they are, so it is worth naming even in a city with no connection to it. This is the standing exception to the rule that a non-local cuisine must be unavailable at home.
-
-  **The bar is high and the default is to omit the section.** Mediocre ramen, supermarket-grade sushi and generic wok stir-fries do not count, and neither does "the best Thai in a city that has no Thai food" — being the top of a weak field is not a recommendation. Include a place only on real evidence that it is the article: a cook making their own cuisine, a diaspora community that actually eats there, Reddit threads where that diaspora or resident expats vouch for it by name, or a rating and review volume that holds up against the city's best restaurants generally. **Zero entries is a common and correct outcome** — omit the section silently, per **Be short**.
-
-  **Be regionally specific in the description** — the specificity is most of the information. *Hakata-style tonkotsu*, *Sichuan*, *Isaan*, *Kerala*, *Shaanxi hand-pulled noodles*, *Cantonese roast meats*. Not "Asian", and usually not even "Chinese" or "Japanese". Name the dish to order.
-- **Cafés and bakeries.** Only ones with real local reputation — a specific specialty, a distinctive bake, a long-standing institution. Skip anything interchangeable with a good café at home.
-- **Cocktail bars and breweries.** Same bar: well-known, distinctive, or doing something specific to the region. Omit the section entirely — heading and all, without comment — if the city has no notable scene, rather than padding it.
-
-  This is where the **50 Best Bars** results land — the World list and its 51–100, the regional list, and Discovery's bar entries for the city. Tag them like any other 50 Best entry (`50 best bars #12 2026`, or `50 best discovery`). The same rule applies as for restaurants: a ranking is provenance, not a reason to include, and the description says what they pour, not where they placed.
-
-**Each restaurant appears once across the food coverage.** If a place fits two sections, give it the one that says more about why it matters — Everyday institutions over Local dishes for a canteen, Top picks over Creative for an ambitious kitchen, Top picks over Asian food for an Asian restaurant good enough to be a must-go — and let the description carry the rest. Repeating an entry in two sections wastes the reader's time; demoting it to the weaker section wastes the entry.
+- **Local dishes.** Three to five, and the list should be stable run to run — it is the city's canon, not whatever surfaced this time. Qualifies: the dishes this city or region is actually known for — the ones a local would insist a first-time visitor tries — plus anything with a seasonal window overlapping the dates (name the window). The candidates come from the format map's everyday-dish list and a dedicated Reddit query (`what dishes must I try in <city>`), not from recall. Per dish: what it is in one line, then one or two places to eat it. Not a parking spot for a restaurant that deserves its own entry — give the venue its full entry in a section below and reference it here.
+- **Top picks.** The absolute must-gos: the three to five places they would be sorriest to miss, **regardless of category, price, format or cuisine** — not the fine-dining tier. A canteen, a grill house, a bakery and one ambitious kitchen belong in the same list. **The departure test, applied to every entry:** once home, could they replicate this meal? If yes — however good it is — it is not a top pick; the best ramen in a city not known for ramen belongs in Asian food, and awards or Reddit unanimity do not exempt it. Spread check before publishing: if every entry is a tasting menu, all €50+, or the list could have been generated from the Michelin guide alone, it got sorted by prestige — rebuild it; at least one entry should be somewhere a local eats on an ordinary weekday. A listing is never the reason to include — genuine raves, recurrence, or the food itself are.
+- **Creative and interesting.** Optimized for **cooking no one else is doing**: an interesting take on the local cuisine, a fusion that could only happen here, an unfamiliar technique or ingredient set, a format that does not exist elsewhere. Novelty is the ranking key — between two good kitchens, the one doing something the other city's kitchens aren't wins. "Seasonal tasting menu of local produce" is the house style of every ambitious restaurant on earth and does not qualify; neither do open kitchens, chef's tables, or own farms — settings and supply chains, not cooking. The best entry here often graduates to Top picks; the section holds the rest. Omit only when the city genuinely has no kitchen doing something of its own.
+- **Everyday institutions.** Canteens, market-hall counters, workers' lunch halls, a long-running domestic chain — where the city eats its own food on an ordinary Tuesday. Optimized for **what tastes good**, in an untransplantable local institution; cheap and unglamorous is the profile, not the bar. "Where locals actually go" is corroborating evidence, not the objective — locals also optimize for price, portions, and nostalgia, so a locals' favourite that tastes mediocre stays out, and tourists also loving a place is not a strike. **Search for these deliberately** — every source is biased against them. A high review count at a middling rating (9k at 4.4) is the signature of the category, not a warning — and Maps itself is the reliable finder: when an unfamiliar name at institution scale (10k+ reviews) surfaces in "People also search for" during ratings verification, that is a missed candidate to chase, not sidebar noise. When locals knock an institution, read *which* complaint it is: "touristy", "overhyped", "I haven't been in years" are not reasons to cut — locals are routinely embarrassed by their own beloved canteen chain; "the food is bad" is a reason. Judge the complaint actually being made, not the tone.
+- **Asian food.** East and Southeast Asian only — Japanese, Chinese, Korean, Thai, Vietnamese, Malaysian, Indonesian. South Asian (Indian, Nepalese, Pakistani, Sri Lankan) does not appear, even when the local diaspora story is real. The bar is **authentic**: a cook making their own cuisine for people who grew up on it — no mediocre ramen, supermarket sushi, or generic stir-fries, and "the best Thai in a city with no Thai food" is not a recommendation. Include only on real evidence: a cook making their own cuisine, a diaspora that actually eats there, expat/diaspora threads vouching by name, or a rating that holds up against the city's best. **Rank the evidence right:** a local flatly naming a place in a local-language thread outranks an editorial writeup — the curiosity piece about a venue is a journalist's signal, the flat naming is an eater's. Diaspora food clusters where the diaspora lives, usually outside the tourist core — distance from the center is never a strike, and an outlying district being "not where the trip is based" is not a reason to drop its candidates. Every Asian candidate surfaced anywhere in the pass gets consciously ruled in or out against the ones already drafted — "the slot for that cuisine is filled" is not a comparison. Be regionally specific — *Hakata tonkotsu*, *Sichuan*, *Isaan* — and name the dish to order. Promotion into Top picks requires world-class by global standards, not best-in-this-city.
+- **Cafés and bakeries.** Three things to look for, each on its own query: **sourdough** (a bakery doing real naturally-leavened bread), **good pastries** (proper lamination — or the local specialty bake done seriously), and **good coffee** (a specialty roaster or a shop that treats it as one). One place clearing two or three bars beats three clearing one. Craft is the whole test — a café this good would earn its place at home too, and that is fine here. Name the thing to order.
+- **Healthy staples.** The repeatable healthy default for a week of eating out: **good macros and actually tasty** — grilled protein, vegetables, bowls done well, food you would choose rather than concede to. Provenance irrelevant; one or two entries. **Maps in the browser is the primary finder for this section, not a verification step:** run a category search (`healthy bowls <city>`, `salad <city>`, `poke <city>`) during the browser pass — it costs no search budget, and the archetype it surfaces is a local fast-casual chain with several locations and strong ratings. Web-searching this category returns recipe listicles and aggregator noise; do not delegate it to a search subagent, and treat "only one weak candidate found" as a failed search to re-run on Maps, not as the answer. Reddit's expat and living-here threads are the secondary source. If the city has no genuinely good option, omit the section — a mediocre salad chain is not a staple.
+- **Cocktail bars and breweries.** The bar is **interesting — doing things no one else is doing**: a house fermentation program, a menu built on local ingredients no other bar touches, a brewing tradition or style particular to here. "Well-executed classics in a nice room" exists in every city and does not qualify. The 50 Best Bars results land here when they clear that bar — the ranking is provenance; the description says the interesting thing they pour. Omit the section if there is no real scene.
 
 ### 4. Where to stay
 
-**Two or three neighborhoods, not a survey of the city.** Pick the ones that fit this traveler and leave the rest out — a menu of five with a nightlife pick and a families pick is written for someone else.
+**Two or three neighborhoods that fit this traveler** — not a survey with a nightlife pick and a families pick; that menu is written for someone else. Qualifies: walkable or on transit that actually runs; quiet (a bar strip is disqualifying, and nightlife is never a reason to list an area); ordinary daily life in reach — supermarket, gym, a park or river path to run. The summary test: **could they live here for a week?** Proximity to the sights is not a criterion and not a ranking key.
 
-What qualifies:
-
-- **Walkable, or on a transit line that actually runs.** They move around on foot and on transit, not by car.
-- **Quiet.** Residential beats central. The bar strip and the street everyone recommends for a night out are disqualifying, not a feature — **nightlife is never a reason to list an area** for this traveler.
-- **Ordinary daily life within reach** — a supermarket, a gym, a park or river path to run on. This is what separates somewhere you can live out of from somewhere you only sleep.
-- **Somewhere they could see themselves living for a week.** That is the summary test. If a neighborhood only makes sense as a base for sightseeing, it does not qualify.
-
-**Proximity to the tourist sights is not a criterion.** Do not list an area because it is close to the attractions, and do not rank by how central it is.
-
-For each: one line on what the area is actually like to be in, a note on the daily-life practicalities above, and the tradeoff — what they give up by staying there. Flag an area as best avoided only when the traveler might genuinely book it and regret it (reads central on a map but is a nightlife strip; cut off once the buses stop). A general crime survey of districts they would never consider is noise — leave it out.
+Per entry: one line on what the area is like to be in, the daily-life note, and the tradeoff. Flag an area as "avoid" only when the traveler might genuinely book it and regret it (reads central on a map, is a party strip; cut off when the buses stop) — no crime surveys of districts they would never consider.
 
 ### 5. Book ahead
 
-Include an entry **only when a source shows people actually struggle to get in day-of** — a booking page showing weeks of unavailability, an operator stating a cutoff, a lottery or permit system, reviews or threads reporting sellouts. Cite what the evidence was.
-
-If you cannot verify that something is hard to book, **leave it out entirely**. Do not list it as "unconfirmed," do not estimate a lead time, and do not include a restaurant merely because it is popular or a site merely because it sells timed tickets. A short, true table is the goal; padding it with maybes defeats the section.
-
-Cover restaurants, tours/sites/experiences, and any ticketed event from the Events section. Flag anything booking more than a month out. Name the booking channel (own site, Tock, Resy, phone only, operator direct).
-
-Lead times are relative to the user's dates — say when to book, not just how far ahead.
-
-If nothing in the city genuinely requires advance booking, say exactly that in one line and skip the table.
+Only entries with **evidence of day-of failure**: a booking page showing weeks unavailable, an operator's stated cutoff, a lottery or permit system, reported sellouts — and cite the evidence. Unverifiable → dropped entirely: no "unconfirmed" rows, no lead-time estimates, no inclusion for mere popularity or timed tickets. Cover restaurants, tours/sites/experiences, and ticketed events from the Events section; flag anything booking more than a month out; name the channel (own site, Tock, Resy, phone only). Lead times are relative to the user's dates — say **when to book**, not just how far ahead. If nothing qualifies, one line saying so and no table.
 
 ### 6. Practical basics
 
-Three things. The first two are one line each; **Getting around is a real subsection** and the one the traveler actually uses.
+Three one-liners, then Getting around as a real subsection:
 
 - **Tap water** — potable or not, plus the local caveat.
-- **Tipping** — expected or not, roughly how much, in which contexts (restaurants, taxis, bars, hotels).
+- **Tipping** — expected or not, roughly how much, in which contexts.
+- **Cash and cards** — can they tap a card for everything, or where is cash still needed (markets, small places, transit)?
 
 #### Getting around
 
-Answer "how do I actually move around this city". **Two rows and a verdict — Transit, Rides, then the call.** Keep each row to a few lines: the details are there to support the verdict, not to be a fare table. Payment mechanics, prices and hours are one-liners folded into their row, not rows of their own.
+**Two rows and a verdict — Transit, Rides, the call.** Payment mechanics, prices and hours are one-liners folded into their row, not rows of their own.
 
-- **Transit.** What the city actually has — metro (and how many lines), tram, trolleybus, bus, commuter rail, ferry, funicular — and the part that matters most: **whether the network reaches where a visitor goes**, or whether it is a commuter system that misses the old town and the sights. Then fold in, a line each: how you pay (contactless bank card, a **named** local transit card, a **named** app, paper tickets, cash to the driver — and flag it if foreign-issued cards fail on the readers, or if tickets must be validated on board and there is a fine, since both catch visitors); the single fare and a day or multi-day pass in local currency **with a USD conversion**; and roughly when service stops at night. Mention a tourist card only if it is actually worth buying.
-- **Rides.** Which apps genuinely operate there, **by name** — Uber, Bolt, Grab, Didi, Yandex, inDrive, local equivalents; do not assume Uber is everywhere. Whether street-hailing or phone-ordered metered taxis are the norm instead, and whether the meter is reliably used. A typical short cross-town fare and the **airport-to-center** fare, local currency and USD, so they can be compared against the transit fare. Flag the standard airport-taxi overcharge if the city has one.
-- **The verdict.** One or two lines, and the point of the whole section: rely on transit, default to rides, or walk and use rides for the edges — with the reason. **Walking and bikes belong here**, since they are part of the answer rather than a category of their own: whether the center is walkable end to end and roughly how long that takes, plus a bike-share scheme by name if there is a usable one. Cities genuinely differ — a €1.20 metro that goes everywhere plus a €4 cross-town Bolt gives a different answer than a €2.50 tram plus a €25 airport taxi.
+- **Transit.** The modes that exist and — the part that matters — whether the network reaches where a visitor goes or is a commuter system that misses the sights. Fold in: how you pay (contactless bank card / **named** local card / **named** app / cash — flag foreign-card failures on readers and on-board validation plus the fine, both of which catch visitors); single and day-pass fares in local currency **with USD**; when service stops at night. Tourist card only if actually worth buying.
+- **Rides.** Which apps genuinely operate, **by name** (Uber, Bolt, Grab, Didi, inDrive, local equivalents) — never assume Uber. Street-hail and meter norms. Typical short cross-town and airport-to-center fares (local + USD), so they compare against the transit fare. The standard airport-taxi overcharge if the city has one.
+- **Verdict.** Rely on transit, default to rides, or walk + rides for the edges — with the reason, comparing the costs above. Walkability of the center (end-to-end time) and bike share by name belong here, as part of the answer.
 
-Search for the fares and ride prices rather than recalling them — fares get revised annually. **Never invent a fare or a ride estimate**; write "could not confirm" and keep the rest. Attach the year to anything you did confirm.
+Search the fares — they revise annually. Never invent a fare or ride estimate; write "could not confirm" and keep the rest. Attach the year to anything confirmed.
 
 ### 7. Country background
 
-- GDP — nominal total and per capita, with the source and year.
-- Main drivers of the economy, three to four.
-- **Tech and startup scene** — the country's largest and most notable startups and tech companies: what each does, total funding raised or valuation, and whether it reached unicorn status or exited. Note the year of any funding or valuation figure, and name any local sector concentration (fintech licensing, gaming, semiconductors, biotech). Search for current figures; these date fast.
-- History in about five beats, ending at the present. Enough to make what the user sees legible.
-- **Culture** — see below.
-- Languages spoken, including how far English gets you.
+- **GDP** — nominal total and per capita, with source and year.
+- **Economy** — three or four main drivers.
+- **Tech scene** — the most notable startups/tech companies: what each does, funding or valuation with year, unicorn/exit status; name any sector concentration (fintech licensing, gaming, semiconductors). Search current figures — these date fast.
+- **History in ~5 beats**, ending at the present — enough to make what they see legible.
+- **Culture** — below.
+- **Languages** — what is spoken, and how far English gets you.
+- **~10 phrases** — native script, phonetic rendering, English: hello, please, thank you, excuse me, yes/no, do you speak English, how much is this, the bill please, where is the bathroom, cheers.
 
 #### Culture
 
-**Three or four things** that are culturally distinctive about this country — the things a traveler would notice, wonder about, and not be able to guess. **Fewer is better than padded, and there is no floor.** Two strong entries beat five where three are filler; a country where only two things clear the bar gets two. This section is unusually prone to quota-filling because the format invites it — if you are reaching for a fifth entry, that is the signal to stop, not to lower the bar.
+**Three or four entries, and there is no floor** — two strong entries beat five with filler, and reaching for a fifth is the signal to stop, not to lower the bar. The things a traveler would notice, wonder about, and not be able to guess: a national obsession with real hold; etiquette they would actually get wrong; visible religion or folk ritual; a daily-rhythm difference (dinner time, Sunday closures); a craft or art form met in life rather than in a shop window; an attitude or self-understanding that explains what they will see and hear.
 
-This is the section that makes the place legible rather than the one that tells them how to behave, though etiquette that would actually trip them up belongs here too. Candidates:
+Two tests, in order. **Swap the country name** — if the line survives, cut it ("sauna culture is deeply important to the national identity" survives; "public saunas run to 90°C and strangers share them naked" does not). Then the **encounter test** — will the traveler actually run into this, or does it explain something they would otherwise misread? If neither, it is trivia. The three kinds of trivia that keep getting in: **shopping and souvenir logistics** (which streets sell the amber — a retail directory, not culture); **one-off news items and municipal gestures** (a street renamed to needle an embassy — a single event is not a culture); **traditions living somewhere the traveler is not going** (a craft practised 200km away is background for a different trip).
 
-- A **national obsession or pastime** with real hold on the country — a sport, a game, a music form, a sauna or bathhouse culture, a mushroom-picking or beach-going season the whole country observes.
-- A **social custom or piece of etiquette** a visitor would get wrong: shoes off indoors, how greetings and handshakes work, toasting rules, what happens when you sit down at a table, whether haggling is expected, gestures that read differently here.
-- **Religion, folk belief, or ritual** that is visibly present — what you will see people doing and when.
-- A **daily-rhythm difference**: when people eat dinner, whether shops shut midday or on Sundays, when the workday ends, what the weekend looks like.
-- A distinctive **art form, craft, or design tradition** — but only where the traveler meets it in life rather than in a shop window: what it is for, who still makes or uses it, when it appears. "Which streets sell the good souvenirs" is retail information, not culture.
-- An **attitude or self-understanding** that shapes public life — a relationship to a neighbor country, a founding grievance or pride, a strain of humor — where it explains something the traveler will actually see or hear.
-
-The same writing rules apply as everywhere else: **lead with the concrete fact, not the characterization.** "Public saunas run to 90°C and strangers share them naked; asking to keep a swimsuit on reads as odd" is a culture entry. "Sauna culture is deeply important to the national identity" is not — it would be true of any country you inserted, and tells the reader nothing they can use.
-
-Cut anything that would be equally true of most countries: that family matters, that people are proud of their food, that hospitality runs deep, that the young are more Westernized. If an entry survives swapping the country name, delete it.
-
-**Then apply the encounter test: will the traveler actually run into this, or does it explain something they would otherwise misread?** If neither, it is trivia, and trivia is what fills this section when the real material runs out. Three kinds in particular keep getting in and should not:
-
-- **Shopping and souvenir logistics.** Which streets sell amber, where to buy the good ceramics, how to spot a fake. That is a retail directory, and it tells you nothing about how anyone lives.
-- **One-off news items and municipal gestures.** A street renamed to needle an embassy, a mayor's stunt, a statue erected last year. These are clever anecdotes with no life behind them — the traveler will not see it, cannot participate in it, and learns nothing that makes the country legible. A single event is not a culture.
-- **Traditions that live somewhere the traveler is not going.** A folk craft practised in villages 200km away, a festival in another region, a UNESCO listing attached to a site outside the trip. If it is not present in this city or in national daily life, it is background for a different trip.
-
-The entries that survive tend to be the same shapes: something a large share of the population does or follows, something that will visibly interrupt the traveler's day, or something they would get wrong without being told.
-
-Keep each entry to one or two lines. Do not turn this into a do's-and-don'ts list, and do not moralize about respecting local customs.
-- About ten travel phrases in the main language: native script, phonetic rendering, and English. Hello, please, thank you, excuse me, yes/no, do you speak English, how much is this, the bill please, where is the bathroom, cheers.
+One or two lines per entry, concrete fact first. No do's-and-don'ts list, no moralizing about respecting customs.
 
 ## Accuracy rules
 
-- Anything drawn from your own knowledge rather than a search must be labeled as such.
-- Never fabricate a Google rating, review count, funding figure, booking lead time, or event date. Omit rather than estimate.
-- Award lists, GDP figures, funding totals, and tipping norms all drift. Attach a year to each.
+- Anything from your own knowledge rather than a search is labeled as such.
+- Never fabricate a rating, review count, funding figure, booking lead time, fare, or event date — omit rather than estimate.
+- Award lists, GDP figures, funding totals, fares, and tipping norms drift: attach a year to each.
 - Prefer "could not confirm" to a plausible guess — except in Book ahead, where an unconfirmed entry is simply dropped.
+
+## Pre-publish checklist
+
+Run this pass over the finished draft, in order, before assembling the artifact. These checks repeat rules stated above — that is the point; they are the ones that get lost between research and writing.
+
+1. **Departure test, every Top pick:** once home, could they replicate this meal? If yes, move it to its category section or cut it — awards and Reddit unanimity do not exempt it.
+2. **Spread check, Top picks:** not all tasting menus, not all €50+, not derivable from the Michelin guide alone; at least one entry is somewhere a local eats on an ordinary weekday.
+3. **Things-to-do Top picks:** every entry was promoted from a category group (Unique, Nature, Museums, Tours), none is a day trip, and nothing appears in both Top picks and its category.
+4. **Ambitious-kitchen slot:** if the brief includes one ambitious kitchen, it is the one interpreting the national cuisine, not the placeless tasting menu — regardless of which holds the award.
+5. **Tally vs. draft:** every place named in any read thread — including local-language threads and threads opened for another reason — is either in the brief or was consciously ruled out for a reason that isn't "chain", "touristy", "not ambitious", or "wrong part of town".
+6. **Query completeness:** every standing-tier section got its own pass — the per-cuisine Asian queries, the café/sourdough/coffee queries, the cocktail/craft-beer queries, and the Maps category search for Healthy staples — a section drafted from one weak candidate is a failed search, not a thin city.
+7. **Format and dish coverage:** every native venue format and everyday dish named at the start of the Food pass is represented in the brief or was consciously ruled out — an unsearched or unrepresented one is a research gap, not an editorial choice.
+8. **Events:** every printed date confirmed on the event's own page for the travel year, or marked "this year's dates unconfirmed". Nothing outside the travel window.
+9. **Ratings:** every rating has a review count; none invented; every list sorted by rating descending, unrated last.
+10. **Source tags:** every Things to do, Events, and Food entry carries all its tags; every reddit tag links its thread; no aggregator-sourced entries or numbers.
+11. **Empty sections:** anything that didn't clear the bar is deleted heading-and-all, leaving no trace — except Book ahead's "nothing needs advance booking" line and source-availability callouts.
+12. **Book ahead:** every row cites its evidence; anything unverifiable is dropped, not hedged.
+13. **Years attached:** every fare, award, GDP figure, funding total, and tipping norm carries its year.
 
 ## Output
 
-Produce **one self-contained HTML artifact**, following the structure and styling in `reference/brief-template.html`.
+One self-contained HTML artifact, following `reference/brief-template.html`. In Claude chat, emit the artifact directly (no files); in Claude Code, write to a scratch file and publish with the Artifact tool — never into the user's project.
 
-How you create it depends on where you are running:
-- **Claude chat** — emit the artifact directly. Do not write files.
-- **Claude Code** — write the HTML to a scratch file, then publish it with the Artifact tool and give the user the URL. Do not save it into the user's project.
-
-Requirements:
-- Title it `<City> — Travel Brief`.
-- Include the travel dates and the research date near the top.
-- Any section or group with nothing that cleared the bar is dropped heading-and-all, with no sentence anywhere noting the omission — Events, Nature, and Cocktail bars are the usual cases.
-- Readable on a phone; the user will open this while traveling.
-- Works in both light and dark themes.
-- Every place name links to Google Maps; ratings render as a visible badge.
-- Every Things-to-do, Events and Food entry shows its source tag(s); entries found in multiple sources show all of them.
-- Reddit tags link to the thread they came from.
+- Title: `<City> — Travel Brief`. Header shows travel dates, research date, and one line of expected weather for the dates (typical high/low, rain likelihood, daylight — climate normals from own knowledge are fine, labeled per Accuracy rules).
+- A one-line anchor nav under the header so each section is one tap away on a phone.
+- Any section or group with nothing that cleared the bar is dropped heading-and-all, with no sentence noting the omission (Events, Nature, and Day trips are the usual cases; a food section can be empty too, but only after its own query pass ran and came back dry).
+- Readable on a phone; works in light and dark themes; no external requests — all CSS inline, nothing remote loaded (links out are fine).
+- Every place name links to Google Maps; ratings render as a visible badge; every Things-to-do, Events, and Food entry shows all its source tags; reddit tags link to their thread.
 - Book-ahead entries render as a table with a visible lead-time column.
-- No external requests — inline all CSS, embed nothing remote. Links out are fine; loaded assets are not.
 
-After publishing, give the user a three-or-four-line summary in chat: the single highest-value thing to book immediately, anything notable falling in their dates, and anything you could not confirm.
+After publishing, give a three-or-four-line chat summary: the single highest-value thing to book immediately, anything notable falling in their dates, and anything you could not confirm.
