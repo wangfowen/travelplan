@@ -1,0 +1,24 @@
+# Things to do
+
+Structured like Food: **Top picks fed by the category groups.** Every candidate lands first in a category; the absolute must-dos get promoted to Top picks; each entry appears once — a must-do museum sits in Top picks, not Museums. Six groups, in order, rating-sorted within each, 3–4 entries each (see shared.md → Be short):
+
+1. **Top picks** — the absolute must-dos, regardless of category: the three to five things they would be sorriest to have missed. Fed by Unique to this city, Views and nature, Museums and galleries, and Tours — never by Day trips.
+2. **Unique to this city** — explicitly the catch-all: everything worth going for that the other categories don't catch. The test stays "exists here and effectively nowhere else" — the singular sights, spaces, and experiences that aren't a museum, nature, or a tour. Immersive and experiential art (a Meow Wolf, a teamLab) lands here, and a handful of global locations does not disqualify it — the test stays "can't see this at home." The main feeder of Top picks; give it the most room.
+3. **Views and nature** — two bars. Nature keeps the world-class bar: a reason to go in itself, which most cities have none of. Views are city-scaled: the one or two spots to actually take the city in — a hilltop, a waterfront walk, a rooftop — preferring the free spot locals use over the paid observation deck, unless the deck is itself the singular experience. One to three entries in most cities.
+4. **Museums and galleries** — one combined group: art, history, and science together. Interesting museums not seen elsewhere, and/or world-class ones. One or two entries is the correct length. A real gallery scene earns one more entry — a gallery district or a first-Friday gallery walk written as a single line naming its two or three anchor spaces; individual commercial galleries almost never qualify alone.
+5. **Tours** — named local operators only (the aggregator filter is in shared.md's traveler profile).
+6. **Day trips** — separate, and never promoted into Top picks: a top pick is a reason to be in this city, a day trip is a reason to leave it. Zero to two, only when the destination is itself a reason to be in this region (an island castle, a UNESCO landscape) and reachable as a genuine day trip. Give the transit route and time from the city.
+
+## Selecting from the dossier
+
+Candidates come from the dossier's Reddit, Atlas Obscura, and local-press findings, plus your own picks tagged `my pick` — every entry keeps all the tags it was born with. Weight what recurs across independent threads; link the thread each Reddit entry was taken from. Reddit's generic warnings and locals-vs-tourists discourse never become entries — but negative evidence attached to a candidate in the dossier is real input: weigh it against the recommendations before including, and judge the specific complaint being made, not its tone. From Atlas Obscura, the genuinely odd entries — not the ones that are just the city's main museum.
+
+## Mandatory coverage (gap-fill if missing from the dossier)
+
+- The two dedicated Reddit queries ran: `immersive art <city>` and `best view of <city>` — the general threads miss both.
+
+## Checklist
+
+1. Every Top pick was promoted from a category group (Unique, Views and nature, Museums and galleries, Tours); none is a day trip; nothing appears in both Top picks and its category.
+2. Every Day trip names its transit route and time from the city.
+3. Groups with nothing that cleared the bar are gone heading-and-all (nature entries and Day trips are the usual cases).

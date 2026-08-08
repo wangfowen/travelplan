@@ -22,9 +22,22 @@ Every entry in Things to do, Events and Food carries a source tag (`reddit`, `mi
 
 ```
 travel-brief/
-  SKILL.md                        the procedure
-  reference/brief-template.html   output structure + styling
+  SKILL.md                          the pipeline: phases, orchestration, cross-section rules
+  reference/
+    shared.md                       traveler profile, entry style, ratings, source tags, accuracy
+    research.md                     source mechanics, the consolidated query plan, dossier format
+    brief-template.html             output structure + styling
+    sections/
+      things-to-do.md               selection bars + checklist, one file per brief section
+      events.md
+      food.md
+      where-to-stay.md
+      book-ahead.md
+      practical.md
+      country.md
 ```
+
+Research runs once against all sources into a shared dossier; each section file is then loaded on its own to select from that pool, so one section's rules never sit in another section's context and nothing gets researched twice.
 
 ## Installing into Claude chat
 
@@ -60,4 +73,4 @@ Reddit — the richest source in the brief — blocks plain web fetches, so the 
 
 ## Editing
 
-`SKILL.md` is the behavior — what gets researched, how sources are weighted, the accuracy rules. `reference/brief-template.html` is only the look and section order. Changing a section in one means changing it in the other.
+`SKILL.md` is the pipeline only. What gets researched lives in `reference/research.md`; how sources are weighted and cited in `reference/shared.md`; each section's selection bars in its file under `reference/sections/`. `reference/brief-template.html` is only the look and section order — adding or removing a section means changing both the section file and the template.
