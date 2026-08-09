@@ -58,7 +58,7 @@ The three big drafts — things-to-do, food, events — can go to parallel subag
 ### 4. Cross-section pass — yours, never delegated
 
 - **Each place appears once in the whole brief.** A must-do museum sits in Things to do's Top picks, not Museums; a restaurant in exactly one food section; the blockbuster loan show in Events → Exhibitions, the permanent collection in Things to do.
-- **Book ahead harvests the other drafts**: ticketed events flagged sellout-risk, restaurants and tours with booking friction found during drafting become its candidate rows.
+- **Book ahead harvests the other drafts**: ticketed events flagged sellout-risk, restaurants and tours with booking friction found during drafting become its candidate rows — except Asian food and Healthy staples, which are craving-satisfiers, not destinations, and never feed Book ahead (reference/sections/food.md).
 - **An omitted section leaves no trace** (the no-trace rule, shared.md) — delete the heading and move on. Two exceptions still get written: Book ahead's "nothing needs advance booking" line, and source-availability callouts ("Eater has no coverage of this city", "Reddit was unreachable — attempts listed").
 
 ### 5. Verify — only what survived drafting
