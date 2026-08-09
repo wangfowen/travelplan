@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Riga — Travel Brief</title>
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --text: #1c1b19;
+    --muted: #6b6863;
+    --line: #e5e1db;
+    --accent: #9a5b34;
+    --flag-bg: #fdf3ec;
+    --star: #b5892f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1917;
+      --surface: #232220;
+      --text: #ece9e4;
+      --muted: #a09b93;
+      --line: #35332f;
+      --accent: #d99b6c;
+      --flag-bg: #2c241d;
+      --star: #d8b25e;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem 1.25rem 4rem;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
+  }
+  main { max-width: 46rem; margin: 0 auto; }
+
+  header { border-bottom: 2px solid var(--text); padding-bottom: 1rem; margin-bottom: 2.5rem; }
+  h1 { font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1.1; margin: 0 0 .4rem; letter-spacing: -.02em; }
+  .meta { color: var(--muted); font-size: .85rem; }
+
+  .toc { margin-top: .75rem; font-size: .8rem; line-height: 1.9; }
+  .toc a { color: var(--muted); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: .15rem .6rem; margin: 0 .25rem .25rem 0; display: inline-block; white-space: nowrap; }
+  .toc a:hover { color: var(--accent); border-color: var(--accent); }
+  h2 { scroll-margin-top: 1rem; }
+
+  h2 {
+    font-size: 1.3rem; margin: 3rem 0 .25rem; letter-spacing: -.01em;
+    padding-bottom: .4rem; border-bottom: 1px solid var(--line);
+  }
+  h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 1.75rem 0 .5rem; }
+  p { margin: .6rem 0; }
+
+  ul { padding-left: 1.1rem; margin: .5rem 0; }
+  li { margin: .75rem 0; }
+  li b { font-weight: 650; }
+
+  a { color: inherit; text-underline-offset: 2px; text-decoration-color: var(--line); }
+  a:hover { text-decoration-color: var(--accent); }
+
+  .rating {
+    display: inline-block; white-space: nowrap;
+    font-size: .78rem; font-weight: 600; color: var(--star);
+    margin-left: .35rem;
+  }
+  .rating .count { color: var(--muted); font-weight: 400; }
+
+  .when {
+    display: inline-block; white-space: nowrap;
+    font-size: .78rem; font-weight: 650; color: var(--accent);
+    margin-left: .35rem;
+  }
+
+  .src {
+    display: inline-block; font-size: .7rem; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--muted); border: 1px solid var(--line); border-radius: 4px;
+    padding: .05rem .3rem; margin-left: .35rem; vertical-align: 1px;
+  }
+  .src a { text-decoration: none; }
+
+  .note { color: var(--muted); font-size: .85rem; font-style: italic; }
+  .unconfirmed { color: var(--accent); font-weight: 600; }
+
+  .callout {
+    background: var(--flag-bg); border: 1px solid var(--line); border-radius: 8px;
+    padding: .7rem 1rem; margin: 1rem 0; font-size: .88rem; color: var(--muted);
+  }
+
+  .table-wrap { overflow-x: auto; margin: 1rem 0; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: .92rem; }
+  th, td { text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 600; }
+  td.lead { white-space: nowrap; font-weight: 650; }
+  tr.urgent td.lead { color: var(--accent); }
+
+  .phrases { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  .phrases td { padding: .45rem .6rem .45rem 0; border-bottom: 1px solid var(--line); }
+  .phrases .native { font-weight: 600; }
+  .phrases .phon { color: var(--muted); font-style: italic; white-space: nowrap; }
+
+  .verdict {
+    border-left: 3px solid var(--accent); background: var(--surface);
+    border-radius: 0 8px 8px 0; padding: .7rem 1rem; margin: 1rem 0; font-size: .92rem;
+  }
+  .verdict b { color: var(--accent); }
+
+  .facts { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: .35rem 1rem; margin: 1rem 0; }
+  .facts dl { display: grid; grid-template-columns: max-content 1fr; gap: .5rem 1.25rem; margin: .8rem 0; }
+  .facts dt { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); padding-top: .15rem; }
+  .facts dd { margin: 0; }
+
+  @media (max-width: 30rem) {
+    .facts dl { grid-template-columns: 1fr; gap: .15rem; }
+    .facts dd { margin-bottom: .7rem; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <header>
+    <h1>Riga</h1>
+    <div class="meta">Latvia · Aug 1–8, 2026 · researched Aug 8, 2026</div>
+    <div class="meta">Typical early August: 22°/13°C highs/lows · scattered showers, roughly 1 in 3 days · daylight to ~9:15pm <span class="note">(climate normals, own knowledge)</span></div>
+    <nav class="toc">
+      <a href="#do">Things to do</a><a href="#events">Events</a><a href="#food">Food</a><a href="#stay">Stay</a><a href="#book">Book ahead</a><a href="#practical">Practical</a><a href="#country">Latvia</a>
+    </nav>
+  </header>
+
+  <h2 id="do">Things to do</h2>
+
+  <h3>Top picks</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.rigafreetours.com/">Riga Free Tours</a></b>
+      <span class="rating">5.0 ★ <span class="count">(3.5k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/Riga/comments/1da9a3r/what_are_some_nice_and_interesting_things_to/">reddit</a></span>
+      <span class="src">trip find</span>
+      <br>Pay-what-you-wish walking tours run by locals since 2008, departing daily from outside St. Peter's Church. The bike tour is the one to take — it reaches the wooden-house districts, Mežaparks and the riverside that the walking route can't.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Anatomy+Museum+Riga+Stradins+University">RSU Anatomy Museum</a></b>
+      <span class="rating">4.8 ★ <span class="count">(483)</span></span>
+      <span class="src">trip find</span>
+      <br>Rīga Stradiņš University's teaching collection, founded by anatomist Jēkabs Prīmanis — dissected and preserved human specimens, organs and skeletal material shown as prepared for medical students rather than staged for visitors. €5, closed Sundays and Mondays.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Jana+seta+Map+Shop+Riga">Jāņa sēta map shop</a></b>
+      <span class="rating">4.8 ★ <span class="count">(180)</span></span>
+      <span class="src">trip find</span>
+      <br>Map shop in the Berga Bazārs courtyard stacked to the ceiling with originals and reproductions going back centuries, including a deep run of Soviet-era military topographic sheets covering most of the world.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Stura+Maja+Corner+House+Riga">The Corner House</a></b>
+      <span class="rating">4.5 ★ <span class="count">(4.0k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/Riga/comments/1da9a3r/what_are_some_nice_and_interesting_things_to/">reddit</a></span>
+      <br>Former regional KGB headquarters — prisoner processing rooms and the execution courtyard preserved as found. Guided tour recommended over the free self-guided section.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Riga+Central+Market+Centraltirgus">Riga Central Market</a></b>
+      <span class="rating">4.4 ★ <span class="count">(55.3k)</span></span>
+      <span class="src">atlas obscura</span>
+      <span class="src"><a href="https://www.reddit.com/r/Riga/comments/1unx49n/riga_5_days_travel_summary/">reddit</a></span>
+      <br>Five former WWI Zeppelin hangars, moved to Riga and reassembled as market pavilions between 1924 and 1930 — Europe's largest market at the time. See Food for what to eat here.
+    </li>
+  </ul>
+
+  <h3>Unique to Riga</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=National+Library+of+Latvia">National Library of Latvia viewing floors</a></b>
+      <span class="rating">4.6 ★ <span class="count">(2.2k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/Riga/comments/1sv648w/solo_trip_to_riga_tips_on_mustsee_places_food/">reddit</a></span>
+      <br>Gunnar Birkerts' glass-and-steel "Castle of Light," opened 2014. Free public floors near the top look back across the Daugava to Old Town.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Kalnciema%20Quarter%20Market%20Riga">Kalnciema Quarter market</a></b>
+      <span class="rating">4.5 ★ <span class="count">(4.4k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/Riga/comments/1kifoac/local_gems/">reddit</a></span>
+      <br>Restored 19th-century wooden merchant houses across the river host a Saturday artisan and farmers' market with live music.
+    </li>
+  </ul>
+
+  <h3>Museums</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Latvian+National+Museum+of+Art">Latvian National Museum of Art</a></b>
+      <span class="rating">4.7 ★ <span class="count">(5.8k)</span></span>
+      <span class="src">my pick</span>
+      <br>Restored 1905 Neo-Baroque building holding the country's main collection of Latvian painting, 19th century to present.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Latvian+Ethnographic+Open+Air+Museum">Latvian Ethnographic Open-Air Museum</a></b>
+      <span class="rating">4.6 ★ <span class="count">(6.0k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/Riga/comments/1unx49n/riga_5_days_travel_summary/">reddit</a></span>
+      <br>118 relocated wooden buildings from Latvia's four historical regions, 17th–20th century, set through pine forest on Lake Jugla.
+    </li>
+  </ul>
+
+  <h3>Day trips</h3>
+  <ul>
+    <li>
+      <b>Sigulda &amp; Gauja National Park</b>
+      <span class="src">my pick</span>
+      <span class="src">trip find</span>
+      <br>Turaida and Sigulda castle ruins above the Gauja river valley. Three things worth building the day around: the <a href="https://www.google.com/maps/search/?api=1&query=Sigulda+bobsleigh+track">Sigulda bobsleigh track</a>, where on weekends a professional driver takes passengers down the competition run at up to 85 km/h; the <a href="https://www.google.com/maps/search/?api=1&query=Sigulda+cable+car">cable car</a> across the valley, which shares its route with the <a href="https://www.google.com/maps/search/?api=1&query=Tarzans+Sigulda">Tarzāns</a> adventure park's superman-position zipline — riders launch alongside the cabin, in view the whole way across; and <a href="https://www.google.com/maps/search/?api=1&query=Mr+Biskvits+Sigulda">Mr. Biskvīts</a> for desserts, with a full menu beyond them. <em>Getting there:</em> direct train from Rīga Centrālā stacija, about 1 hour, roughly €6 round trip.
+    </li>
+  </ul>
+
+  <h2 id="events">Events <span class="note">— during your dates</span></h2>
+  <h3>Cultural</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.liveriga.com/en/13287-summer-in-riga-1">Rīgas svētki (Riga City Festival)</a></b>
+      <span class="when">Aug 1–29, 2026</span>
+      <span class="src">liveriga.com</span>
+      <br>Free outdoor concerts, markets and open-air performances across Old Town and the riverside parks, marking the city's 825th anniversary. Programming through the opening days (your window) is confirmed lighter than the Aug 15 main day; an open-air theater production runs Dome Square Aug 7–8. <span class="note">Day-by-day schedule for Aug 1–8 confirms closer to the date — check liveriga.com.</span>
+    </li>
+  </ul>
+
+  <h2 id="food">Food</h2>
+
+  <h3>Local dishes to try</h3>
+  <ul>
+    <li><b>Rupjmaize.</b> Dark sourdough rye — the "scalded" version holds EU Traditional Speciality Guaranteed status. <em>Where:</em> the bread stalls in <a href="https://www.google.com/maps/search/?api=1&query=Riga+Central+Market">Riga Central Market</a>'s dairy pavilion.</li>
+    <li><b>Pīrāgi.</b> Hand-pinched yeast rolls stuffed with bacon and onion, eaten hot as a snack or side. <em>Where:</em> bakery counters citywide, or <a href="https://www.google.com/maps/search/?api=1&query=Riga+Central+Market">Central Market</a>.</li>
+    <li><b>Aukstā zupa.</b> Cold kefir-and-beet soup topped with boiled egg and dill — a summer-only dish, in season for your dates. <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&query=Folkklubs+Ala+Pagrabs+Riga">Ala Pagrabs</a> <span class="rating">4.6 ★ <span class="count">(9.3k)</span></span>.</li>
+    <li><b>Sklandrausis.</b> Open rye tart filled with spiced carrot-and-potato mash, an EU-protected recipe from the Kurzeme region. <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&query=Kalnciema+Quarter+Market+Riga">Kalnciema Quarter market</a>, Saturdays.</li>
+    <li><b>Siļķe kažokā ("herring in a fur coat").</b> Layered cold salad of pickled herring, potato, beet, egg and mayonnaise. <em>Where:</em> the fish pavilion at <a href="https://www.google.com/maps/search/?api=1&query=Riga+Central+Market">Central Market</a>, or <a href="https://www.google.com/maps/search/?api=1&query=LIDO+Vermanitis+Riga">Lido</a>.</li>
+  </ul>
+
+  <h3>Top picks</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Riga+Central+Market+Centraltirgus">Riga Central Market</a></b>
+      <span class="rating">4.4 ★ <span class="count">(55.3k)</span></span>
+      <span class="src">atlas obscura</span>
+      <span class="src"><a href="https://www.reddit.com/r/Riga/comments/1unx49n/riga_5_days_travel_summary/">reddit</a></span>
+      <span class="src">trip find</span>
+      <br>Five Zeppelin-hangar pavilions of stalls, best worked as a circuit: Uzbek non from the middle section nearest the fish pavilion, smoked chicken from Rubeni, smoked nēģi (lamprey) and roe in the fish pavilion, a donut in the gourmet pavilion, and kvass poured from the giant keg parked outside.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Lido+Atputas+centrs+Krasta+iela+Riga">Lido Atpūtas centrs</a></b>
+      <span class="rating">4.5 ★ <span class="count">(28.9k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/Riga/comments/1kifoac/local_gems/">reddit</a></span>
+      <span class="src">trip find</span>
+      <br>Self-service Latvian canteen, pay-by-weight, pour-your-own beer and kvass. The grill counter is the order — pork ribs, chicken and lamb carved off the fire; paying by weight means a plate can hold a little of everything. This Krasta iela flagship is worth the trip out for its own sake: the widest spread in the chain, wrapped around a mini zoo and a small amusement park. The central <a href="https://www.google.com/maps/search/?api=1&query=LIDO+Vermanitis+Riga">Vērmanītis</a> branch <span class="rating">4.4 ★ <span class="count">(9.7k)</span></span> covers an ordinary lunch.
+      <span class="note">Named across nearly every Riga thread searched — the city's most-recurring food recommendation.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Max+Cekot+Kitchen+Riga">Max Cekot Kitchen</a></b>
+      <span class="rating">4.8 ★ <span class="count">(475)</span></span>
+      <span class="src">michelin ★ 2026</span>
+      <br>Fifteen-course tasting menu built from Latvian ingredients, cooked open-kitchen in a converted woodworking factory. Open Thursday–Saturday evenings only.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Milda+Restaurant+Riga">Milda</a></b>
+      <span class="rating">4.4 ★ <span class="count">(2.5k)</span></span>
+      <span class="src">michelin bib gourmand 2026</span>
+      <br>Old Town tavern doing cepelinai (potato dumplings) and pelēkie zirņi ar speķi (grey peas with bacon); complimentary chicken-liver pâté while your order cooks.
+    </li>
+  </ul>
+
+  <h3>Everyday institutions</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Folkklubs+Ala+Pagrabs+Riga">Folkklubs Ala Pagrabs</a></b>
+      <span class="rating">4.6 ★ <span class="count">(9.3k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/Riga/comments/1eerwwb/quality_beer_quality_coffee_and_good_meat/">reddit</a></span>
+      <span class="src">trip find</span>
+      <br>A wine cellar turned folk-music tavern; garlic-fried rye bread and 20-plus Latvian draught beers. Live folk dance runs on a published schedule rather than nightly — check it on their site and pick a dance night.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Agenskalns+Market+Riga">Āgenskalna tirgus</a></b>
+      <span class="rating">4.3 ★ <span class="count">(8.7k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/Riga/comments/1kifoac/local_gems/">reddit</a></span>
+      <br>1920s market hall across the river with a second-floor food court residents actually use — less touristed than the Central Market.
+    </li>
+  </ul>
+
+  <h3>Creative and interesting</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=3+Pavaru+restorans+Riga">3 pavāru restorāns "Tam labam būs augt"</a></b>
+      <span class="rating">4.6 ★ <span class="count">(1.4k)</span></span>
+      <span class="src">trip find</span>
+      <br>Three chefs cooking a changing tasting menu in the vaulted Jacob's Barracks on Torņa iela — ostrich tartare, venison and oysters have all run as courses. From €50 a head; dinner only, from 5pm.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Masa+restaurant+Riga">Māsa</a></b>
+      <span class="rating">4.5 ★ <span class="count">(262)</span></span>
+      <span class="src">michelin selected 2026</span>
+      <span class="src"><a href="https://www.reddit.com/r/Riga/comments/1kifoac/local_gems/">reddit</a></span>
+      <br>Fully gluten-free kitchen doing seasonal small plates and natural wine — an unusual constraint for a Riga tasting-format menu to build around.
+    </li>
+  </ul>
+
+  <h3>Asian food</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Shoyu+Ramen+Riga">Shōyu</a></b>
+      <span class="rating">4.8 ★ <span class="count">(2.4k)</span></span>
+      <span class="src">michelin bib gourmand 2026</span>
+      <span class="src"><a href="https://www.reddit.com/r/Riga/comments/1lyo733/best_ramen_in_riga/">reddit</a></span>
+      <br>Tonkotsu and shoyu ramen with house-pulled noodles in a four-table room. The Premium Shoyu adds truffle-infused dashi and duck breast.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Gio+VIET+vjetnamiesu+restorans+Riga">Gio VIET</a></b>
+      <span class="rating">4.8 ★ <span class="count">(82)</span></span>
+      <span class="src">my pick</span>
+      <br>Small Vietnamese-run counter making bánh mì and phở to order, not pre-made.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=The+Catch+Riga+restaurant">The Catch</a></b>
+      <span class="rating">4.7 ★ <span class="count">(1.0k)</span></span>
+      <span class="src">michelin selected 2026</span>
+      <span class="src"><a href="https://www.reddit.com/r/Riga/comments/1cuqk7d/your_favorite_places_to_eat_in_riga/">reddit</a></span>
+      <br>Izakaya-format sushi and robata in a vaulted brick cellar; bluefin tuna crudo with truffle ponzu is the dish to order. 2026 Michelin Service Award.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Soraksans+Korean+Restaurant+Riga">Soraksans</a></b>
+      <span class="rating">4.4 ★ <span class="count">(1.4k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/Riga/comments/1lyo733/best_ramen_in_riga/">reddit</a></span>
+      <br>Riga's longest-running Korean kitchen — kimchi pancakes, bibimbap, and hot pot.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Old+Shanghai+Riga">Old Shanghai</a></b>
+      <span class="rating">4.2 ★ <span class="count">(494)</span></span>
+      <span class="src">my pick</span>
+      <br>Chinese-run kitchen off Valdemāra iela with an all-Chinese kitchen staff; Peking duck and hand-cut noodles.
+    </li>
+  </ul>
+
+  <h3>Cafés and bakeries</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Kalve+Coffee+Baznicas+iela+Riga">Kalve</a></b>
+      <span class="rating">4.7 ★ <span class="count">(332)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/Riga/comments/1vg3k2u/best_coffee_in_riga/">reddit</a></span>
+      <br>In-house-roasted specialty coffee; multiple locations, the Baznīcas iela branch has room to work. Most-named coffee shop across every Riga coffee thread searched.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Rocket+Bean+Roastery+Miera+iela+Riga">Rocket Bean Roastery</a></b>
+      <span class="rating">4.6 ★ <span class="count">(1.8k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/Riga/comments/1eerwwb/quality_beer_quality_coffee_and_good_meat/">reddit</a></span>
+      <br>Own-roasted beans on Miera iela, with the laptop-friendly atmosphere Kalve's locations don't always have.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Mikla+Bakery+Riga">Mīkla</a></b>
+      <span class="rating">4.4 ★ <span class="count">(303)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/Riga/comments/1cuqk7d/your_favorite_places_to_eat_in_riga/">reddit</a></span>
+      <br>Sourdough loaves and laminated pastries; the cardamom bun is the one to get.
+    </li>
+  </ul>
+
+  <h3>Healthy staples</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=GUT+FOOD+Riga">GUT FOOD</a></b>
+      <span class="rating">4.9 ★ <span class="count">(52)</span></span>
+      <span class="src">my pick</span>
+      <br>Lunch counter built around grilled protein and vegetables in real portions — a repeatable weekday default rather than a salad-bar concession.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Kozy+Eats+Riga">Kozy Eats</a></b>
+      <span class="rating">4.8 ★ <span class="count">(1.6k)</span></span>
+      <span class="src">my pick</span>
+      <br>Plant-based bowls and mains in a bright, casual room.
+    </li>
+  </ul>
+
+  <h3>Cocktail bars and breweries</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Gimlet+Nordic+Cocktail+Bar+Riga">Gimlet Nordic Cocktail Bar</a></b>
+      <span class="rating">4.7 ★ <span class="count">(453)</span></span>
+      <span class="src">50 best discovery</span>
+      <span class="src">trip find</span>
+      <br>Cocktail list built entirely on Baltic ingredients — quince, sea buckthorn, beetroot, pine and seaweed infusions — instead of the usual tropical fruit. Ask and the bar will set out the raw infusions to taste alongside the finished drink.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Skyline+Bar+Riga">Skyline Bar</a></b>
+      <span class="rating">4.5 ★ <span class="count">(6.4k)</span></span>
+      <span class="src">trip find</span>
+      <br>Glass-walled bar on the 26th floor of the Radisson Blu Latvija, looking out over Old Town, the Daugava and the outer districts from above every roofline in the center. Cocktails and a short food menu, €10–40 a head.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Labietis+Riga">Labietis</a></b>
+      <span class="rating">4.7 ★ <span class="count">(2.6k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/Riga/comments/1rshyzj/riga_and_beers/">reddit</a></span>
+      <br>Wild-fermentation brewery working with foraged local herbs and berries rather than standard hop bills — mead and braggot alongside the beer.
+    </li>
+  </ul>
+
+  <h2 id="stay">Where to stay</h2>
+  <ul>
+    <li>
+      <b>Quiet Centre (Klusais centrs).</b> Wide, tree-lined Art Nouveau streets just north of Old Town, light traffic, embassy security presence. <em>Day to day:</em> groceries and gyms within the residential blocks; a 10-minute walk from Old Town. <em>Tradeoff:</em> the priciest of the three, and can feel more embassy-district than neighborhood.
+    </li>
+    <li>
+      <b>Āgenskalns.</b> Left-bank district of 19th-century wooden houses, a five-minute tram ride from the center. <em>Day to day:</em> Āgenskalns Market for daily food shopping, the Daugava embankment for running, the National Library at its edge. <em>Tradeoff:</em> a river crossing between you and the sights, fewer English-forward businesses.
+    </li>
+    <li>
+      <b>Mežaparks.</b> Riga's 1901 garden-city suburb of villas around Lake Ķīšezers, on Tram 11. <em>Day to day:</em> an 11 km network of paved paths for running, plus the lake and zoo next door; lighter on groceries and gyms than the other two. <em>Tradeoff:</em> roughly 20–25 minutes from the center by tram.
+    </li>
+  </ul>
+  <div class="callout">Avoid Vecrīga (Old Town) as a base: resident numbers have collapsed to a few thousand, bars run late on weekends, and grocery/gym access there is built for tourists, not residents.</div>
+
+  <h2 id="book">Book ahead</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>What</th><th>Lead time</th><th>How</th><th>Why we know</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Max Cekot Kitchen</td>
+          <td class="lead">As soon as dates are fixed</td>
+          <td>maxcekot.com</td>
+          <td>Only 12 tables, open Thu–Sat evenings only; prepayment required with a 5-business-day cancellation cutoff.</td>
+        </tr>
+        <tr>
+          <td>The Catch</td>
+          <td class="lead">Several days ahead</td>
+          <td>thecatch.lv</td>
+          <td>Reddit: "usually impossible to get a table without reservation."</td>
+        </tr>
+        <tr>
+          <td>Shōyu</td>
+          <td class="lead">A few days ahead</td>
+          <td>shoyu.lv</td>
+          <td>Four-table dining room; multiple diners report walk-ins turned away without one.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="practical">Practical</h2>
+  <div class="facts">
+    <dl>
+      <dt>Tap water</dt><dd>Potable across Riga — safe straight from the tap, no local caveat.</dd>
+      <dt>Tipping</dt><dd>Not obligatory. Rounding up or ~10% at sit-down restaurants is normal; less expected at cafés and bars.</dd>
+      <dt>Cash &amp; cards</dt><dd>Contactless works almost everywhere, including trams. Some Central Market stalls are cash-only.</dd>
+    </dl>
+  </div>
+
+  <h3>Getting around</h3>
+  <div class="facts">
+    <dl>
+      <dt>Transit</dt><dd>Trams, trolleybuses and buses (Rīgas Satiksme) reach Old Town and the residential districts above, including Āgenskalns and Mežaparks (Tram 11). Tap a contactless bank card or phone directly on the yellow validator, or use an e-talons card — every ride must be tapped. Single 90-minute ticket €1.50, 24-hour pass ≈€5 <span class="note">(2025)</span>. Regular service runs roughly 05:30–23:30; three night-bus routes run hourly midnight–4am on summer weekends.</dd>
+      <dt>Rides</dt><dd>Bolt is effectively the only ride-hailing app — Uber does not operate in Latvia. Airport–center by Bolt runs roughly €18–28 <span class="note">(2026)</span>; a typical cross-town fare could not be confirmed, check the app. Unofficial touts outside arrivals can charge up to €70 for the airport run; a fixed-price €33.50 voucher (Red Cab, up to 4 passengers) is sold at the airport visitor center as the safe alternative.</dd>
+    </dl>
+  </div>
+  <div class="verdict">
+    <b>Verdict:</b> transit covers the city well enough to rely on for sightseeing and both residential picks above, with Bolt for late nights and the airport transfer — a single Bolt ride costs roughly what a day pass does, so it's a fair trade for convenience, not a splurge. Old Town itself is walkable end to end in under 20 minutes. Nextbike Latvia runs the city bike share.
+  </div>
+
+  <h2 id="country">Latvia</h2>
+  <div class="facts">
+    <dl>
+      <dt>GDP</dt><dd>≈$43.5B total <span class="note">(World Bank, 2024)</span> · ≈$26,100 per capita <span class="note">(IMF, 2025)</span></dd>
+      <dt>Economy</dt><dd>Services (~70% of GDP, incl. transport/logistics, IT and finance) · timber and wood products (~20% of exports) · electrical machinery and electronics · construction.</dd>
+      <dt>Languages</dt><dd>Latvian is the mother tongue of 64% of the population, Russian of 38% <span class="note">(2023)</span>. English reaches roughly two-thirds of people overall and is near-universal among Rigans under 35.</dd>
+    </dl>
+  </div>
+
+  <h3>Tech scene</h3>
+  <ul>
+    <li><b>Printful</b> — print-on-demand and dropshipping fulfillment. Latvia's first unicorn; a $130M investment from Bregal Sagemount pushed its valuation past $1B (2021).</li>
+    <li><b>Printify</b> — sibling print-on-demand marketplace. Raised $50M (2021) at a valuation above $300M.</li>
+    <li><b>Lokalise</b> — software localization/translation-management platform. Raised $50M (2021), regularly named among Latvia's next unicorns.</li>
+    <li><b>Mintos</b> — P2P lending marketplace, part of a broader fintech cluster within the Latvian startup scene.</li>
+  </ul>
+
+  <h3>History in five beats</h3>
+  <ul>
+    <li><b>Livonian crusades, 13th century.</b> German crusading orders conquer the local Baltic tribes; Riga's red-white-red flag traces to sources from this period, one of Europe's oldest.</li>
+    <li><b>Imperial rule, 16th–18th century.</b> The territory splits between Poland-Lithuania and Sweden before falling entirely under the Russian Empire by 1800.</li>
+    <li><b>First independence, 1918–1940.</b> Declared Nov 18, 1918; internationally recognized 1921.</li>
+    <li><b>Occupations, 1940–1991.</b> Soviet annexation in 1940, German occupation 1941–44, then Soviet rule until the USSR's collapse.</li>
+    <li><b>Restored independence, 1991–present.</b> Independence restored August 1991; EU and NATO membership follow in 2004.</li>
+  </ul>
+
+  <h3>Culture</h3>
+  <ul>
+    <li><b>Song and Dance Festival.</b> Every five years, tens of thousands of amateur singers converge on the Mežaparks Great Bandstand — a tradition that functioned as organized peaceful resistance during Soviet occupation. Not on in 2026 (next is 2028), but the bandstand and the pride around it are visible year-round.</li>
+    <li><b>Pirts.</b> Sauna ritual built on birch or oak leaf whisks, herbal infusions and a trained "pirts meistars" leading the session — treated as a cleansing of body and mind together, not just a hot room.</li>
+    <li><b>Reserved public manner.</b> Minimal small talk with strangers and quiet public voices are the norm and aren't read locally as coldness — a traveler used to more effusive service culture will notice brief, direct interactions.</li>
+    <li><b>Soviet-era architecture still standing.</b> The Academy of Sciences tower ("Stalin's Birthday Cake") and uniform outer-district apartment blocks remain because a 1992 law barred protecting buildings under 50 years old — a visible contrast to the restored Art Nouveau core.</li>
+  </ul>
+
+  <h3>Phrases</h3>
+  <table class="phrases">
+    <tr><td class="native">Sveiki!</td><td class="phon">SVEH-kee</td><td>Hello</td></tr>
+    <tr><td class="native">Lūdzu</td><td class="phon">LOO-dzoo</td><td>Please</td></tr>
+    <tr><td class="native">Paldies</td><td class="phon">PUHL-dyehs</td><td>Thank you</td></tr>
+    <tr><td class="native">Atvainojiet</td><td class="phon">uht-VY-noh-yeht</td><td>Excuse me</td></tr>
+    <tr><td class="native">Jā</td><td class="phon">yah</td><td>Yes</td></tr>
+    <tr><td class="native">Nē</td><td class="phon">neh</td><td>No</td></tr>
+    <tr><td class="native">Vai jūs runājat angliski?</td><td class="phon">vy yoos ROO-nah-yaht UHN-glee-skee</td><td>Do you speak English?</td></tr>
+    <tr><td class="native">Cik tas maksā?</td><td class="phon">tsik tahs MAHK-sah</td><td>How much is this?</td></tr>
+    <tr><td class="native">Rēķinu, lūdzu</td><td class="phon">REH-kee-noo LOO-dzoo</td><td>The bill, please</td></tr>
+    <tr><td class="native">Kur ir tualete?</td><td class="phon">koor eer twah-LEH-teh</td><td>Where is the bathroom?</td></tr>
+    <tr><td class="native">Priekā!</td><td class="phon">PREE-eh-kah</td><td>Cheers!</td></tr>
+  </table>
+
+</main>
+</body>
+</html>
