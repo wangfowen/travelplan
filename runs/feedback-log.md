@@ -49,11 +49,11 @@ None reported.
 
 ### Proposals put to the user
 
-Two, both qualifying under the recurrence test's mechanical clause (b) — each is a failure against travel-brief's own written text, not a taste preference:
+**Both applied 2026-08-09 with user approval** (`things-to-do.md`). Two, both qualifying under the recurrence test's mechanical clause (b) — each is a failure against travel-brief's own written text, not a taste preference:
 
 - **(V) Views and nature — enforce the mandated group.** `things-to-do.md` checklist gains a line: a Views group may only be dropped when the mandatory `best view of <city>` query ran and returned nothing that cleared the bar; a venue whose draw is the view is filed under Views and nature and judged on the view, even when its form is a bar or restaurant that would fail the Food bar. Different-city effect: rooftop bars, hilltop cafés and observation restaurants stop falling through the gap between Food and Things to do.
 - **(T) Tours — enumerate an operator's formats.** `things-to-do.md:9` gains: once an operator qualifies, list which formats it actually runs (walking, bike, boat) and name the one worth taking; the heading note follows the formats present rather than defaulting to "walking". Different-city effect: a qualifying operator's bike or boat tour is no longer invisible because the walking tour was found first.
 
 Failed the gate, logged only: 3a (sibling-institution sweep), 3b (specialist retail — new category), 3c (indeterminable), the 50 Best Discovery calibration note, and the tour-covers-landmarks rule from section 5 — all single-trip taste or structural evidence with no mechanism failure against written rules.
 
-Traveler-profile updates (permitted directly under the profile exception) were **not** applied pending user approval; candidates are signals 1 and 2 in section 5.
+Traveler-profile updates (permitted directly under the profile exception) were **not** applied — offered and declined this round; candidates remain signals 1 and 2 in section 5.
