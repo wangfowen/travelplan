@@ -1,0 +1,12 @@
+{
+  "entries": [
+    {"type": "brief", "city": "Lisbon", "file": "briefs/lisbon-2026-08-07-1d3907f7.html", "trip": "Aug 10–15, 2026", "published": "2026-08-07"},
+    {"type": "brief", "city": "Lisbon", "file": "briefs/lisbon-2026-08-08-af55bf32.html", "trip": "Aug 9–13, 2026", "published": "2026-08-08"},
+    {"type": "brief", "city": "Riga", "file": "briefs/riga-2026-08-08-1344ffee.html", "trip": "Aug 1–8, 2026", "published": "2026-08-08"},
+    {"type": "brief", "city": "Lisbon", "file": "briefs/lisbon-2026-08-08-fe4977a0.html", "trip": "Aug 9–13, 2026", "published": "2026-08-08"},
+    {"type": "brief", "city": "San Francisco", "file": "briefs/san-francisco-2026-08-08-e3031dc8.html", "trip": "Aug 16–25, 2026", "published": "2026-08-08"},
+    {"type": "brief", "city": "Vilnius", "file": "briefs/vilnius-2026-08-08-3af96272.html", "trip": "Aug 9–13, 2026", "published": "2026-08-08"},
+    {"type": "brief", "city": "Vilnius", "file": "briefs/vilnius-2026-08-08-65b4edb9.html", "trip": "unknown", "published": "2026-08-08"},
+    {"type": "brief", "city": "Vilnius", "file": "briefs/vilnius-2026-08-08-08cd8465.html", "trip": "Aug 9–13, 2026", "published": "2026-08-08"}
+  ]
+}

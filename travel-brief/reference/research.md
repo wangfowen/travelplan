@@ -6,7 +6,7 @@ Gathering filters **form, not candidates**. No selection bars: judging quality i
 
 ## The dossier
 
-- **In Claude Code:** files in the session scratchpad, one per gathering track — `dossier/reddit.md`, `dossier/food-editorial.md`, `dossier/events.md`, `dossier/city.md`, `dossier/country.md`. Subagents return raw text; you write it to the files. **In Claude chat:** the same tracks as structured running notes in the conversation.
+- Files in the session scratchpad, one per gathering track — `dossier/reddit.md`, `dossier/food-editorial.md`, `dossier/events.md`, `dossier/city.md`, `dossier/country.md`. Subagents return raw text; you write it to the files. At publish, the dossier files are copied into the run record (`runs/` — see SKILL.md → Publishing).
 - **Every finding records:** name — one line on what it is — source tag(s) at birth, per shared.md's table — the link that proves it (thread, article, venue page) — plus whatever detail matters (dates for events, dish names, fares, quotes). An entry surfaced by several sources gets all its tags now; retrofitting tags later is where provenance gets lost.
 - **One entry per place, merged across sources.** The same venue surfaced by Reddit, Michelin, and local press is one entry with stacked tags, not three. Repeated raves collapse into the tally count, never repeated quotes — keep at most one short quote per entry, and only when the wording itself is evidence (a local flatly naming a place, a specific dish call).
 - **Negative evidence rides on the entry — it never deletes the entry.** A place the sources recommend stays in the dossier even when other sources pan it: cut it at gather and the section can't consciously rule it out (food.md's checklist requires exactly that), and it resurfaces later as a my-pick or gap-fill candidate with its warning lost. Record the knock as attributed fact, not verdict — "4 commenters in [thread] say quality dropped after the 2023 expansion" is evidence; "probably skip" is commentary. Count warnings beside the tally, separately from recommendations: `named 9× / warned 4×`. Reading the complaint (touristy vs. the-food-is-bad) is the section's job, with its own rules in context.
@@ -32,7 +32,7 @@ Reddit is the most valuable source in this brief and the most likely to fail. Ve
   2. Pick threads by **comment count, not upvotes** — recommendations live in the comments; a 3-upvote thread with 24 comments beats a 200-upvote photo post. Prefer threads from the last ~2 years.
   3. Navigate + `get_page_text` per thread, batched in one `browser_batch` call. Close your tabs when done.
 
-If the extension is not connected, say so plainly — the user can connect it and re-run. Only then fall back: domain-filtered search (`WebSearch` with `allowed_domains: ["reddit.com"]`, never a `site:` prefix) to at least surface thread URLs, or ask the user to paste threads, naming what you would search. When Reddit is genuinely unavailable, lean harder on Eater and named local press — not aggregators. **Never report a source as unreachable or blocked without naming the specific attempts you made.**
+The extension being unavailable is handled before research starts (SKILL.md → Hard requirements) — a run never reaches this point without a working browser. If Reddit itself fails mid-run despite the browser (outage, forced logout), retry inside Reddit's own UI first; as a last resort, surface thread URLs via `WebSearch` with `allowed_domains: ["reddit.com"]` (never a `site:` prefix) and lean harder on Eater and named local press — not aggregators — with a callout in the brief. **Never report a source as unreachable or blocked without naming the specific attempts you made.**
 
 ## The browser pass (yours, serial — never parallelized)
 
@@ -48,7 +48,7 @@ If the extension is not connected, say so plainly — the user can connect it an
 - **Healthy staples:** `healthy bowls <city>`, `salad <city>`, `poke <city>`. **Maps is the primary finder for this category, not a verification step** — it costs no search budget, and the archetype it surfaces is a local fast-casual chain with several locations and strong ratings. Web-searching this category returns recipe listicles and aggregator noise; never delegate it to a search subagent.
 - Any format-map format that Reddit came back thin on gets a Maps category search too.
 
-## Web-search subagents (Claude Code — run in parallel with the browser pass)
+## Web-search subagents (run in parallel with the browser pass)
 
 Search each source category separately — the point is consistent coverage, not speed. Subagents return raw text findings; they do not publish artifacts and do not chase Google ratings (that is phase 5 — early ratings-chasing wastes searches on candidates that get cut, and WebSearch mostly surfaces banned aggregator numbers anyway).
 

@@ -1,16 +1,21 @@
 # travelplan
 
-A Claude skill that researches a destination against a fixed checklist and outputs a one-page travel briefing as an artifact.
+A personal trip-research system: two Claude Code skills and the GitHub Pages site they publish to.
 
-Authored here, run in Claude chat.
+**The site: https://wangfowen.github.io/travelplan** — every brief and trip guide, grouped by city, newest marked. Add it to your phone's home screen; that's the way in while traveling.
 
-## What it covers
+## The skills
+
+- **`/travel-brief <city> <dates>`** — researches a destination against a fixed checklist and publishes a one-page brief as a new page on the site. Every run adds a new page and a manifest entry; old versions are never overwritten, so past research stays reachable.
+- **`/travel-summary <city> + what you actually liked/didn't`** — after the trip: publishes a friend-ready, traveler-tested guide next to the briefs, then audits the original research run to propose improvements to `/travel-brief` — gated so only generalizable rules change, never city-specific patches.
+
+## What a brief covers
 
 | Section | Sources |
 | --- | --- |
 | Things to do | Reddit, Atlas Obscura, Claude's own picks (labeled separately) |
 | Events & festivals | City tourism boards, local press, Reddit — only what falls in the travel dates |
-| Food | Reddit, Eater, Michelin, World's 50 Best (global + regional, incl. Discovery), plus unlisted local |
+| Food | Reddit, Eater, Michelin, World's 50 Best (global + regional, incl. Discovery), World of Mouth, plus unlisted local |
 | Where to stay | Neighborhoods, with the tradeoff for each |
 | Book ahead | Restaurants *and* tours/sites, with lead times and booking channel |
 | Practical | Tap water, tipping, and getting around (transit vs. rides, with fares) |
@@ -18,70 +23,54 @@ Authored here, run in Claude chat.
 
 Every entry in Things to do, Events and Food carries a source tag (`reddit`, `michelin`, `50 best`, `my pick`, etc.) so you can see where a recommendation came from.
 
-## How it works
+## How a brief is researched
 
 1. **Plan** — fill in the city-specific query slots (food formats, flagship venues, local press, local-language queries).
-2. **Gather, once** — every source is queried a single time into one shared dossier of structured one-line entries (name, source tags, link, key facts). No section-by-section re-querying: a Reddit food thread that mentions a canteen feeds Local dishes, Everyday institutions, and Top picks alike from the same entry. Gathering doesn't judge quality — a recommended place stays in the dossier even if other sources pan it, with the criticism attached to its entry as evidence, not deleted — but it does compress: raw thread and article text never enters, only the structured facts.
-3. **Draft per section** — each section (Things to do, Events, Food, ...) is written from the dossier using only its own selection bars, with no other section's rules in context.
-4. **Cross-section pass** — dedupe so each place appears once brief-wide, and harvest Book ahead's candidates from the other finished drafts.
-5. **Verify** — ratings, closures, and event dates get checked only for what survived drafting, not every candidate considered.
-6. **Assemble and publish** as one artifact.
+2. **Gather, once** — every source is queried a single time into one shared dossier of structured one-line entries. Gathering doesn't judge quality — criticism attaches to entries as evidence rather than deleting them — but it does compress: raw thread text never enters.
+3. **Draft per section** — each section is written from the dossier using only its own selection bars, with no other section's rules in context. Cut candidates are recorded with their reasons.
+4. **Cross-section pass** — dedupe so each place appears once brief-wide; harvest Book ahead from the other drafts.
+5. **Verify** — ratings, closures, and event dates checked only for what survived drafting.
+6. **Publish** — a new page under `docs/briefs/`, a manifest entry, a run record under `runs/`, commit, push.
+
+## Requirements
+
+- **Claude Code on a computer.** Not Claude chat, not mobile — the skills need subagents, git, and the browser, and refuse to run degraded.
+- **Claude in Chrome connected** — a hard requirement for `/travel-brief`. Reddit (which blocks server-side fetches), Google Maps ratings and closure checks, and the Healthy-staples finder all run through the browser. The skill stops up front if the extension isn't there.
+- **Web search enabled**, or there is nothing to research with.
 
 ## Layout
 
 ```
-travel-brief/
-  SKILL.md                          the pipeline: phases, orchestration, cross-section rules
+travel-brief/         the research skill
+  SKILL.md            the pipeline: requirements, phases, publishing
   reference/
-    shared.md                       traveler profile, entry style, ratings, source tags, accuracy
-    research.md                     source mechanics, the consolidated query plan, dossier format
-    brief-template.html             output structure + styling
-    sections/
-      things-to-do.md               selection bars + checklist, one file per brief section
-      events.md
-      food.md
-      where-to-stay.md
-      book-ahead.md
-      practical.md
-      country.md
+    shared.md         traveler profile, entry style, ratings, source tags, accuracy
+    research.md       source mechanics, the consolidated query plan, dossier format
+    brief-template.html
+    sections/*.md     selection bars + checklist, one file per brief section
+travel-summary/       the post-trip skill
+  SKILL.md            trip guide rules, run audit, generalization gate
+docs/                 the published site (GitHub Pages serves this from main)
+  index.html          renders the guide list from manifest.json — never hand-edited per run
+  manifest.json       one entry per published page
+  briefs/             every brief, one file per run, all versions kept
+  summaries/          traveler-tested trip guides
+runs/                 per-run research records: dossier + decisions + feedback-log.md
 ```
 
-Research runs once against all sources into a shared dossier; each section file is then loaded on its own to select from that pool, so one section's rules never sit in another section's context and nothing gets researched twice.
-
-## Installing into Claude chat
-
-Rebuild the zip after any edit:
+## Installing
 
 ```sh
-./build.sh
+ln -sfn "$PWD/travel-brief"   ~/.claude/skills/travel-brief
+ln -sfn "$PWD/travel-summary" ~/.claude/skills/travel-summary
 ```
 
-Then in Claude — Settings → Customize → Skills → **Upload skill**, and pick `dist/travel-brief.zip`. The upload runs a short security scan (1–2 minutes) before the skill is usable.
+Symlinked, so edits apply immediately — no build step.
 
-Re-uploading replaces the previous version.
+## The feedback loop
 
-The uploader rejects a SKILL.md whose frontmatter `description` contains angle brackets (they read as XML tags) — write placeholders as `[place]`, not `<place>`.
-
-## Installing into Claude Code
-
-Symlinked into the user skills directory, so edits here apply with no rebuild:
-
-```sh
-ln -sfn "$PWD/travel-brief" ~/.claude/skills/travel-brief
-```
-
-Available in every Claude Code session as `/travel-brief`. Uninstall by deleting the symlink.
-
-## Using it
-
-> travel brief for Lisbon
-
-Claude researches, publishes the artifact, and summarizes what to book first and what it couldn't confirm. In Claude Code the artifact comes back as a URL; in chat it renders inline.
-
-Web search must be enabled or the skill has nothing to research with.
-
-Reddit — the richest source in the brief — blocks plain web fetches, so the skill drives it through the Claude in Chrome extension instead. Connect it for full Reddit coverage; without it, the skill falls back to domain-filtered search or asks you to paste in threads.
+`/travel-brief` saves what it found and why it cut what it cut (`runs/<city>-<date>/`: the dossier plus `decisions.md`). `/travel-summary` reads that record against real-trip feedback and classifies each item: hit confirmed, selection error, research gap, bad recommendation, or taste signal. Proposed skill edits must pass a generalization gate — statable without naming the city or venue, a named mechanism that changes behavior elsewhere, smallest possible edit, and recurrence across trips (one-off observations accumulate in `runs/feedback-log.md` until a pattern earns a rule; only traveler-profile updates can come from a single trip). Nothing is applied without approval.
 
 ## Editing
 
-`SKILL.md` is the pipeline only. What gets researched lives in `reference/research.md`; how sources are weighted and cited in `reference/shared.md`; each section's selection bars in its file under `reference/sections/`. `reference/brief-template.html` is only the look and section order — adding or removing a section means changing both the section file and the template.
+`travel-brief/SKILL.md` is the pipeline only. What gets researched lives in `reference/research.md`; how sources are weighted and cited in `reference/shared.md`; each section's selection bars in its file under `reference/sections/`. `reference/brief-template.html` is only the look and section order — adding or removing a section means changing both the section file and the template.

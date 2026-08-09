@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vilnius — Travel Brief</title>
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --text: #1c1b19;
+    --muted: #6b6863;
+    --line: #e5e1db;
+    --accent: #9a5b34;
+    --flag-bg: #fdf3ec;
+    --star: #b5892f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1917;
+      --surface: #232220;
+      --text: #ece9e4;
+      --muted: #a09b93;
+      --line: #35332f;
+      --accent: #d99b6c;
+      --flag-bg: #2c241d;
+      --star: #d8b25e;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem 1.25rem 4rem;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
+  }
+  main { max-width: 46rem; margin: 0 auto; }
+
+  header { border-bottom: 2px solid var(--text); padding-bottom: 1rem; margin-bottom: 2.5rem; }
+  h1 { font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1.1; margin: 0 0 .4rem; letter-spacing: -.02em; }
+  .meta { color: var(--muted); font-size: .85rem; }
+
+  h2 {
+    font-size: 1.3rem; margin: 3rem 0 .25rem; letter-spacing: -.01em;
+    padding-bottom: .4rem; border-bottom: 1px solid var(--line);
+  }
+  h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 1.75rem 0 .5rem; }
+  p { margin: .6rem 0; }
+
+  ul { padding-left: 1.1rem; margin: .5rem 0; }
+  li { margin: .75rem 0; }
+  li b { font-weight: 650; }
+
+  a { color: inherit; text-underline-offset: 2px; text-decoration-color: var(--line); }
+  a:hover { text-decoration-color: var(--accent); }
+
+  .rating {
+    display: inline-block; white-space: nowrap;
+    font-size: .78rem; font-weight: 600; color: var(--star);
+    margin-left: .35rem;
+  }
+  .rating .count { color: var(--muted); font-weight: 400; }
+
+  .src {
+    display: inline-block; font-size: .7rem; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--muted); border: 1px solid var(--line); border-radius: 4px;
+    padding: .05rem .3rem; margin-left: .35rem; vertical-align: 1px;
+  }
+  .src a { text-decoration: none; }
+
+  .note { color: var(--muted); font-size: .85rem; font-style: italic; }
+  .unconfirmed { color: var(--accent); font-weight: 600; }
+
+  .callout {
+    background: var(--flag-bg); border: 1px solid var(--line); border-radius: 8px;
+    padding: .7rem 1rem; margin: 1rem 0; font-size: .88rem; color: var(--muted);
+  }
+
+  .table-wrap { overflow-x: auto; margin: 1rem 0; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: .92rem; }
+  th, td { text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 600; }
+  td.lead { white-space: nowrap; font-weight: 650; }
+  tr.urgent td.lead { color: var(--accent); }
+
+  .phrases { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  .phrases td { padding: .45rem .6rem .45rem 0; border-bottom: 1px solid var(--line); }
+  .phrases .native { font-weight: 600; }
+  .phrases .phon { color: var(--muted); font-style: italic; white-space: nowrap; }
+
+  .facts { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: .35rem 1rem; margin: 1rem 0; }
+  .facts dl { display: grid; grid-template-columns: max-content 1fr; gap: .5rem 1.25rem; margin: .8rem 0; }
+  .facts dt { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); padding-top: .15rem; }
+  .facts dd { margin: 0; }
+
+  @media (max-width: 30rem) {
+    .facts dl { grid-template-columns: 1fr; gap: .15rem; }
+    .facts dd { margin-bottom: .7rem; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <header>
+    <h1>Vilnius</h1>
+    <div class="meta">Travel brief · researched August 7, 2026 · Lithuania</div>
+  </header>
+
+  <!-- ── 1. THINGS TO DO ─────────────────────────────── -->
+  <h2>Things to do</h2>
+
+  <h3>Unique to Vilnius</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Museum+of+Illusions+Vilnius">Museum of Illusions</a></b>
+      <span class="rating">4.7 ★ <span class="count">(~4.7k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/Vilnius/comments/14tbkd5/any_suggestions_for_some_weird_things_to_do_in/">reddit</a></span>
+      <br>Perception-bending rooms and optical-illusion photo ops, right off Vokiečių street.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Vilnius+TV+Tower">Vilnius TV Tower — the edge walk</a></b>
+      <span class="rating">4.5 ★ <span class="count">(~11k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/Vilnius/comments/1egoz8t/what_should_we_add_to_our_itinerary/">reddit</a></span>
+      <br>Clip into a cable and walk — or sit — on the outer ledge, 165m up. Rating covers the tower generally; the ledge walk itself has no separate listing. <span class="note">Skip the tower's restaurant — see Food.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=U%C5%BEupis+Vilnius">Republic of Užupis</a></b>
+      <span class="rating">4.1 ★ <span class="count">(~1.9k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/Vilnius/comments/1egoz8t/what_should_we_add_to_our_itinerary/">reddit</a></span>
+      <br>Self-declared micro-republic with its own tongue-in-cheek constitution — and a rope swing over the Vilnelė river that locals treat as a genuine local secret, not a tourist prop.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Luki%C5%A1ki%C5%B3+Prison+2.0+Vilnius">Lukiškės Prison 2.0</a></b>
+      <span class="src"><a href="https://www.reddit.com/r/Vilnius/comments/1egoz8t/what_should_we_add_to_our_itinerary/">reddit</a></span>
+      <br>A real Soviet-era KGB-run prison, now bar, club, and tour site — go on the night tour specifically, recurring Reddit advice. English-language tours confirmed. <span class="note">No Google rating found.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Literat%C5%B3+gatv%C4%97+Vilnius">Literatų gatvė (Literature Street)</a></b>
+      <span class="src"><a href="https://www.reddit.com/r/Vilnius/comments/1egoz8t/what_should_we_add_to_our_itinerary/">reddit</a></span>
+      <span class="src">atlas obscura</span>
+      <br>An Old Town alley covered in hundreds of small artworks honoring writers — called "a must" independently by both sources. <span class="note">No Google rating found.</span>
+    </li>
+  </ul>
+
+  <h3>Nature <span class="note">— only where it clears a genuinely world-class bar</span></h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Trakai+Island+Castle">Trakai Island Castle &amp; Lake Galvė</a></b>
+      <span class="src"><a href="https://www.reddit.com/r/Vilnius/comments/1egoz8t/what_should_we_add_to_our_itinerary/">reddit</a></span>
+      <br>A Gothic castle on its own island in a lake chain, 30 minutes out — genuinely without a regional equivalent. The one Vilnius-area nature/landscape pick that clears the bar; a nearby geological outcrop and a lake day-trip spot were checked and cut as merely pleasant rather than must-see. <span class="note">No Google rating found.</span>
+    </li>
+  </ul>
+
+  <h3>Museums <span class="note">— art and history together; only the unique or world-class</span></h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Museum+of+Occupations+and+Freedom+Fights+Vilnius">Museum of Occupations and Freedom Fights</a></b>
+      <span class="rating">4.6 ★ <span class="count">(~5.6k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/Vilnius/comments/1egoz8t/what_should_we_add_to_our_itinerary/">reddit</a></span>
+      <br>The former KGB headquarters and prison — interrogation rooms, isolation cells, execution chamber, preserved in place.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=MO+Museum+Vilnius">MO Museum</a></b>
+      <span class="rating">4.5 ★ <span class="count">(~7.2k)</span></span>
+      <span class="src">my pick</span>
+      <br>Daniel Libeskind-designed home for Lithuanian contemporary art — the building and the curation both clear the bar, not just one or the other.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Vilna+Gaon+Museum+of+Jewish+History+Vilnius">Vilna Gaon Museum of Jewish History</a></b>
+      <span class="src">my pick</span>
+      <br>Tells Vilnius's Litvak history and the Holocaust in Lithuania in a way no other regional museum does. <span class="note">No Google rating found.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Rum%C5%A1i%C5%A1k%C4%97s+Open-Air+Museum">Rumšiškės Open-Air Museum</a></b>
+      <span class="src"><a href="https://www.reddit.com/r/Vilnius/comments/1egoz8t/what_should_we_add_to_our_itinerary/">reddit</a></span>
+      <br>Reconstructed historical villages from every region of Lithuania, ~20km out — flagged unprompted as "the most underrated spot… nobody outside Lithuania talks about." <span class="note">No Google rating found; day trip.</span>
+    </li>
+  </ul>
+
+  <h3>Tours <span class="note">— walking and biking, locally run</span></h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Vilnius+with+Locals">Vilnius With Locals</a></b>
+      <span class="rating">4.9 ★ <span class="count">(~220)</span></span>
+      <span class="src">my pick</span>
+      <br>Independent local guide team running since 2009 — Old Town, Jewish Vilnius, Soviet Vilnius, alt-Vilnius themed walks.
+    </li>
+    <li>
+      <b><a href="https://vilniusadventure.lt">Vilnius Adventure — underground tunnels</a></b>
+      <span class="src"><a href="https://www.reddit.com/r/Vilnius/comments/14tbkd5/any_suggestions_for_some_weird_things_to_do_in/">reddit</a></span>
+      <br>Small independent local outfit running literal underground/urbex tours through the city's tunnels. <span class="note">No Google rating found.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Yellow+Vilnius+Free+Walking+Tour">Yellow Vilnius Free Walking Tour</a></b>
+      <span class="src">my pick</span>
+      <br>Small Vilnius-only outfit of young local guides — daily tip-based Old Town and Užupis walks. <span class="note">No Google rating found.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Velotakas+Vilnius">Velotakas (Vilnius Bike &amp; Tours)</a></b>
+      <span class="src">my pick</span>
+      <br>Local bike rental and guided-tour company — daily city rides plus routes to Trakai and Neris Regional Park. <span class="note">No Google rating found.</span>
+    </li>
+  </ul>
+
+  <!-- ── 2. FOOD ─────────────────────────────────────── -->
+  <h2>Food</h2>
+
+  <div class="callout">Eater has no Vilnius or Baltic guide to draw on — checked directly, nothing there. Food coverage below leans on Reddit instead, read directly in-browser this round rather than searched.</div>
+
+  <h3>Top picks</h3>
+  <ul>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=Amandus+Restaurant+Vilnius">Amandus</a></b> <span class="rating">4.9 ★ <span class="count">(~1.2k)</span></span> <span class="src"><a href="https://www.reddit.com/r/Vilnius/comments/17p5tvc/the_best_of_the_best_restaurants_in_vilnius_for_a/">reddit</a></span><br>Nordic-Lithuanian tasting menu — the highest-rated kitchen in the city and independently well-liked across Reddit threads.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=Nineteen18+Restaurant+Vilnius">Nineteen18</a></b> <span class="rating">4.7 ★ <span class="count">(458)</span></span> <span class="src"><a href="https://www.reddit.com/r/Vilnius/comments/17p5tvc/the_best_of_the_best_restaurants_in_vilnius_for_a/">reddit</a></span> <span class="src">michelin ★ 2026</span><br>A Reddit regular calls the chef's-table tasting menu "singlehandedly one of the better foods, experiences I ever had in Europe" — the chef explains each dish and tailors it if you ask ahead.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=Narushi+Vilnius">Narushi</a></b> <span class="rating">4.7 ★ <span class="count">(count unknown)</span></span> <span class="src"><a href="https://www.reddit.com/r/Vilnius/comments/17p5tvc/the_best_of_the_best_restaurants_in_vilnius_for_a/">reddit</a></span><br>Sushi specifically called out by Reddit as comparable to Michelin-quality kitchens elsewhere in Europe — rare praise for sushi this far from a coast.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=%C5%BDemai%C4%8Di%C5%B3+%C4%84sotis+Vilnius">Žemaičių Ąsotis</a></b> <span class="rating">4.6 ★ <span class="count">(count unknown)</span></span> <span class="src"><a href="https://www.reddit.com/r/Vilnius/comments/1kh503l/best_lithuanian_food_restaurant_in_vilnius/">reddit</a></span><br>In a thread asking specifically for Vilnius's best Lithuanian food, this is the answer that came back first and most often — repeatedly recommended over the more tourist-visible options.</li>
+  </ul>
+
+  <h3>Creative and interesting</h3>
+  <ul>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=Gaspar%27s+Restaurant+Vilnius">Gaspar's</a></b> <span class="rating">4.7 ★ <span class="count">(1.1k)</span></span> <span class="src">michelin bib 2026</span><br>Steak grilled on Japanese oak charcoal, in a former Hebrew café building the owner personally restored — Reddit calls it "overrated" for its list ranking while separately admitting the food and story are genuinely good. Judge the place, not the ranking.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=14Horses+Restaurant+Vilnius">14Horses</a></b> <span class="rating">4.3 ★ <span class="count">(347)</span></span> <span class="src">michelin bib 2026</span><br>Sharing-style small plates built around seasonal local produce — a genuinely different structure from the tasting-menu norm.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=Demo+Demoloftas+Vilnius">Demo (Demoloftas)</a></b> <span class="src">michelin ★ 2026</span><br>Casual café by day, serious tasting-menu restaurant on select evenings. <span class="note">No Google rating found.</span></li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=Deep+Roots+Restaurant+Vilnius">Deep Roots</a></b> <span class="src">michelin ★ 2026</span><br>Cooks almost entirely from the chef's own farm, building dishes from family recipes — closed-menu format revealed only on arrival. <span class="note">Opened 2026, too new for a rating.</span></li>
+  </ul>
+
+  <h3>Local dishes to try</h3>
+  <ul>
+    <li>
+      <b>Cepelinai</b> — potato dumplings stuffed with meat or curd, the dish tourists come for.
+      <br><em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=%C5%BDemai%C4%8Di%C5%B3+%C4%84sotis+Vilnius">Žemaičių Ąsotis</a> (see Top picks) does it best per Reddit;
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Berneliu+Uzeiga+Vilnius">Bernelių Užeiga</a> <span class="rating">4.3 ★ <span class="count">(4.1k)</span></span> <span class="src"><a href="https://www.reddit.com/r/Vilnius/comments/1kh503l/best_lithuanian_food_restaurant_in_vilnius/">reddit</a></span> also does a vegan version specifically praised as "mouthwatering."
+      <span class="note">Reddit repeatedly steers away from Senoji Trobelė here — called overpriced for the quality.</span>
+    </li>
+    <li>
+      <b>Kibinai</b> — Karaim hand pies, a specialty of the Karaim community in nearby Trakai.
+      <br><em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=Senoji+Kibin%C4%97+Trakai">Senoji Kibinė</a>, Trakai <span class="rating">4.3 ★ <span class="count">(~9.4k)</span></span> <span class="src">my pick</span> — the oldest kibinai inn, open since 1969.
+    </li>
+    <li>
+      <b>Šaltibarščiai</b> — cold beet soup, usually served bright pink with hot potatoes on the side.
+      <br><em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=Grey+Restaurant+Vilnius">Grey</a> <span class="rating">4.8 ★ <span class="count">(6.2k)</span></span> <span class="src">my pick</span> — a modern brasserie with a well-regarded beetroot-and-kefir version.
+    </li>
+  </ul>
+
+  <h3>Cafés and bakeries</h3>
+  <ul>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=Boulangerie+Thierry+Vilnius">Boulangerie (Thierry)</a></b> <span class="rating">4.6 ★ <span class="count">(593)</span></span> <span class="src">my pick</span><br>Family-run since 1998, Lithuania's first French bakery — multi-layer croissants.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=Pinavija+Vilnius">Pinavija Café &amp; Bakery</a></b> <span class="rating">4.5 ★ <span class="count">(3.5k)</span></span> <span class="src">my pick</span><br>A Parisian-style Old Town bakery known for cakes sold by weight and its signature Napoleon cake.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=Deserta+klubas+Vilnius">Desertų klubas (Dessert Club)</a></b> <span class="src">falstaff</span><br>Called one of Vilnius's most inventive bakeries — in-house croissants, and a standout lemon tartlet. <span class="note">No Google rating found.</span></li>
+  </ul>
+
+  <h3>Cocktail bars and breweries</h3>
+  <ul>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=Nisha+Craft+Capital+Vilnius">Nisha Craft Capital</a></b> <span class="rating">4.5 ★ <span class="count">(count unknown)</span></span> <span class="src"><a href="https://www.reddit.com/r/Vilnius/comments/1egoz8t/what_should_we_add_to_our_itinerary/">reddit</a></span><br>The deepest craft-beer list in the city, near the Cathedral.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=Alchemikas+Bar+Vilnius">Alchemikas</a></b> <span class="src"><a href="https://www.reddit.com/r/Vilnius/comments/1egoz8t/what_should_we_add_to_our_itinerary/">reddit</a></span><br>Experimental cocktail menu — recurs on Reddit alongside Apoteka as the go-to answer for a proper cocktail night. <span class="note">No Google rating found.</span></li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=Apoteka+Bar+Vilnius">Apoteka</a></b> <span class="src"><a href="https://www.reddit.com/r/Vilnius/comments/1egoz8t/what_should_we_add_to_our_itinerary/">reddit</a></span><br>Speakeasy styled as an old pharmacy — bartenders in pharmacist coats, seasonal house infusions. <span class="note">No Google rating found.</span></li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=Alaus+Biblioteka+Vilnius">Alaus Biblioteka (Beer Library)</a></b> <span class="src"><a href="https://www.reddit.com/r/Vilnius/comments/1egoz8t/what_should_we_add_to_our_itinerary/">reddit</a></span><br>A deep local and international draft and bottle list. <span class="note">No Google rating found.</span></li>
+  </ul>
+
+  <!-- ── 3. WHERE TO STAY ────────────────────────────── -->
+  <h2>Where to stay</h2>
+  <ul>
+    <li><b>Old Town / Senamiestis.</b> The UNESCO-listed Baroque core — cathedral, castle hill, everything walkable. <em>Best for:</em> first-time visitors who want sights, food, and transit all on foot. <em>Tradeoff:</em> touristy and pricier on the main squares; weekend bar noise off Vokiečių/Pilies streets carries into nearby courtyards.</li>
+    <li><b>Užupis.</b> Bohemian, artsy, riverside — galleries, murals, quirky cafés, a 5–10 minute walk from Old Town. <em>Best for:</em> a quieter, more local base, especially in an Airbnb rather than a hotel (few hotels sit inside it). <em>Tradeoff:</em> less walkable to mainstream sights, and despite the "quiet bohemian" branding there are recurring reports of late-night noise from semi-secret parties.</li>
+    <li><b>Naujamiestis / New Town.</b> The commercial center — wider streets, shopping, business towers. <em>Best for:</em> business travelers and shoppers wanting local nightlife and lower prices than Old Town. <em>Tradeoff:</em> architecturally less charming, feels more generic-city-center, and some stretches near the train/bus station get grittier at night.</li>
+    <li><b>Žvėrynas.</b> Leafy, upscale, wooden villas and parks across the river — the poshest address in the city. <em>Best for:</em> quiet-seekers and families wanting a real residential feel. <em>Tradeoff:</em> the most expensive area, and not walkable to major sights.</li>
+    <li><b>Šnipiškės — best avoided for a leisure trip.</b> A business district of glass towers next to old wooden houses on the north bank, marketed as "up and coming." <em>Best for:</em> only travelers prioritizing modern chain hotels or business proximity. <em>Tradeoff:</em> genuinely less walkable and less atmospheric — a construction-heavy CBD, not a place with tourist character.</li>
+  </ul>
+
+  <!-- ── 4. BOOK AHEAD ───────────────────────────────── -->
+  <h2>Book ahead</h2>
+  <p class="note">Only entries with real evidence of day-of difficulty are listed — nothing here is a guess.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>What</th><th>Lead time</th><th>How</th><th>Why we know</th></tr>
+      </thead>
+      <tbody>
+        <tr class="urgent">
+          <td>Nineteen18 (★ tasting menu)</td>
+          <td class="lead">No fixed minimum — reserve early</td>
+          <td>nineteen18.lt/reservations</td>
+          <td>€50/person non-refundable-after-cutoff deposit; only 42 seats; cancel window closes 5 business days out, arriving 15+ min late voids the booking.</td>
+        </tr>
+        <tr>
+          <td>Džiaugsmas (★)</td>
+          <td class="lead">Same day, before 4pm</td>
+          <td>dziaugsmas.tablein.com, phone after 4pm</td>
+          <td>Booking page states online reservations close at 4pm same-day; call required after that. Small 64-cover room.</td>
+        </tr>
+        <tr>
+          <td>Demo (★)</td>
+          <td class="lead">Ahead — no set number</td>
+          <td>Direct contact only, no third-party booking</td>
+          <td>Restaurant-review site Pearl: "a hard table to secure," especially evenings; only one lunch seating (Sat 13:00–16:00).</td>
+        </tr>
+        <tr class="urgent">
+          <td>Hot air balloon (Vilnius/Trakai)</td>
+          <td class="lead">Book with buffer days</td>
+          <td>Operator direct (balloon.lt, Hot Air Lines) or Viator/GetYourGuide</td>
+          <td>Viator's booking-velocity indicator flags both operators "likely to sell out"; weather (wind/fog) frequently forces rebooking, so same-day attempts are unreliable twice over. Independently came up on Reddit as a recommended unusual activity.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Dropped the TV Tower's revolving restaurant from this list — it does take reservations, but Reddit is specific that the food is a genuine weak point ("one of the worst food places" despite the view). Do the edge walk (see Things to do); skip dinner there.</p>
+
+  <!-- ── 5. PRACTICAL ────────────────────────────────── -->
+  <h2>Practical</h2>
+  <div class="facts">
+    <dl>
+      <dt>Tap water</dt><dd>Potable everywhere in the city — sourced from deep groundwater wells and tested regularly to EU standards.</dd>
+      <dt>Tipping</dt><dd>Not obligatory but appreciated. Restaurants ~10% if happy with service; taxis just round up; hotels are a courtesy, not a norm. <span class="note">(2024–2025)</span></dd>
+      <dt>Getting around</dt><dd>Bolt is dominant and cheapest/fastest; Uber operates with a smaller driver pool; Yandex Go is present but many avoid it given Russian ownership. Street-hailed metered taxis still exist but are secondary to apps now.</dd>
+    </dl>
+  </div>
+
+  <!-- ── 6. COUNTRY BACKGROUND ───────────────────────── -->
+  <h2>Lithuania</h2>
+  <div class="facts">
+    <dl>
+      <dt>GDP</dt><dd>≈$95B total · ≈$33,000 per capita <span class="note">(IMF World Economic Outlook estimate, 2025)</span></dd>
+      <dt>Economy</dt><dd>Fintech (EU's #1 licensing hub), laser/photonics technology (world leader, ~90% exported), logistics/transit via the Baltic corridor, manufacturing (~23% of GDP).</dd>
+      <dt>Languages</dt><dd>Lithuanian only official language. English widely spoken, especially by younger people and in tourism/hospitality. Russian understood by older generations; Polish spoken by a minority around Vilnius.</dd>
+    </dl>
+  </div>
+
+  <h3>Tech scene</h3>
+  <ul>
+    <li><b><a href="https://www.vinted.com">Vinted</a></b> — secondhand fashion resale marketplace. Lithuania's first and still largest unicorn: valued at <b>€8B</b> as of an April 2026 secondary share sale (~$872M raised to date); profitable, with €1.1B revenue in 2025.</li>
+    <li><b><a href="https://nordsecurity.com">Nord Security</a></b> — VPN and cybersecurity products (NordVPN, NordPass, NordLocker). Valued at <b>$3B</b>, last confirmed 2022 (from a $100M raise); could not confirm an updated 2025/26 figure. 2025 revenue reported at $357M ARR.</li>
+    <li><b><a href="https://oxylabs.io">Oxylabs</a></b> — web-data scraping and proxy infrastructure for AI agents, spun out of Tesonet. Reached unicorn status in 2026, raising <b>$130M at a $3.6B valuation</b> from Warburg Pincus — its first outside funding ever after bootstrapping since 2015.</li>
+    <li><b><a href="https://cast.ai">Cast AI</a></b> — cloud infrastructure cost-optimization and Kubernetes automation. Hit unicorn status in January 2026 at a <b>$1B+ valuation</b> (~$268M raised total across 11 rounds).</li>
+    <li><b><a href="https://kilo.health">Kilo</a></b> (formerly Kilo Health) — health and longevity app venture studio. Bootstrapped, no outside funding; revenue ~€234M in 2024, projected ~€500M in 2025. Not a unicorn.</li>
+  </ul>
+  <p class="note">Lithuania has produced 4 unicorns from a population under 3 million; total startup-ecosystem enterprise value reached ~€16.4B (2025/26), ranking #2 in Eastern Europe. Fintech is the standout sector — ~250–270 EU-licensed firms, up from 44 in 2014.</p>
+
+  <h3>History in five beats</h3>
+  <ul>
+    <li><b>Medieval Grand Duchy (13th–16th c.).</b> Vilnius founded 1323; Lithuania grew into one of Europe's largest states, later united with Poland — the source of Old Town's layered Gothic and Baroque architecture, now UNESCO-listed.</li>
+    <li><b>Partition era (late 1700s–1918).</b> Absorbed into the Russian Empire after Poland-Lithuania's partition; a 19th-century national revival kept language and identity alive underground.</li>
+    <li><b>Interwar independence & WWII (1918–1944).</b> Brief independence, then Soviet occupation in 1940, then Nazi occupation (1941–44) which destroyed Vilnius's large Jewish community, once called the "Jerusalem of the North," followed by Soviet re-occupation.</li>
+    <li><b>Soviet period (1944–1990).</b> Explains the concrete microdistricts and monumental Soviet-era buildings that ring the historic core today.</li>
+    <li><b>Independence & today.</b> Lithuania was the first Soviet republic to declare independence, in March 1990; Soviet troops killed civilians at the Vilnius TV Tower in January 1991 before independence held. Joined NATO and the EU in 2004, adopted the euro in 2015 — now a fast-growing, tech-forward state that has restored its Old Town while living alongside its Soviet-era layer.</li>
+  </ul>
+
+  <h3>Phrases</h3>
+  <table class="phrases">
+    <tr><td class="native">Labas</td><td class="phon">LAH-bahs</td><td>Hello</td></tr>
+    <tr><td class="native">Prašau</td><td class="phon">prah-SHOW</td><td>Please</td></tr>
+    <tr><td class="native">Ačiū</td><td class="phon">AH-choo</td><td>Thank you</td></tr>
+    <tr><td class="native">Atsiprašau</td><td class="phon">aht-sih-prah-SHOW</td><td>Excuse me / sorry</td></tr>
+    <tr><td class="native">Taip</td><td class="phon">tayp</td><td>Yes</td></tr>
+    <tr><td class="native">Ne</td><td class="phon">neh</td><td>No</td></tr>
+    <tr><td class="native">Ar kalbate angliškai?</td><td class="phon">ahr KAHL-bah-teh ahn-GLISH-kai</td><td>Do you speak English?</td></tr>
+    <tr><td class="native">Kiek tai kainuoja?</td><td class="phon">kyehk tie kai-NWOH-yah</td><td>How much is this?</td></tr>
+    <tr><td class="native">Sąskaitą, prašau</td><td class="phon">SAHS-kai-tah, prah-SHOW</td><td>The bill, please</td></tr>
+    <tr><td class="native">Kur yra tualetas?</td><td class="phon">koor ee-RAH twah-LEH-tahs</td><td>Where is the bathroom?</td></tr>
+    <tr><td class="native">Į sveikatą!</td><td class="phon">ee svay-KAH-tah</td><td>Cheers!</td></tr>
+  </table>
+
+</main>
+</body>
+</html>

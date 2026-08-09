@@ -1,0 +1,513 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<title>San Francisco — Travel Brief</title>
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --text: #1c1b19;
+    --muted: #6b6863;
+    --line: #e5e1db;
+    --accent: #9a5b34;
+    --flag-bg: #fdf3ec;
+    --star: #b5892f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1917;
+      --surface: #232220;
+      --text: #ece9e4;
+      --muted: #a09b93;
+      --line: #35332f;
+      --accent: #d99b6c;
+      --flag-bg: #2c241d;
+      --star: #d8b25e;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem 1.25rem 4rem;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
+  }
+  main { max-width: 46rem; margin: 0 auto; }
+
+  header { border-bottom: 2px solid var(--text); padding-bottom: 1rem; margin-bottom: 2.5rem; }
+  h1 { font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1.1; margin: 0 0 .4rem; letter-spacing: -.02em; }
+  .meta { color: var(--muted); font-size: .85rem; }
+
+  .toc { margin-top: .75rem; font-size: .8rem; line-height: 1.9; }
+  .toc a { color: var(--muted); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: .15rem .6rem; margin: 0 .25rem .25rem 0; display: inline-block; white-space: nowrap; }
+  .toc a:hover { color: var(--accent); border-color: var(--accent); }
+  h2 { scroll-margin-top: 1rem; }
+
+  h2 {
+    font-size: 1.3rem; margin: 3rem 0 .25rem; letter-spacing: -.01em;
+    padding-bottom: .4rem; border-bottom: 1px solid var(--line);
+  }
+  h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 1.75rem 0 .5rem; }
+  p { margin: .6rem 0; }
+
+  ul { padding-left: 1.1rem; margin: .5rem 0; }
+  li { margin: .75rem 0; }
+  li b { font-weight: 650; }
+
+  a { color: inherit; text-underline-offset: 2px; text-decoration-color: var(--line); }
+  a:hover { text-decoration-color: var(--accent); }
+
+  .rating {
+    display: inline-block; white-space: nowrap;
+    font-size: .78rem; font-weight: 600; color: var(--star);
+    margin-left: .35rem;
+  }
+  .rating .count { color: var(--muted); font-weight: 400; }
+
+  .when {
+    display: inline-block; white-space: nowrap;
+    font-size: .78rem; font-weight: 650; color: var(--accent);
+    margin-left: .35rem;
+  }
+
+  .src {
+    display: inline-block; font-size: .7rem; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--muted); border: 1px solid var(--line); border-radius: 4px;
+    padding: .05rem .3rem; margin-left: .35rem; vertical-align: 1px;
+  }
+  .src a { text-decoration: none; }
+
+  .note { color: var(--muted); font-size: .85rem; font-style: italic; }
+  .unconfirmed { color: var(--accent); font-weight: 600; }
+
+  .callout {
+    background: var(--flag-bg); border: 1px solid var(--line); border-radius: 8px;
+    padding: .7rem 1rem; margin: 1rem 0; font-size: .88rem; color: var(--muted);
+  }
+
+  .table-wrap { overflow-x: auto; margin: 1rem 0; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: .92rem; }
+  th, td { text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 600; }
+  td.lead { white-space: nowrap; font-weight: 650; }
+  tr.urgent td.lead { color: var(--accent); }
+
+  .verdict {
+    border-left: 3px solid var(--accent); background: var(--surface);
+    border-radius: 0 8px 8px 0; padding: .7rem 1rem; margin: 1rem 0; font-size: .92rem;
+  }
+  .verdict b { color: var(--accent); }
+
+  .facts { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: .35rem 1rem; margin: 1rem 0; }
+  .facts dl { display: grid; grid-template-columns: max-content 1fr; gap: .5rem 1.25rem; margin: .8rem 0; }
+  .facts dt { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); padding-top: .15rem; }
+  .facts dd { margin: 0; }
+
+  @media (max-width: 30rem) {
+    .facts dl { grid-template-columns: 1fr; gap: .15rem; }
+    .facts dd { margin-bottom: .7rem; }
+  }
+</style>
+
+<main>
+
+  <header>
+    <h1>San Francisco</h1>
+    <div class="meta">USA · Aug 16–25, 2026 · researched Aug 8, 2026</div>
+    <div class="meta">Typical late Aug: 68°/55°F highs/lows · minimal rain · fog common mornings, clearing by afternoon · daylight to ~7:50pm</div>
+    <nav class="toc">
+      <a href="#do">Things to do</a><a href="#events">Events</a><a href="#food">Food</a><a href="#stay">Stay</a><a href="#book">Book ahead</a><a href="#practical">Practical</a><a href="#background">Background</a>
+    </nav>
+  </header>
+
+  <h2 id="do">Things to do</h2>
+
+  <h3>Top picks</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Alcatraz+Cruises+San+Francisco">Alcatraz</a></b>
+      <span class="rating">4.5 ★ <span class="count">(1.8k)</span></span>
+      <span class="src">my pick</span>
+      <br>Federal penitentiary 1934–63, reachable only by the official NPS-concessionaire ferry from Pier 33 — no other operator lands there. The audio tour, narrated partly by former guards and inmates, runs the cellblock.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Sutro+Baths+San+Francisco">Sutro Baths &amp; Lands End</a></b>
+      <span class="rating">4.7 ★ <span class="count">(3k)</span></span>
+      <span class="src">atlas obscura</span>
+      <br>Concrete ruins of a seven-pool, glass-roofed 1896 bathhouse that burned in 1966, now open to the sea air. The trail continues to a working 19th-century Camera Obscura (a walk-in pinhole camera projecting the coastline live) and an unofficial stone labyrinth on the bluff above.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Musee+Mecanique+San+Francisco">Musée Mécanique</a></b>
+      <span class="rating">4.7 ★ <span class="count">(8.4k)</span></span>
+      <span class="src">atlas obscura</span>
+      <br>Free-entry arcade of coin-operated mechanical instruments and fortune tellers dating to the 1880s, still running on quarters, on Pier 45.
+    </li>
+    <li>
+      <b>Cable cars</b>
+      <span class="src">my pick</span>
+      <br>The world's last manually operated cable car system, in service since 1873 — grip men still work the cable by hand at each stop. Ride the Powell-Hyde line for the Hyde Street hill drop toward the bay.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Bernal+Heights+Park+San+Francisco">Bernal Heights Park</a></b>
+      <span class="rating">4.8 ★ <span class="count">(159)</span></span>
+      <span class="src">the bold italic</span>
+      <br>Free 360° summit at 475 ft, from the Golden Gate to San Bruno Mountain — less crowded than Twin Peaks and reached by a residential-street climb rather than a parking lot.
+    </li>
+  </ul>
+
+  <h3>Unique to San Francisco</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=The+Wave+Organ+San+Francisco">The Wave Organ</a></b>
+      <span class="rating">4.1 ★ <span class="count">(1.7k)</span></span>
+      <span class="src">atlas obscura</span>
+      <br>Acoustic sculpture on a Marina jetty, built by the Exploratorium in 1986 from a demolished cemetery's granite and marble; 25 pipes turn wave action into low tones, most audible at high tide.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Wild+Parrots+of+Telegraph+Hill+San+Francisco">Wild parrots of Telegraph Hill</a></b>
+      <span class="src">my pick</span>
+      <br>A naturalized flock of cherry-headed conures, descended from escaped pets, that has bred in the wild since the 1990s — the subject of its own documentary. Best odds on Greenwich or Filbert Street steps at dawn.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=16th+Avenue+Tiled+Steps+San+Francisco">16th Avenue Tiled Steps</a></b>
+      <span class="rating">4.8 ★ <span class="count">(2.1k)</span></span>
+      <span class="src">atlas obscura</span>
+      <br>163 steps in Golden Gate Heights hand-tiled by neighbors in a community mosaic project, sea-to-stars themed, completed 2005.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Church+of+8+Wheels+San+Francisco">Church of 8 Wheels</a></b>
+      <span class="rating">4.5 ★ <span class="count">(390)</span></span>
+      <span class="src">atlas obscura</span>
+      <br>A deconsecrated 1906 church on Fillmore, independently run as a roller disco under the original stained glass and vaulted ceiling.
+    </li>
+  </ul>
+
+  <h3>Views and nature</h3>
+  <ul>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Twin+Peaks+San+Francisco">Twin Peaks</a></b> <span class="src">my pick</span><br>The classic 360° overlook at 922 ft — often above the fog line when the rest of the city is socked in. Free parking at the summit lot.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Salesforce+Park+San+Francisco">Salesforce Park</a></b> <span class="rating">4.6 ★ <span class="count">(4.2k)</span></span> <span class="src">my pick</span><br>Free elevated park atop the Transit Center, reached by a free gondola at Mission &amp; Fremont — 5.4 acres of gardens with downtown skyline views, open until 8 or 9pm.</li>
+  </ul>
+
+  <h3>Museums and galleries</h3>
+  <ul>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=SFMOMA+San+Francisco">SFMOMA</a></b> <span class="rating">4.6 ★ <span class="count">(16.6k)</span></span> <span class="src">my pick</span><br>Matisse, Rivera, Warhol and a living wall across seven floors; Jacob Hashimoto's large-scale installation <i>Giant Arc</i> opens Aug 22, 2026, inside the travel window.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Exploratorium+San+Francisco">Exploratorium</a></b> <span class="rating">4.7 ★ <span class="count">(8.6k)</span></span> <span class="src">my pick</span><br>Hands-on science and perception museum on Pier 15, founded by physicist Frank Oppenheimer in 1969 — built the Wave Organ above as a side project.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Minnesota+Street+Project+San+Francisco">Minnesota Street Project</a></b> <span class="rating">4.6 ★ <span class="count">(284)</span></span> <span class="src">my pick</span><br>Purpose-built Dogpatch complex housing 14 independent contemporary galleries (Jack Fischer, Anglim/Trimble among the anchors); free First Saturday walk each month.</li>
+  </ul>
+
+  <h3>Tours <span class="note">— walking and biking, locally run</span></h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=San+Francisco+City+Guides">San Francisco City Guides</a></b>
+      <span class="rating">4.9 ★ <span class="count">(2.4k)</span></span>
+      <span class="src">my pick</span>
+      <br>Nonprofit founded 1978, ~300 trained volunteer guides, free (donation-based) neighborhood and history walks — Barbary Coast, Haight-Ashbury '60s, Victorian architecture. Book at <a href="https://www.sfcityguides.org">sfcityguides.org</a>.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Sidewalk+Food+Tours+of+San+Francisco">Sidewalk Food Tours</a></b>
+      <span class="rating">5.0 ★ <span class="count">(761)</span></span>
+      <span class="src">my pick</span>
+      <br>Independent SF-only operator running 3-hour small-group Chinatown and North Beach food-and-history walks with a fixed local guide roster. Book at <a href="https://www.sidewalkfoodtours.com">sidewalkfoodtours.com</a>.
+    </li>
+  </ul>
+
+  <h3>Day trips</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Muir+Woods+National+Monument">Muir Woods</a></b>
+      <span class="rating">4.8 ★ <span class="count">(20.6k)</span></span>
+      <span class="src">my pick</span>
+      <br>Old-growth coast redwoods, some over 800 years old, in a fog-belt canyon. Advance parking or shuttle reservation is mandatory (book at <a href="https://gomuirwoods.com">gomuirwoods.com</a>) — arrivals without one are turned away. <em>Getting there:</em> ~35–45 min drive across the Golden Gate Bridge; no direct transit.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Point+Reyes+National+Seashore">Point Reyes National Seashore</a></b>
+      <span class="rating">4.8 ★ <span class="count">(7.7k)</span></span>
+      <span class="src">my pick</span>
+      <br>71,000-acre peninsula of cliffs, tule elk, and a working 1870 lighthouse at the point — August is prime for whale-watching and elephant seal viewing. <em>Getting there:</em> ~1–1.25 hr drive; no transit.
+    </li>
+  </ul>
+
+  <h2 id="events">Events <span class="note">— during your dates</span></h2>
+
+  <h3>Cultural</h3>
+  <ul>
+    <li>
+      <b><a href="https://sterngrove.org">Stern Grove Festival — season finale</a></b>
+      <span class="when">Aug 16</span>
+      <span class="src">tourism calendar</span>
+      <br>Closing concert of the 89th season of SF's free outdoor performing-arts tradition, in a eucalyptus-grove amphitheater — this year headlined by Al Green. <em>Tickets:</em> free, but requires advance lottery registration at sterngrove.org.
+    </li>
+    <li>
+      <b><a href="https://www.sfdahlias.org/annual-dahlia-show">Dahlia Society of California Annual Show</a></b>
+      <span class="when">Aug 15–16</span>
+      <span class="src">local press</span>
+      <br>Competitive judging of San Francisco's official flower — thousands of blooms for Best in Show and people's choice, a tradition held every third weekend of August since 1917. Free entry, at the Hall of Flowers, Golden Gate Park.
+    </li>
+  </ul>
+
+  <h3>Music</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.chasecenter.com/events/daniel-caesar-20260820/">Daniel Caesar, with 070 Shake</a></b>
+      <span class="when">Aug 20–21</span>
+      <span class="src">venue calendar</span>
+      <br>R&B headline arena dates on his "Son of Spergy" tour. At <a href="https://www.google.com/maps/search/?api=1&query=Chase+Center+San+Francisco">Chase Center</a>. <em>Tickets:</em> required, via Live Nation.
+    </li>
+    <li>
+      <b><a href="https://www.thewarfieldtheatre.com">Dimmu Borgir, with Hulder</a></b>
+      <span class="when">Aug 21</span>
+      <span class="src">venue calendar</span>
+      <br>Symphonic black metal headline show on the "Grand Serpent Rising" tour. At <a href="https://www.google.com/maps/search/?api=1&query=The+Warfield+San+Francisco">The Warfield</a>. <em>Tickets:</em> required.
+    </li>
+    <li>
+      <b><a href="https://www.thefillmore.com">Pi'erre Bourne — "Made in Paris" tour opener</a></b>
+      <span class="when">Aug 19</span>
+      <span class="src">venue calendar</span>
+      <br>Hip-hop headline club date, opening night of the tour. At <a href="https://www.google.com/maps/search/?api=1&query=The+Fillmore+San+Francisco">The Fillmore</a>. <em>Tickets:</em> required.
+    </li>
+  </ul>
+
+  <h3>Shows</h3>
+  <ul>
+    <li>
+      <b><a href="https://us.atgtickets.com/events/little-shop-of-horrors/curran-theater/">Little Shop of Horrors — 40th-anniversary screening, hosted by Ellen Greene</a></b>
+      <span class="when">Aug 16</span>
+      <span class="src">venue calendar</span>
+      <br>The original film's Audrey introduces a screening of the 1986 cult musical, part of a national tour stop. At <a href="https://www.google.com/maps/search/?api=1&query=Curran+Theatre+San+Francisco">Curran Theatre</a>. <em>Tickets:</em> required.
+    </li>
+    <li>
+      <b><a href="https://www.cobbscomedy.com">Monét X Change</a></b>
+      <span class="when">Aug 22</span>
+      <span class="src">venue calendar</span>
+      <br>Drag Race alum stand-up/variety set. At <a href="https://www.google.com/maps/search/?api=1&query=Cobb%27s+Comedy+Club+San+Francisco">Cobb's Comedy Club</a>. <em>Tickets:</em> required.
+    </li>
+    <li>
+      <b>SF Symphony, SF Opera, SF Ballet, ACT and BroadwaySF</b>
+      <span class="src">venue calendars</span>
+      <br><span class="note">All confirmed dark for these dates — subscription seasons open in September. Nothing to book here.</span>
+    </li>
+  </ul>
+
+  <h3>Exhibitions</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.sfmoma.org/upcoming-exhibitions/">Jacob Hashimoto: Giant Arc</a></b>
+      <span class="when">opens Aug 22</span>
+      <span class="src">museum calendar</span>
+      <br>Large-scale sculptural installation, included with general admission. At <a href="https://www.google.com/maps/search/?api=1&query=SFMOMA+San+Francisco">SFMOMA</a>.
+    </li>
+    <li>
+      <b><a href="https://www.famsf.org/press-room/treasures-of-the-pharaohs">Treasures of the Pharaohs</a></b>
+      <span class="when">through Jan 31, 2027</span>
+      <span class="src">museum calendar</span>
+      <br>~130 artifacts from the Egyptian Museum in Cairo and Luxor Museum, including a North American debut of recent tomb finds. At <a href="https://www.google.com/maps/search/?api=1&query=de+Young+Museum+San+Francisco">de Young Museum</a>. <em>Tickets:</em> timed entry.
+    </li>
+    <li>
+      <b><a href="https://www.calacademy.org/exhibits/vivid-immerse-your-senses">Vivid: Immerse Your Senses</a></b>
+      <span class="when">through Sep 6</span>
+      <span class="src">museum calendar</span>
+      <br>Multisensory projection-and-scent installation across six ecosystems, North American debut of a French touring production. At <a href="https://www.google.com/maps/search/?api=1&query=California+Academy+of+Sciences+San+Francisco">California Academy of Sciences</a>, included with admission.
+    </li>
+  </ul>
+
+  <div class="callout">Legion of Honor's current temporary exhibition could not be confirmed — the museum's site blocked automated access. Worth a direct check closer to the trip.</div>
+
+  <h2 id="food">Food</h2>
+
+  <h3>Local dishes to try</h3>
+  <ul>
+    <li><b>Mission-style burrito.</b> Rice-free, foil-wrapped, invented in the Mission District in the 1960s–70s. <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&query=La+Taqueria+San+Francisco">La Taqueria</a> <span class="rating">4.5 ★ <span class="count">(7.4k)</span></span>.</li>
+    <li><b>Dungeness crab and cioppino.</b> The tomato-and-wine seafood stew SF fishermen invented on the wharf; crab season runs Nov–June, so expect it frozen rather than fresh-caught in August. <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&query=Tadich+Grill+San+Francisco">Tadich Grill</a> (est. 1849) <span class="rating">4.4 ★ <span class="count">(5.2k)</span></span>, <a href="https://www.google.com/maps/search/?api=1&query=Swan+Oyster+Depot+San+Francisco">Swan Oyster Depot</a> <span class="rating">4.6 ★ <span class="count">(2.3k)</span></span>.</li>
+    <li><b>Sourdough bread.</b> The city's naturally-leavened, tangy loaf, tied to a wild yeast strain first cultured here during the Gold Rush. <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&query=Tartine+Bakery+San+Francisco">Tartine</a> <span class="rating">4.5 ★ <span class="count">(5.9k)</span></span>, Boudin's original 1849 mother dough at Fisherman's Wharf.</li>
+    <li><b>Vietnamese-American garlic noodles.</b> Butter, garlic, parmesan and fish sauce tossed with egg noodles — invented at Thanh Long in the 1970s and now a Bay Area staple nowhere else claims. <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&query=Thanh+Long+San+Francisco">Thanh Long</a> <span class="rating">4.3 ★ <span class="count">(1.7k)</span></span>.</li>
+    <li><b>Irish coffee.</b> Whiskey, coffee, sugar and cream, brought to the US and popularized here in 1952. <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&query=Buena+Vista+Cafe+San+Francisco">The Buena Vista</a> <span class="rating">4.3 ★ <span class="count">(5.5k)</span></span>, by Fisherman's Wharf.</li>
+  </ul>
+
+  <h3>Top picks</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Californios+San+Francisco">Californios</a></b>
+      <span class="rating">4.7 ★ <span class="count">(573)</span></span>
+      <span class="src"><a href="https://guide.michelin.com/us/en/california/san-francisco/restaurants">michelin ★★★ 2026</a></span>
+      <span class="src">50 best na 2025</span>
+      <span class="src">world of mouth</span>
+      <br>Tasting menu built on Mexican technique and Californian produce from chef Val Cantú, who grew up in the Mission — promoted to three Michelin stars in 2026, the first Mexican restaurant anywhere to hold three.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=House+of+Prime+Rib+San+Francisco">House of Prime Rib</a></b>
+      <span class="rating">4.6 ★ <span class="count">(7.4k)</span></span>
+      <span class="src">reddit</span>
+      <span class="src">sf standard</span>
+      <span class="src">michelin</span>
+      <br>English-style dining room serving 21-day-aged prime rib and Yorkshire pudding since 1949, carved tableside. Expect an hour's wait without a reservation.
+      <span class="note">Named independently across both Reddit threads consulted, and in the "take an out-of-towner" press panel.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Swan+Oyster+Depot+San+Francisco">Swan Oyster Depot</a></b>
+      <span class="rating">4.6 ★ <span class="count">(2.3k)</span></span>
+      <span class="src">reddit</span>
+      <span class="src">michelin</span>
+      <br>Family-run 18-stool fish-market counter since 1912; smoked salmon, crab salad, and clam chowder eaten standing up, cash-friendly and no reservations.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Tony%27s+Pizza+Napoletana+San+Francisco">Tony's Pizza Napoletana</a></b>
+      <span class="rating">4.5 ★ <span class="count">(10.5k)</span></span>
+      <span class="src">reddit</span>
+      <span class="src">my pick</span>
+      <br>North Beach pizzeria from 13-time world-champion Tony Gemignani, running nine ovens for nine different regional styles — order the New Yorker or a coal-fired Margherita.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Arsicault+Bakery+San+Francisco">Arsicault Bakery</a></b>
+      <span class="rating">4.8 ★ <span class="count">(3.2k)</span></span>
+      <span class="src">reddit</span>
+      <span class="src">bon appétit</span>
+      <br>Richmond District bakery named Bon Appétit's Best New Bakery in America in 2016; the almond croissant and kouign-amann sell out most mornings.
+    </li>
+  </ul>
+
+  <h3>Everyday institutions</h3>
+  <ul>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Golden+Boy+Pizza+San+Francisco">Golden Boy Pizza</a></b> <span class="rating">4.7 ★ <span class="count">(5k)</span></span> <span class="src">reddit</span><br>Walk-up North Beach counter selling thick Sicilian-style focaccia-crust squares since 1978; the clam-and-garlic slice is the one to get.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Tommy%27s+Joynt+San+Francisco">Tommy's Joynt</a></b> <span class="rating">4.4 ★ <span class="count">(4.2k)</span></span> <span class="src">reddit</span><br>Hofbrau-style cafeteria since 1936 under a kitschy neon sign — carved buffalo stew, pastrami, and Saturday corned beef and cabbage from the steam table.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Good+Luck+Dim+Sum+San+Francisco">Good Luck Dim Sum</a></b> <span class="rating">4.4 ★ <span class="count">(921)</span></span> <span class="src">reddit</span><br>Cash-only Inner Richmond takeout counter; chive-and-shrimp dumplings and BBQ pork buns, most items under $3.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Yamo+San+Francisco+Mission">Yamo</a></b> <span class="rating">4.4 ★ <span class="count">(878)</span></span> <span class="src">reddit</span><br>Eight-seat, cash-only Burmese kitchen on 18th Street; the $9 house noodle bowl with beef is the order named most often.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Saigon+Sandwich+San+Francisco">Saigon Sandwich</a></b> <span class="rating">4.5 ★ <span class="count">(2.1k)</span></span> <span class="src">reddit</span><br>Tenderloin cash-only banh mi counter, $5.50 sandwiches, named in nearly every cheap-eats thread checked.</li>
+  </ul>
+
+  <h3>Creative and interesting</h3>
+  <ul>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Rich+Table+San+Francisco">Rich Table</a></b> <span class="rating">4.7 ★ <span class="count">(1.6k)</span></span> <span class="src">50 best discovery</span> <span class="src">reddit</span><br>Porcini doughnuts, sardine chips, and a rotating pasta program from a husband-and-wife team plating California produce with format-bending technique — none of the three signature dishes reads as a standard tasting menu.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=SAN+HO+WON+San+Francisco">San Ho Won</a></b> <span class="rating">4.6 ★ <span class="count">(742)</span></span> <span class="src">michelin ★ 2026</span> <span class="src">sf standard</span><br>Michelin-starred Korean charcoal grill from the Lazy Bear team; a $118 set menu built around house double-cut galbi and an egg soufflé course not found on typical KBBQ menus.</li>
+  </ul>
+
+  <h3>Asian food</h3>
+  <ul>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Hai+Ky+Mi+Gia+San+Francisco">Hai Ky Mi Gia</a></b> <span class="rating">4.6 ★ <span class="count">(678)</span></span> <span class="src">reddit</span><br>Teochew-Vietnamese Tenderloin noodle house; the dry egg-noodle bowl with braised duck leg was the single most independently repeated answer across the Reddit noodle threads.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Z+and+Y+Restaurant+655+Jackson+St+San+Francisco">Z &amp; Y Restaurant</a></b> <span class="src">michelin (recommended) 2026</span> <span class="src">eater</span><br>Chinatown Sichuan kitchen from chef Lijun Han; mapo tofu and chile-oil frog, with graded spice levels explained on the menu. <span class="note">Rating unconfirmed — Google had recently removed a batch of suspicious reviews from this listing at time of research.</span></li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Saap+Ver+San+Francisco">Saap Ver</a></b> <span class="rating">4.2 ★ <span class="count">(891)</span></span> <span class="src">reddit</span><br>Isaan street-food menu named specifically by Thai-national and long-time-Bangkok-resident commenters as the authentic pick; crispy rice salad and salted-egg-yolk squid.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Han+Il+Kwan+San+Francisco">Han Il Kwan</a></b> <span class="rating">4.4 ★ <span class="count">(1.5k)</span></span> <span class="src">reddit</span><br>Traditional Richmond District Korean BBQ and banchan, noted on Reddit for drawing tour groups arriving directly from Seoul — galbi and seolleongtang.</li>
+  </ul>
+
+  <h3>Cafés and bakeries</h3>
+  <ul>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Tartine+Bakery+San+Francisco">Tartine Bakery</a></b> <span class="rating">4.5 ★ <span class="count">(5.9k)</span></span> <span class="src">reddit</span><br>Country sourdough and the coconut cream tart both clear the bar; the original Mission location since 2002.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Andytown+Coffee+Roasters+San+Francisco">Andytown Coffee Roasters</a></b> <span class="rating">4.6 ★ <span class="count">(1.2k)</span></span> <span class="src">reddit</span><br>Outer Sunset roaster; the Snowy Plover, an iced horchata-adjacent espresso drink, is the one to order.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Linea+Caffe+San+Francisco">Linea Caffe</a></b> <span class="rating">4.4 ★ <span class="count">(420)</span></span> <span class="src">reddit</span><br>Mission walk-up window from a World Barista Championship judge; the flat white was named repeatedly as the city's best.</li>
+  </ul>
+
+  <h3>Healthy staples</h3>
+  <ul>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Kitava+San+Francisco">Kitava</a></b> <span class="rating">4.5 ★ <span class="count">(674)</span></span> <span class="src">my pick</span><br>Gluten- and dairy-free bowls built to order — paprika chicken over the Farmers Green Bowl is the repeatable order; multiple SF locations.</li>
+  </ul>
+
+  <h3>Cocktail bars and breweries</h3>
+  <ul>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Smuggler%27s+Cove+San+Francisco">Smuggler's Cove</a></b> <span class="rating">4.6 ★ <span class="count">(3.3k)</span></span> <span class="src">50 best bars 2025</span><br>700+ rums across three floors of a building rigged to feel shipwrecked; SF invented much of American tiki culture and this is its scholarly end.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=True+Laurel+San+Francisco">True Laurel</a></b> <span class="rating">4.5 ★ <span class="count">(878)</span></span> <span class="src">50 best bars #17 na 2025</span><br>From the Lazy Bear team; a daily-changing menu built around house ferments and infusions, redwood among the local ingredients on the current list.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Trick+Dog+San+Francisco">Trick Dog</a></b> <span class="rating">4.5 ★ <span class="count">(1.3k)</span></span> <span class="src">50 best bars 2025</span><br>Mission bar that reinvents its entire menu and physical decor around a new theme twice a year — on the World's 50 Best Bars list every year since 2014.</li>
+  </ul>
+
+  <h2 id="stay">Where to stay</h2>
+  <ul>
+    <li>
+      <b>Inner Sunset.</b> Quiet and residential, bordering Golden Gate Park — the JFK Promenade car-free corridor and Stow Lake loop are steps away, giving it the best running access in the city. N-Judah streetcar runs straight downtown.
+      <em>Day to day:</em> Whole Foods and local Asian markets on Irving St, several gyms nearby. <em>Tradeoff:</em> the fog belt — cooler and greyer than the rest of the city most mornings.
+    </li>
+    <li>
+      <b>Noe Valley.</b> Tree-lined and family-residential; 24th Street is cafés and boutiques rather than bars. Reached by the J-Church streetcar.
+      <em>Day to day:</em> Real Foods and Whole Foods on 24th St, Dolores Park and the Douglass Playground stairs for running. <em>Tradeoff:</em> hillier terrain and less flat ground to run than a waterfront neighborhood.
+    </li>
+    <li>
+      <b>Presidio Heights.</b> Flat, tree-lined, low nightlife, borders the Presidio itself — forested trails leading to Crissy Field's waterfront path.
+      <em>Day to day:</em> Cal-Mart and Bryan's groceries in Laurel Village, Fillmore St. cafés. <em>Tradeoff:</em> the most residential and least walkable-to-transit-hub of the three.
+    </li>
+    <li>
+      <b>Avoid: Marina District and Cow Hollow.</b> Both read as quiet on a map but Union and Chestnut Streets are genuine bar-hopping strips with sports-bar noise into the night — despite otherwise having the city's best waterfront running route at Crissy Field.
+    </li>
+  </ul>
+
+  <h2 id="book">Book ahead</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>What</th><th>Lead time</th><th>How</th><th>Why we know</th></tr>
+      </thead>
+      <tbody>
+        <tr class="urgent">
+          <td>Muir Woods parking/shuttle</td>
+          <td class="lead">Book on arrival date, slots vanish weeks out in summer</td>
+          <td>gomuirwoods.com</td>
+          <td>NPS requires a timed reservation to enter the lot; no reservation, no entry — confirmed on the park's own booking page.</td>
+        </tr>
+        <tr>
+          <td>House of Prime Rib</td>
+          <td class="lead">1–2 weeks</td>
+          <td>Phone or OpenTable</td>
+          <td>Reddit and review threads consistently describe hour-plus walk-in waits without one.</td>
+        </tr>
+        <tr>
+          <td>Californios</td>
+          <td class="lead">3–4 weeks</td>
+          <td>Resy/Tock via restaurant site</td>
+          <td>Three-Michelin-star tasting menu with a single nightly seating pattern; comparable SF three-stars book out weeks ahead.</td>
+        </tr>
+        <tr>
+          <td>Daniel Caesar, Chase Center (Aug 20–21)</td>
+          <td class="lead">Now</td>
+          <td>Live Nation / venue site</td>
+          <td>Arena headline dates on an active tour typically sell through in the weeks before the show.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="practical">Practical</h2>
+  <div class="facts">
+    <dl>
+      <dt>Tap water</dt><dd>Potable and unusually good for a major US city — sourced mainly from Sierra snowmelt via Hetch Hetchy.</dd>
+      <dt>Tipping</dt><dd>~20% is standard at full-service restaurants. Watch for a mandatory "service charge" (4–20%) already added to the bill at many SF restaurants — tied to the city's high minimum wage — which is separate from a tip; read the check before tipping again on top.</dd>
+      <dt>Cash &amp; cards</dt><dd>Tap-to-pay works almost everywhere, including transit gates. A handful of cheap-eats institutions (Saigon Sandwich, Swan Oyster Depot, Good Luck Dim Sum) are cash-only.</dd>
+    </dl>
+  </div>
+
+  <h3>Getting around</h3>
+  <div class="facts">
+    <dl>
+      <dt>Transit</dt><dd>Muni (bus/streetcar/metro) covers the city; BART is a regional/commuter line reaching downtown and SFO but not a substitute for Muni within neighborhoods. Pay with a physical or app Clipper card, or tap a contactless bank card directly at Muni and BART gates — no setup needed. Muni single ride $2.85, day pass $5.70 <span class="note">(2026)</span>; BART to/from SFO ~$11.15 one-way. Cable cars are now $9–12 flat per ride, a novelty rather than practical transit. Owl network buses cover key corridors midnight–5am.</dd>
+      <dt>Rides</dt><dd>Uber and Lyft are both headquartered here and fully operational; Waymo's driverless robotaxi is now public and often near price parity with UberX (~$20 vs ~$17 average) with less surge. Short cross-town trip ~$10–20; SFO–downtown ~$30–50 <span class="note">(2026)</span> — versus BART's $11.15 and often comparable speed. Rideshare pickup at SFO is Level 5 of the Domestic Garage, not curbside.</dd>
+    </dl>
+  </div>
+  <div class="verdict">
+    <b>Verdict:</b> transit for downtown-to-downtown trips, rides for anything crossing neighborhoods after dark or reaching the outer Sunset/Richmond quickly — Muni's flat network is fine for the sights but slow for lateral hops. The compact 7×7-mile core is walkable end to end in under two hours if the hills don't deter you; Bay Wheels bike share covers most neighborhoods.
+  </div>
+
+  <h2 id="background">San Francisco &amp; the Bay Area</h2>
+
+  <h3>Tech scene</h3>
+  <ul>
+    <li><b>OpenAI</b> — ChatGPT maker, anchored in Mission Bay (486,600 sq ft); reports 900M+ weekly users and roughly $13B 2025 revenue.</li>
+    <li><b>Anthropic</b> — Claude maker, expanded its SF footprint to 650,000+ sq ft in early 2026; reports roughly $14B annualized revenue.</li>
+    <li><b>Databricks</b> — data/AI infrastructure company, ranked among the leading SF-based AI companies in 2026 valuations.</li>
+    <li><b>Salesforce</b> — the city's legacy tech anchor, headquartered at Salesforce Tower since 2018.</li>
+  </ul>
+  <p class="note">The AI industry's recent concentration in SF proper — rather than the Peninsula suburbs of the earlier dot-com and Web 2.0 waves — is visibly reshaping specific pockets (Mission Bay, Hayes Valley, SoMa), sometimes called the city's "fourth tech boom."</p>
+
+  <h3>History in five beats</h3>
+  <ul>
+    <li><b>Gold Rush (1848–1850s).</b> A small Mexican mission town exploded into a boomtown port almost overnight, cementing SF's identity as a magnet for outsiders and fortune-seekers.</li>
+    <li><b>1906 earthquake and fire.</b> Destroyed most of the city — the fire did more damage than the quake — and the rebuild produced much of the Victorian and Edwardian architecture visible today.</li>
+    <li><b>Beat and hippie counterculture (1950s–60s).</b> North Beach's Beat poets gave way to Haight-Ashbury and the 1967 Summer of Love, fixing SF's identity as a countercultural capital.</li>
+    <li><b>Dot-com booms (late 1990s–2010s).</b> Silicon Valley wealth concentrated increasingly in SF proper, driving the gentrification tensions still visible against the older bohemian city.</li>
+    <li><b>AI boom (2022–present).</b> OpenAI, Anthropic and the broader generative-AI industry have re-centered the tech industry specifically in San Francisco, not just the wider Bay Area — real estate, talent and street-level culture reorganizing around it in real time.</li>
+  </ul>
+
+  <h3>Culture</h3>
+  <ul>
+    <li><b>"Karl the Fog" is a daily-life variable, not scenery.</b> The marine layer creates sharp hyperlocal microclimates — the Sunset can be 55°F and socked in while Noe Valley is 72°F and sunny a few miles away, same afternoon. Fog-free neighborhoods carry a real housing premium tied to this.</li>
+    <li><b>The mandatory restaurant service charge.</b> Many SF restaurants add a 4–20% "service charge" or "kitchen appreciation fee" to the bill, legally distinct from a tip and not guaranteed to reach the server — a direct product of the city's high minimum wage, and something a visitor used to voluntary tipping will directly notice on the check.</li>
+    <li><b>Steep hills as daily infrastructure.</b> Running the Filbert or Lyon Street steps is a normalized local workout, not a tourist stunt — the terrain functions as built-in cardio for people who live here.</li>
+    <li><b>Extreme wealth and visible homelessness sit blocks apart.</b> Because the city is a compact 7×7 miles, the contrast between the Tenderloin's street conditions and adjacent extreme wealth happens over a few minutes' walk in a way that surprises unprepared visitors more than in most large, sprawling cities.</li>
+  </ul>
+
+</main>
+
+</body></html>

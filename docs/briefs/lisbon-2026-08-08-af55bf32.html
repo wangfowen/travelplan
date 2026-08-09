@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lisbon — Travel Brief</title>
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --text: #1c1b19;
+    --muted: #6b6863;
+    --line: #e5e1db;
+    --accent: #9a5b34;
+    --flag-bg: #fdf3ec;
+    --star: #b5892f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1917;
+      --surface: #232220;
+      --text: #ece9e4;
+      --muted: #a09b93;
+      --line: #35332f;
+      --accent: #d99b6c;
+      --flag-bg: #2c241d;
+      --star: #d8b25e;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem 1.25rem 4rem;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
+  }
+  main { max-width: 46rem; margin: 0 auto; }
+
+  header { border-bottom: 2px solid var(--text); padding-bottom: 1rem; margin-bottom: 2.5rem; }
+  h1 { font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1.1; margin: 0 0 .4rem; letter-spacing: -.02em; }
+  .meta { color: var(--muted); font-size: .85rem; }
+
+  .toc { margin-top: .75rem; font-size: .8rem; line-height: 1.9; }
+  .toc a { color: var(--muted); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: .15rem .6rem; margin: 0 .25rem .25rem 0; display: inline-block; white-space: nowrap; }
+  .toc a:hover { color: var(--accent); border-color: var(--accent); }
+  h2 { scroll-margin-top: 1rem; }
+
+  h2 {
+    font-size: 1.3rem; margin: 3rem 0 .25rem; letter-spacing: -.01em;
+    padding-bottom: .4rem; border-bottom: 1px solid var(--line);
+  }
+  h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 1.75rem 0 .5rem; }
+  p { margin: .6rem 0; }
+
+  ul { padding-left: 1.1rem; margin: .5rem 0; }
+  li { margin: .75rem 0; }
+  li b { font-weight: 650; }
+
+  a { color: inherit; text-underline-offset: 2px; text-decoration-color: var(--line); }
+  a:hover { text-decoration-color: var(--accent); }
+
+  .rating {
+    display: inline-block; white-space: nowrap;
+    font-size: .78rem; font-weight: 600; color: var(--star);
+    margin-left: .35rem;
+  }
+  .rating .count { color: var(--muted); font-weight: 400; }
+
+  .when {
+    display: inline-block; white-space: nowrap;
+    font-size: .78rem; font-weight: 650; color: var(--accent);
+    margin-left: .35rem;
+  }
+
+  .src {
+    display: inline-block; font-size: .7rem; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--muted); border: 1px solid var(--line); border-radius: 4px;
+    padding: .05rem .3rem; margin-left: .35rem; vertical-align: 1px;
+  }
+  .src a { text-decoration: none; }
+
+  .note { color: var(--muted); font-size: .85rem; font-style: italic; }
+  .unconfirmed { color: var(--accent); font-weight: 600; }
+
+  .callout {
+    background: var(--flag-bg); border: 1px solid var(--line); border-radius: 8px;
+    padding: .7rem 1rem; margin: 1rem 0; font-size: .88rem; color: var(--muted);
+  }
+
+  .table-wrap { overflow-x: auto; margin: 1rem 0; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: .92rem; }
+  th, td { text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 600; }
+  td.lead { white-space: nowrap; font-weight: 650; }
+  tr.urgent td.lead { color: var(--accent); }
+
+  .phrases { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  .phrases td { padding: .45rem .6rem .45rem 0; border-bottom: 1px solid var(--line); }
+  .phrases .native { font-weight: 600; }
+  .phrases .phon { color: var(--muted); font-style: italic; white-space: nowrap; }
+
+  .verdict {
+    border-left: 3px solid var(--accent); background: var(--surface);
+    border-radius: 0 8px 8px 0; padding: .7rem 1rem; margin: 1rem 0; font-size: .92rem;
+  }
+  .verdict b { color: var(--accent); }
+
+  .facts { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: .35rem 1rem; margin: 1rem 0; }
+  .facts dl { display: grid; grid-template-columns: max-content 1fr; gap: .5rem 1.25rem; margin: .8rem 0; }
+  .facts dt { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); padding-top: .15rem; }
+  .facts dd { margin: 0; }
+
+  @media (max-width: 30rem) {
+    .facts dl { grid-template-columns: 1fr; gap: .15rem; }
+    .facts dd { margin-bottom: .7rem; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <header>
+    <h1>Lisbon</h1>
+    <div class="meta">Portugal · Aug 9–13, 2026 · researched Aug 8, 2026</div>
+    <div class="meta">Typical August: 29°/18°C highs/lows (84°/64°F) · rain unlikely · daylight to ~20:30</div>
+    <nav class="toc">
+      <a href="#do">Things to do</a><a href="#events">Events</a><a href="#food">Food</a><a href="#stay">Stay</a><a href="#book">Book ahead</a><a href="#practical">Practical</a><a href="#country">Portugal</a>
+    </nav>
+  </header>
+
+  <h2 id="do">Things to do</h2>
+
+  <h3>Unique to Lisbon</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Estufa+Fria+Lisboa">Estufa Fria</a></b>
+      <span class="rating">4.7 ★ <span class="count">(12.6k)</span></span>
+      <span class="src">atlas obscura</span>
+      <br>Botanical greenhouse built inside a disused 19th-century basalt quarry in Parque Eduardo VII; hundreds of plant species growing under slatted-wood shade structures. €3.70 admission.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Feira+da+Ladra+Lisboa">Feira da Ladra</a></b>
+      <span class="rating">4.3 ★ <span class="count">(2.3k)</span></span>
+      <span class="src">my pick</span>
+      <br>Flea market held every Tuesday and Saturday on Campo de Santa Clara, behind the National Pantheon — antiques, vintage finds, handmade goods.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Hospital+de+Bonecas+Lisboa">Hospital de Bonecas</a></b>
+      <span class="rating">4.2 ★ <span class="count">(144)</span></span>
+      <span class="src"><a href="https://www.atlasobscura.com/articles/inside-the-185yearold-portuguese-hospital-for-dolls">atlas obscura</a></span>
+      <br>Family-run doll-repair operation founded 1830; a guided tour upstairs passes drawers of detached porcelain heads and limbs awaiting new bodies.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Mesa+de+Frades+Lisboa">Mesa de Frades</a></b>
+      <span class="rating">4.1 ★ <span class="count">(1.2k)</span></span>
+      <span class="src"><a href="https://www.timeout.com/lisbon/things-to-do/the-best-things-to-do-in-lisbon">time out</a></span>
+      <br>18th-century former chapel, walls floor-to-ceiling in azulejo tiles, converted into a fado house by musician Pedro de Castro; live fado nightly over dinner.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Galerias+Romanas+da+Rua+da+Prata+Lisboa">Galerias Romanas da Rua da Prata</a></b>
+      <span class="rating">4.5 ★ <span class="count">(177)</span></span>
+      <span class="src">my pick</span>
+      <br>1st-century Roman cryptoporticus tunnels beneath the Baixa, rediscovered after the 1755 earthquake. <span class="note">Opens only a handful of days a year on a schedule set by the city — check <a href="https://www.lisboa.pt">lisboa.pt</a> for this year's dates before planning around it; it may not be open during this window.</span>
+    </li>
+  </ul>
+
+  <h3>Museums</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Museu+Calouste+Gulbenkian+Lisboa">Calouste Gulbenkian Museum</a></b>
+      <span class="rating">4.7 ★ <span class="count">(17.8k)</span></span>
+      <span class="src">my pick</span>
+      <br>Oil magnate Calouste Gulbenkian's personal collection, assembled while he lived in Lisbon during WWII: Egyptian antiquities, Islamic art, European painting, and a room of Lalique jewelry, set in its own gardens.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=National+Coach+Museum+Lisboa">National Coach Museum</a></b>
+      <span class="rating">4.6 ★ <span class="count">(10.7k)</span></span>
+      <span class="src">my pick</span>
+      <br>Around 70 ceremonial and traveling coaches used by European royal courts from the 16th to 19th centuries, one of the largest such collections anywhere.
+    </li>
+  </ul>
+
+  <h3>Day trips</h3>
+  <ul>
+    <li>
+      <b>Sintra</b> — <a href="https://www.google.com/maps/search/?api=1&query=Palacio+Nacional+da+Pena+Sintra">Palácio Nacional da Pena</a>
+      <span class="rating">4.4 ★ <span class="count">(107k)</span></span> and
+      <a href="https://www.google.com/maps/search/?api=1&query=Quinta+da+Regaleira+Sintra">Quinta da Regaleira</a>
+      <span class="rating">4.7 ★ <span class="count">(66.8k)</span></span>
+      <span class="src">my pick</span>
+      <br>Pena is a hilltop 19th-century Romanticist palace in candy-colored towers; Regaleira is an early-20th-century estate with a 9-story inverted "Initiation Well" and underground tunnels. €20 each, timed entry. <em>Getting there:</em> train from Rossio station, ~40 min, up to 6x/hour in summer; local Bus 434 connects the station to Pena. Both sites in one day is a full day.
+    </li>
+  </ul>
+
+  <h3>Tours <span class="note">— walking and food, locally run</span></h3>
+  <ul>
+    <li>
+      <b><a href="https://wehatetourismtours.com/">We Hate Tourism Tours</a> — The Responsible Walking Tour</b>
+      <span class="rating">4.9 ★ <span class="count">(550)</span></span>
+      <span class="src">my pick</span>
+      <br>Small groups (max 6), no megaphones or landmark checklists; flagship route runs through Bairro Alto and Graça's street art and former squats.
+    </li>
+    <li>
+      <b><a href="https://www.tasteoflisboa.com/">Taste of Lisboa</a> — Lisbon Roots Food &amp; Cultural Walk</b>
+      <span class="rating">5.0 ★ <span class="count">(1.1k)</span></span>
+      <span class="src">my pick</span>
+      <br>Locally run food tour through off-the-beaten-path neighborhoods, tasting stops at markets and family-run kitchens along the way.
+    </li>
+  </ul>
+
+  <h2 id="events">Events and festivals <span class="note">— during your dates</span></h2>
+  <ul>
+    <li>
+      <b><a href="https://gulbenkian.pt/jazzemagosto/">Jazz em Agosto</a> — closing night</b>
+      <span class="when">Aug 9, 2026</span>
+      <span class="src"><a href="https://www.visitlisboa.com/en/events/jazz-em-agosto-2">visitlisboa.com</a></span>
+      <br>The 42nd edition's final night of this jazz festival staged entirely on the grounds of the <a href="https://www.google.com/maps/search/?api=1&query=Calouste+Gulbenkian+Foundation+Lisboa">Calouste Gulbenkian Foundation</a>: Chicago Underground Duo in the indoor auditorium at 18:30, then Anna Butterss's SML closes the festival in the open-air amphitheatre at 21:30. <em>Tickets:</em> individual shows €14–23 via the Gulbenkian's own site. Lands on your first night in the city.
+    </li>
+  </ul>
+
+  <h2 id="food">Food</h2>
+
+  <h3>Top picks</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Cervejaria+Ramiro+Lisboa">Cervejaria Ramiro</a></b>
+      <span class="rating">4.4 ★ <span class="count">(20.5k)</span></span>
+      <span class="src">michelin bib gourmand 2026</span>
+      <span class="src">50 best discovery</span>
+      <span class="src"><a href="https://worldofmouth.app/restaurants/cervejaria-ramiro">world of mouth</a></span>
+      <span class="src">culinary backstreets</span>
+      <span class="src">time out</span>
+      <br>Art Nouveau three-floor seafood beer hall running since the 1950s. Percebes (goose barnacles), carabineiros (red prawns), prego do lombo (steak sandwich) to close.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=As+Bifanas+do+Afonso+Lisboa">As Bifanas do Afonso</a></b>
+      <span class="rating">4.5 ★ <span class="count">(6.5k)</span></span>
+      <span class="src"><a href="https://worldofmouth.app/restaurants">world of mouth</a></span>
+      <br>Hole-in-the-wall pork-sandwich stand on Rua da Madalena, cash only, no seating. Sauce made with white wine and lard; €3.50 a sandwich.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=O+Velho+Eurico+Lisboa">O Velho Eurico</a></b>
+      <span class="rating">4.4 ★ <span class="count">(4.3k)</span></span>
+      <span class="src"><a href="https://worldofmouth.app/restaurants">world of mouth</a></span>
+      <span class="src">culinary backstreets</span>
+      <span class="src">time out</span>
+      <br>Family-run tasca behind Rossio, chalkboard menu of regional dishes in a stone-walled room. Arroz de pato (duck rice), chicken hearts.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Belcanto+Lisboa">Belcanto</a></b>
+      <span class="rating">4.6 ★ <span class="count">(1.8k)</span></span>
+      <span class="src">michelin ★★ 2026</span>
+      <span class="src">50 best #91 2025</span>
+      <span class="src">público 3 garfos 2024</span>
+      <br>Two-Michelin-star tasting menu of modern Portuguese classics from chef José Avillez, in an old Chiado townhouse.
+    </li>
+  </ul>
+
+  <h3>Everyday institutions</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=A+Ginjinha+Rossio+Lisboa">A Ginjinha</a></b>
+      <span class="rating">4.6 ★ <span class="count">(3.6k)</span></span>
+      <span class="src">my pick</span>
+      <br>Lisbon's original ginjinha bar, pouring the cherry liqueur since 1840 from a doorway near Rossio. Cash only, drink standing on the pavement.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Mercado+de+Campo+de+Ourique+Lisboa">Mercado de Campo de Ourique</a></b>
+      <span class="rating">4.4 ★ <span class="count">(2.6k)</span></span>
+      <span class="src">culinary backstreets</span>
+      <br>Neighborhood food-hall market with a working fishmonger and produce ring where locals still shop mornings, quieter than Time Out Market.
+    </li>
+  </ul>
+
+  <h3>Local dishes to try</h3>
+  <ul>
+    <li>
+      <b>Pastel de nata.</b> Custard tart in flaky, laminated pastry.
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&query=Manteigaria+Rua+do+Loreto+Lisboa">Manteigaria</a> <span class="rating">4.8 ★ <span class="count">(10.7k)</span></span>,
+      <a href="https://www.google.com/maps/search/?api=1&query=Aloma+Pastelaria+Campo+de+Ourique+Lisboa">Aloma</a> <span class="rating">4.2 ★ <span class="count">(1k)</span></span>.
+    </li>
+    <li>
+      <b>Bacalhau.</b> Salt cod, Portugal's most-cooked ingredient.
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&query=A+Casa+do+Bacalhau+Lisboa">A Casa do Bacalhau</a> <span class="rating">4.6 ★ <span class="count">(4.2k)</span></span>.
+    </li>
+    <li>
+      <b>Bifana.</b> Soft roll stuffed with thin-sliced pork marinated in garlic and white wine.
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&query=As+Bifanas+do+Afonso+Lisboa">As Bifanas do Afonso</a> <span class="rating">4.5 ★ <span class="count">(6.5k)</span></span> — see Top picks.
+    </li>
+    <li>
+      <b>Percebes.</b> Goose barnacles, hand-harvested off Atlantic rocks, steamed and eaten with your fingers.
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&query=Cervejaria+Ramiro+Lisboa">Cervejaria Ramiro</a> <span class="rating">4.4 ★ <span class="count">(20.5k)</span></span> — see Top picks.
+    </li>
+  </ul>
+
+  <h3>Asian food</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Kanazawa+Lisboa">Kanazawa</a></b>
+      <span class="rating">4.9 ★ <span class="count">(347)</span></span>
+      <span class="src">michelin ★ 2026</span>
+      <br>8-seat kaiseki and omakase counter run by chef Paulo Morais; menu changes monthly, with sake pairings.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Hachiko+Ramen+by+Honda+Lisboa">Hachiko Ramen Martim Moniz by Honda</a></b>
+      <span class="rating">4.8 ★ <span class="count">(721)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/portugal/comments/1rpd3j4/comment/o9kheca/">reddit</a></span>
+      <br>Tonkotsu and paitan ramen from an owner trained in Japan; kimchi ramen, karaage, takoyaki.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Mr+Lu%27s+Lisboa">Mr. Lu</a></b>
+      <span class="rating">4.0 ★ <span class="count">(916)</span></span>
+      <span class="src">atlas obscura</span>
+      <br>Northern Chinese, Shandong-style cooking — dumplings, chili-seared dishes — from a chef who ran one of Mouraria's unlicensed home-restaurants for years before opening this storefront.
+    </li>
+  </ul>
+
+  <h3>Cafés and bakeries</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Manteigaria+Rua+do+Loreto+Lisboa">Manteigaria</a></b>
+      <span class="rating">4.8 ★ <span class="count">(10.7k)</span></span>
+      <span class="src">my pick</span>
+      <br>Hand-laminated puff pastry, whole eggs and quality butter, no preservatives — eaten hot from the oven, dusted with cinnamon.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Aloma+Pastelaria+Campo+de+Ourique+Lisboa">Aloma</a></b>
+      <span class="rating">4.2 ★ <span class="count">(1k)</span></span>
+      <span class="src">público 2025</span>
+      <br>Campo de Ourique pastelaria, winner of Portugal's National Pastel de Nata Contest in 2025 (and 2012, 2013, 2015, 2024).
+    </li>
+  </ul>
+
+  <h3>Healthy staples</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Fauna+%26+Flora+Santos+Lisboa">Fauna &amp; Flora</a></b> <span class="note">(Santos)</span>
+      <span class="rating">4.5 ★ <span class="count">(3.3k)</span></span>
+      <span class="src">my pick</span>
+      <br>Bowls, toasts, and salads with real protein and vegetables; vegan and gluten-free options throughout.
+    </li>
+  </ul>
+
+  <h3>Cocktail bars and breweries</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&query=Red+Frog+Speakeasy+Lisboa">Red Frog</a></b>
+      <span class="rating">4.4 ★ <span class="count">(1.7k)</span></span>
+      <span class="src">50 best bars #94 2024</span>
+      <br>Speakeasy with a hidden entrance off Praça da Alegria; craft cocktails from old-fashioned riffs to whimsical builds.
+    </li>
+  </ul>
+
+  <h2 id="stay">Where to stay</h2>
+  <ul>
+    <li><b>Campo de Ourique.</b> Village-like residential grid on the Tram 28 line, not shaped by tourism. <em>Day to day:</em> its own market hall (Mercado de Campo de Ourique), everyday cafés, Jardim da Parada for a sit. <em>Tradeoff:</em> no metro station — Rato (yellow line) is a 15-minute walk, though buses run frequently.</li>
+    <li><b>Estrela.</b> Quiet, tree-lined streets close to the center without the noise. <em>Day to day:</em> Jardim da Estrela, open since 1852, 7am–midnight — duck ponds, bandstand, genuinely used for running. <em>Tradeoff:</em> fewer restaurants right on the doorstep than the more central hill neighborhoods.</li>
+    <li><b>Alcântara.</b> Former industrial district turned residential, flat where most of Lisbon isn't. <em>Day to day:</em> a riverside walking and running path toward Belém Tower (~7.5km one-way), Monsanto Forest Park nearby. <em>Tradeoff:</em> less historic streetscape than the hill neighborhoods — modern condo blocks rather than tile-fronted townhouses.</li>
+  </ul>
+  <p class="note"><b>Avoid:</b> Bairro Alto reads central and picturesque on a map, but it's Lisbon's main nightlife engine — 100+ small bars turn the streets into an open-air party every night, with noise and crowds until a 2am closing rule pushes everyone downhill to Cais do Sodré.</p>
+
+  <h2 id="book">Book ahead</h2>
+  <p>Nothing found with confirmed evidence of day-of booking failure for this window.</p>
+
+  <h2 id="practical">Practical</h2>
+  <div class="facts">
+    <dl>
+      <dt>Tap water</dt><dd>Potable throughout the city, treated to EU standards — may taste faintly of chlorine.</dd>
+      <dt>Tipping</dt><dd>Not obligatory. Round up or leave 5–10% at nicer restaurants for exceptional service; €1–2 for a taxi; small change for hotel staff.</dd>
+      <dt>Cash &amp; cards</dt><dd>Contactless works almost everywhere, including tapped directly at metro gates. Cash still matters at markets and small tascas — watch for handwritten "Só Dinheiro" (cash only) signs.</dd>
+    </dl>
+  </div>
+
+  <h3>Getting around</h3>
+  <div class="facts">
+    <dl>
+      <dt>Transit</dt><dd>Metro (4 lines), trams, Carris buses, 3 funiculars, and ferries across the Tagus — the network reaches residential neighborhoods, not just the sights. Pay by tapping a contactless bank card directly at the gates (tap the <em>same</em> card to exit) or with a reloadable Navegante card (€0.50). Single ride €1.90–1.92 (≈$2.05–2.10) · 24h pass €7.25 (≈$7.85) <span class="note">(2026)</span>. Metro runs 6:30am–1am; limited night buses fill the gap.</dd>
+      <dt>Rides</dt><dd>Uber and Bolt both operate widely (Free Now exited Portugal in 2023); Bolt runs 10–25% cheaper. Street-hail taxis are cream with a green roof, metered, with a 20% surcharge 9pm–6am, Sundays and holidays. Short cross-town €6–15 · airport–center official taxi €15–20 (≈$16–22), Uber/Bolt often €10–18 <span class="note">(2026)</span>. Known scam: touts inside the arrivals hall pre-negotiate inflated flat fares (reports of €80–120 for what should be a ~€20 ride) — use only the official rank, or book Uber/Bolt instead.</dd>
+    </dl>
+  </div>
+  <div class="verdict">
+    <b>Verdict:</b> rely on transit for cross-town trips, default to Uber/Bolt at night or with luggage — the metro stops at 1am. The historic center is walkable but hilly (Baixa + Chiado + Alfama in one day runs 6–7 hours with stops); Gira bike share (140 stations, e-bikes available) helps with the climbs, day pass ≈€2. Skip the Lisboa Card unless you're hitting 2–3 paid monuments a day — for a week based in a quiet neighborhood, a Navegante card with pay-as-you-go credit is the better value.
+  </div>
+
+  <h2 id="country">Portugal</h2>
+  <div class="facts">
+    <dl>
+      <dt>GDP</dt><dd>€289.4B nominal · ≈$32,166 per capita <span class="note">(Statistics Portugal, 2024/2025 est.)</span></dd>
+      <dt>Economy</dt><dd>Tourism (21.3% of GDP, 2024); services and business exports; manufacturing and goods exports (automotive components, textiles, footwear, agri-food).</dd>
+      <dt>Languages</dt><dd>Portuguese. Ranks 6th of 123 regions in the 2025 EF English Proficiency Index — English is near-universal among under-30s and hospitality staff in Lisbon.</dd>
+    </dl>
+  </div>
+
+  <h3>Tech scene</h3>
+  <ul>
+    <li><b>OutSystems</b> — low-code enterprise app-development platform. Valued at $9.5B.</li>
+    <li><b>Talkdesk</b> — cloud contact-center and customer-service software. Valued at $10B.</li>
+    <li><b>Sword Health</b> — AI-driven physical therapy. Valued at $3B; investing €250M in Portugal through 2028 to build an AI hub.</li>
+    <li><b>Feedzai</b> — AI-powered financial fraud detection. Valued at $1.5B.</li>
+  </ul>
+  <p class="note">Portugal counts 7 unicorns collectively valued over $31.8B (2025), with a fintech/fraud-detection and enterprise-SaaS concentration.</p>
+
+  <h3>History in five beats</h3>
+  <ul>
+    <li><b>Age of Discoveries (15th–early 16th c.)</b> Portuguese navigators pioneered European maritime exploration, building the first global sea empire — the monuments around Belém (Jerónimos Monastery, Belém Tower) date from this era.</li>
+    <li><b>The 1755 earthquake.</b> A quake, fire, and tsunami leveled much of the city on Nov 1, killing 40,000–50,000; the Marquis of Pombal rebuilt downtown Baixa on a planned, earthquake-resistant grid — visibly different from the surviving hill neighborhoods like Alfama.</li>
+    <li><b>Estado Novo (1926–1974).</b> António de Oliveira Salazar's authoritarian dictatorship, the longest in Western Europe.</li>
+    <li><b>The Carnation Revolution, April 25, 1974.</b> A largely bloodless military coup ended the dictatorship and restored democracy; decolonization followed. The 25 de Abril Bridge is named for the date.</li>
+    <li><b>EU accession, 1986.</b> Brought the economic modernization underpinning today's tourism and tech economy.</li>
+  </ul>
+
+  <h3>Culture</h3>
+  <ul>
+    <li><b>Fado.</b> UNESCO Intangible Cultural Heritage since 2011 — a solo singer with a 12-string, pear-shaped Portuguese guitarra, originating in early-19th-century Alfama. You'll hear it in small neighborhood houses, not only staged tourist dinners.</li>
+    <li><b>Saudade.</b> A word repeatedly described as untranslatable — a longing/nostalgia/absence tied historically to sailors' families who never knew if they'd return. Comes up constantly in conversation and fado lyrics alike.</li>
+    <li><b>Azulejos everywhere.</b> Tiles cover churches, train stations, and ordinary house façades across the city, not just museums — introduced under Moorish rule, layered with Italian and Dutch influence, and used by the 17th century as pictorial "comic books" narrating history on public buildings.</li>
+    <li><b>Dinner starts late, Sundays go quiet.</b> Restaurant dinner service usually doesn't start until 7:30–8pm; many restaurants close Sunday and Monday, and small independent shops shut Saturday afternoon through all of Sunday.</li>
+  </ul>
+
+  <h3>Phrases</h3>
+  <table class="phrases">
+    <tr><td class="native">Olá</td><td class="phon">oh-LAH</td><td>Hello</td></tr>
+    <tr><td class="native">Por favor</td><td class="phon">poor fah-VOR</td><td>Please</td></tr>
+    <tr><td class="native">Obrigado / Obrigada</td><td class="phon">oh-bree-GAH-doo / -dah</td><td>Thank you</td></tr>
+    <tr><td class="native">Com licença</td><td class="phon">kong lee-SEN-sah</td><td>Excuse me</td></tr>
+    <tr><td class="native">Sim / Não</td><td class="phon">seeng / now</td><td>Yes / No</td></tr>
+    <tr><td class="native">Fala inglês?</td><td class="phon">FAH-lah een-GLESH</td><td>Do you speak English?</td></tr>
+    <tr><td class="native">Quanto custa?</td><td class="phon">KWAN-too KOOSH-tah</td><td>How much is this?</td></tr>
+    <tr><td class="native">A conta, por favor</td><td class="phon">ah KON-tah poor fah-VOR</td><td>The bill, please</td></tr>
+    <tr><td class="native">Onde é a casa de banho?</td><td class="phon">ON-djuh eh ah KAH-zah duh BAN-yoo</td><td>Where is the bathroom?</td></tr>
+    <tr><td class="native">Saúde!</td><td class="phon">sah-OO-deh</td><td>Cheers!</td></tr>
+  </table>
+
+</main>
+</body>
+</html>
