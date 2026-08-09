@@ -3,10 +3,10 @@
 - **GDP** — nominal total and per capita, with source and year.
 - **Economy** — three or four main drivers.
 - **Tech scene** — the most notable startups/tech companies: what each does, funding or valuation with year, unicorn/exit status; name any sector concentration (fintech licensing, gaming, semiconductors). Figures come from the country dossier track's current searches — these date fast; never from recall alone.
-- **History in ~5 beats**, ending at the present — enough to make what they see legible.
+- **History** — ~5 beats, ending at the present, enough to make what they see legible. The heading reads "History"; the beat count is how it is written, not what it is called.
 - **Culture** — below.
 - **Languages** — what is spoken, and how far English gets you.
-- **~10 phrases** — native script, phonetic rendering, English: hello, please, thank you, excuse me, yes/no, do you speak English, how much is this, the bill please, where is the bathroom, cheers.
+- **~10 phrases** — native script, phonetic rendering, English. **Each stays one word wherever the language allows**: these are said at a counter, and a single word that gets used beats a full polite sentence that never does. The set: please, thank you, sorry, excuse me, yes, no, bathroom, bill, card, English. Where a language has no single-word form, use the shortest natural one.
 
 ## Culture
 
@@ -20,4 +20,4 @@ One or two lines per entry, concrete fact first. No do's-and-don'ts list, no mor
 
 1. GDP, funding and valuation figures each carry a source year.
 2. Every culture entry survives both tests (country-swap, encounter); none of the three trivia kinds present.
-3. Phrases include native script and phonetic rendering.
+3. Phrases include native script and phonetic rendering, and each is one word unless the language has no single-word form.

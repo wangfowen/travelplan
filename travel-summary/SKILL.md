@@ -23,7 +23,15 @@ Exactly two content operations:
 - **Remove what the traveler disliked or says to drop.** Removal is silent and total — no "skip" lines, no explanations, no strikethrough; the no-trace rule applies exactly as in travel-brief, including deleting a section's heading if the removals empty it.
 - **Add what they liked that the brief lacked.** Their discoveries become full entries in the normal entry style (`../travel-brief/reference/shared.md` → How to write an entry: concrete fact first, the dish to order, Maps link; rating badge only if verified in the browser, omitted otherwise), placed in the section where they belong, tagged `trip find` in the same tag style the page already uses.
 
-**The traveler's own verdict outranks the research.** Anything they named — a discovery or an entry they confirmed — is first-hand evidence, and the page's ordering has to show it. Promote it to that section's Top picks; where it doesn't belong there, it goes at the top of its own group, above every entry the traveler didn't mention. This overrides `shared.md`'s rating-descending sort: sort traveler-named entries first, rating-descending among themselves, then the rest rating-descending. Promoting a named entry into Top picks moves it — it does not appear twice — and a group emptied by promotion loses its heading under the no-trace rule.
+**The traveler's own verdict outranks the research — it rebuilds Top picks.** What they named is first-hand evidence; what the brief guessed is not. So after a trip, **Top picks becomes exactly what the traveler named**, in every section that has a Top picks group:
+
+- **Everything they named is promoted into Top picks** — their discoveries and the existing entries they confirmed alike. Promotion *moves* an entry; it never appears in both Top picks and its category group.
+- **Everything they didn't name is bumped out of Top picks**, down into the category group it belongs to — Creative and interesting, Everyday institutions, Museums, and so on. Being unmentioned is not a demerit and never a reason to delete: only an actual dislike removes an entry. These keep their tags and descriptions untouched; they just stop being top picks.
+- Where a named item doesn't belong in Top picks at all (a day trip, which is never promoted), it goes to the top of its own group instead, above every unmentioned entry there.
+- This overrides `shared.md`'s rating-descending sort: traveler-named entries first, rating-descending among themselves, then the rest rating-descending.
+- A group emptied by promotion loses its heading under the no-trace rule; a group that gains bumped-down entries keeps them in rating order below any named ones.
+
+Judge the traveler's Top picks on their say-so alone — don't re-apply travel-brief's selection bars to them, and don't keep a highly-rated unmentioned entry up top because it looks stronger on paper. If they named only two things in a section, Top picks has two entries; the "three to five" target does not apply to a list built from first-hand evidence.
 
 Everything the traveler didn't mention stays byte-for-byte as it was. If their feedback includes a concrete tip about an entry that stays ("the thing to order is X", "go at opening"), fold it into that entry's description in normal entry voice — never as meta commentary; "we loved this" does not appear on the page.
 
