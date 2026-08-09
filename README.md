@@ -2,12 +2,12 @@
 
 A personal trip-research system: two Claude Code skills and the GitHub Pages site they publish to.
 
-**The site: https://wangfowen.github.io/travelplan** — one link per city to its latest guide (plus the traveler-tested trip guide when one exists); older versions sit under a small toggle. Add it to your phone's home screen; that's the way in while traveling.
+**The site: https://wangfowen.github.io/travelplan** — one link per city to its latest guide. Once a post-trip guide exists it takes over as the city's link; briefs and older versions sit under a small toggle. Add it to your phone's home screen; that's the way in while traveling.
 
 ## The skills
 
 - **`/travel-brief <city> <dates>`** — researches a destination against a fixed checklist and publishes a one-page brief as a new page on the site. Every run adds a new page and a manifest entry; old versions are never overwritten, so past research stays reachable.
-- **`/travel-summary <city> + what you actually liked/didn't`** — after the trip: publishes a friend-ready, traveler-tested guide next to the briefs, then audits the original research run to propose improvements to `/travel-brief` — gated so only generalizable rules change, never city-specific patches.
+- **`/travel-summary <city> + what you actually liked/didn't`** — after the trip: republishes the brief with dislikes silently removed and the traveler's own finds added, in the identical format (no "skip" notes, no commentary — it reads as a normal brief). The result becomes the city's main link on the index. Then it audits the original research run to propose improvements to `/travel-brief` — gated so only generalizable rules change, never city-specific patches.
 
 ## What a brief covers
 

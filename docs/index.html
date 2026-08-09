@@ -87,21 +87,6 @@
   a.city:hover, a.city:active { color: var(--accent); }
   a.city:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-  a.guide {
-    align-self: flex-start;
-    display: inline-block;
-    text-decoration: none;
-    font-size: .74rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: var(--accent);
-    background: var(--tag-bg);
-    border-radius: 3px;
-    padding: .28rem .55rem;
-  }
-  a.guide:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
   details { margin-top: .1rem; }
   summary {
     cursor: pointer;
@@ -175,36 +160,27 @@
   tally.textContent = `${cities.length} destination${cities.length === 1 ? '' : 's'}`;
 
   const label = e => {
-    const parts = [];
+    const parts = [e.type === 'summary' ? 'trip guide' : 'brief'];
     if (e.trip && e.trip !== 'unknown') parts.push(e.trip);
     if (e.published) parts.push('published ' + e.published);
-    if (e.type === 'summary') parts.unshift('trip guide');
-    return parts.join(' · ') || e.file;
+    return parts.join(' · ');
   };
 
   const frag = document.createDocumentFragment();
   for (const city of cities) {
     const cityEntries = entries.filter(e => e.city === city); // newest first
-    const latestBrief = cityEntries.find(e => e.type === 'brief') || cityEntries[0];
-    const latestSummary = cityEntries.find(e => e.type === 'summary');
-    const older = cityEntries.filter(e => e !== latestBrief && e !== latestSummary);
+    // a trip guide (post-trip, traveler-tested) supersedes the brief as the city's main link
+    const main0 = cityEntries.find(e => e.type === 'summary') || cityEntries[0];
+    const older = cityEntries.filter(e => e !== main0);
 
     const block = document.createElement('div');
     block.className = 'city-block';
 
     const main = document.createElement('a');
     main.className = 'city';
-    main.href = latestBrief.file;
+    main.href = main0.file;
     main.textContent = city;
     block.appendChild(main);
-
-    if (latestSummary) {
-      const g = document.createElement('a');
-      g.className = 'guide';
-      g.href = latestSummary.file;
-      g.textContent = 'Trip guide — traveler-tested';
-      block.appendChild(g);
-    }
 
     if (older.length) {
       const det = document.createElement('details');

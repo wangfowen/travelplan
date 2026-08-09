@@ -7,7 +7,7 @@ description: After a trip, turn the city's travel brief plus the traveler's acco
 
 Two jobs, in order: **publish the friend-ready guide**, then **audit the run that produced the original brief** and turn the feedback into travel-brief improvements — but only ones that survive the generalization gate below.
 
-Runs in Claude Code, in the publishing repo (`~/.claude/skills/travel-summary` is a symlink into it; the repo root is the symlink target's parent). No browser needed; connect Claude in Chrome only if the traveler's own discoveries need ratings verified — an unrated `field find` entry is fine.
+Runs in Claude Code, in the publishing repo (`~/.claude/skills/travel-summary` is a symlink into it; the repo root is the symlink target's parent). No browser needed; connect Claude in Chrome only if the traveler's own discoveries need ratings verified — an unrated `trip find` entry is fine.
 
 ## Input
 
@@ -16,17 +16,16 @@ Runs in Claude Code, in the publishing repo (`~/.claude/skills/travel-summary` i
 
 ## Part 1 — the trip guide
 
-Read the source brief from `docs/briefs/<file>`. Build a new page in the same template family (`../travel-brief/reference/brief-template.html`), titled `<City> — Trip Guide`, header line "traveler-tested · <month year> · based on the <date> brief". This page is for friends: what to actually do, from someone who went.
+The trip guide **is the brief, corrected by the trip** — not a new document. Start from the source brief's HTML in `docs/briefs/<file>` and keep everything identical: template, header, section order, source tags, rating badges, styling. A friend reading it sees a normal travel brief; nothing on the page announces that it was revised, and no trip commentary appears anywhere.
 
-Editorial rules — the brief's entry style (concrete facts, no endorsement adjectives; `../travel-brief/reference/shared.md` → How to write an entry) still applies:
+Exactly two content operations:
 
-- **Endorsed entries** stay, with the traveler's verdict folded in as the lead. Their one-liner ("get the cold beet soup, skip the dumplings") outranks the researched description — compress the original entry to make room for it.
-- **Their own discoveries** become full entries tagged `field find` — the only tag on this page; research source tags come off, since the endorsement is now the traveler, not the sources. Maps link always; rating only if verified.
-- **Disliked recommendations are cut.** If the place is famous enough that a friend would find it anyway, keep a single "skip" line with the traveler's actual reason — otherwise it vanishes without trace.
-- **Untried entries drop** by default. Keep a short "researched, untested" list only if the traveler asks for it.
-- **Events and Book ahead drop entirely** — they were date-bound to a trip that already happened. Practical basics and phrases stay, corrected by anything the trip taught ("card worked everywhere", "buses stopped earlier than posted"). Country background trims to Culture unless asked.
+- **Remove what the traveler disliked or says to drop.** Removal is silent and total — no "skip" lines, no explanations, no strikethrough; the no-trace rule applies exactly as in travel-brief, including deleting a section's heading if the removals empty it.
+- **Add what they liked that the brief lacked.** Their discoveries become full entries in the normal entry style (`../travel-brief/reference/shared.md` → How to write an entry: concrete fact first, the dish to order, Maps link; rating badge only if verified in the browser, omitted otherwise), placed in the section where they belong, tagged `trip find` in the same tag style the page already uses.
 
-Publish, same mechanics as travel-brief: write `docs/summaries/<city-slug>-<YYYY-MM-DD>.html`, append `{"type": "summary", "city": "<City>", "file": "summaries/<filename>", "trip": "<trip dates>", "published": "<YYYY-MM-DD>"}` to `docs/manifest.json`, commit (`Add <City> trip guide`), push, and give the live URL — the page is public, built for sending to friends.
+Everything the traveler didn't mention stays byte-for-byte as it was. If their feedback includes a concrete tip about an entry that stays ("the thing to order is X", "go at opening"), fold it into that entry's description in normal entry voice — never as meta commentary; "we loved this" does not appear on the page.
+
+Publish, same mechanics as travel-brief: write `docs/summaries/<city-slug>-<YYYY-MM-DD>.html`, append `{"type": "summary", "city": "<City>", "file": "summaries/<filename>", "trip": "<trip dates>", "published": "<YYYY-MM-DD>"}` to `docs/manifest.json`, commit (`Add <City> trip guide`), push, and give the live URL. The index automatically makes the newest trip guide the city's main link, demoting the brief to the older-versions toggle — no index edit needed. The page is public, built for sending to friends.
 
 ## Part 2 — the audit
 
