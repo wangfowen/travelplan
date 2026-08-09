@@ -37,7 +37,9 @@ Indeterminable without `decisions.md`. Any of the items in section 3 could belon
 
 ### 4. Bad recommendations
 
-None reported.
+No venue was disliked. One **description defect**, which is the other half of this class — the place was right, the facts about it were wrong:
+
+- **Lido described as "pay-by-weight".** It isn't; it is a self-service canteen of many small individually-priced dishes. The error came from the brief and was carried into the first cut of the trip guide before the traveler corrected it. Both the format claim and the "order the fried potato straws" line were unverified specifics about a venue no source actually described in that detail. **Candidate rule:** service-format claims (pay-by-weight, table service, counter order, bottomless) are checkable facts subject to the same no-fabrication rule as ratings and fares — assert the format only when a source states it, otherwise describe what is served and leave the mechanics out. Not proposed — one trip, and it reads as a single sloppy inference rather than a mechanism failure. Log it; if a second trip turns up another wrong format claim, it earns an edit to `shared.md`'s accuracy rules.
 
 ### 5. Taste signals
 
