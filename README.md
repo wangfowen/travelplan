@@ -2,7 +2,7 @@
 
 A personal trip-research system: two Claude Code skills and the GitHub Pages site they publish to.
 
-**The site: https://wangfowen.github.io/travelplan** — every brief and trip guide, grouped by city, newest marked. Add it to your phone's home screen; that's the way in while traveling.
+**The site: https://wangfowen.github.io/travelplan** — one link per city to its latest guide (plus the traveler-tested trip guide when one exists); older versions sit under a small toggle. Add it to your phone's home screen; that's the way in while traveling.
 
 ## The skills
 

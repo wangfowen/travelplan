@@ -81,7 +81,7 @@ Each section file carries its own checklist — run it while drafting that secti
 The brief publishes to the GitHub Pages site — never as a chat artifact, never as a loose HTML file handed to the user.
 
 - Work in the publishing repo: `~/.claude/skills/travel-brief` is a symlink into it (`readlink` gives the real path; the repo root is its parent).
-- Write the finished page to `docs/briefs/<city-slug>-<YYYY-MM-DD>.html` (research date; append `-2` if the name is taken). **Every run is a new file** — never overwrite or update an existing brief; older versions stay reachable from the index, which is the point.
+- Write the finished page to `docs/briefs/<city-slug>-<YYYY-MM-DD>.html` (research date; append `-2` if the name is taken). **Every run is a new file** — never overwrite or update an existing brief; the index links each city to its latest brief and collapses older versions under a toggle.
 - Append one entry to the `entries` array in `docs/manifest.json`: `{"type": "brief", "city": "<City>", "file": "briefs/<filename>", "trip": "<trip dates as printed in the brief header>", "published": "<YYYY-MM-DD>"}`. The index page renders itself from the manifest — do not edit `index.html`.
 - Save the run record to `runs/<city-slug>-<YYYY-MM-DD>/`: copy the dossier files in, and write `decisions.md` — per section, the final shortlist plus the cut list (every consciously ruled-out candidate with its reason) and any research gaps or source failures. This is what `/travel-summary` audits after the trip.
 - Commit (`Add <City> travel brief <YYYY-MM-DD>`) and push. Confirm the push succeeded.

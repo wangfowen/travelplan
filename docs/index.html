@@ -9,7 +9,6 @@
   :root {
     --bg: #eef1f0;
     --surface: #ffffff;
-    --surface-2: #e6eae9;
     --ink: #14181b;
     --muted: #5a6a6d;
     --accent: #0d6e6e;
@@ -20,7 +19,6 @@
     :root {
       --bg: #101414;
       --surface: #182020;
-      --surface-2: #1e2727;
       --ink: #e6ecea;
       --muted: #8fa09e;
       --accent: #56c4b6;
@@ -45,7 +43,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.6rem;
   }
 
   .mono {
@@ -53,13 +51,12 @@
     font-variant-numeric: tabular-nums;
   }
 
-  header { display: flex; flex-direction: column; gap: .45rem; }
+  header { display: flex; flex-direction: column; gap: .45rem; margin-bottom: .4rem; }
   h1 {
     margin: 0;
     font-size: clamp(1.7rem, 7vw, 2.15rem);
     letter-spacing: -.03em;
     line-height: 1.05;
-    text-wrap: balance;
   }
   .tally {
     font-size: .74rem;
@@ -68,53 +65,61 @@
     color: var(--muted);
   }
 
-  section { display: flex; flex-direction: column; gap: 0; }
-  h2 {
-    margin: 0 0 .25rem;
-    font-size: .74rem;
-    letter-spacing: .13em;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: var(--muted);
-    padding-bottom: .4rem;
+  .city-block {
     border-bottom: 1px solid var(--line);
-  }
-
-  .row {
+    padding-bottom: 1.35rem;
     display: flex;
-    align-items: baseline;
-    gap: .7rem;
-    padding: .95rem .2rem;
-    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    gap: .45rem;
+  }
+  .city-block:last-of-type { border-bottom: 0; }
+
+  a.city {
+    display: block;
     text-decoration: none;
     color: inherit;
+    font-size: 1.55rem;
+    font-weight: 650;
+    letter-spacing: -.02em;
+    line-height: 1.2;
+    padding: .15rem 0;
   }
-  .row:last-of-type { border-bottom: 0; }
-  .row:hover .trip { color: var(--accent); }
-  .row:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  a.city:hover, a.city:active { color: var(--accent); }
+  a.city:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-  .trip { font-size: 1.05rem; font-weight: 580; letter-spacing: -.012em; }
-  .row.latest .trip { font-size: 1.16rem; font-weight: 640; }
-  .spacer { flex: 1; }
-  .pub { font-size: .76rem; color: var(--muted); white-space: nowrap; }
-
-  .tag {
-    font-size: .62rem;
+  a.guide {
+    align-self: flex-start;
+    display: inline-block;
+    text-decoration: none;
+    font-size: .74rem;
     letter-spacing: .1em;
     text-transform: uppercase;
     font-weight: 600;
     color: var(--accent);
     background: var(--tag-bg);
-    border-radius: 2px;
-    padding: .14rem .38rem;
-    white-space: nowrap;
+    border-radius: 3px;
+    padding: .28rem .55rem;
   }
-  .tag.ghost {
-    background: transparent;
+  a.guide:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  details { margin-top: .1rem; }
+  summary {
+    cursor: pointer;
+    font-size: .72rem;
     color: var(--muted);
-    border: 1px solid var(--line);
-    font-weight: 500;
+    letter-spacing: .04em;
+    -webkit-user-select: none;
+    user-select: none;
   }
+  summary:hover { color: var(--accent); }
+  details a.old {
+    display: block;
+    font-size: .78rem;
+    color: var(--muted);
+    text-decoration: none;
+    padding: .32rem 0 .32rem .85rem;
+  }
+  details a.old:hover { color: var(--accent); }
 
   .empty, .error {
     color: var(--muted);
@@ -125,14 +130,10 @@
   }
 
   footer {
-    font-size: .82rem;
+    font-size: .8rem;
     line-height: 1.6;
     color: var(--muted);
-    border-top: 1px solid var(--line);
-    padding-top: 1.1rem;
-    display: flex;
-    flex-direction: column;
-    gap: .55rem;
+    padding-top: .4rem;
   }
   footer b { color: var(--ink); font-weight: 600; }
 </style>
@@ -144,12 +145,9 @@
     <div class="tally mono" id="tally">loading…</div>
   </header>
 
-  <div id="list"><noscript><p class="error">This index needs JavaScript — or read <a href="manifest.json">manifest.json</a> directly.</p></noscript></div>
+  <div id="list" style="display: contents"><noscript><p class="error">This index needs JavaScript — or read <a href="manifest.json">manifest.json</a> directly.</p></noscript></div>
 
-  <footer>
-    <span><b>Add to Home Screen</b> to keep every guide one tap away.</span>
-    <span>Trip guides are traveler-tested after the trip; briefs are pre-trip research. Every version is kept — the newest per city is marked.</span>
-  </footer>
+  <footer><b>Add to Home Screen</b> to keep every guide one tap away.</footer>
 </main>
 
 <script>
@@ -173,63 +171,57 @@
     return;
   }
 
-  const briefs = entries.filter(e => e.type === 'brief').length;
-  const summaries = entries.filter(e => e.type === 'summary').length;
   const cities = [...new Set(entries.map(e => e.city))];
-  tally.textContent = `${briefs} brief${briefs === 1 ? '' : 's'}`
-    + (summaries ? ` · ${summaries} trip guide${summaries === 1 ? '' : 's'}` : '')
-    + ` · ${cities.length} destination${cities.length === 1 ? '' : 's'}`;
+  tally.textContent = `${cities.length} destination${cities.length === 1 ? '' : 's'}`;
+
+  const label = e => {
+    const parts = [];
+    if (e.trip && e.trip !== 'unknown') parts.push(e.trip);
+    if (e.published) parts.push('published ' + e.published);
+    if (e.type === 'summary') parts.unshift('trip guide');
+    return parts.join(' · ') || e.file;
+  };
 
   const frag = document.createDocumentFragment();
   for (const city of cities) {
-    const section = document.createElement('section');
-    const h2 = document.createElement('h2');
-    h2.textContent = city;
-    section.appendChild(h2);
+    const cityEntries = entries.filter(e => e.city === city); // newest first
+    const latestBrief = cityEntries.find(e => e.type === 'brief') || cityEntries[0];
+    const latestSummary = cityEntries.find(e => e.type === 'summary');
+    const older = cityEntries.filter(e => e !== latestBrief && e !== latestSummary);
 
-    const cityEntries = entries.filter(e => e.city === city);
-    // summaries first (they're the finished product), then briefs newest-first
-    const ordered = [
-      ...cityEntries.filter(e => e.type === 'summary'),
-      ...cityEntries.filter(e => e.type !== 'summary'),
-    ];
-    let latestBriefSeen = false;
-    for (const e of ordered) {
-      const a = document.createElement('a');
-      a.className = 'row';
-      a.href = e.file;
+    const block = document.createElement('div');
+    block.className = 'city-block';
 
-      const trip = document.createElement('span');
-      trip.className = 'trip';
-      trip.textContent = e.trip && e.trip !== 'unknown' ? e.trip : (e.city + ' brief');
-      a.appendChild(trip);
+    const main = document.createElement('a');
+    main.className = 'city';
+    main.href = latestBrief.file;
+    main.textContent = city;
+    block.appendChild(main);
 
-      if (e.type === 'summary') {
-        const t = document.createElement('span');
-        t.className = 'tag';
-        t.textContent = 'Trip guide';
-        a.appendChild(t);
-      } else if (!latestBriefSeen) {
-        latestBriefSeen = true;
-        a.classList.add('latest');
-        const t = document.createElement('span');
-        t.className = 'tag ghost';
-        t.textContent = 'Latest';
-        a.appendChild(t);
-      }
-
-      const spacer = document.createElement('span');
-      spacer.className = 'spacer';
-      a.appendChild(spacer);
-
-      const pub = document.createElement('span');
-      pub.className = 'pub mono';
-      pub.textContent = e.published || '';
-      a.appendChild(pub);
-
-      section.appendChild(a);
+    if (latestSummary) {
+      const g = document.createElement('a');
+      g.className = 'guide';
+      g.href = latestSummary.file;
+      g.textContent = 'Trip guide — traveler-tested';
+      block.appendChild(g);
     }
-    frag.appendChild(section);
+
+    if (older.length) {
+      const det = document.createElement('details');
+      const sum = document.createElement('summary');
+      sum.textContent = `${older.length} older version${older.length === 1 ? '' : 's'}`;
+      det.appendChild(sum);
+      for (const e of older) {
+        const a = document.createElement('a');
+        a.className = 'old mono';
+        a.href = e.file;
+        a.textContent = label(e);
+        det.appendChild(a);
+      }
+      block.appendChild(det);
+    }
+
+    frag.appendChild(block);
   }
   list.replaceChildren(frag);
 })();
