@@ -1,6 +1,6 @@
 # Research — the gather phase
 
-One pass, all sources, one dossier. Sections select from it later; they do not re-search. The query plan below is organized **by source, not by section**, so nothing is searched twice — one Reddit food thread feeds Local dishes, Everyday institutions, and Top picks alike.
+One pass, all sources, one dossier. Sections select from it later; they do not re-search. The query plan below is organized **by source, not by section**, so nothing is searched twice (the why lives in SKILL.md → "Why this shape").
 
 Gathering filters **form, not candidates**. No selection bars: judging quality is the sections' job, done later with their own bars in context, and a candidate dropped here is invisible to every section. But hard compression: the dossier holds structured one-line entries, never raw thread or article text. Every drafting agent reads the dossier whole, so its size taxes every section at once — a dossier of pasted transcripts buries the signal it exists to carry.
 

@@ -1,10 +1,6 @@
-# Feedback log
+# Trip feedback audit — Riga
 
-One entry per audited trip. One-trip observations live here, not in the skill; a rule is earned when the same pattern shows up across two or more trips.
-
----
-
-## 2026-08-09 — Riga (brief `briefs/riga-2026-08-08-1344ffee.html`, trip Aug 1–8, 2026)
+Audited 2026-08-09. Source brief: `briefs/riga-2026-08-08-1344ffee.html`, trip Aug 1–8, 2026.
 
 **Confidence: reduced.** No run record exists — `runs/` did not exist when this brief was produced, so there is no dossier and no `decisions.md`. Every "research gap" below is therefore **gap-or-cut ambiguous**: it cannot be told whether the item never entered the dossier or entered and was cut. Treat the classifications as provisional and do not count them toward the recurrence test at full weight.
 

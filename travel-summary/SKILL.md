@@ -58,13 +58,32 @@ Feedback comes from one city; the skill runs on every city. The failure mode to 
 - **City-swap test.** The change must be statable without naming this city, any venue, or any this-city fact. "Weight flat namings in local-language threads over editorial curiosity pieces" passes; "trust Reddit more about grill houses in the Baltics" does not. If it can't be stated generally, it is not a rule — it's a log entry.
 - **Mechanism test.** Name the general mechanism that failed and how the edit changes behavior in a *different* city next run. An edit that only re-ranks this city's candidates has no mechanism.
 - **Smallest-edit test.** Tighten, loosen, or reweigh an existing bar before adding a new rule. Never add exceptions, venue names, or per-city carve-outs to any travel-brief file.
-- **Recurrence test.** One-trip evidence goes to `runs/feedback-log.md` (date, city, classification, observation, candidate rule) — not into the skill. Propose an actual edit only when (a) the log shows the same pattern across two or more trips, or (b) the failure is mechanical rather than taste: a mandatory query that never ran, a source misread, a cut reason that violates the skill's own written rules.
-- **Exception — the traveler profile.** `shared.md`'s profile describes the user, not cities, so a strong single-trip taste signal may update it directly — still phrased generally ("standing counters beat table service", never a venue name).
+- **Recurrence test.** One-trip evidence goes to the run record's `feedback.md` and its candidate rule to `runs/proposals.md` (see "Recording the audit") — not into the skill. Propose an actual edit only when (a) a proposals.md candidate has sightings from two or more trips, or (b) the failure is mechanical rather than taste: a mandatory query that never ran, a source misread, a cut reason that violates the skill's own written rules.
+- **Exception — the traveler profile.** `shared.md`'s profile describes the user, not cities, so a strong single-trip taste signal may update it directly — still phrased generally ("standing counters beat table service", never a venue name). The profile holds one orientation line per domain; if the signal is really a section-specific bar, it goes in that section's file instead.
+
+## Where an approved edit lands
+
+Every rule in travel-brief has exactly **one canonical home**, and an approved change edits that home — never restated in a second file. The homes:
+
+- **Cross-section content rules** (entry style, ratings display, source-tag vocabulary, shortlist discipline, accuracy) → `reference/shared.md`.
+- **One section's bars, structure, or mandatory coverage** → that section's file under `reference/sections/`. A checklist mirror of the rule goes only in the file whose pass enforces it.
+- **Research mechanics, query plans, dossier format, budget** → `reference/research.md`.
+- **Pipeline order, phase instructions, publishing** → `SKILL.md` — which points at reference files rather than restating them.
+- **`reference/brief-template.html`** holds markup and rendering conventions only. Never write a selection bar, query, or content rule into a template comment — if a change needs new markup, the comment names the section file that owns the rule.
+
+A rule two sections genuinely share (a handshake, like Events flagging sellout-risk for Book ahead) is stated in the file that owns it and referenced by a one-clause pointer from the other. Before writing any edit, search `travel-brief/` for existing statements of the same rule and update or point to them; if a proposed change touches more than its canonical home plus at most one checklist and one pointer, it is being sprayed — the extra copies are what drift out of sync later.
 
 ## Applying changes
 
 **No file under `travel-brief/` is ever edited without the user confirming that specific change first.** This is a hard gate, not a courtesy: the whole failure mode this skill guards against is over-fitting the brief skill to one trip, and the user is the check on that. It applies to every travel-brief file including `shared.md`'s traveler profile, and it holds however obvious, small, or mechanical the change looks — a one-word tightening still gets asked. Never bundle an unapproved edit in with an approved one, and never treat silence, a general "sounds good", or approval of a *different* proposal as consent.
 
-Present each surviving proposal as: classification → evidence (quote the dossier or decisions.md line) → the exact diff → what behaves differently on a future city. Then stop and ask. Apply only the proposals the user explicitly accepts; drop the rest without argument.
+Present each surviving proposal as: classification → evidence (quote the dossier or decisions.md line) → the exact diff, in the rule's canonical home per "Where an approved edit lands" → what behaves differently on a future city. Then stop and ask. Apply only the proposals the user explicitly accepts; drop the rest without argument.
 
-Publishing the trip guide is not gated this way — Part 1 proceeds on its own. Only travel-brief edits wait. Either way, append the full audit — including proposals that failed the gate and why — to `runs/feedback-log.md`, and commit it with the trip guide: the log is how one-off observations accumulate into patterns that eventually earn a rule.
+Publishing the trip guide is not gated this way — Part 1 proceeds on its own. Only travel-brief edits wait.
+
+## Recording the audit
+
+Two files, committed with the trip guide — one permanent per trip, one running and always current:
+
+- **The run record: `runs/<city-slug>-<date>/feedback.md`** — the full audit: every classification with its evidence, the candidate rules including ones that failed the gate and why, and every proposal put to the user with its outcome (applied or declined). Written once per audited trip, like the dossier, into the source brief's run-record directory (create the directory if the brief predates run records). This is the permanent history; it is never trimmed.
+- **`runs/proposals.md`** — open, actionable candidates only: each a generally-phrased candidate rule naming the file it would edit, with one sighting line per trip (city, audit date, one-line evidence pointing at that run's feedback.md). When a new audit re-observes an existing candidate, add a sighting rather than a new entry — two or more sightings is what ripens it under the recurrence test. **Remove an entry the moment it is actioned** — applied or declined — so the file only ever lists things waiting to happen; the per-run files keep the record of what was done. This file stays short enough to read at the start of every audit: do read it, so recurring patterns are recognized instead of re-logged from scratch.

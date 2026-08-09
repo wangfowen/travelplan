@@ -4,14 +4,11 @@ Read before drafting anything; every drafting agent gets this file. These rules 
 
 ## Traveler profile
 
-One specific traveler. Their taste decides what goes in and what gets cut:
+One specific traveler. Their taste decides what goes in and what gets cut. These lines are orientation only — each section's full bars live in its file under `sections/`, which is always in context when that section is drafted:
 
 - **Things to do:** unique-to-this-place first, then world-class nature, then museums that are themselves worth the trip. Never generic attractions available in any capital.
-- **Views and nature:** nature only world-class — the kind that is a reason to go; a pleasant city park is not, and most cities have none. Views are city-scaled and the one exemption from the uniqueness test: most cities do have one or two spots genuinely worth going to just to take the city in.
-- **Museums and galleries:** one group — art, history, and science together. High bar — interesting museums not seen elsewhere, or genuinely world-class ones. One or two entries is the normal length. A real gallery scene can add one more.
-- **Tours:** walking/biking run by locals or small independent operators. Aggregators and multi-city chains (GetYourGuide, Viator, SANDEMANs, big bus companies) never appear — a filter, not a preference, so survivors need no "local" label. Food tours only where the city is genuinely known for food.
-- **Food:** the bar is **how good the food is** — not the room, the ambiance, the award, or the sourcing story ("seasonal", "locally sourced", "own farm" describe procurement, not flavour, and are neither reasons to include nor what a description leads with). A €10 canteen plate that exists only here beats a competent nine-course menu. The per-section bars and the cuisine, chain, and tasting-menu rules live in `sections/food.md`.
-- **Where to stay:** somewhere to live out of for a week — walkable or on real transit, quiet, with groceries, a gym, and somewhere to run in reach. Nightlife is a mark against, and closeness to the sights is close to irrelevant.
+- **Food:** the bar is **how good the food is** — not the room, the ambiance, the award, or the sourcing story. A €10 canteen plate that exists only here beats a competent nine-course menu.
+- **Where to stay:** the test is **could they live here for a week** — quiet, walkable, daily life in reach; nightlife and closeness to the sights count for nothing.
 
 ## Be short
 
@@ -34,7 +31,7 @@ Test: if the sentence would be true of a mediocre place in the same category, it
 
 Every named place gets a Google Maps link — `https://www.google.com/maps/search/?api=1&query=<url-encoded name + city>` — and its Google rating **with the review count**: `4.6 ★ (2,341)`. The count is not optional — 4.9 from 12 reviews and from 12,000 are different facts; write `(count unknown)` when only the rating is confirmable.
 
-**Verify ratings in the browser on Google Maps, not by web search.** Open the Maps query URL and read the page (`get_page_text`): it returns the live rating, count, price band, and — crucially — whether the place is **permanently closed**, which catches dead venues editorial sources still list. Batch several lookups per `browser_batch` call (navigate → wait 2s → get_page_text, repeated). Web search for ratings mostly surfaces aggregator numbers (Wanderlog, RestaurantGuru), which are banned as substitutes, and it burns budget the brief needs elsewhere. Verification happens in phase 5, after drafting — drafts carry candidates without ratings.
+Ratings are verified in phase 5, after drafting, in the browser (mechanics in SKILL.md → Verify) — drafts carry candidates without ratings, and drafters never chase them.
 
 Never invent a rating — omit it instead. **Google only**: no TripAdvisor/Yelp/aggregator substitutes; write "no rating found" and move on. Approximate counts (`~2.3k`) are fine. **Sort every list by rating, descending**; unrated entries go last in their group.
 
@@ -55,7 +52,7 @@ Never invent a rating — omit it instead. **Google only**: no TripAdvisor/Yelp/
 | *named publication* | Any other real editorial source, by its actual name — `lrt`, `condé nast`, `in your pocket`. Link it. |
 | `my pick` | Your own knowledge, not surfaced by any search. |
 
-- **50 Best Discovery** is the unranked year-round platform (3,000+ venues in city guides) — usually the only part of 50 Best that returns anything outside the major capitals, and a much weaker signal than a rank. Never write a rank for it, and never treat it alone as a reason to include — it is corroboration, useful when it agrees with Reddit or local press.
+- **50 Best Discovery** is the unranked year-round platform — a much weaker signal than a rank. Never write a rank for it, and never treat it alone as a reason to include — it is corroboration, useful when it agrees with Reddit or local press. (Where to find it: research.md.)
 - **There is no generic `guides` tag.** Name the publication or use `my pick`. If the only source is one you would not cite by name, that is a signal to cut the entry.
 - **Never source from aggregators** — TripAdvisor, Yelp, Wanderlog, RestaurantGuru, and the listicle farms that rewrite them: not for entries, not for ratings.
 - **Stack every applicable tag.** Cross-source agreement is the strongest signal in the brief, and stacked tags are how the reader sees it. Tags are provenance, not endorsement.

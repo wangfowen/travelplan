@@ -76,7 +76,7 @@
     margin-left: .35rem;
   }
 
-  /* Source tag — required on every Things-to-do and Food entry.
+  /* Source tag — required on every Things-to-do, Food and Events entry.
      Stack several when a place shows up in more than one source. */
   .src {
     display: inline-block; font-size: .7rem; text-transform: uppercase; letter-spacing: .06em;
@@ -140,44 +140,23 @@
   </header>
 
   <!--
-    CONVENTIONS
+    RENDERING CONVENTIONS — structure only; every content rule (selection
+    bars, entry style, tag vocabulary, sort order) lives in shared.md and
+    reference/sections/*. Do not copy rules into this file.
     · Every place name is a Google Maps link:
         https://www.google.com/maps/search/?api=1&query=Name+City
-    · Rating badge follows the name, ALWAYS with the review count — a bare
-      "4.9 ★" hides whether that's 12 reviews or 12,000. NEVER invent either.
-      Google ratings only; never substitute a TripAdvisor/Yelp score.
-    · EVERY Things-to-do, Food and Events entry carries a .src tag. Stack all that apply
-      when a place shows up in several sources — that agreement is the signal.
-      Vocabulary: reddit (linked) · atlas obscura · eater (linked)
-                  · michelin ★ YEAR · 50 best #N YEAR (name the list if it isn't
-                    World restaurants: "50 best bars #12 YEAR", "asia's 50 best #7 YEAR")
-                  · 50 best discovery (on the Discovery platform but UNRANKED —
-                    weaker signal, never write a rank for it)
-                  · <named publication> · my pick
-      There is NO generic "guides" tag — name the actual publication.
-      Never source from TripAdvisor / Yelp / Wanderlog / listicle farms.
-    · Every list sorted by rating, descending. Unrated entries last.
-    · DESCRIPTIONS DESCRIBE — they never argue for the entry. The selection
-      bars decide what goes in; being in the brief is the endorsement. So no
-      "world-class", "must-see", "worth the trip", "not just another X",
-      "people rave about it". Lead with the concrete fact — a date, material,
-      technique, dish, number — that makes the thing what it is.
-      One line, two at most.
-    · 3-5 entries per group, fewer if that's all that's genuinely worth it.
-      Do not pad to fill a group. Omit a whole group rather than fill it.
+    · Rating badge (.rating) follows the name, review count inside .count;
+      omit the whole badge when unconfirmed.
+    · Every Things-to-do, Food and Events entry carries .src tag(s), stacked
+      when several apply; reddit/eater/publication tags wrap a link.
+    · Empty group or section: delete it heading-and-all (no-trace rule,
+      shared.md → Be short).
   -->
 
-  <!-- ── 1. THINGS TO DO — Top picks fed by the category groups below it;
-       each entry appears ONCE (a must-do museum sits in Top picks, not
-       Museums). Sorted by rating within each group. ── -->
+  <!-- ── 1. THINGS TO DO — groups in this order; all group bars and
+       promotion rules in sections/things-to-do.md ── -->
   <h2 id="do">Things to do</h2>
 
-  <!-- Top picks: the absolute must-dos regardless of category — the 3-5
-       things they'd be sorriest to have missed. Promoted from Unique to
-       this city, Views and nature, Museums and galleries, and Tours.
-       NEVER from Day trips: a top
-       pick is a reason to be in this city, a day trip is a reason to
-       leave it. -->
   <h3>Top picks</h3>
   <ul>
     <li>
@@ -189,12 +168,6 @@
     </li>
   </ul>
 
-  <!-- Unique to this city: the catch-all — everything worth going for that
-       the other groups don't catch. Test stays "exists here and effectively
-       nowhere else": the singular sights, spaces, experiences — including
-       immersive/experiential art (a Meow Wolf, a teamLab); a handful of
-       global locations does not disqualify it.
-       The main feeder of Top picks; give it the most room. -->
   <h3>Unique to CITY</h3>
   <ul>
     <li>
@@ -218,29 +191,17 @@
     </li>
   </ul>
 
-  <!-- Views and nature: two bars. Nature stays world-class ONLY — do not
-       list pleasant parks. Views are city-scaled: the 1-2 spots to actually
-       take the city in (hilltop, waterfront walk, rooftop), preferring the
-       free spot locals use over the paid deck unless the deck is itself the
-       singular experience. 1-3 entries in most cities. -->
   <h3>Views and nature</h3>
   <ul>
     <li><b><a href="#">Name</a></b> <span class="rating">4.8 ★ <span class="count">(5.2k)</span></span> <span class="src"><a href="#">reddit</a></span><br>What it is and what you see from it — or for nature: terrain, distance, elevation.</li>
   </ul>
 
-  <!-- Museums and galleries: art, history AND science in ONE group.
-       Interesting museums not seen elsewhere, and/or world-class ones.
-       Often just 1-2 entries — that's correct. A real gallery scene earns
-       one more entry: the district or gallery-walk as a single line naming
-       its 2-3 anchor spaces. Individual commercial galleries almost never
-       qualify alone. -->
   <h3>Museums and galleries</h3>
   <ul>
     <li><b><a href="#">Name</a></b> <span class="rating">4.6 ★ <span class="count">(1.9k)</span></span> <span class="src"><a href="#">reddit</a></span> <span class="src">atlas obscura</span><br>What the collection actually holds, and the specific holding that is only here.</li>
   </ul>
 
-  <!-- Tours: locally-run only. Aggregator/chain listings are dropped, not
-       captioned — so no "local operator" label is needed on the survivors. -->
+  <!-- Heading note lists the formats the operator actually runs. -->
   <h3>Tours <span class="note">— walking and biking, locally run</span></h3>
   <ul>
     <li>
@@ -251,10 +212,7 @@
     </li>
   </ul>
 
-  <!-- Day trips: separate from the groups above and NEVER promoted into Top
-       picks. 0-2 entries, only when the destination is itself a reason to
-       be in this region and reachable as a genuine day trip. Transit route and
-       time are part of the entry. DELETE the group if nothing qualifies. -->
+  <!-- Transit route and time are part of the entry. -->
   <h3>Day trips</h3>
   <ul>
     <li>
@@ -263,16 +221,10 @@
     </li>
   </ul>
 
-  <!-- ── 2. FOOD ─────────────────────────────────────── -->
+  <!-- ── 2. FOOD — section order and all bars in sections/food.md ── -->
   <h2 id="food">Food</h2>
 
-  <!-- Local dishes OPEN the Food section — the city's dish canon as
-       orientation before any restaurant appears. 3-5, stable run to run,
-       drawn from the format map's everyday-dish list and the dedicated
-       Reddit query, never from recall. Dishes a local would insist a
-       first-timer tries, plus anything whose seasonal window overlaps the
-       dates (name the window). A venue that deserves its own entry gets it
-       in a section BELOW and is only referenced here. -->
+  <!-- Venues with their own entry below are only referenced here. -->
   <h3>Local dishes to try</h3>
   <ul>
     <li>
@@ -282,18 +234,6 @@
     </li>
   </ul>
 
-  <!-- The absolute must-gos: the places they'd be sorriest to miss, REGARDLESS
-       of category, price or format — NOT the fine-dining tier. Fed by the
-       Everyday-institutions and Creative pools: a top pick is almost always
-       the best of one of those two lists. A canteen, a grill house, a bakery
-       and one ambitious kitchen belong in this list together. If every entry
-       is the same kind of place (all tasting menus, all €50+), it got sorted
-       by prestige instead of by food — rebuild it. At least one entry should
-       be somewhere a local eats on an ordinary weekday.
-       Include only places genuinely raved about. A listing alone is not a
-       reason to include something; a beloved place on no list belongs here.
-       Each restaurant appears ONCE across all eight food sections — and in the
-       section that says the most about it, not the weakest one that fits. -->
   <h3>Top picks</h3>
   <ul>
     <li>
@@ -314,18 +254,6 @@
     </li>
   </ul>
 
-  <!-- Everyday institutions: where the city eats its own food on a Tuesday —
-       canteen, market-hall counter, domestic chain, workers' lunch hall.
-       Optimized for WHAT TASTES GOOD in an untransplantable local
-       institution — "where locals actually go" is corroborating evidence,
-       not the objective: locals also optimize for price and nostalgia, so a
-       locals' favourite that tastes mediocre stays out, and tourists loving
-       a place is not a strike. Cheap and unglamorous is the profile.
-       A big review count at a middling rating is the SIGNATURE of this
-       category (9k at 4.4 beats 300 at 4.8 for what it tells you) — don't let
-       the rating sort bury it. Michelin/50 Best/Eater won't surface these;
-       go looking on Reddit and judge by how many people name it, not how
-       excited they sound. -->
   <h3>Everyday institutions</h3>
   <ul>
     <li>
@@ -336,15 +264,6 @@
     </li>
   </ul>
 
-  <!-- Cooking no one else is doing: an interesting take on the local cuisine,
-       a fusion that could only happen here, an unfamiliar technique or format.
-       NOVELTY is the ranking key — between two good kitchens, the one doing
-       something the city's other kitchens aren't wins. "Seasonal tasting menu
-       of local produce" is the house style of every ambitious restaurant on
-       earth and does NOT qualify — nor does an open kitchen, a chef's table,
-       or the restaurant's own farm (settings and supply chains, not cooking).
-       The best entry here often graduates to Top picks; this section holds
-       the rest. Delete only if no kitchen is doing something of its own. -->
   <h3>Creative and interesting</h3>
   <ul>
     <li>
@@ -354,47 +273,17 @@
     </li>
   </ul>
 
-  <!-- Cafés and bakeries: a standing section researched on its own. Three
-       things to look for, each on its own query: SOURDOUGH (real naturally-
-       leavened bread), GOOD PASTRIES (proper lamination, or the local
-       specialty bake done seriously), GOOD COFFEE (a specialty roaster or a
-       shop that treats it as one). One place clearing two or three bars
-       beats three clearing one. Craft is the whole test — "would earn its
-       place at home too" is fine here. -->
   <h3>Cafés and bakeries</h3>
   <ul>
     <li><b><a href="#">Name</a></b> <span class="rating">4.7 ★ <span class="count">(1.5k)</span></span> <span class="src"><a href="#">eater</a></span> <span class="src"><a href="#">in your pocket</a></span><br>The specific bake or drink to order — and which of bread / pastry / coffee it clears.</li>
   </ul>
 
-  <!-- Cocktail bars and breweries: a standing section researched on its own.
-       The bar is INTERESTING — doing things no one else is doing: a house
-       fermentation program, a menu built on local ingredients no other bar
-       touches, a brewing style particular to here. "Well-executed classics
-       in a nice room" exists in every city and does not qualify. 50 Best
-       Bars rank is provenance, not the reason. DELETE if no real scene. -->
   <h3>Cocktail bars and breweries</h3>
   <ul>
     <li><b><a href="#">Name</a></b> <span class="rating">4.6 ★ <span class="count">(880)</span></span> <span class="src"><a href="#">reddit</a></span> <span class="src">50 best bars #12 2026</span><br>The interesting thing they make — the program, the ferment, the style no one else pours.</li>
   </ul>
 
-  <!-- Asian food and Healthy staples close the Food section, below every
-       other food heading. Both answer "if I have a craving for X" rather
-       than "what should I seek out here" — they're never candidates for
-       Top picks and never feed Book-ahead, however good the individual
-       entry is.
-
-       Asian food: a standing section researched on its own — EAST AND
-       SOUTHEAST ASIAN ONLY (Japanese, Chinese, Korean, Thai, Vietnamese,
-       Malaysian, Indonesian). South Asian (Indian, Nepalese, Pakistani,
-       Sri Lankan) does not appear, even with a real diaspora story.
-       The bar is AUTHENTIC: a cook making their own cuisine for people who
-       grew up on it. No mediocre ramen, no supermarket sushi, no generic wok
-       stir-fries, and "best Thai in a city with no Thai food" is not a
-       recommendation. Needs real evidence: a diaspora that eats there,
-       expat/diaspora Reddit threads naming it, or a rating that holds up
-       citywide. Be regionally specific — Hakata tonkotsu, Sichuan, Isaan —
-       not "Asian" and usually not "Chinese". Delete only if the dedicated
-       per-cuisine queries ran and came back dry. -->
+  <!-- Asian food and Healthy staples always close the Food section. -->
   <h3>Asian food</h3>
   <ul>
     <li>
@@ -405,34 +294,15 @@
     </li>
   </ul>
 
-  <!-- Healthy staples: a standing section researched on its own (Maps is the
-       primary finder). The repeatable healthy default for a week of eating
-       out — GOOD MACROS AND ACTUALLY TASTY: grilled protein, vegetables,
-       bowls done well, food you'd choose rather than concede to. Provenance
-       irrelevant; a good regional healthy chain qualifies despite the chain
-       test. 1-2 entries, with Reddit expat/living-here threads as the
-       secondary source — editorial sources are biased against these. DELETE
-       if the city has no genuinely good option; a mediocre salad chain is
-       not a staple. -->
   <h3>Healthy staples</h3>
   <ul>
     <li><b><a href="#">Name</a></b> <span class="rating">4.6 ★ <span class="count">(2.1k)</span></span> <span class="src"><a href="#">reddit</a></span><br>The format, and the order that makes it a repeatable default.</li>
   </ul>
 
-  <!-- ── 3. EVENTS ─────────────────────────
-       Everything here is date-dependent: ONLY what falls inside the
-       traveler's dates, in four subsections. DELETE any empty subsection
-       heading-and-all; deleting the entire section is the normal outcome
-       for most cities in most weeks and beats a padded one.
-       Dates and runs must be CONFIRMED on the official page for the travel
-       year — recurring events move.
-       Anything with sellout-risk tickets here also gets a Book-ahead row. ── -->
+  <!-- ── 3. EVENTS — four subsections in this order; all bars and the
+       date-confirmation rule in sections/events.md ── -->
   <h2 id="events">Events <span class="note">— during your dates</span></h2>
 
-  <!-- Cultural: events unique to this place — a local tradition, a festival
-       the city is known for, a seasonal phenomenon, a genuine one-off.
-       NOT club nights, markets, running events, or anything a comparable
-       city also has; touring productions go in Music or Shows if anywhere. -->
   <h3>Cultural</h3>
   <ul>
     <li>
@@ -450,9 +320,6 @@
     </li>
   </ul>
 
-  <!-- Music: artists playing the window and music festivals. The bar is an
-       act or lineup worth planning an evening around — not every pub gig.
-       Touring is fine here. Confirm on the venue's or artist's own page. -->
   <h3>Music</h3>
   <ul>
     <li>
@@ -465,11 +332,6 @@
     </li>
   </ul>
 
-  <!-- Shows: what's on stage during the window — musicals and theater runs,
-       opera/ballet/symphony from resident seasons, notable stand-up. Bar: a
-       production they can't see at home, a resident company, a landmark
-       venue where attending anything is the point, or a comedian with a
-       real following. -->
   <h3>Shows</h3>
   <ul>
     <li>
@@ -482,9 +344,6 @@
     </li>
   </ul>
 
-  <!-- Exhibitions: the major temporary/loan exhibition on during the window
-       — the show the museum itself bills as the event of the season, not
-       the permanent collection (that lives in Things to do). -->
   <h3>Exhibitions</h3>
   <ul>
     <li>
@@ -497,22 +356,13 @@
     </li>
   </ul>
 
-  <!-- ── 4. WHERE TO STAY ─────────────────────────────
-       2-3 neighborhoods, NOT a survey. Criteria: walkable or on a transit line
-       that runs; QUIET (a nightlife strip is disqualifying, not a feature);
-       ordinary daily life in reach — supermarket, gym, somewhere to run.
-       Test: could they live here for a week?
-       Proximity to the sights is NOT a criterion — never list or rank on it.
-       No "best for: first visit / nightlife / families" matrix; that's written
-       for a generic audience, not this traveler.
-       Flag "avoid" only where they'd genuinely book it and regret it. -->
+  <!-- ── 4. WHERE TO STAY — rules in sections/where-to-stay.md ── -->
   <h2 id="stay">Where to stay</h2>
   <ul>
     <li><b>Neighborhood.</b> What it's actually like to be there. <em>Day to day:</em> groceries, gym, running route. <em>Tradeoff:</em> what you give up.</li>
   </ul>
 
-  <!-- ── 5. BOOK AHEAD ───────────────────────────────── -->
-  <!-- ONLY entries with sourced evidence of day-of difficulty. Otherwise omit the row. -->
+  <!-- ── 5. BOOK AHEAD — row rules in sections/book-ahead.md ── -->
   <h2 id="book">Book ahead</h2>
   <div class="table-wrap">
     <table>
@@ -547,11 +397,8 @@
     </dl>
   </div>
 
-  <!-- Getting around: TWO rows and the call — Transit, Rides, Verdict.
-       Payment, fares and hours are one-liners inside the Transit row, NOT rows
-       of their own; ride prices live inside the Rides row. Walking and bike
-       share go in the verdict, since they're part of the answer.
-       Every fare gets a USD conversion and a year. -->
+  <!-- Two rows (Transit, Rides) then the verdict — content rules in
+       sections/practical.md. -->
   <h3>Getting around</h3>
   <div class="facts">
     <dl>
@@ -583,25 +430,12 @@
     <li><b>Period.</b> What happened, and what of it you can still see.</li>
   </ul>
 
-  <!-- Culture: 3–4 entries, fewer is better, no floor. Reaching for a fifth is
-       the signal to stop, not to lower the bar.
-       Concrete fact first — if the line stays true after swapping the country
-       name, it is not an entry. Then the encounter test: will they actually run
-       into this, or does it explain something they'd misread? If neither, it's
-       trivia. Three kinds that keep sneaking in and must not: shopping/souvenir
-       logistics (which streets sell amber); one-off news items and municipal
-       gestures (a street renamed to needle an embassy); traditions that live
-       somewhere the traveler isn't going. No do's-and-don'ts. -->
   <h3>Culture</h3>
   <ul>
     <li><b>The thing.</b> The concrete detail — what people do, when, and what a visitor would notice or get wrong.</li>
   </ul>
 
-  <!-- Phrases: ~10, and each stays ONE WORD wherever the language allows —
-       these get said at a counter, not memorized as sentences. A word they
-       will actually use beats a polite full sentence they never will. Fixed
-       set: please, thank you, sorry, excuse me, yes, no, bathroom, bill,
-       card, English. Native script + phonetic rendering, both required. -->
+  <!-- Phrase set and style in sections/country.md. -->
   <h3>Phrases</h3>
   <table class="phrases">
     <tr><td class="native">Native</td><td class="phon">pho-NE-tic</td><td>English</td></tr>

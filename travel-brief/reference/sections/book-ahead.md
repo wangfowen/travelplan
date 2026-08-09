@@ -9,3 +9,4 @@ Only entries with **evidence of day-of failure**: a booking page showing weeks u
 1. Every row cites its evidence of day-of failure; anything unverifiable is dropped, not hedged.
 2. Every Events entry flagged sellout-risk was either given a row or consciously ruled out.
 3. Lead times are dates ("book by ~Sep 20"), not just durations.
+4. No row comes from Asian food or Healthy staples (the harvest exclusion above).

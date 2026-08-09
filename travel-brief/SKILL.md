@@ -39,11 +39,11 @@ Read `reference/research.md` and fill the city-specific slots of its query plan:
 
 ### 2. Gather — once, for everything
 
-Every finding lands in one dossier, tagged by source at birth (format in research.md). Gathering applies no selection bars — it collects, sections cut; a candidate wrongly dropped here is invisible to every section downstream. But no selection does not mean no compression: dossier entries are structured one-liners, never raw page or thread text — every drafter reads the dossier whole, so bloat here taxes every section at once.
+Every finding lands in one dossier, tagged by source at birth. Gathering collects, sections cut — the no-bars rule, the hard-compression rule, and the dossier format are in research.md.
 
-Fan out the research subagents in parallel (split in research.md). They return raw text findings — no publishing, and no Google-ratings chasing (that is phase 5; doing it early wastes searches on candidates that get cut). While they run, do the browser pass yourself, serially — Reddit and the Maps category searches. The browser is one shared resource with one tab group: never hand it to parallel agents.
+Fan out the research subagents in parallel (split in research.md). They return raw text findings — no publishing, and no Google-ratings chasing (that is phase 5). While they run, do the browser pass yourself, serially — Reddit and the Maps category searches. The browser is one shared resource with one tab group: never hand it to parallel agents.
 
-Budget rules are in research.md — if searches start bouncing off the session limit, tell the user rather than silently shipping a thinner brief.
+Budget rules are in research.md.
 
 ### 3. Draft — one section at a time, from the dossier only
 
@@ -58,12 +58,12 @@ The three big drafts — things-to-do, food, events — can go to parallel subag
 ### 4. Cross-section pass — yours, never delegated
 
 - **Each place appears once in the whole brief.** A must-do museum sits in Things to do's Top picks, not Museums; a restaurant in exactly one food section; the blockbuster loan show in Events → Exhibitions, the permanent collection in Things to do.
-- **Book ahead harvests the other drafts**: ticketed events flagged sellout-risk, restaurants and tours with booking friction found during drafting become its candidate rows — except Asian food and Healthy staples, which are craving-satisfiers, not destinations, and never feed Book ahead (reference/sections/food.md).
-- **An omitted section leaves no trace** (the no-trace rule, shared.md) — delete the heading and move on. Two exceptions still get written: Book ahead's "nothing needs advance booking" line, and source-availability callouts ("Eater has no coverage of this city", "Reddit was unreachable — attempts listed").
+- **Book ahead harvests the other drafts**: ticketed events flagged sellout-risk, restaurants and tours with booking friction found during drafting become its candidate rows (harvest rules and exclusions in reference/sections/book-ahead.md).
+- **Apply the no-trace rule** (shared.md → Be short) across the assembled brief — this is also the pass where its two write-anyway exceptions get written.
 
 ### 5. Verify — only what survived drafting
 
-Ratings for every drafted place, via batched Google Maps lookups in the browser (mechanics in shared.md → Ratings and links) — which also catches permanently closed venues. Event dates and runs on official pages per events.md; fares per practical.md. Verifying candidates you will cut is the main way runs blow their budget — verify after selection, never before.
+Ratings for every drafted place, **in the browser on Google Maps — never by web search**: open the Maps query URL (format in shared.md → Ratings and links) and read the page (`get_page_text`), which returns the live rating, count, price band, and — crucially — whether the place is **permanently closed**, catching dead venues editorial sources still list. Batch several lookups per `browser_batch` call (navigate → wait 2s → get_page_text, repeated); web search for ratings mostly surfaces banned aggregator numbers. Event dates and runs on official pages per events.md; fares per practical.md. Verifying candidates you will cut is the main way runs blow their budget — verify after selection, never before.
 
 ### 6. Assemble, check, publish
 
@@ -89,13 +89,9 @@ The brief publishes to the GitHub Pages site — never as a chat artifact, never
 
 ## Output
 
-One self-contained HTML page, following `reference/brief-template.html`.
+One self-contained HTML page, following `reference/brief-template.html` — the template carries the page structure and rendering conventions (anchor nav, Maps links, rating badges, source tags, the Book-ahead table); the content rules live in shared.md and the section files.
 
 - Title: `<City> — Travel Brief`. Header shows travel dates, research date, and one line of expected weather for the dates (typical high/low, rain likelihood, daylight — climate normals from own knowledge are fine, labeled per Accuracy rules).
-- A one-line anchor nav under the header so each section is one tap away on a phone.
-- Any section or group with nothing that cleared the bar is dropped heading-and-all, with no sentence noting the omission (Events subsections, nature entries, and Day trips are the usual cases; a food section can be empty too, but only after its own query pass ran and came back dry).
 - Readable on a phone; works in light and dark themes; no external requests — all CSS inline, nothing remote loaded (links out are fine).
-- Every place name links to Google Maps; ratings render as a visible badge; every Things-to-do, Events, and Food entry shows all its source tags; reddit tags link to their thread.
-- Book-ahead entries render as a table with a visible lead-time column.
 
 After publishing, give a three-or-four-line chat summary: the single highest-value thing to book immediately, anything notable falling in their dates, and anything you could not confirm.

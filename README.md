@@ -55,7 +55,7 @@ docs/                 the published site (GitHub Pages serves this from main)
   manifest.json       one entry per published page
   briefs/             every brief, one file per run, all versions kept
   summaries/          traveler-tested trip guides
-runs/                 per-run research records: dossier + decisions + feedback-log.md
+runs/                 per-run records: dossier + decisions.md + feedback.md; proposals.md is the running log of open candidates
 ```
 
 ## Installing
@@ -69,7 +69,7 @@ Symlinked, so edits apply immediately — no build step.
 
 ## The feedback loop
 
-`/travel-brief` saves what it found and why it cut what it cut (`runs/<city>-<date>/`: the dossier plus `decisions.md`). `/travel-summary` reads that record against real-trip feedback and classifies each item: hit confirmed, selection error, research gap, bad recommendation, or taste signal. Proposed skill edits must pass a generalization gate — statable without naming the city or venue, a named mechanism that changes behavior elsewhere, smallest possible edit, and recurrence across trips (one-off observations accumulate in `runs/feedback-log.md` until a pattern earns a rule; only traveler-profile updates can come from a single trip). Nothing is applied without approval.
+`/travel-brief` saves what it found and why it cut what it cut (`runs/<city>-<date>/`: the dossier plus `decisions.md`). `/travel-summary` reads that record against real-trip feedback and classifies each item: hit confirmed, selection error, research gap, bad recommendation, or taste signal. Proposed skill edits must pass a generalization gate — statable without naming the city or venue, a named mechanism that changes behavior elsewhere, smallest possible edit, and recurrence across trips (each audit's full detail is written to that run's `feedback.md`; its candidate rules accumulate as sightings in `runs/proposals.md` until a pattern earns a rule, and leave that log once actioned; only traveler-profile updates can come from a single trip). Nothing is applied without approval.
 
 ## Editing
 
