@@ -47,9 +47,9 @@ Budget rules are in research.md — if searches start bouncing off the session l
 
 ### 3. Draft — one section at a time, from the dossier only
 
-Sections, one file each under `reference/sections/`: `things-to-do`, `events`, `food`, `where-to-stay`, `book-ahead`, `practical`, `country`. Per section: read its file (plus shared.md, once), shortlist from the dossier.
+Sections, one file each under `reference/sections/`: `things-to-do`, `food`, `events`, `where-to-stay`, `book-ahead`, `practical`, `country`. Per section: read its file (plus shared.md, once), shortlist from the dossier.
 
-The three big drafts — food, things-to-do, events — can go to parallel subagents: each gets shared.md, its own section file, and the dossier paths, and returns its draft as text. Draft the small sections yourself.
+The three big drafts — things-to-do, food, events — can go to parallel subagents: each gets shared.md, its own section file, and the dossier paths, and returns its draft as text. Draft the small sections yourself.
 
 **Keep the cut list as you draft.** Every candidate consciously ruled out, with the reason as stated at the moment of the cut — per section, alongside the shortlist. It becomes `decisions.md` in the run record at publish, and it is the raw material `/travel-summary` audits after the trip; a cut without a recorded reason can't be learned from later.
 
@@ -71,7 +71,7 @@ Each section file carries its own checklist — run it while drafting that secti
 
 1. Each place appears once across the whole brief.
 2. Every rating has a review count; none invented; every list sorted by rating descending, unrated last.
-3. Every Things to do, Events, and Food entry carries all its source tags; every reddit tag links its thread; no aggregator-sourced entries or numbers.
+3. Every Things to do, Food, and Events entry carries all its source tags; every reddit tag links its thread; no aggregator-sourced entries or numbers.
 4. Empty sections and groups deleted heading-and-all, no sentence noting the omission — except Book ahead's "nothing needs advance booking" line and source-availability callouts.
 5. Years attached: every fare, award, GDP figure, funding total, and tipping norm.
 6. Every section file's own checklist actually ran.

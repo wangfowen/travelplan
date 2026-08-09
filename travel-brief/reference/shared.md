@@ -40,7 +40,7 @@ Never invent a rating — omit it instead. **Google only**: no TripAdvisor/Yelp/
 
 ## Source tags
 
-**Every entry in Things to do, Events and Food carries a visible source tag** — no exceptions, including your own recommendations:
+**Every entry in Things to do, Food and Events carries a visible source tag** — no exceptions, including your own recommendations:
 
 | Tag | Means |
 |---|---|
