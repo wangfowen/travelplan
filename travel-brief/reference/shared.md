@@ -7,6 +7,7 @@ Read before drafting anything; every drafting agent gets this file. These rules 
 One specific traveler. Their taste decides what goes in and what gets cut. These lines are orientation only — each section's full bars live in its file under `sections/`, which is always in context when that section is drafted:
 
 - **Things to do:** unique-to-this-place first, then world-class nature, then museums that are themselves worth the trip. Never generic attractions available in any capital.
+- **How they engage:** hands-on, interactive and visual over objects behind glass and plaques on the wall — a workshop, a walkthrough, something to handle or move through. Someone knowledgeable and enthusiastic showing them the thing is itself a reason to go, in any section.
 - **Food:** the bar is **how good the food is** — not the room, the ambiance, the award, or the sourcing story. A €10 canteen plate that exists only here beats a competent nine-course menu.
 - **Where to stay:** the test is **could they live here for a week** — quiet, walkable, daily life in reach; nightlife and closeness to the sights count for nothing.
 
