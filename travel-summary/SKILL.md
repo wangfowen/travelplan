@@ -55,4 +55,8 @@ Feedback comes from one city; the skill runs on every city. The failure mode to 
 
 ## Applying changes
 
-Never edit travel-brief silently. Present each surviving proposal as: classification → evidence (quote the dossier or decisions.md line) → the exact diff → what behaves differently on a future city. Apply only what the user approves. Either way, append the full audit — including proposals that failed the gate and why — to `runs/feedback-log.md`, and commit it with the trip guide: the log is how one-off observations accumulate into patterns that eventually earn a rule.
+**No file under `travel-brief/` is ever edited without the user confirming that specific change first.** This is a hard gate, not a courtesy: the whole failure mode this skill guards against is over-fitting the brief skill to one trip, and the user is the check on that. It applies to every travel-brief file including `shared.md`'s traveler profile, and it holds however obvious, small, or mechanical the change looks — a one-word tightening still gets asked. Never bundle an unapproved edit in with an approved one, and never treat silence, a general "sounds good", or approval of a *different* proposal as consent.
+
+Present each surviving proposal as: classification → evidence (quote the dossier or decisions.md line) → the exact diff → what behaves differently on a future city. Then stop and ask. Apply only the proposals the user explicitly accepts; drop the rest without argument.
+
+Publishing the trip guide is not gated this way — Part 1 proceeds on its own. Only travel-brief edits wait. Either way, append the full audit — including proposals that failed the gate and why — to `runs/feedback-log.md`, and commit it with the trip guide: the log is how one-off observations accumulate into patterns that eventually earn a rule.
