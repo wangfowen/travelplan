@@ -7,7 +7,7 @@ A personal trip-research system: two Claude Code skills and the GitHub Pages sit
 ## The skills
 
 - **`/travel-brief <city> <dates>`** — researches a destination against a fixed checklist and publishes a one-page brief as a new page on the site. Every run adds a new page and a manifest entry; old versions are never overwritten, so past research stays reachable.
-- **`/travel-summary <city> + what you actually liked/didn't`** — after the trip: republishes the brief with dislikes silently removed and the traveler's own finds added, in the identical format (no "skip" notes, no commentary — it reads as a normal brief). The result becomes the city's main link on the index. Then it audits the original research run to propose improvements to `/travel-brief` — gated so only generalizable rules change, never city-specific patches.
+- **`/travel-summary <city> + what you actually liked/didn't`** — after the trip: republishes the brief in the identical format (no "skip" notes, no commentary — it reads as a normal brief), keeping what you liked, silently dropping dislikes, adding your own finds, sorting the mediocre-but-still-worth-it below the rest, and carrying places you wanted but missed under a `didn't make it` tag. Recommendations are resolved against every published version of the city, newest first, so a place remembered from an older brief or a previous trip's guide is found and carried forward. The result becomes the city's main link on the index. Then it audits each rec against the run that actually produced the version it came from, to propose improvements to `/travel-brief` — gated so only generalizable rules change, never city-specific patches.
 
 ## What a brief covers
 
