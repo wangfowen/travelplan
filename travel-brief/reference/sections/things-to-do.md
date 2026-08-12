@@ -15,7 +15,7 @@ Candidates come from the dossier's Reddit, Atlas Obscura, and local-press findin
 
 ## Mandatory coverage (gap-fill if missing from the dossier)
 
-- The two dedicated Reddit queries ran: `immersive art <city>` and `best view of <city>` — the general threads miss both.
+- The three dedicated Reddit queries ran: `immersive art <city>`, `best view of <city>`, and `bike tour <city>` — the general threads miss all three.
 
 ## Checklist
 

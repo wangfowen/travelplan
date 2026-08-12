@@ -96,7 +96,7 @@ Ratings for every drafted place, **in the browser on Google Maps — never by we
 
 **Verify a section's places when its fragment lands, not in one pass at the end** — the browser is serial either way, so overlapping it with the drafters still running is free wall-clock. Write the ratings straight into the fragment. What this phase must never do is run *before* selection: verifying candidates you will cut is the main way runs blow their budget.
 
-**Re-sort each group as you fill the ratings in.** Every list is sorted by rating descending, unrated last (shared.md → Ratings and links) — the drafter wrote its fragment before any rating existed and could not do it. A permanently-closed venue is cut here, and if that empties a group, the group goes heading-and-all.
+**Re-sort each group as you fill the ratings in.** Every list is sorted by rating descending, unrated last (shared.md → Ratings and links) — the drafter wrote its fragment before any rating existed and could not do it. A permanently-closed venue is cut here; a group the cut leaves short gets the Maps backstop (research.md → Maps category searches) before it is dropped heading-and-all.
 
 ### 6. Assemble, check, publish
 

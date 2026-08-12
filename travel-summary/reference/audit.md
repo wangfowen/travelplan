@@ -50,7 +50,7 @@ Every rule in travel-brief has exactly **one canonical home**, and an approved c
 - **Pipeline order, phase instructions, publishing** → `SKILL.md` — which points at reference files rather than restating them.
 - **`reference/brief-template.html`** holds markup and rendering conventions only. Never write a selection bar, query, or content rule into a template comment — if a change needs new markup, the comment names the section file that owns the rule.
 
-A rule two sections genuinely share (a handshake, like Events flagging sellout-risk for Book ahead) is stated in the file that owns it and referenced by a one-clause pointer from the other. Before writing any edit, search `travel-brief/` for existing statements of the same rule and update or point to them; if a proposed change touches more than its canonical home plus at most one checklist and one pointer, it is being sprayed — the extra copies are what drift out of sync later.
+A rule two sections genuinely share (a handshake, like Events flagging sellout-risk for Book ahead) is stated in the file that owns it and referenced by a one-clause pointer from the other. Before writing any edit, search `travel-brief/` for existing statements of the same rule and update or point to them — checking the rule's **enforcement surfaces by name**: the section file's Mandatory coverage list, its checklist, the template comment for that block, and the SKILL.md phase that runs the rule. An edit that changes a rule's home while one of those still states the old rule has traded one defect for another. If a proposed change touches more than its canonical home plus at most one checklist and one pointer, it is being sprayed — the extra copies are what drift out of sync later.
 
 ## Presenting proposals
 

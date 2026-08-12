@@ -49,7 +49,7 @@ The extension being unavailable is handled before research starts (SKILL.md → 
 ### Maps category searches
 
 - **Healthy staples:** `healthy bowls <city>`, `salad <city>`, `poke <city>`. **Maps is the primary finder for this category, not a verification step** — it costs no search budget, and the archetype it surfaces is a local fast-casual chain with several locations and strong ratings. Web-searching this category returns recipe listicles and aggregator noise; never delegate it to a search subagent.
-- **Maps is the backstop for a thin, dry, or depleted result** — a format-map format Reddit came back thin on, a mandatory dedicated query that returned nothing, a group left short when verification removes an entry, or a category that produced exactly one candidate (search it for same-kind neighbours before settling on the one). A dry query is a reason to run the Maps search, not a finding to record.
+- **Maps is the backstop for a thin, dry, or depleted result** — a format-map format Reddit came back thin on, a mandatory dedicated query that returned nothing, a group left short when verification removes an entry, or a category that produced exactly one candidate (search it for same-kind neighbours before settling on the one). A dry query is a reason to run the Maps search, not a stopping point — record the dry run (the sections' coverage checks need it) and run the backstop.
 
 ## Web-search subagents (run in parallel with the browser pass)
 

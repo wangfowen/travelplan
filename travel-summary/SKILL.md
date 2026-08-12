@@ -51,7 +51,7 @@ Commit separately (`Audit <City> trip; <what was applied, if anything>`) and pus
 
 ## Done when
 
-- Trip guide pushed; live URL given.
+- Trip guide pushed with guide.md's checklist run on the finished page; live URL given.
 - `feedback.md` written in the base version's run directory: resolution map, every classification with evidence, every proposal with its outcome.
 - `runs/proposals.md` updated — new sightings added, actioned entries moved per its section rules.
 - `runs/calibration.md` carries this trip's source lines.

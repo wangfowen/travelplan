@@ -12,7 +12,7 @@ The dossier must contain results (or a confirmed dry run) for every one of these
 - 50 Best including the Discovery city guide.
 - World of Mouth.
 - Named local press / Culinary Backstreets.
-- The Maps category search for Healthy staples (browser, not web search — re-run on Maps if it returned one weak candidate).
+- The Maps category search for Healthy staples (browser, not web search; one weak candidate triggers the Maps backstop — research.md → Maps category searches).
 
 **Beli** appears only if the traveler pasted their lists (rules in research.md).
 

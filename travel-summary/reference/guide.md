@@ -31,3 +31,12 @@ Edited only where the traveler said something about it:
 Judge inclusion on the traveler's say-so alone — don't re-apply travel-brief's selection bars to what they named, and don't keep a highly-rated entry because it looks stronger on paper than what they chose. The one judgment call on the page is the mediocre keep-or-cut above. The "three to five per group" target does not apply to a page built from first-hand evidence: if they named two restaurants, Food has two restaurants.
 
 If their feedback includes a concrete tip about an entry that stays ("the thing to order is X", "go at opening"), fold it into that entry's description in normal entry voice.
+
+## Checklist — run on the finished page before publishing
+
+1. Every entry in Things to do, Events and Food traces to a register or a trip find; nothing the traveler didn't name survived in those sections.
+2. Tags are exact: `trip find` only where they went; `didn't make it` alone where they didn't; mediocre keeps carry no tag; a carried entry keeps the tags and rating of the version it resolved to.
+3. No Top picks group; every group sorts liked-then-want-to-go-then-mediocre, rating-descending inside each tier, unrated last; empty groups and sections are gone heading-and-all, nav links included.
+4. Book ahead was re-harvested: every row books something that still has an entry on the page.
+5. Read the page as the friend it's for: no trip voice anywhere — no "we", "this trip", "was just OK" — in entries, Book ahead cells, or anywhere else; the two tags are the only marks of the trip.
+6. Local dishes is whole and still opens Food; Practical and the country section match the base version unless the traveler spoke to them.
