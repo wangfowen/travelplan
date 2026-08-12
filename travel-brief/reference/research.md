@@ -43,13 +43,13 @@ The extension being unavailable is handled before research starts (SKILL.md → 
 
 - **Events:** `what's happening in <city> <month> <year>`.
 - **Stay / living here:** `where to stay in <city>` and expat living-here threads — these double as the secondary source for Healthy staples.
-- **Things to do:** the things-to-do and itinerary threads on the city and country subreddits, plus two dedicated queries the general threads miss: `immersive art <city>` and `best view of <city>`. **Suggestions create entries** — Reddit's generic tourist-trap and locals-vs-tourists discourse stays out, but a specific warning about a candidate rides on that candidate's entry as negative evidence (dossier rules above).
+- **Things to do:** the things-to-do and itinerary threads on the city and country subreddits, plus three dedicated queries the general threads miss: `immersive art <city>`, `best view of <city>`, and `bike tour <city>` (the Tours group has no other feeder — without it the group empties by default in every city). **Suggestions create entries** — Reddit's generic tourist-trap and locals-vs-tourists discourse stays out, but a specific warning about a candidate rides on that candidate's entry as negative evidence (dossier rules above).
 - **Food:** the best-of queries plus the everyday ones (`where do locals actually eat in <city>`, `<city> cheap local food`); one query per native format from the format map; `what dishes must I try in <city>`; the Asian queries — **one query per cuisine** (`best ramen <city>`, `best sichuan <city>`, `best pho <city>`…): a combined `ramen sushi chinese thai` query matches nothing on Reddit's search and returns zero results, and a zero-result query means re-run it split, not move on — plus the diaspora framing (`where do the chinese/korean expats eat in <city>` — the query that finds the real one); the café queries (`best bakery <city>`, `best sourdough <city>`, `best specialty coffee <city>`); the bar queries (`best cocktail bar <city>`, `craft beer <city>`); and the local-language variants from the slot above.
 
 ### Maps category searches
 
 - **Healthy staples:** `healthy bowls <city>`, `salad <city>`, `poke <city>`. **Maps is the primary finder for this category, not a verification step** — it costs no search budget, and the archetype it surfaces is a local fast-casual chain with several locations and strong ratings. Web-searching this category returns recipe listicles and aggregator noise; never delegate it to a search subagent.
-- Any format-map format that Reddit came back thin on gets a Maps category search too.
+- **Maps is the backstop for a thin, dry, or depleted result** — a format-map format Reddit came back thin on, a mandatory dedicated query that returned nothing, a group left short when verification removes an entry, or a category that produced exactly one candidate (search it for same-kind neighbours before settling on the one). A dry query is a reason to run the Maps search, not a finding to record.
 
 ## Web-search subagents (run in parallel with the browser pass)
 
