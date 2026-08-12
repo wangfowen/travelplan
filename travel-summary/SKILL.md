@@ -1,6 +1,6 @@
 ---
 name: travel-summary
-description: After a trip, turn the city's travel brief plus the traveler's account of what they actually did, liked, and disliked into a shareable traveler-tested guide published on the GitHub Pages site — then audit the original research run's dossier and decisions to propose generalizable improvements to the travel-brief skill. Use when the user is back from a trip, shares likes/dislikes about places from a brief, or asks for a friend-ready version of a guide.
+description: After a trip, turn the city's travel brief plus the traveler's account of what they actually did, liked, and disliked into a shareable guide of the places they personally recommend, published on the GitHub Pages site — then audit the original research run's dossier and decisions to propose generalizable improvements to the travel-brief skill. Use when the user is back from a trip, shares likes/dislikes about places from a brief, or asks for a friend-ready version of a guide.
 ---
 
 # Travel Summary
@@ -12,28 +12,31 @@ Runs in Claude Code, in the publishing repo (`~/.claude/skills/travel-summary` i
 ## Input
 
 - **The city**, and which brief version if they name one — default to the latest `"type": "brief"` entry for that city in `docs/manifest.json`.
-- **The traveler's account**, freeform: what they did, loved, didn't like, skipped, and found on their own. Ask only if it's missing entirely; don't interrogate for completeness — work with what's given and leave the rest untouched.
+- **The traveler's account**, freeform: what they did, loved, didn't like, skipped, and found on their own. Ask only if it's missing entirely; don't interrogate for completeness — work with what's given. What they name is what the guide is built from, so a short account makes a short guide, and that is the correct outcome, not a gap to fill.
 
 ## Part 1 — the trip guide
 
-The trip guide **is the brief, corrected by the trip** — not a new document. Start from the source brief's HTML in `docs/briefs/<file>` and keep everything identical: template, header, section order, source tags, rating badges, styling. A friend reading it sees a normal travel brief; nothing on the page announces that it was revised, and no trip commentary appears anywhere.
+The trip guide is **what the traveler recommends to others**, wearing the brief's clothes. Start from the source brief's HTML in `docs/briefs/<file>` and keep the presentation identical: template, header, section order, entry style, source tags, rating badges, styling. A friend reading it sees a normal travel brief; nothing on the page announces that it was revised, and no trip commentary appears anywhere. The brief itself stays published and reachable under the index's older-versions toggle — that is where recommendations sourced from research alone live on, so the guide never has to carry them.
 
-Exactly two content operations:
+**Things to do, Events and Food carry only what the traveler vouched for.** In those three sections, every entry is either something they named liking or something they found themselves:
 
-- **Remove what the traveler disliked or says to drop.** Removal is silent and total — no "skip" lines, no explanations, no strikethrough; the no-trace rule applies exactly as in travel-brief, including deleting a section's heading if the removals empty it.
-- **Add what they liked that the brief lacked.** Their discoveries become full entries in the normal entry style (`../travel-brief/reference/shared.md` → How to write an entry: concrete fact first, the dish to order, Maps link; rating badge only if verified in the browser, omitted otherwise), placed in the section where they belong, tagged `trip find` in the same tag style the page already uses.
+- **Keep what they named.** Entries the brief already had and they confirmed stay exactly as written.
+- **Add what they found.** Their own discoveries become full entries in the normal entry style (`../travel-brief/reference/shared.md` → How to write an entry: concrete fact first, the dish to order, Maps link; rating badge only if verified in the browser, omitted otherwise), placed in the group where they belong, tagged `trip find` in the same tag style the page already uses.
+- **Delete everything else** — what they disliked and what they simply never mentioned alike. Removal is silent and total: no "skip" lines, no explanations, no strikethrough, and the no-trace rule applies exactly as in travel-brief. Being unmentioned is not a verdict against an entry; it is only an absence of first-hand evidence, and the brief keeps it.
+- **A section left with nothing is deleted** — heading, groups, and its link in the header nav. Food is the one section that survives an empty venue list, because Local dishes to try stays (below).
 
-**The traveler's own verdict outranks the research — it rebuilds Top picks.** What they named is first-hand evidence; what the brief guessed is not. So after a trip, **Top picks becomes exactly what the traveler named**, in every section that has a Top picks group:
+**A trip guide has no Top picks group.** Every entry on the page is a top pick now, so the heading distinguishes nothing: drop it from Things to do and Food, and file each surviving entry in the category group it belongs to by that group's own definition — the group it would have sat in had the brief never promoted it (`../travel-brief/reference/sections/things-to-do.md` and `food.md` → Structure). Each entry still appears exactly once. Groups sort rating-descending per `shared.md`, with no traveler-first ordering layered on top: everything left is traveler-chosen. A group nothing lands in is gone heading-and-all. Day trips is unaffected — it was never a Top picks feeder.
 
-- **Everything they named is promoted into Top picks** — their discoveries and the existing entries they confirmed alike. Promotion *moves* an entry; it never appears in both Top picks and its category group.
-- **Everything they didn't name is bumped out of Top picks**, down into the category group it belongs to — Creative and interesting, Everyday institutions, Museums, and so on. Being unmentioned is not a demerit and never a reason to delete: only an actual dislike removes an entry. These keep their tags and descriptions untouched; they just stop being top picks.
-- Where a named item doesn't belong in Top picks at all (a day trip, which is never promoted), it goes to the top of its own group instead, above every unmentioned entry there.
-- This overrides `shared.md`'s rating-descending sort: traveler-named entries first, rating-descending among themselves, then the rest rating-descending.
-- A group emptied by promotion loses its heading under the no-trace rule; a group that gains bumped-down entries keeps them in rating order below any named ones.
+**Every other section stays as researched**, edited only where the traveler said something about it:
 
-Judge the traveler's Top picks on their say-so alone — don't re-apply travel-brief's selection bars to them, and don't keep a highly-rated unmentioned entry up top because it looks stronger on paper. If they named only two things in a section, Top picks has two entries; the "three to five" target does not apply to a list built from first-hand evidence.
+- **Where to stay** — keep the researched neighborhoods; drop one they disliked, add one they would recommend, fold in a concrete thing they learned about one that stays. Silence leaves the section untouched.
+- **Book ahead** — same rule: keep the researched list, drop what they disliked, add what they wish they had booked. Every line must stand on its own, so a line whose venue no longer has an entry on the page carries its own name, link and lead time rather than pointing at a deleted one.
+- **Local dishes to try** — the city's dish canon, not a recommendation list. It stays whole and keeps opening Food. A `Where:` pointer may name a venue that no longer has an entry; that is fine — it is a place to eat the dish, not an endorsement of the venue.
+- **Practical and the country section** stay as they are.
 
-Everything the traveler didn't mention stays byte-for-byte as it was. If their feedback includes a concrete tip about an entry that stays ("the thing to order is X", "go at opening"), fold it into that entry's description in normal entry voice — never as meta commentary; "we loved this" does not appear on the page.
+Judge inclusion on the traveler's say-so alone — don't re-apply travel-brief's selection bars to what they named, and don't keep a highly-rated entry because it looks stronger on paper than what they chose. The "three to five per group" target does not apply to a page built from first-hand evidence: if they named two restaurants, Food has two restaurants.
+
+If their feedback includes a concrete tip about an entry that stays ("the thing to order is X", "go at opening"), fold it into that entry's description in normal entry voice — never as meta commentary; "we loved this" does not appear on the page.
 
 Publish, same mechanics as travel-brief: write `docs/summaries/<city-slug>-<YYYY-MM-DD>.html`, append `{"type": "summary", "city": "<City>", "file": "summaries/<filename>", "trip": "<trip dates>", "published": "<YYYY-MM-DD>"}` to `docs/manifest.json`, commit (`Add <City> trip guide`), push, and give the live URL. The index automatically makes the newest trip guide the city's main link, demoting the brief to the older-versions toggle — no index edit needed. The page is public, built for sending to friends.
 
@@ -50,6 +53,8 @@ Classify every piece of feedback by where the pipeline went right or wrong:
 5. **Taste signal** — feedback about the traveler, not the research ("too many museums", "we never used transit").
 
 Anything that fits none of these is noise — a kitchen's off night, weather, luck. Log it, change nothing.
+
+**An entry cut from the guide for silence is not feedback.** Part 1 drops everything the traveler didn't name, but only an actual dislike is a bad recommendation — the rest went unvisited, unnoticed, or unmentioned, which says nothing about the research. Never classify an unmentioned entry as a defect, and never count the guide's shrinkage as evidence about the brief.
 
 ## The generalization gate
 
