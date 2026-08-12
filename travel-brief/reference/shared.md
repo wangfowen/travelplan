@@ -32,9 +32,9 @@ Test: if the sentence would be true of a mediocre place in the same category, it
 
 Every named place gets a Google Maps link — `https://www.google.com/maps/search/?api=1&query=<url-encoded name + city>` — and its Google rating **with the review count**: `4.6 ★ (2,341)`. The count is not optional — 4.9 from 12 reviews and from 12,000 are different facts; write `(count unknown)` when only the rating is confirmable.
 
-Ratings are verified in phase 5, after drafting, in the browser (mechanics in SKILL.md → Verify) — drafts carry candidates without ratings, and drafters never chase them.
+Ratings are verified after drafting, in the browser (mechanics in SKILL.md → Verify) — a drafter never chases one. Leave the rating badge out of the fragment entirely rather than writing a placeholder; it is filled in once the section lands.
 
-Never invent a rating — omit it instead. **Google only**: no TripAdvisor/Yelp/aggregator substitutes; write "no rating found" and move on. Approximate counts (`~2.3k`) are fine. **Sort every list by rating, descending**; unrated entries go last in their group.
+Never invent a rating — omit it instead. **Google only**: no TripAdvisor/Yelp/aggregator substitutes; write "no rating found" and move on. Approximate counts (`~2.3k`) are fine. **Sort every list by rating, descending**; unrated entries go last in their group — done when the ratings are written in, not in the draft, which has none to sort by.
 
 ## Source tags
 

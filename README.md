@@ -26,11 +26,13 @@ Every entry in Things to do, Events and Food carries a source tag (`reddit`, `mi
 ## How a brief is researched
 
 1. **Plan** — fill in the city-specific query slots (food formats, flagship venues, local press, local-language queries).
-2. **Gather, once** — every source is queried a single time into one shared dossier of structured one-line entries. Gathering doesn't judge quality — criticism attaches to entries as evidence rather than deleting them — but it does compress: raw thread text never enters.
-3. **Draft per section** — each section is written from the dossier using only its own selection bars, with no other section's rules in context. Cut candidates are recorded with their reasons.
+2. **Gather, once** — every source is queried a single time into one shared dossier of structured one-line entries, one file per track, each written by the subagent that researched it. Gathering doesn't judge quality — criticism attaches to entries as evidence rather than deleting them — but it does compress: raw thread text never enters.
+3. **Draft per section** — one subagent per section, each writing its section from the dossier using only its own selection bars, with no other section's rules in context, straight out as an HTML fragment. Cut candidates are recorded with their reasons.
 4. **Cross-section pass** — dedupe so each place appears once brief-wide; harvest Book ahead from the other drafts.
-5. **Verify** — ratings, closures, and event dates checked only for what survived drafting.
-6. **Publish** — a new page under `docs/briefs/`, a manifest entry, a run record under `runs/`, commit, push.
+5. **Verify** — ratings and closures checked in the browser, only for what survived drafting (event dates and fares are confirmed by their own drafter).
+6. **Publish** — the fragments concatenated into a new page under `docs/briefs/`, a manifest entry, a run record under `runs/`, commit, push.
+
+Steps 3–5 pipeline rather than running as phases: a section starts drafting as soon as the tracks it depends on are written, and its ratings are looked up as soon as it lands. Only Things to do and Food wait on the full browser pass.
 
 ## Requirements
 

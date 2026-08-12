@@ -14,7 +14,7 @@ Three one-liners, then Getting around as a real subsection:
 - **Rides.** Which apps genuinely operate, **by name** (Uber, Bolt, Grab, Didi, inDrive, local equivalents) — never assume Uber. Street-hail and meter norms. Typical short cross-town and airport-to-center fares (local + USD), so they compare against the transit fare. The standard airport-taxi overcharge if the city has one.
 - **Verdict.** Rely on transit, default to rides, or walk + rides for the edges — with the reason, comparing the costs above. Walkability of the center (end-to-end time) and bike share by name belong here, as part of the answer.
 
-Fares revise annually — they come from the city dossier track's fare searches, and anything still unconfirmed at the verify phase gets searched then, not guessed. Never invent a fare or ride estimate; write "could not confirm" and keep the rest. Attach the year to anything confirmed.
+Fares revise annually — they come from the city dossier track's fare searches, and anything still unconfirmed gets one search of your own while drafting, not a guess. A fare is a web fetch rather than a Maps lookup, so confirming it here is right: it never needs to queue behind the browser pass. Never invent a fare or ride estimate; write "could not confirm" and keep the rest. Attach the year to anything confirmed.
 
 ## Checklist
 
