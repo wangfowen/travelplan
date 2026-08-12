@@ -24,7 +24,7 @@ In those three sections, every entry traces to one of the three surviving regist
 Edited only where the traveler said something about it:
 
 - **Where to stay** — keep the researched neighborhoods; drop one they disliked, add one they would recommend, fold in a concrete thing they learned about one that stays. Silence leaves the section untouched.
-- **Book ahead** — same rule: keep the researched list, drop what they disliked, add what they wish they had booked. Every line must stand on its own, so a line whose venue no longer has an entry on the page carries its own name, link and lead time rather than pointing at a deleted one.
+- **Book ahead** — **re-derived from the finished page, never carried over.** Book ahead is a harvest of the sections around it (that is how travel-brief builds it), so re-run the harvest after the other sections settle: a row lives only if what it books still has an entry on the guide, and a venue cut in any register — disliked, mediocre, unmentioned — takes its booking row with it, or the page tells a friend to book something it no longer recommends. Add a row for anything the traveler wishes they had booked; its venue is on the page anyway, since wishing is the want-to-go register. A hard-won booking lesson enters the row as researched fact ("same-week tables are rarely available"), in the same voice as every other cell.
 - **Local dishes to try** — the city's dish canon, not a recommendation list. It stays whole and keeps opening Food. A `Where:` pointer may name a venue that no longer has an entry; that is fine — it is a place to eat the dish, not an endorsement of the venue.
 - **Practical and the country section** stay as they are.
 
