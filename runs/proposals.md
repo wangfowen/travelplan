@@ -1,6 +1,6 @@
 # Proposed changes — running log
 
-Open, actionable candidates only. Each entry is a generally-phrased candidate rule with its sightings; the full audit detail behind each sighting lives in that run's `feedback.md` (`runs/<city-slug>-<date>/`). A candidate with sightings from two or more trips is ripe to propose under travel-summary's recurrence test. **Remove an entry the moment it is actioned** — applied or declined by the user — the per-run files keep the permanent record.
+The audit's working queue. Section rules and outcome vocabulary live in `travel-summary/reference/audit.md` → Recording the audit; the full detail behind each sighting lives in that run's `feedback.md` (`runs/<city-slug>-<date>/`).
 
 ## Awaiting recurrence
 
