@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Warsaw — Travel Brief</title>
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --text: #1c1b19;
+    --muted: #6b6863;
+    --line: #e5e1db;
+    --accent: #9a5b34;
+    --flag-bg: #fdf3ec;
+    --star: #b5892f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1917;
+      --surface: #232220;
+      --text: #ece9e4;
+      --muted: #a09b93;
+      --line: #35332f;
+      --accent: #d99b6c;
+      --flag-bg: #2c241d;
+      --star: #d8b25e;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem 1.25rem 4rem;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
+  }
+  main { max-width: 46rem; margin: 0 auto; }
+
+  header { border-bottom: 2px solid var(--text); padding-bottom: 1rem; margin-bottom: 2.5rem; }
+  h1 { font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1.1; margin: 0 0 .4rem; letter-spacing: -.02em; }
+  .meta { color: var(--muted); font-size: .85rem; }
+
+  /* Anchor nav — one tap to each section on a phone */
+  .toc { margin-top: .75rem; font-size: .8rem; line-height: 1.9; }
+  .toc a { color: var(--muted); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: .15rem .6rem; margin: 0 .25rem .25rem 0; display: inline-block; white-space: nowrap; }
+  .toc a:hover { color: var(--accent); border-color: var(--accent); }
+  h2 { scroll-margin-top: 1rem; }
+
+  h2 {
+    font-size: 1.3rem; margin: 3rem 0 .25rem; letter-spacing: -.01em;
+    padding-bottom: .4rem; border-bottom: 1px solid var(--line);
+  }
+  h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 1.75rem 0 .5rem; }
+  p { margin: .6rem 0; }
+
+  ul { padding-left: 1.1rem; margin: .5rem 0; }
+  li { margin: .75rem 0; }
+  li b { font-weight: 650; }
+
+  a { color: inherit; text-underline-offset: 2px; text-decoration-color: var(--line); }
+  a:hover { text-decoration-color: var(--accent); }
+
+  /* Rating badge — sits inline after a place name. Omit entirely if unconfirmed. */
+  .rating {
+    display: inline-block; white-space: nowrap;
+    font-size: .78rem; font-weight: 600; color: var(--star);
+    margin-left: .35rem;
+  }
+  .rating .count { color: var(--muted); font-weight: 400; }
+
+  /* Date badge — events only. Confirmed dates for the travel year, never a guess. */
+  .when {
+    display: inline-block; white-space: nowrap;
+    font-size: .78rem; font-weight: 650; color: var(--accent);
+    margin-left: .35rem;
+  }
+
+  /* Source tag — required on every Things-to-do, Food and Events entry.
+     Stack several when a place shows up in more than one source. */
+  .src {
+    display: inline-block; font-size: .7rem; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--muted); border: 1px solid var(--line); border-radius: 4px;
+    padding: .05rem .3rem; margin-left: .35rem; vertical-align: 1px;
+  }
+  .src a { text-decoration: none; }
+
+  .note { color: var(--muted); font-size: .85rem; font-style: italic; }
+  .unconfirmed { color: var(--accent); font-weight: 600; }
+
+  /* Callout — use to flag a source category that was unreachable this run */
+  .callout {
+    background: var(--flag-bg); border: 1px solid var(--line); border-radius: 8px;
+    padding: .7rem 1rem; margin: 1rem 0; font-size: .88rem; color: var(--muted);
+  }
+
+  /* Book-ahead table — must stay scrollable on narrow screens */
+  .table-wrap { overflow-x: auto; margin: 1rem 0; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: .92rem; }
+  th, td { text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 600; }
+  td.lead { white-space: nowrap; font-weight: 650; }
+  tr.urgent td.lead { color: var(--accent); }
+
+  .phrases { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  .phrases td { padding: .45rem .6rem .45rem 0; border-bottom: 1px solid var(--line); }
+  .phrases .native { font-weight: 600; }
+  .phrases .phon { color: var(--muted); font-style: italic; white-space: nowrap; }
+
+  /* Verdict — the transit-vs-rides call at the end of Getting around */
+  .verdict {
+    border-left: 3px solid var(--accent); background: var(--surface);
+    border-radius: 0 8px 8px 0; padding: .7rem 1rem; margin: 1rem 0; font-size: .92rem;
+  }
+  .verdict b { color: var(--accent); }
+
+  .facts { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: .35rem 1rem; margin: 1rem 0; }
+  .facts dl { display: grid; grid-template-columns: max-content 1fr; gap: .5rem 1.25rem; margin: .8rem 0; }
+  .facts dt { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); padding-top: .15rem; }
+  .facts dd { margin: 0; }
+
+  @media (max-width: 30rem) {
+    .facts dl { grid-template-columns: 1fr; gap: .15rem; }
+    .facts dd { margin-bottom: .7rem; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <header>
+    <h1>Warsaw</h1>
+    <div class="meta">Poland · 13–16 August 2026 · researched 14 August 2026</div>
+    <div class="meta">Typical mid-August: 24°/14°C highs/lows · scattered afternoon thunderstorms, otherwise dry · light until ~20:30 <span class="note">(climate normals, from own knowledge)</span></div>
+    <nav class="toc">
+      <a href="#do">Things to do</a><a href="#food">Food</a><a href="#events">Events</a><a href="#stay">Stay</a><a href="#book">Book ahead</a><a href="#practical">Practical</a><a href="#country">Poland</a>
+    </nav>
+  </header>
+  <!-- ── 1. THINGS TO DO ── -->
+  <h2 id="do">Things to do</h2>
+
+  <h3>Top picks</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Muzeum+Powstania+Warszawskiego+Warsaw">Warsaw Uprising Museum (Muzeum Powstania Warszawskiego)</a></b>
+      <span class="rating">4.7 ★ <span class="count">(39.3k)</span></span>
+      <span class="src"><a href="https://www.rednote.com/explore/6a2cad850000000007029b16?xsec_token=ABWvLjKwb-T4VZMQGP_sky083vxx22_y4KXaaRR4qDr7E=&amp;xsec_source=pc_search">小红书</a></span>
+      <span class="src">my pick</span>
+      <br>The 63 days of the 1944 city-wide rising, built as a route you walk: a full-length replica of the sewer the insurgents moved through, a full-size mock-up of a B-24 Liberator, and a 3D film that flies over the flattened city.
+      <span class="note">35 PLN, plus 10 PLN for the audio guide — reviewers treat it as necessary to follow the exhibit numbering. Weekends are crowded, and hours for Sat 15 Aug are not confirmed.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Centrum+Nauki+Kopernik+Warsaw">Copernicus Science Centre (Centrum Nauki Kopernik)</a></b>
+      <span class="rating">4.6 ★ <span class="count">(58.2k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/warsaw/comments/1okpoc9/">reddit</a></span>
+      <span class="src"><a href="https://www.rednote.com/explore/6a2cad850000000007029b16?xsec_token=ABWvLjKwb-T4VZMQGP_sky083vxx22_y4KXaaRR4qDr7E=&amp;xsec_source=pc_search">小红书</a></span>
+      <br>Galleries of working exhibits on the Powiśle riverbank that you pull, build and run yourself rather than read about; the attached Niebo Kopernika planetarium has reopened after renovation.
+      <span class="note">50 PLN, and half a day is realistic. Loud, and full of children. The planetarium is a separate ticket (4.4 ★, 1.6k) and runs to 9pm.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Neon+Museum+Warsaw">Neon Museum (Muzeum Neonów)</a></b>
+      <span class="rating">4.4 ★ <span class="count">(2.1k)</span></span>
+      <span class="src"><a href="https://www.atlasobscura.com/places/the-neon-museum-warsaw-poland">atlas obscura</a></span>
+      <br>Cinema, bar and shop neons rescued from communist-era Poland, restored and lit in a dark hall — now on the 6th floor of the Palace of Culture and Science, pl. Defilad 1, having moved from Soho Factory in Praga. Phone cameras allowed, DSLRs not.
+      <span class="note">25 PLN.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Fotoplastikon+Warszawski+Warsaw">Fotoplastikon Warszawski</a></b>
+      <span class="src"><a href="https://www.reddit.com/r/warsaw/comments/1okpoc9/">reddit</a></span>
+      <span class="src">my pick</span>
+      <br>A stereoscope drum off al. Jerozolimskie, in operation since 1905: you take a seat at one of the eyepiece stations and a carousel of glass stereo pairs turns past, most of them Warsaw before 1939.
+    </li>
+  </ul>
+
+  <h3>Unique to Warsaw</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Fabryka+Czekolady+E.+Wedel+Warsaw">Fabryka Czekolady E. Wedel</a></b>
+      <span class="src">my pick</span>
+      <br>Workshop and interactive museum at the Wedel plant in Praga, where the firm has made chocolate since 1851 — the workshop sessions have you tempering and moulding your own bar.
+      <span class="note">Sessions are ticketed by time slot — see Book ahead.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Keret+House+Warsaw">Keret House (Dom Kereta)</a></b>
+      <span class="src"><a href="https://www.atlasobscura.com/places/keret-house">atlas obscura</a></span>
+      <br>A habitable steel insert roughly four feet across at its widest, slotted into the gap between two buildings at Żelazna/Chłodna in Wola — the narrowest house in the world. Seen from the passage; the interior runs as a writers' residency, not a walk-in.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Kladka+Pamieci+Chlodna+Warsaw">Footbridge of Memory (Kładka Pamięci), ul. Chłodna</a></b>
+      <span class="src"><a href="https://www.atlasobscura.com/places/footbridge-of-memory-warsaw-poland">atlas obscura</a></span>
+      <br>A 2011 monument that after dark draws in light the outline of the wooden bridge which carried ghetto residents over Chłodna — a street kept outside the ghetto — between its Large and Small halves. Two minutes from Keret House.
+    </li>
+  </ul>
+
+  <h3>Views and nature</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=University+of+Warsaw+Library+Roof+Garden">University of Warsaw Library rooftop garden</a></b>
+      <span class="src"><a href="https://www.reddit.com/r/warsaw/comments/1okpoc9/">reddit</a></span>
+      <br>About a hectare of garden laid over the library roof in Powiśle — pergolas, streams and metal walkways, with the Vistula on one side and the Old Town escarpment on the other. Free.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Bulwary+Wislane+Warsaw">Vistula boulevards and the Praga bank</a></b>
+      <span class="src"><a href="https://www.reddit.com/r/warsaw/comments/t6vj75/">reddit</a></span>
+      <span class="src"><a href="https://www.rednote.com/explore/6a2cad850000000007029b16?xsec_token=ABWvLjKwb-T4VZMQGP_sky083vxx22_y4KXaaRR4qDr7E=&amp;xsec_source=pc_search">小红书</a></span>
+      <span class="src"><a href="https://www.inyourpocket.com/warsaw/powisle">in your pocket</a></span>
+      <br>Two opposite riverfronts within sight of each other: the left bank is paved boulevard with bars floating on barges and containers, the right (Praga) bank is undeveloped sand and scrub where people light fires and drink on the steps.
+      <span class="note">The riverfront road and the two central footbridges shut around the 15 Aug parade — hours in Practical.</span>
+    </li>
+  </ul>
+
+  <h3>Museums and galleries</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=POLIN+Museum+Warsaw">POLIN Museum of the History of Polish Jews</a></b>
+      <span class="rating">4.6 ★ <span class="count">(21.1k)</span></span>
+      <span class="src"><a href="https://www.rednote.com/explore/6920e509000000001e0221c5?xsec_token=ABUm-48CU32YqNwh_UF3gMJteQgLop0DEhSZ3UaaqGm90=&amp;xsec_source=pc_search">小红书</a></span>
+      <span class="src">my pick</span>
+      <br>A thousand years of Jewish life in Poland staged as eight walk-through galleries, built around a full-scale rebuild — period tools, hand-mixed paint — of the ceiling and bimah of the 17th-century wooden synagogue at Gwoździec. It stands on ghetto ground, facing the monument to the 1943 ghetto uprising, a separate event from the 1944 rising.
+      <span class="note">30 PLN; reviewers give the core exhibition 2.5–3 hours. Holiday hours for Sat 15 Aug are not confirmed — the museum's own calendar lists an English guided tour of the core exhibition that day.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Zamek+Krolewski+Warsaw+Canaletto+Room">Canaletto Room, Royal Castle</a></b>
+      <span class="src"><a href="https://www.atlasobscura.com/places/canaletto-room-royal-palace">atlas obscura</a></span>
+      <span class="src"><a href="https://www.rednote.com/explore/6a2cad850000000007029b16?xsec_token=ABWvLjKwb-T4VZMQGP_sky083vxx22_y4KXaaRR4qDr7E=&amp;xsec_source=pc_search">小红书</a></span>
+      <br>Twenty-odd Bernardo Bellotto views of 1770s Warsaw, painted to camera-obscura accuracy and used after 1945 as the working drawings for rebuilding the Old Town street by street — the castle holding them is itself a 1971–84 reconstruction.
+    </li>
+  </ul>
+
+  <!-- Heading note lists the formats the operator actually runs. -->
+  <h3>Tours <span class="note">— bike, locally run</span></h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Station+Warsaw+Tours+Warsaw">Station Warsaw Tours — Wow Warsaw Bike Tour</a></b>
+      <span class="rating">4.9 ★ <span class="count">(663)</span></span>
+      <span class="src">maps</span>
+      <br>Three hours by bike, 139 PLN, covering the war years through the Soviet decades to 1989 — riding between the sites instead of walking a few of them. Guide Marcin is named in review after review. Book at <a href="https://stationwarsaw.com">stationwarsaw.com</a>; they start from Koźla 16/18.
+    </li>
+  </ul>
+  <!-- ── 2. FOOD — section order and all bars in sections/food.md ── -->
+  <h2 id="food">Food</h2>
+
+  <!-- SOURCE-AVAILABILITY CALLOUT FOR ASSEMBLY (shared.md → Be short: these are
+       written at assembly, not in drafts). Drop this markup in below the Food
+       heading, verbatim:
+
+  <div class="callout">
+    <b>Eater does not cover Warsaw</b> — no city map, no bureau, no guide; it was
+    not thin, it does not exist. <b>Culinary Backstreets</b> has no Polish city
+    either (verified against its 29-city index). The everyday-institution layer
+    here comes from Culture.pl, Warsaw Insider, Radio ESKA and the Polish-language
+    Reddit thread instead. Warsaw also has no entry on the World's 50 Best
+    Restaurants or Europe's 50 Best Bars 2026.
+  </div>
+
+       Two further gaps worth a line if the brief wants one: Gazeta Wyborcza is
+       unreachable to these tools, and Warsaw Insider's current (2024–2026)
+       Best of Warsaw winner lists did not load.
+  -->
+
+  <!-- Venues with their own entry below are only referenced here. -->
+  <h3>Local dishes to try</h3>
+  <ul>
+    <li>
+      <b>Pyzy.</b> Warsaw's own potato dumplings — grated raw potato bound with cooked, boiled and served in a glass jar with fried onion and skwarki (pork crackling).
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=Pyzy+Flaki+Gorace+Warsaw">Pyzy, Flaki Gorące</a> <span class="rating">4.7 ★ <span class="count">(5.6k)</span></span> (below).
+    </li>
+    <li>
+      <b>Flaki po warszawsku.</b> Mazovian tripe soup, cut in strips and simmered long, traditionally finished with beef-suet or veal meatballs and grated parmesan and breadcrumbs at the table.
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=Gosciniec+Polskie+Pierogi+Warsaw">GOŚCINIEC</a> <span class="rating">4.7 ★ <span class="count">(24k)</span></span> and <a href="https://www.google.com/maps/search/?api=1&amp;query=Pyzy+Flaki+Gorace+Warsaw">Pyzy, Flaki Gorące</a> <span class="rating">4.7 ★ <span class="count">(5.6k)</span></span> (both below).
+    </li>
+    <li>
+      <b>Pierogi.</b> Half-moon dumplings, boiled then usually pan-finished; ruskie (curd cheese and potato) is the standard, and many Warsaw kitchens renamed it <em>ukraińskie</em> in 2022. Meat, mushroom-and-cabbage and sweet fruit fillings run alongside.
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=Pierogarnia+U+Ludmily+Warsaw">Pierogarnia – U Ludmily</a> <span class="rating">4.9 ★ <span class="count">(181)</span></span> — Solec 81B, under the Poniatowski Bridge, everything hand-pinched and the meat pierogi the one to order — and the milk bars below.
+    </li>
+    <li>
+      <b>Kotlet schabowy with żurek.</b> The canteen plate: pounded breaded pork cutlet with potatoes and surówka (raw shredded salad), preceded by żurek — sour rye soup with sausage and egg — and washed down with kompot.
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=Bar+Okecie+Warsaw">Bar Okęcie</a> <span class="rating">4.8 ★ <span class="count">(1.9k)</span></span>, <a href="https://www.google.com/maps/search/?api=1&amp;query=Bar+Mleczny+Lindleya+14+Warsaw">Bar Mleczny Lindleya 14</a> <span class="rating">4.7 ★ <span class="count">(4.7k)</span></span> (both below).
+    </li>
+    <li>
+      <b>Jagodzianka.</b> Yeast bun stuffed with wild bilberries under a kruszonka crumb. Strictly seasonal — the wild bilberry window runs roughly late June to late August, so mid-August is still in it. Price band this year runs about 7.50 zł at a chain bakery to 38 zł at a patisserie <span class="note">(Weranda Weekend, 2026)</span>.
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=BAKEN+Krochmalna+61+Warsaw">BAKEN</a> <span class="rating">4.3 ★ <span class="count">(1.5k)</span></span>, <a href="https://www.google.com/maps/search/?api=1&amp;query=Piekarnia+Cala+w+Mace+Zoliborz+Warsaw">Cała w Mące</a> (both below).
+    </li>
+  </ul>
+
+  <h3>Top picks</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Epoka+Ossolinskich+Warsaw">Epoka</a></b>
+      <span class="rating">4.8 ★ <span class="count">(430)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/warsaw/comments/t6vj75/">reddit</a></span>
+      <span class="src">michelin selected 2026</span>
+      <br>Long tasting menu drawn from historical Polish cookbook recipes — old dishes rebuilt rather than a modern menu with Polish garnishes. Ossolińskich, in the Europejski. 200 zł+.
+      <span class="note">The historical-cookbook framing is from own knowledge, not from the research sources — check the current menu when booking.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Stary+Dom+Warsaw">Stary Dom</a></b>
+      <span class="rating">4.7 ★ <span class="count">(11k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/warsaw/comments/t6vj75/">reddit</a></span>
+      <span class="src"><a href="https://www.rednote.com/explore/6a4cdb0b000000000e031401?xsec_token=ABym3P3XhOnhi8jbqk5-vJVXRRtC0Fa1ldl8z8nJ3A5sc=&amp;xsec_source=pc_search">小红书</a></span>
+      <span class="src">michelin selected 2026</span>
+      <br>Traditional Polish dining room on Puławska doing the full-sized versions of what the canteens serve small. Order the żeberka — honey-glazed pork ribs; the glazed golonka, the duck and the tatar are the other plates. The cooking leans sweet.
+      <span class="note">Both sources name the ribs independently — żeberka on the Polish-language Reddit thread, 蜜汁排骨 as the must-order on 小红书. Note title: 「华沙美食最全合集：中日韩波」— 599.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Pyzy+Flaki+Gorace+Brzeska+Warsaw">Pyzy, Flaki Gorące</a></b>
+      <span class="rating">4.7 ★ <span class="count">(5.6k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/warsaw/comments/t6vj75/">reddit</a></span>
+      <span class="src"><a href="https://culture.pl/en/article/more-than-just-milk-bars-lunch-on-a-budget-in-warsaw">culture.pl</a></span>
+      <span class="src"><a href="https://streetfoodpolska.pl/tropem-dawnych-warszawskich-smakow-czesc-2-pyzy-i-flaki-na-rozycu/">street food polska</a></span>
+      <br>Pyzy in jars with onion and skwarki, flaki po warszawsku with meatballs, kopytka, herring, golonka, galareta and smalec — the pre-war Warsaw repertoire, in a room of a few tables at Brzeska 29/31 by the Różycki bazaar in Praga. 20–40 zł.
+      <span class="note">Named in two separate Reddit threads, including the Polish-language one.</span>
+    </li>
+  </ul>
+
+  <h3>Everyday institutions</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Bar+Okecie+Warsaw">Bar Okęcie</a></b>
+      <span class="rating">4.8 ★ <span class="count">(1.9k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/warsaw/comments/t6vj75/">reddit</a></span>
+      <br>Canteen by the Instytut Lotnictwa, out towards the airport. The order named in the Polish-language thread is the whole tray: żurek, kotlet schabowy, potatoes, surówka, kompot. 20–40 zł.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Gosciniec+Polskie+Pierogi+Krakowskie+Przedmiescie+Warsaw">GOŚCINIEC Polskie Pierogi</a></b>
+      <span class="rating">4.7 ★ <span class="count">(24k)</span></span>
+      <span class="src"><a href="https://www.rednote.com/explore/699ded54000000002303b6bf?xsec_token=ABmjlzZLD8Ovku3jOY9BKyJ6Gg0nAfIYSUujtmnR0JylU=&amp;xsec_source=pc_search">小红书</a></span>
+      <span class="src"><a href="https://www.rednote.com/explore/6920e509000000001e0221c5?xsec_token=ABUm-48CU32YqNwh_UF3gMJteQgLop0DEhSZ3UaaqGm90=&amp;xsec_source=pc_search">小红书</a></span>
+      <br>Order the flaki — mildly spiced tripe soup — and the potato pancakes. The pierogi the place is named for are the ordinary part of the meal. Krakowskie Przedmieście 29, plus three or four other branches. 40–60 zł.
+      <span class="note">Named three times across 小红书 posts and their comments, every time for the tripe soup and not the pierogi. Note titles: 「地球最好喝的牛肚汤居然在波兰」— 请给我三个甜甜圈🍩 and 「🇵🇱华沙攻略(周四省钱版)」— nönö.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Bar+Mleczny+Lindleya+14+Warsaw">Bar Mleczny Lindleya 14</a></b>
+      <span class="rating">4.7 ★ <span class="count">(4.7k)</span></span>
+      <span class="src"><a href="https://www.rednote.com/explore/69ff47cb000000001f006549?xsec_token=ABpmo03IfPaFP5uIE9wf6H2oVfNRYEK7t5FECgVdOTIDc=&amp;xsec_source=pc_search">小红书</a></span>
+      <span class="src"><a href="https://warsawinsider.pl/top-5-traditional-polish-milk-bars-in-warsaw-for-2025/">warsaw insider</a></span>
+      <span class="src"><a href="https://notesfrompoland.com/2022/03/02/polish-restaurants-change-name-of-russian-dumplings-to-ukrainian/">notes from poland</a></span>
+      <br>Milk bar west of the centre: order at the counter, help yourself to the bread. Bacon scrambled eggs, sausage, żurek, and the pierogi it renamed from ruskie to ukraińskie in 2022. 20–40 zł.
+      <span class="note">Note title: 「🇵🇱波兰华沙 东欧的食物咋这么夯啊…！」— 无语住了yu.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Bar+Mleczny+Prasowy+Marszalkowska+Warsaw">Bar Prasowy</a></b>
+      <span class="rating">4.3 ★ <span class="count">(5.8k)</span></span>
+      <span class="src"><a href="https://culture.pl/en/video/slices-of-poland-the-oldest-milk-bar-in-warsaw-video">culture.pl</a></span>
+      <br>The capital's oldest surviving milk bar, at Marszałkowska 10 since 1954 — pierogi, naleśniki and the day's soups off a handwritten Polish-only board, on a tray, for 20–40 zł.
+      <span class="note">Milk bars run on a state subsidy that was cut for 2025 (Notes from Poland) — check it is still open before crossing town.</span>
+    </li>
+  </ul>
+
+  <h3>Creative and interesting</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=WANDAL+Panska+97+Warsaw">WANDAL</a></b>
+      <span class="rating">4.6 ★ <span class="count">(518)</span></span>
+      <span class="src">michelin bib 2026</span>
+      <br>Polish dishes taken apart and rebuilt. Michelin's Opening of the Year for Poland, 2026. Pańska 97; 200 zł+.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Mistrz+i+Malgorzatka+Warsaw">Mistrz i Małgorzatka</a></b>
+      <span class="rating">4.2 ★ <span class="count">(526)</span></span>
+      <span class="src"><a href="https://culture.pl/en/article/more-than-just-milk-bars-lunch-on-a-budget-in-warsaw">culture.pl</a></span>
+      <br>Offal-forward Polish cooking on Czerniakowska: sour soup made with veal lung, kidneys, pickled pork tongue, tripe, gizzards — the half of the old repertoire the pierogi restaurants dropped. 20–40 zł.
+    </li>
+  </ul>
+
+  <h3>Cafés and bakeries</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Kawalek+Lucka+18+Warsaw">Kawalek</a></b>
+      <span class="rating">4.8 ★ <span class="count">(809)</span></span>
+      <span class="src">maps</span>
+      <span class="src">小红书</span>
+      <br>Independent coffee bar on Łucka in Wola, 1–20 zł, open to 7pm.
+      <span class="note">The 小红书 tag carries no link — the name appears on a 华沙实用指南 reference card in the search grid, which the dossier recorded without a note URL. Found independently by the Maps pass, so the agreement is real.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=JAVA+CAFE+Speciality+Roasters+Warsaw">JAVA CAFE Speciality Roasters</a></b>
+      <span class="rating">4.8 ★ <span class="count">(550)</span></span>
+      <span class="src">maps</span>
+      <br>Roasts its own beans, in the Fabryka Norblina complex on Żelazna. The one place in the pass that clears the coffee bar on a fact rather than a name — open latest of the group, to 8:30pm.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Rano+Piekarnia+Rzemieslnicza+Warsaw">Rano Piekarnia Rzemieślnicza</a></b>
+      <span class="rating">4.7 ★ <span class="count">(646)</span></span>
+      <span class="src"><a href="https://www.worldofmouth.app/articles/warsaw-top-picks-by-malgosia-minta">world of mouth</a></span>
+      <span class="src"><a href="https://www.reddit.com/r/warsaw/comments/1i4vgg2/">reddit</a></span>
+      <br>Praga bakery doing wheat sourdough, dark rye and chałka, plus open sandwiches — Polish gouda with pickles, or curd cheese with radish and chives. 20–40 zł.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=BAKEN+Krochmalna+61+Warsaw">BAKEN</a></b>
+      <span class="rating">4.3 ★ <span class="count">(1.5k)</span></span>
+      <span class="src"><a href="https://www.worldofmouth.app/articles/warsaw-top-picks-by-malgosia-minta">world of mouth</a></span>
+      <span class="src"><a href="https://www.werandaweekend.pl/od-kuchni/trendy/gdzie-na-jagodzianki-w-warszawie-polecane-miejsca-i-ceny-w-2026-roku">weranda weekend</a></span>
+      <span class="src"><a href="https://www.reddit.com/r/warsaw/comments/1i4vgg2/">reddit</a></span>
+      <br>Sit-down breakfast room at Krochmalna 61 in Browary Warszawskie, not a counter bakery — sourdough with whipped butter and cheese, grilled cheese toasts, crepes with stewed plums and poppy seed, and a jagodzianka that lands in the annual rankings. 40–60 zł.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Piekarnia+Cala+w+Mace+Zoliborz+Warsaw">Piekarnia Cała w Mące</a></b> <span class="note">— Żoliborz branch</span>
+      <span class="src"><a href="https://twojstyl.pl/artykul/piekarnie-rzemieslnicze-w-warszawie-adresow-z-naturalnym-pieczywem-na-bazie-tradycyjnych-receptur,aid,5526">twój styl</a></span>
+      <span class="src"><a href="https://www.werandaweekend.pl/od-kuchni/trendy/gdzie-na-jagodzianki-w-warszawie-polecane-miejsca-i-ceny-w-2026-roku">weranda weekend</a></span>
+      <span class="src"><a href="https://www.reddit.com/r/warsaw/comments/1i4vgg2/">reddit</a></span>
+      <br>Monika Walecka's bakery — slow-matured naturally leavened loaves, and one of the jagodzianki named in this year's price guides. Bread and pastry both.
+      <span class="note">Unrated here on purpose: the branches rate separately and only the Młynów one (4.6 ★, 63 reviews) was confirmed. Żoliborz is the branch the sources name.</span>
+    </li>
+  </ul>
+
+  <!-- Asian food and Healthy staples always close the Food section. -->
+  <h3>Asian food</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=MEI+Kruczkowskiego+Warsaw">MEI Kuchnia Koreańska</a></b>
+      <span class="rating">4.7 ★ <span class="count">(1.7k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/warsaw/comments/1sabpa7/">reddit</a></span>
+      <span class="src"><a href="https://www.rednote.com/explore/6a4cdb0b000000000e031401?xsec_token=ABym3P3XhOnhi8jbqk5-vJVXRRtC0Fa1ldl8z8nJ3A5sc=&amp;xsec_source=pc_search">小红书</a></span>
+      <br>Korean on Kruczkowskiego, in Powiśle. Order the fried chicken and the tteokbokki, or the bulgogi; skip the bibimbap, which does not come in a stone bowl. Seafood-and-scallion pajeon, kimchi jeon and samgyupsal alongside. <b>Book</b> — it turns walk-ins away in numbers, including on a Saturday afternoon. 40–80 zł.
+      <span class="note">The strongest cross-source agreement in the section: named by three separate Reddit commenters, one counting the Korean customers in the room, and rated 6/6 — 韩餐天花板, the ceiling of Korean food in the city — by a Warsaw-resident Chinese reviewer, who supplied both the dishes to order and the one to skip. Note title: 「华沙美食最全合集：中日韩波」— 599. Listed on Maps simply as "MEI".</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Miss+Kimchi+Zelazna+Warsaw">Miss Kimchi</a></b>
+      <span class="rating">4.6 ★ <span class="count">(7.2k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/warsaw/comments/12n7rxt/">reddit</a></span>
+      <br>Korean on Żelazna: fried chicken is what to order, tofu with tteokbokki is the version without meat, and soju comes by the bottle. 20–40 zł.
+      <span class="note">Named by three commenters across three different threads.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Tran+Tran+Warsaw">Tran Tran</a></b>
+      <span class="rating">4.6 ★ <span class="count">(1.5k)</span></span>
+      <span class="src"><a href="https://www.reddit.com/r/warsaw/comments/12n7rxt/">reddit</a></span>
+      <br>Vietnamese run by a family from the north of the country; bún bò Huế is the bowl to order. 40–60 zł.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Targowisko+Bakalarska+Warsaw">Targowisko Bakalarska / Asian Town</a></b>
+      <span class="src"><a href="https://www.reddit.com/r/warsaw/comments/12n7rxt/">reddit</a></span>
+      <span class="src"><a href="https://www.rednote.com/explore/6a4cdb0b000000000e031401?xsec_token=ABym3P3XhOnhi8jbqk5-vJVXRRtC0Fa1ldl8z8nJ3A5sc=&amp;xsec_source=pc_search">小红书</a></span>
+      <br>A general bazaar southwest of the centre — mostly clothing and homeware — with a cluster of Vietnamese, Korean, Chinese and Thai kitchens in and around it, plus the produce stalls the city's Asian restaurants buy from. Korean BBQ, Chongqing hot pot and phở counters among them. Pick by the queue.
+      <span class="note">Unrated on purpose: the market's Google rating covers the whole bazaar, clothing stalls included, so it is not a rating of the food. Named by four separate Reddit commenters as the answer to where to eat Asian food in Warsaw; 小红书 knows the same district as 越南村, the Vietnamese quarter. Note title: 「华沙美食最全合集：中日韩波」— 599.</span>
+    </li>
+  </ul>
+
+  <h3>Healthy staples</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Bowler+Fitness+Meals+Warsaw">Bowler – Fitness Meals</a></b>
+      <span class="rating">5.0 ★ <span class="count">(102)</span></span>
+      <span class="src">maps</span>
+      <br>Grilled protein, grains and vegetables portioned as fitness meals, Prosta 2 in Wola. 20–40 zł a plate.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Poke+Bowl+Chmielna+Warsaw">Poke Bowl Chmielna</a></b>
+      <span class="rating">4.8 ★ <span class="count">(998)</span></span>
+      <span class="src">maps</span>
+      <br>Build-your-own poke counter on Chmielna, in the centre — salmon or tuna over rice, the repeatable default when the week has been all pork and potatoes.
+    </li>
+  </ul>
+<!-- ── 3. EVENTS ── -->
+<h2 id="events">Events <span class="note">— during your dates</span></h2>
+
+<h3>Cultural</h3>
+<ul>
+  <li>
+    <b><a href="https://pik.warszawa.pl/muzyka/koncerty-chopinowskie-w-lazienkach-krolewskich/">Chopin concerts at the Chopin Monument</a></b>
+    <span class="rating">4.8 ★ <span class="count">(14,018)</span></span>
+    <span class="when">Sun 16 Aug, 12:00 and 16:00</span>
+    <span class="src"><a href="https://pik.warszawa.pl/muzyka/koncerty-chopinowskie-w-lazienkach-krolewskich/">pik warszawa</a></span>
+    <br>Open-air piano recitals played at the foot of the monument on the grass every Sunday of the summer, now in its 67th season; on 16 August David Khrikuli at noon and Piotr Pawlak at four. At the
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=Fryderyk+Chopin+Monument+Royal+%C5%81azienki+Warsaw">Chopin Monument</a>, Royal Łazienki, ul. Agrykola 1.
+    <em>Tickets:</em> free, no booking; bring something to sit on.
+  </li>
+  <li>
+    <b><a href="https://warszawa19115.pl/-/swieto-wojska-polskiego-2026">Armed Forces Day parade "Polska SAFE"</a></b>
+    <span class="rating">4.7 ★ <span class="count">(45,968)</span></span>
+    <span class="when">Sat 15 Aug, 12:00</span>
+    <span class="src"><a href="https://warszawa19115.pl/-/swieto-wojska-polskiego-2026">city of warsaw</a></span>
+    <br>Several thousand Polish and allied soldiers, Leopard and K2 tanks, Krab howitzers and Patriot launchers move along Wisłostrada between the Skłodowskiej-Curie and Łazienkowski bridges, with an F-35 and Apache flypast; the date is the 106th anniversary of the 1920 Battle of Warsaw. The city names the embankment by the
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=Multimedialny+Park+Fontann+Warsaw">Multimedia Fountain Park</a> at Sanguszki as the viewing point, walkable from the Old Town.
+    <em>Tickets:</em> none, free to watch.
+  </li>
+  <li>
+    <b><a href="https://muzeumwp.pl/2026/08/03/swieto-wojska-polskiego-2026-na-cytadeli-warszawskiej/">Military zone at the Warsaw Citadel</a></b>
+    <span class="rating">4.6 ★ <span class="count">(9,614)</span></span>
+    <span class="when">Sat 15 Aug, 10:00–18:00</span>
+    <span class="src"><a href="https://muzeumwp.pl/2026/08/03/swieto-wojska-polskiego-2026-na-cytadeli-warszawskiej/">museum of the polish army</a></span>
+    <br>Equipment, weapons and kit laid out to handle, training simulators to sit in, demonstrations by soldiers from each service branch, concerts and field-kitchen food, in the Citadel grounds on the parade day. At the
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=Polish+Army+Museum+Cytadela+Warszawska+Warsaw">Museum of the Polish Army</a>, ul. Gwardii 4.
+    <em>Tickets:</em> the organiser's page states no admission price.
+  </li>
+</ul>
+
+<h3>Music</h3>
+<ul>
+  <li>
+    <b><a href="https://teatrwielki.pl/kalendarium/">Ukrainian Freedom Orchestra</a></b>
+    <span class="rating">4.8 ★ <span class="count">(10,735)</span></span>
+    <span class="when">Sun 16 Aug, 18:00</span>
+    <span class="src"><a href="https://teatrwielki.pl/kalendarium/">teatr wielki</a></span>
+    <br>Opening night of a seven-concert tour that closes at David Geffen Hall in New York: Beethoven's Seventh and Verdi's Requiem, with Ailyn Pérez, Natalie Lewis, René Barbera and Solomon Howard. Sala Moniuszki at
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=Teatr+Wielki+Opera+Narodowa+Warsaw">Teatr Wielki – Polish National Opera</a>; the only date the house plays in your window.
+    <em>Tickets:</em> teatrwielki.pl — single date, and it overlaps the Bocelli show.
+  </li>
+  <li>
+    <b><a href="https://www.pgenarodowy.pl/strony-dodatkowe/wydarzenia/14833,abocelli">Andrea Bocelli — Romanza 30th Anniversary Tour</a></b>
+    <span class="rating">4.6 ★ <span class="count">(65,182)</span></span>
+    <span class="when">Sun 16 Aug, 20:00</span>
+    <span class="src"><a href="https://www.pgenarodowy.pl/strony-dodatkowe/wydarzenia/14833,abocelli">pge narodowy</a></span>
+    <br>Two-part stadium programme: opera arias first, then the 1997 <i>Romanza</i> repertoire including "Con te partirò". At
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=PGE+Narodowy+Warsaw">PGE Narodowy</a>.
+    <em>Tickets:</em> biletserwis.pl, from about 410 PLN — book before you fly.
+  </li>
+  <li>
+    <b><a href="https://www.warszemuzik.org/pl/program/">WarszeMuzik</a></b>
+    <span class="rating">4.5 ★ <span class="count">(216)</span></span>
+    <span class="when">Sat 15 and Sun 16 Aug</span>
+    <span class="src"><a href="https://www.warszemuzik.org/pl/program/">warszemuzik</a></span>
+    <br>Tenth edition of a chamber festival that stages its concerts in the buildings still standing from the Warsaw ghetto. Sat 15th, 16:00: a walking tour built around ghetto music, from the
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=%C5%BBydowski+Instytut+Historyczny+Warsaw">Jewish Historical Institute</a>. Sat 15th, 18:00: clarinettist Paweł Szamburski premieres a solo set folding medieval motets into Hasidic niguny, ul. Chmielna 122. Sun 16th, 18:00: Ania Karpowicz on traverso and Dominik Strycharski on recorders at Plac Centralny, followed by the festival's anniversary toast.
+    <em>Tickets:</em> free.
+  </li>
+  <li>
+    <b><a href="https://www.jazznastarowce.pl/festiwal-jazz-na-starowce-program/">Jazz na Starówce — Tribute To Miles Orchestra</a></b>
+    <span class="when">Sat 15 Aug, 19:00</span>
+    <span class="src"><a href="https://www.jazznastarowce.pl/festiwal-jazz-na-starowce-program/">jazz na starówce</a></span>
+    <br>The 32nd edition of the open-air series that takes over the Old Town square every Saturday from July to the end of August; this night is a Polish supergroup assembled by Wojciech Konikiewicz for the Miles Davis centenary. On the
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=Rynek+Starego+Miasta+Warsaw">Old Town Market Square</a>.
+    <em>Tickets:</em> free, the whole festival is unticketed.
+  </li>
+</ul>
+
+<h3>Shows</h3>
+<ul>
+  <li>
+    <b><a href="https://szekspirpodgwiazdami.pl/terminy/">"Sen nocy letniej" — Shakespeare Under the Stars</a></b>
+    <span class="rating">4.7 ★ <span class="count">(1,890)</span></span>
+    <span class="when">Thu 13 – Sun 16 Aug, nightly 19:30</span>
+    <span class="src"><a href="https://szekspirpodgwiazdami.pl/terminy/">szekspir pod gwiazdami</a></span>
+    <br>Jakub Krofta's open-air <i>Midsummer Night's Dream</i> with live music, played in Polish with Bartosz Bielenia and Grzegorz Małecki in the cast; the run is 11 July – 19 August and it plays all four of your nights. In the Royal Castle Gardens at
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=Arkady+Kubickiego+Warsaw">Arkady Kubickiego</a> — which is why the castle gardens shut at 18:00 through 19 August.
+    <em>Tickets:</em> from 90 PLN unnumbered, 120 PLN numbered — book ahead, the seating is finite.
+  </li>
+</ul>
+
+<h3>Exhibitions</h3>
+<ul>
+  <li>
+    <b><a href="https://wilanow-palac.pl/wystawa/sobiescy-i-stuartowie-blask-i-widmo-korony">Sobiescy i Stuartowie — blask i widmo korony</a></b>
+    <span class="rating">4.7 ★ <span class="count">(31,125)</span></span>
+    <span class="when">25 Oct 2025 – 13 Dec 2026</span>
+    <span class="src"><a href="https://wilanow-palac.pl/wystawa/sobiescy-i-stuartowie-blask-i-widmo-korony">wilanów palace museum</a></span>
+    <br>Built around the 1719 marriage of Jan III's granddaughter Maria Clementina Sobieska to James III/VIII, the Stuart pretender to the English, Scottish and Irish thrones; there are costume and wig reconstructions to put on. North wing of the palace at
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=Museum+of+King+Jan+III+Palace+at+Wilan%C3%B3w+Warsaw">Wilanów</a>.
+    <em>Tickets:</em> included in the palace ticket.
+  </li>
+  <li>
+    <b><a href="https://www.lazienki-krolewskie.pl/en/wydarzenia/nabisci-prorocy-nowej-sztuki">Nabiści. Prorocy nowej sztuki (The Nabis)</a></b>
+    <span class="rating">4.4 ★ <span class="count">(246)</span></span>
+    <span class="when">16 Jul – 15 Nov 2026</span>
+    <span class="src"><a href="https://www.go2warsaw.pl/en/events/">go2warsaw</a></span>
+    <br>Close to a hundred works by Maurice Denis, Paul Ranson, Paul Sérusier and the rest of the Nabi circle, drawn from Polish collections and the Musée d'Orsay. In the
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=Wielka+Oficyna+Podchor%C4%85%C5%BC%C3%B3wka+%C5%81azienki+Warsaw">Podchorążówka</a>, Royal Łazienki.
+    <em>Tickets:</em> museum ticket, walk-in.
+  </li>
+  <li>
+    <b><a href="https://artmuseum.pl/wystawy/edward-dwurnik-duma-i-wstyd">Edward Dwurnik. Duma i wstyd</a></b>
+    <span class="rating">3.7 ★ <span class="count">(6,069)</span></span>
+    <span class="when">31 Jul 2026 – 28 Feb 2027</span>
+    <span class="src"><a href="https://artmuseum.pl/wystawy/edward-dwurnik-duma-i-wstyd">museum of modern art</a></span>
+    <br>Dwurnik's <i>Sportowcy</i> and <i>Robotnicy</i> cycles from the 1970s and 80s — crowds of tiny figures swarming a stadium terrace or a factory yard, painted over and over across two decades — with an intervention by Patryk Różycki. At the
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=Muzeum+Sztuki+Nowoczesnej+Marsza%C5%82kowska+103+Warsaw">Museum of Modern Art</a>, Marszałkowska 103, open 11:00–20:00 daily.
+    <em>Tickets:</em> sklep.artmuseum.pl or on the door.
+  </li>
+</ul>
+  <!-- ── 4. WHERE TO STAY — rules in sections/where-to-stay.md ── -->
+  <h2 id="stay">Where to stay</h2>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=%C5%BBoliborz%20Warsaw">Żoliborz.</a></b>
+      Pre-war co-operative estates and villas laid out around small squares north of the centre — one of the city's two clusters of surviving inter-war housing, and the greener of them. <em>Day to day:</em> M1 runs the length of the district (Dworzec Gdański, Plac Wilsona, Marymont), with trams on Słowackiego, Mickiewicza, Popiełuszki and al. Jana Pawła II; the weekly shop at Społem WSS Żoliborz, ground floor of the Merkury building on Słowackiego, with cheese and cold-cuts counters in the old-school department store above it; weekend food market at Skwer Śmiałej; two Zdrofit gyms on al. Wojska Polskiego and ul. Hübnera, and Renovatio at Wojska Polskiego 41 open 24 hours; running on the paths through Park Kępa Potocka (18 ha), with Las Bielański and the Vistula path immediately north. <em>Tradeoff:</em> residential end to end — there is no café or restaurant density on your own block, so dinner out usually means a metro stop or two south.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Mokot%C3%B3w%20Warsaw">Mokotów.</a></b>
+      Large mixed district running south from the centre: pre-war Stary Mokotów around Rakowiecka, then PRL-era estates and office corridors further out. <em>Day to day:</em> four M1 stations inside the district (Pole Mokotowskie, Racławicka, Wierzbno, Wilanowska); the Pole Mokotowskie interchange adds trams 17 and 33 — a new tram line opened along ul. Rakowiecka in Dec 2025 — plus SKM/KM rail at Warszawa Mokotów. Groceries at the Lidl on Wołoska and Biedronka branches on Domaniewska, Dolna and Bohdanowicza; gyms include Mokotowski Gym on Białej Floty, open 24 hours, and Zdrofit at the Warszawianka complex on Merliniego. Running on Pole Mokotowskie, 70 ha of paved and dirt paths, with Park Morskie Oko and Łazienki as the other loops. <em>Tradeoff:</em> the most expensive district of those surveyed (3-bed PLN 9,000–16,000/month, 2026), and it sprawls — the southern stretches are car-scaled, so the block you pick matters more here than anywhere else on this list.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Saska%20K%C4%99pa%20Warsaw">Saska Kępa.</a></b>
+      Right-bank pocket of 1920s–30s modernist villas and older manor houses; the whole of its evening activity sits on ul. Francuska and ul. Paryska, and the rest of the grid is quiet. <em>Day to day:</em> Rondo Waszyngtona is the hub — trams 7, 8, 9, 22, 24 and 25 over Poniatowski Bridge into the centre, plus a dozen bus routes; a neighbourhood grocery ~190 m and a Biedronka ~800 m from central addresses; Olimpia Fitness on al. Stanów Zjednoczonych and Active Zone on Zwycięzców for gyms, with Zdrofit on Arabska just over the line in Praga-Południe; Park Skaryszewski, 58 ha with a lake and paved loops, ~1.2 km away. <em>Tradeoff:</em> no metro — Stadion Narodowy (M2) is ~2.2 km — and the interior streets are served by buses only, a 5–12 minute walk to the nearest tram.
+    </li>
+  </ul>
+  <div class="callout">
+    <b>Avoid Praga Północ.</b> Two M2 stations put it under ten minutes from the centre and the guides sell it as the artsy right bank, but ul. Ząbkowska and ul. Brzeska are the bar and street-art strips, Centrum Praskie Koneser runs its open-air Lato Konesera programme through August, and Bazar Różyckiego — the obvious place to assume you would shop — is now largely empty.
+  </div>
+  <!-- ── 5. BOOK AHEAD ── -->
+  <h2 id="book">Book ahead</h2>
+  <p>Nothing on this trip needs booking in advance. The two ticketed events worth going to on Sunday 16 August — Bocelli at PGE Narodowy and <em>Sen nocy letniej</em> in the Royal Castle Gardens — both still had tickets on sale when this was researched on 14 August 2026, and the Chopin recital in Łazienki is free and unticketed.</p>
+  <!-- ── 6. PRACTICAL ────────────────────────────────── -->
+  <h2 id="practical">Practical</h2>
+  <div class="facts">
+    <dl>
+      <dt>Tap water</dt><dd>Drink it straight from the tap. MPWiK runs ozonation, carbon filtration and chlorine dioxide disinfection, tests ~70 parameters with daily microbiological checks, and states the cold tap is safe unboiled <span class="note">(MPWiK / City of Warsaw, 2026)</span>. It is hard and faintly chlorinated; in pre-war buildings with old internal pipes let the cold tap run first.</dd>
+      <dt>Tipping</dt><dd>Not obligatory; ~10% at sit-down restaurants, nothing at counters or milk bars <span class="note">(2026)</span>. Polish card terminals usually have no tip screen — say the total you want charged before the server runs the card, or leave cash on the table. Check for a service charge first; tourist-area and upscale places often include one.</dd>
+      <dt>Cash &amp; cards</dt><dd>Złoty, not euro — ~3.73 PLN to $1 <span class="note">(Aug 2026)</span>. Visa/Mastercard contactless and phone wallets work almost everywhere, including small cafés. BLIK, the domestic phone-code scheme you will see on every terminal, needs a Polish bank account — not a visitor option. Keep ~50 PLN cash for corner shops, kiosks, bazaar stalls and the occasional taxi.</dd>
+    </dl>
+  </div>
+
+  <h3>Sat 15 August — public holiday, and a military parade</h3>
+  <ul>
+    <li><b>What it is.</b> Saturday 15 August 2026 is a double statutory holiday — Assumption and Polish Armed Forces Day — with a <b>military parade on Wisłostrada from 12:00</b> (106th anniversary of the 1920 Battle of Warsaw). The city names the slope at the Multimedia Fountain Park, near ul. Sanguszki, as the public viewing point.</li>
+    <li><b>Closures run 16:00 Fri 14 → 16:00 Sat 15</b> — a full 24 hours, starting the evening before. Wisłostrada both carriageways from the Skłodowska-Curie Bridge to Łazienkowski/Gagarina, plus effectively every street that drops from Śródmieście to the river: Karowa, Lipowa, Dobra, Tamka, Ludna, Sanguszki, Wenedów, Krasińskiego, Mostowa, Grodzka, Bednarska <span class="note">(City of Warsaw, published 12 Aug 2026)</span>.</li>
+    <li><b>Transit over the same window:</b> buses 100, 106, 107, 108, 114, 118, 127, 131, 141, 159, 162, 166, 167, 185, 187 and night lines N14, N16, N33, N64, N83 on detour; trams 1, 4, 6, 18, 20, 28, 76 rerouted. The <b>metro is unaffected and runs extra trains on both lines 11:00–18:00 Saturday</b> — it is the way to move that day. Everything else runs the Sunday/holiday timetable.</li>
+    <li><b>Walking to Praga breaks 11:00–14:00 Sat.</b> The Gdański Bridge, the Śląsko-Dąbrowski Bridge and the Karowa footbridge all close to pedestrians and cyclists during the flyover. Cross by metro (M2) or don't cross.</li>
+    <li><b>Airport, Sat morning:</b> bus 175 terminates at plac Piłsudskiego, inside the ceremony zone. The city's 2026 change list does not name 175, so treat it as unreliable and take the SKM train instead.</li>
+    <li><b>Shops shut two days running</b> — Sat 15 as a holiday, Sun 16 as an ordinary non-trading Sunday. Biedronka, Lidl, Kaufland, Aldi, Netto, Carrefour, Auchan and the malls all closed both days; some Żabka franchises stay open under the owner-serves exemption, not all and not full hours. <b>Buy anything you need Thu 13 or Fri 14.</b> Restaurants and cafés are not covered by the ban and open normally.</li>
+    <li><b>Museums split — check each one.</b> Confirmed for 15 Aug: Muzeum Historii Polski open 10:00–19:00, free entry; Muzeum Żołnierzy Wyklętych closed. POLIN is running an English tour of its core exhibition that day, but its holiday hours are not published. Warsaw Uprising Museum and Łazienki hours for that day could not be confirmed either — check before you set out.</li>
+  </ul>
+
+  <h3>Getting around</h3>
+  <div class="facts">
+    <dl>
+      <dt>Transit</dt><dd>One ZTM/WTP fare covers metro, trams, buses, night buses and SKM city trains; zone 1 is the whole visitor city, Chopin airport included. Metro <b>M1</b> north–south, <b>M2</b> east–west, crossing only at Świętokrzyska — the metro alone misses a lot, and trams do the real work across the centre. <b>You cannot tap a bank card to ride.</b> Warsaw's open-payment system (Warszawski System Biletowy, contracted to Mennica Polska in Sep 2025) is scheduled for <b>2027</b>; travel sites claiming live "Open Payment" tap-to-ride with a 15 PLN daily cap here are wrong. What is true — and what people mean by "you can pay by Visa on the bus" — is that <b>every bus and tram carries a ticket machine that takes contactless cards</b> (onboard machines are card-only, no cash); station machines take cards, cash and BLIK. You buy, then <b>validate</b> in the yellow validator on board, or at the metro gateline. Or buy in an app: <b>jakdojade</b> is the one to install (live journey planner and ticket in the same app); mPay, moBiLET, SkyCash and zBiletem also sell ZTM tickets, and app tickets still need validating. The official city app <b>mobiWAWA</b> sells only 30- and 90-day tickets — useless for four days. Fines: <b>266 PLN (≈$71)</b>, cut to <b>159.60 PLN (≈$43)</b> if paid to the inspector on the spot <span class="note">(2026)</span>. Fares, zone 1: 20-minute <b>3.40 PLN (≈$0.90)</b> · 75-minute transfer <b>4.40 PLN (≈$1.20)</b> · 24-hour <b>15.00 PLN (≈$4)</b> · 72-hour <b>36.00 PLN (≈$9.65)</b> · weekend ticket, 19:00 Fri to 08:00 Mon, <b>24.00 PLN (≈$6.45)</b> <span class="note">(2026)</span>. From Chopin: SKM S2/S3 to Centrum ~30 min, or bus 175, both on the 4.40 PLN ticket. Metro runs ~05:00 to ~00:10 Sun–Thu and <b>to 03:00 on Friday and Saturday nights</b>; N-prefixed night buses cover the rest at the same fare.</dd>
+      <dt>Rides</dt><dd><b>Bolt</b> is the largest platform in Poland and the default here; <b>Uber</b>, <b>FREE NOW</b> and <b>iTaxi</b> (licensed metered taxis, 737 737 737) all operate. Street-hailing exists but is not the norm — book in an app. Indicative rates <b>2.40–2.70 PLN/km</b> <span class="note">(Polish comparison press, 2026 — not operator-published)</span>, so a 5 km cross-town ride runs roughly <b>12–20 PLN (≈$3.20–5.35)</b> before base fare and surge. Chopin airport's own page puts a taxi to the centre at <b>~50 PLN (≈$13.40)</b> <span class="note">(2026)</span>; the three licensed operators at the terminal are iTaxi, Uber and Bolt, Uber has self-service kiosks in baggage reclaim and arrivals, and every car must display its tariff in the window. No standard airport-taxi overcharge was documented for Warsaw — the risk is an unbooked car touting outside arrivals, not the licensed ranks.</dd>
+    </dl>
+  </div>
+  <div class="verdict">
+    <b>Verdict: transit, with rides for the late edges.</b> A 24-hour ticket is 15 PLN (≈$4) — about one short Bolt ride — and the tram network reaches what the two metro lines miss, so there is no case for defaulting to cars. The centre walks: Old Town to Łazienki is ~4 km straight down Krakowskie Przedmieście and Nowy Świat, about 50 minutes, and most days you will walk more than you ride. <b>Veturilo</b> is the bike share — 3,460 bikes across 344 stations, season 1 Mar–30 Nov, first 20 minutes free and 21–60 minutes 1 PLN on a standard bike, app-only, top up before you unlock <span class="note">(2026)</span>. Two caveats specific to these dates: tram track works at the Kino Femina junction (al. Solidarności × al. Jana Pawła II, through end of August 2026) have lines 9, 13, 19, 23, 25, 33 and 77 suspended between Wola/Muranów and the Old Town, and the 15 August parade window above overrides everything on the riverside.
+  </div>
+  <!-- ── 7. COUNTRY BACKGROUND ───────────────────────── -->
+  <h2 id="country">Poland</h2>
+  <div class="facts">
+    <dl>
+      <dt>GDP</dt><dd>$1.035 trillion total <span class="note">(World Bank, 2025)</span> · $28,370 per capita <span class="note">(Statista, 2025)</span> — the first year Poland crossed $1T. Real GDP is up 220% since 1989, and GDP per capita up nearly 150%, the largest rise of any European country over that span <span class="note">(Notes From Poland, 2025)</span>.</dd>
+      <dt>Economy</dt><dd>Services ~62% of GDP — IT, logistics, financial services, tourism; manufacturing and export industry ~34%, with machinery and transport equipment 38.3% of exports, plus automotive, food processing and chemicals <span class="note">(globalEDGE, 2025)</span>. EU membership since 2004 is the fourth driver: largest recipient of EU cohesion funds, and over $310bn of foreign investment 2004–2023 <span class="note">(Notes From Poland, 2025)</span>. The currency is the złoty, not the euro — the 1997 constitution names it and changing it needs a two-thirds parliamentary majority no government has held; the finance minister restated in Jan 2026 that Poland "will not adopt euro".</dd>
+      <dt>Languages</dt><dd>Polish; stress falls on the second-to-last syllable in almost every word. English gets you everywhere in Warsaw with anyone under about 40 — it is a mandatory school subject, and hotel, restaurant and central-district shop staff manage it without difficulty. Older people and anywhere outside the big four cities (Warsaw, Kraków, Gdańsk, Wrocław), noticeably less.</dd>
+    </dl>
+  </div>
+
+  <h3>Tech scene</h3>
+  <ul>
+    <li><b><a href="https://www.cdprojekt.com/">CD Projekt</a></b> — Warsaw game studio behind The Witcher and Cyberpunk 2077. Listed on the Warsaw Stock Exchange; market cap ~26.75bn PLN (~$6.5B) as of Aug 2026.</li>
+    <li><b><a href="https://about.allegro.eu/">Allegro</a></b> — Poland's dominant e-commerce marketplace, Warsaw HQ. Its Oct 2020 Warsaw listing raised ~$2.3B at a ~$11.2B valuation, the biggest European IPO of that year; first-day trading took it to ~$17.6B.</li>
+    <li><b><a href="https://inpost.eu/">InPost</a></b> — invented the automated parcel-locker model in Poland; the yellow lockers are on street corners across Warsaw. Listed on Euronext Amsterdam Jan 2021 at an €8.0bn market cap, raising €2.8bn (~$3.4B).</li>
+    <li><b><a href="https://www.docplanner.com/">DocPlanner</a></b> — doctor-booking platform, known here as ZnanyLekarz; founded in Warsaw 2011. Became Poland's first unicorn in Sept 2021 at a $1B valuation on $140.5M raised.</li>
+    <li><b><a href="https://elevenlabs.io/">ElevenLabs</a></b> — voice AI, founded 2022 by two Polish friends (not Warsaw-headquartered, but the Polish tech story people here cite). $500M Series D in 2026 at an $11B valuation, up from $3.3B in Jan 2025.</li>
+    <li><b>Sector concentration.</b> Games first — CD Projekt and 11 bit studios (This War of Mine, Frostpunk) in Warsaw, Techland (Dying Light) in Wrocław — then marketplace and logistics software. Warsaw counts 686 startups, 7 unicorns, $9.9B combined enterprise value and ~156,000 tech workers, 24% of Poland's total <span class="note">(StartupBlink, 2025)</span>.</li>
+  </ul>
+
+  <h3>History</h3>
+  <ul>
+    <li><b>Partitions, 1772–1918.</b> Russia, Prussia and Austria carved up Poland-Lithuania in three stages (1772, 1793, 1795), after which Poland did not exist on the map for 123 years. The republic was re-established in 1918.</li>
+    <li><b>Invasion, 1939.</b> Nazi Germany invaded on 1 September 1939, the Soviet Union from the east on 17 September under the Molotov-Ribbentrop Pact. Warsaw spent the war under German occupation.</li>
+    <li><b>Warsaw Ghetto Uprising, April–May 1943.</b> About 700 Jewish fighters of the ŻOB and ŻZW resisted the German liquidation of the ghetto and the deportations to Treblinka. The Germans expected three days; it held out until 16 May. Roughly 7,000 died fighting and 7,000 more were captured. This is the 1943 uprising — the one told at the POLIN Museum, on the ground where the ghetto stood.</li>
+    <li><b>Warsaw Uprising, Aug–Oct 1944.</b> A different rising, a year later: the Home Army (Armia Krajowa) fought 63 days to take the city before the Red Army arrived. About 15,000 insurgents and 250,000 civilians died, and Hitler then ordered Warsaw razed — the only city given a total-destruction order. Demolition squads flattened what shelling had left. This is the 1944 uprising, told at the Warsaw Uprising Museum. Two uprisings, two museums, constantly confused.</li>
+    <li><b>Communist rebuild, 1945–1989.</b> The Old Town you walk through is a post-war reconstruction, rebuilt from pre-war paintings and photographs; the rest went up as Socialist Realism. The <a href="https://www.google.com/maps/search/?api=1&amp;query=Palace+of+Culture+and+Science+Warsaw">Palace of Culture and Science</a> was built 1952–55 by ~3,500 Soviet workers as Stalin's "gift", opened as the Joseph Stalin Palace of Culture, and is still the tallest building in Poland and still resented.</li>
+    <li><b>1989 to now.</b> Strikes in 1988 forced the Round Table talks; the 4 April 1989 agreement ended one-party rule and Solidarity swept the semi-free elections of 4 June 1989. EU accession followed on 1 May 2004, described here as "the return to Europe". Unemployment is now under 3%, among the lowest in the EU.</li>
+  </ul>
+
+  <h3>Culture</h3>
+  <ul>
+    <li><b>Milk bars.</b> Bary mleczne are state-subsidised canteens — the first opened on Nowy Świat in 1896, the model spread under communism as cheap worker food, and the surviving ones still serve pierogi, naleśniki and soup for a few złoty on a plastic tray, ordered at a counter from a board that is usually Polish-only. They are not a nostalgia gimmick; office workers and pensioners eat in the same queue.</li>
+    <li><b>The war is not settled history.</b> Poland and Russia still publicly argue over who started WWII and what the Soviet arrival in 1945 was. Polish memory frames 1939–45 Soviet presence as occupation — 700,000 to a million Poles were deported from 1940 — not liberation. Expect flat, unambiguous views on this from people who are otherwise easy-going, and note that "liberated by the Soviets" is a framing, not a neutral fact, in this city.</li>
+    <li><b>Chopin in the open air.</b> He is claimed intensely: the museum at Ostrogski Palace holds the largest collection of his memorabilia, and his birthplace at Żelazowa Wola, 40km west, is a park with summer concerts. Free piano recitals run in Łazienki Park by the Chopin monument on summer Sundays, at noon and 4pm, played to an audience sitting on the grass — worth knowing because 16 August is a Sunday. <span class="note">The Łazienki concert schedule is from own knowledge, not from the research sources — confirm on the day.</span></li>
+    <li><b>Catholic, and visibly less so than a decade ago.</b> The 2021 census recorded 71% Catholic, down from 88% ten years earlier, with weekly Mass attendance flat at about 30% <span class="note">(Notes From Poland, 2025)</span>. Poland has one of Europe's widest generational splits on religion: full churches on Sunday morning a few streets from a thoroughly secular young city, and the Church treated as a political actor rather than a neutral institution in conversation.</li>
+  </ul>
+
+  <h3>Phrases</h3>
+  <table class="phrases">
+    <tr><td class="native">Dzień dobry</td><td class="phon">jane DOH-brih</td><td>Hello (the default for any counter)</td></tr>
+    <tr><td class="native">Proszę</td><td class="phon">PRO-sheh</td><td>Please (also "here you go")</td></tr>
+    <tr><td class="native">Dziękuję</td><td class="phon">jen-KOO-yeh</td><td>Thank you</td></tr>
+    <tr><td class="native">Przepraszam</td><td class="phon">psheh-PRAH-shahm</td><td>Sorry — and excuse me; one word does both</td></tr>
+    <tr><td class="native">Tak</td><td class="phon">tahk</td><td>Yes</td></tr>
+    <tr><td class="native">Nie</td><td class="phon">nyeh</td><td>No</td></tr>
+    <tr><td class="native">Toaleta</td><td class="phon">toh-ah-LEH-tah</td><td>Bathroom</td></tr>
+    <tr><td class="native">Rachunek</td><td class="phon">rah-HOO-nek</td><td>Bill</td></tr>
+    <tr><td class="native">Karta</td><td class="phon">KAR-tah</td><td>Card</td></tr>
+    <tr><td class="native">Angielski</td><td class="phon">ahn-GYEL-skee</td><td>English</td></tr>
+  </table>
+  <p class="note">Dzień dobry, dziękuję, proszę, tak and nie are from the research sources; the rest are from own knowledge.</p>
+
+</main>
+</body>
+</html>
