@@ -11,7 +11,7 @@ Structured like Food: **Top picks fed by the category groups.** Every candidate 
 
 ## Selecting from the dossier
 
-Candidates come from the dossier's Reddit, Atlas Obscura, and local-press findings, plus your own picks tagged `my pick` — every entry keeps all the tags it was born with. Weight what recurs across independent threads; link the thread each Reddit entry was taken from. Reddit's generic warnings and locals-vs-tourists discourse never become entries — but negative evidence attached to a candidate in the dossier is real input: weigh it against the recommendations before including, and judge the specific complaint being made, not its tone. From Atlas Obscura, the genuinely odd entries — not the ones that are just the city's main museum.
+Candidates come from the dossier's Reddit, 小红书, Atlas Obscura, and local-press findings, plus your own picks tagged `my pick` — every entry keeps all the tags it was born with. Treat 小红书 as corroboration rather than a finder: its 攻略 posts are itineraries built around photogenic stops, so a place it names is worth stacking a tag onto and rarely worth including on that basis alone (shared.md → source tags). Weight what recurs across independent threads; link the thread each Reddit entry was taken from. Reddit's generic warnings and locals-vs-tourists discourse never become entries — but negative evidence attached to a candidate in the dossier is real input: weigh it against the recommendations before including, and judge the specific complaint being made, not its tone. From Atlas Obscura, the genuinely odd entries — not the ones that are just the city's main museum.
 
 ## Mandatory coverage (gap-fill if missing from the dossier)
 

@@ -7,6 +7,7 @@ Selection happens over the dossier's food pool: the format-map queries, the six 
 The dossier must contain results (or a confirmed dry run) for every one of these — a category whose queries never ran is a research gap, not a thin city, and a section drafted from one weak candidate is a failed search to re-run:
 
 - The Reddit food pass: best-of, everyday, `what dishes must I try`, one query per native format from the format map, the per-cuisine Asian queries plus diaspora framing, the café queries (bakery/sourdough/coffee), the bar queries (cocktail/craft beer), and the local-language variants.
+- The 小红书 `<city中文名>美食` query, with its posts' comments read — not just the post titles. Its entries are corroboration that stacks tags onto places other sources found, and a 小红书-only entry has to clear the bar on the food, not the photography (shared.md → source tags). Where it carries real independent weight is **Asian food in a non-Asian city**: if the per-cuisine Reddit queries came back thin and 小红书 names a place repeatedly, that is a genuine finding, not noise.
 - Eater — or its absence noted for the brief's callout.
 - Michelin, the full city selection including the plain recommended tier.
 - 50 Best including the Discovery city guide.

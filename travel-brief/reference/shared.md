@@ -43,6 +43,7 @@ Never invent a rating — omit it instead. **Google only**: no TripAdvisor/Yelp/
 | Tag | Means |
 |---|---|
 | `reddit` | Surfaced on Reddit. Link the thread on the tag itself. |
+| `小红书` | Surfaced on 小红书 (rednote). Link the note on the tag itself — and see the link-rot rule below. |
 | `atlas obscura` | From an Atlas Obscura entry. |
 | `michelin` | On the Michelin guide — append the year (`michelin ★ 2026`, `michelin bib 2026`). |
 | `50 best` | Ranked on a 50 Best list — append year and rank, and name the list when it is not the World restaurants one (`50 best bars #12 2026`, `asia's 50 best #7 2026`). |
@@ -54,6 +55,8 @@ Never invent a rating — omit it instead. **Google only**: no TripAdvisor/Yelp/
 | `my pick` | Your own knowledge, not surfaced by any search. |
 
 - **50 Best Discovery** is the unranked year-round platform — a much weaker signal than a rank. Never write a rank for it, and never treat it alone as a reason to include — it is corroboration, useful when it agrees with Reddit or local press. (Where to find it: research.md.)
+- **小红书 note links rot — carry the note title and author alongside.** A note URL is only valid with its `xsec_token` query string, and that token is issued per session; the bare `/explore/<id>` URL returns a 404 page ("Sorry, This Page Isn't Available Right Now"). Link the full tokenized URL, but record `<note title> — <author handle>` in the dossier entry too, so a dead link still leaves the finding traceable and re-findable by search. This is the one tag whose link is expected to expire; never treat a broken 小红书 link as evidence the place was fabricated.
+- **小红书 skews to the photogenic.** Much of its travel content is shot-list driven (拍照, 机位, 同款). That is a weaker signal than a local flatly naming a place, and it is not a reason to include an entry on its own — a 小红书-only entry needs the food or the thing itself to clear the section's bar, not the photo. Cross-source agreement (小红书 + reddit, 小红书 + michelin) is where the tag earns its weight. Its genuine edge is Chinese and other Asian food in non-Asian cities, where Reddit is consistently thin.
 - **There is no generic `guides` tag.** Name the publication or use `my pick`. If the only source is one you would not cite by name, that is a signal to cut the entry.
 - **Never source from aggregators** — TripAdvisor, Yelp, Wanderlog, RestaurantGuru, and the listicle farms that rewrite them: not for entries, not for ratings.
 - **Stack every applicable tag.** Cross-source agreement is the strongest signal in the brief, and stacked tags are how the reader sees it. Tags are provenance, not endorsement.

@@ -28,6 +28,7 @@ If either fails, stop and say what to fix. Never proceed to a degraded brief; wi
 
 1. **Claude Code.** The skill assumes subagents, the scratchpad, git, and a push to the publishing repo — it does not run from Claude chat or a phone.
 2. **Claude in Chrome, connected.** Loaded and checked in phase 1, in the same turn as the planning reads — a tab listing is the go signal. The browser is the only route to Reddit (the richest source), the only permitted source of ratings, the closure check, and the primary finder for Healthy staples. If it is not connected, tell the user to connect the extension and re-run — do not research anything first.
+3. **小红书 logged in**, checked in the same phase 1 turn: open `https://www.rednote.com/search_result/?keyword=<city中文名>攻略` and confirm real result cards, not skeleton cards behind a QR modal. 小红书 is a required layer, not a bonus — it is the only Chinese-language source in the plan and the only one that reliably covers Asian food in non-Asian cities. If it is logged out, stop and ask the user to scan the QR code shown on that page, then re-run. **Never enter the phone number or verification code yourself** — those are the user's credentials, and the QR scan is theirs to do.
 
 ## Workflow
 
@@ -39,9 +40,11 @@ The phase numbers below are dependency order, not clock order — 3 and 5 overla
 
 ### 1. Plan — one turn, gate included
 
-In a single turn: load the browser tools (ToolSearch `select:mcp__claude-in-chrome__tabs_context_mcp,mcp__claude-in-chrome__navigate,mcp__claude-in-chrome__get_page_text,mcp__claude-in-chrome__browser_batch,mcp__claude-in-chrome__tabs_create_mcp,mcp__claude-in-chrome__tabs_close_mcp`), call `tabs_context_mcp`, and read `reference/research.md`. No tab listing, no run (Hard requirements above) — nothing has been spent at this point.
+In a single turn: load the browser tools (ToolSearch `select:mcp__claude-in-chrome__tabs_context_mcp,mcp__claude-in-chrome__navigate,mcp__claude-in-chrome__get_page_text,mcp__claude-in-chrome__browser_batch,mcp__claude-in-chrome__javascript_tool,mcp__claude-in-chrome__tabs_create_mcp,mcp__claude-in-chrome__tabs_close_mcp`), call `tabs_context_mcp`, and read `reference/research.md`. No tab listing, no run (Hard requirements above) — nothing has been spent at this point.
 
-Then fill the city-specific slots of research.md's query plan: the food format map, the flagship venue list, the named local press, the local-language query variants.
+`javascript_tool` is in that list because reading a 小红书 note requires it (research.md → Reaching 小红书); loading it later costs an extra round trip mid-pass.
+
+Then fill the city-specific slots of research.md's query plan: the food format map, the flagship venue list, the named local press, the city's Chinese name, the local-language query variants. **Both gates are checked in this same turn** — the tab listing and the 小红书 login probe — so a run that is going to stop stops before anything is spent.
 
 ### 2. Gather — once, for everything
 
@@ -49,7 +52,7 @@ Every finding lands in one dossier, tagged by source at birth. Gathering collect
 
 Fan out the research subagents in parallel (split in research.md). **Each writes its own dossier file directly** — they do not return findings as text for you to transcribe; a track routed through your context is the same text generated twice. They return only a one-line status: what they covered and what came back empty. No publishing, and no Google-ratings chasing (that is phase 5).
 
-While they run, do the browser pass yourself, serially — Reddit and the Maps category searches, written to `dossier/reddit.md` as you go. The browser is one shared resource with one tab group: never hand it to parallel agents.
+While they run, do the browser pass yourself, serially — Reddit, then 小红书, then the Maps category searches, written to `dossier/reddit.md` and `dossier/xiaohongshu.md` as you go. The browser is one shared resource with one tab group: never hand it to parallel agents.
 
 Budget rules are in research.md.
 
@@ -65,11 +68,11 @@ Sections, one file each under `reference/sections/`: `things-to-do`, `food`, `ev
 | `practical` | city track |
 | `events` | events track + the Reddit events query |
 | `where-to-stay` | city track + the Reddit stay threads |
-| `things-to-do` | full browser pass + city track |
-| `food` | full browser pass + food-editorial track |
+| `things-to-do` | full browser pass (incl. 小红书) + city track |
+| `food` | full browser pass (incl. 小红书) + food-editorial track |
 | `book-ahead` | every other draft — written by you in phase 4, never delegated |
 
-Six drafters, all subagents; you draft none of them. Each gets: the scratchpad path, `shared.md`, its own section file, `reference/brief-template.html`, and **only the dossier files in its row above** — a country drafter has no use for reddit.md, and the dossier is read once per drafter, so scoping it is read time saved six times over.
+Six drafters, all subagents; you draft none of them. Each gets: the scratchpad path, `shared.md`, its own section file, `reference/brief-template.html`, and **only the dossier files in its row above** — a country drafter has no use for reddit.md or xiaohongshu.md, and the dossier is read once per drafter, so scoping it is read time saved six times over.
 
 Each drafter writes two files and returns neither as text:
 
@@ -106,7 +109,7 @@ Each section file carries its own checklist — the drafter runs it on its own s
 
 1. Each place appears once across the whole brief.
 2. Every rating has a review count; none invented; every list sorted by rating descending, unrated last.
-3. Every Things to do, Food, and Events entry carries all its source tags; every reddit tag links its thread; no aggregator-sourced entries or numbers.
+3. Every Things to do, Food, and Events entry carries all its source tags; every reddit tag links its thread and every 小红书 tag links its note (tokenized URL); no aggregator-sourced entries or numbers.
 4. Empty sections and groups deleted heading-and-all, no sentence noting the omission — except Book ahead's "nothing needs advance booking" line and source-availability callouts.
 5. Years attached: every fare, award, GDP figure, funding total, and tipping norm.
 6. Every section file's own checklist actually ran.
