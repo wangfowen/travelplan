@@ -2,6 +2,8 @@
 
 A personal trip-research system: two Claude Code skills and the GitHub Pages site they publish to.
 
+**These are Claude Code skills, not a program.** There is nothing to `npm install` and no command to run in a shell. You install them by symlinking two directories into `~/.claude/skills/`, then type `/travel-brief` inside a Claude Code session. They need [Claude Code](https://claude.com/claude-code) on a computer and the [Claude in Chrome](https://claude.com/chrome) extension connected — see [Requirements](#requirements) and [Setup](#setup) before anything else.
+
 **The site: https://wangfowen.github.io/travelplan** — one link per city to its latest guide. Once a post-trip guide exists it takes over as the city's link; briefs and older versions sit under a small toggle. Add it to your phone's home screen; that's the way in while traveling.
 
 ## The skills
@@ -36,9 +38,51 @@ Steps 3–5 pipeline rather than running as phases: a section starts drafting as
 
 ## Requirements
 
-- **Claude Code on a computer.** Not Claude chat, not mobile — the skills need subagents, git, and the browser, and refuse to run degraded.
-- **Claude in Chrome connected** — a hard requirement for `/travel-brief`. Reddit (which blocks server-side fetches), Google Maps ratings and closure checks, and the Healthy-staples finder all run through the browser. The skill stops up front if the extension isn't there.
+- **Claude Code on a computer.** Not Claude chat, not the mobile app, not the API — the skills need subagents, git, and the browser, and refuse to run degraded. Both skills are invoked from inside a Claude Code session (`/travel-brief …`), never from a shell.
+- **Claude in Chrome connected** — a hard requirement for `/travel-brief`. Reddit (which blocks server-side fetches), Google Maps ratings and closure checks, and the Healthy-staples finder all run through the browser. The skill checks for the extension in phase 1 and stops there if it isn't connected. Chrome must be running, and the extension needs site permissions granted for at least `reddit.com` and `google.com`.
 - **Web search enabled**, or there is nothing to research with.
+- **A GitHub repo you can push to**, with Pages enabled — the skills publish by committing to `docs/` and pushing. See Setup.
+
+## Setup
+
+**Fork this repo rather than cloning it.** The skills publish by pushing to their own repo and then hand the traveler a URL, so a clone that still points at `wangfowen/travelplan` will either fail to push or publish into someone else's site.
+
+1. **Fork on GitHub**, then clone your fork and `cd` into it.
+
+2. **Point the skills at your site.** The publishing URL is written into `travel-brief/SKILL.md` (the intro line and the Publishing section). Replace it with your own Pages URL:
+
+   ```sh
+   grep -rl 'wangfowen.github.io/travelplan' travel-brief travel-summary \
+     | xargs -I{} sed -i '' 's|wangfowen.github.io/travelplan|<you>.github.io/<repo>|g' {}
+   ```
+
+   (drop the `''` after `-i` on Linux).
+
+3. **Enable GitHub Pages** — repo Settings → Pages → Source: *Deploy from a branch*, branch `main`, folder `/docs`. The published site is whatever is in `docs/` on `main`; there is no build step and no Action.
+
+4. **Install the skills** — symlinked, so edits apply immediately:
+
+   ```sh
+   mkdir -p ~/.claude/skills
+   ln -sfn "$PWD/travel-brief"   ~/.claude/skills/travel-brief
+   ln -sfn "$PWD/travel-summary" ~/.claude/skills/travel-summary
+   ```
+
+   Run this from the repo root. Once symlinked the skills are available in *any* Claude Code session — they locate this repo by resolving the symlink, so you don't have to be in this directory to use them.
+
+5. **Start clean** (optional, but your index will otherwise list my trips):
+
+   ```sh
+   rm -f docs/briefs/*.html docs/summaries/*.html
+   rm -rf runs/*/
+   printf '{\n  "entries": []\n}\n' > docs/manifest.json
+   ```
+
+   Keep `docs/index.html`. Keep `runs/calibration.md` and `runs/proposals.md` too — but delete the entries under their headings, since those tallies are my trips talking, and the feedback loop will weigh your first trips against them otherwise.
+
+6. **Make the traveler profile yours.** `travel-brief/reference/shared.md` opens with one specific traveler's taste, and every section file under `reference/sections/` carries selection bars written against it. That profile is not decoration — it decides what gets included and what gets cut. Edit it to describe yourself, or the briefs will be tuned to me.
+
+Then, in Claude Code: `/travel-brief Lisbon Aug 10–15` — or just name a city and it will ask for the dates.
 
 ## Layout
 
@@ -59,15 +103,6 @@ docs/                 the published site (GitHub Pages serves this from main)
   summaries/          traveler-tested trip guides
 runs/                 per-run records: dossier + decisions.md + feedback.md; proposals.md is the running log of open candidates
 ```
-
-## Installing
-
-```sh
-ln -sfn "$PWD/travel-brief"   ~/.claude/skills/travel-brief
-ln -sfn "$PWD/travel-summary" ~/.claude/skills/travel-summary
-```
-
-Symlinked, so edits apply immediately — no build step.
 
 ## The feedback loop
 
