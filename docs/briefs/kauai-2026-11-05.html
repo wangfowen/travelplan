@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kauaʻi — Travel Brief</title>
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --text: #1c1b19;
+    --muted: #6b6863;
+    --line: #e5e1db;
+    --accent: #9a5b34;
+    --flag-bg: #fdf3ec;
+    --star: #b5892f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1917;
+      --surface: #232220;
+      --text: #ece9e4;
+      --muted: #a09b93;
+      --line: #35332f;
+      --accent: #d99b6c;
+      --flag-bg: #2c241d;
+      --star: #d8b25e;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem 1.25rem 4rem;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
+  }
+  main { max-width: 46rem; margin: 0 auto; }
+
+  header { border-bottom: 2px solid var(--text); padding-bottom: 1rem; margin-bottom: 2.5rem; }
+  h1 { font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1.1; margin: 0 0 .4rem; letter-spacing: -.02em; }
+  .meta { color: var(--muted); font-size: .85rem; }
+
+  /* Anchor nav — one tap to each section on a phone */
+  .toc { margin-top: .75rem; font-size: .8rem; line-height: 1.9; }
+  .toc a { color: var(--muted); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: .15rem .6rem; margin: 0 .25rem .25rem 0; display: inline-block; white-space: nowrap; }
+  .toc a:hover { color: var(--accent); border-color: var(--accent); }
+  h2 { scroll-margin-top: 1rem; }
+
+  h2 {
+    font-size: 1.3rem; margin: 3rem 0 .25rem; letter-spacing: -.01em;
+    padding-bottom: .4rem; border-bottom: 1px solid var(--line);
+  }
+  h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 1.75rem 0 .5rem; }
+  p { margin: .6rem 0; }
+
+  ul { padding-left: 1.1rem; margin: .5rem 0; }
+  li { margin: .75rem 0; }
+  li b { font-weight: 650; }
+
+  a { color: inherit; text-underline-offset: 2px; text-decoration-color: var(--line); }
+  a:hover { text-decoration-color: var(--accent); }
+
+  /* Rating badge — sits inline after a place name. Omit entirely if unconfirmed. */
+  .rating {
+    display: inline-block; white-space: nowrap;
+    font-size: .78rem; font-weight: 600; color: var(--star);
+    margin-left: .35rem;
+  }
+  .rating .count { color: var(--muted); font-weight: 400; }
+
+  /* Date badge — events only. Confirmed dates for the travel year, never a guess. */
+  .when {
+    display: inline-block; white-space: nowrap;
+    font-size: .78rem; font-weight: 650; color: var(--accent);
+    margin-left: .35rem;
+  }
+
+  /* Source tag — required on every Things-to-do, Food and Events entry.
+     Stack several when a place shows up in more than one source. */
+  .src {
+    display: inline-block; font-size: .7rem; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--muted); border: 1px solid var(--line); border-radius: 4px;
+    padding: .05rem .3rem; margin-left: .35rem; vertical-align: 1px;
+  }
+  .src a { text-decoration: none; }
+
+  .note { color: var(--muted); font-size: .85rem; font-style: italic; }
+  .unconfirmed { color: var(--accent); font-weight: 600; }
+
+  /* Callout — use to flag a source category that was unreachable this run */
+  .callout {
+    background: var(--flag-bg); border: 1px solid var(--line); border-radius: 8px;
+    padding: .7rem 1rem; margin: 1rem 0; font-size: .88rem; color: var(--muted);
+  }
+
+  /* Book-ahead table — must stay scrollable on narrow screens */
+  .table-wrap { overflow-x: auto; margin: 1rem 0; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: .92rem; }
+  th, td { text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 600; }
+  td.lead { white-space: nowrap; font-weight: 650; }
+  tr.urgent td.lead { color: var(--accent); }
+
+  .phrases { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  .phrases td { padding: .45rem .6rem .45rem 0; border-bottom: 1px solid var(--line); }
+  .phrases .native { font-weight: 600; }
+  .phrases .phon { color: var(--muted); font-style: italic; white-space: nowrap; }
+
+  /* Verdict — the transit-vs-rides call at the end of Getting around */
+  .verdict {
+    border-left: 3px solid var(--accent); background: var(--surface);
+    border-radius: 0 8px 8px 0; padding: .7rem 1rem; margin: 1rem 0; font-size: .92rem;
+  }
+  .verdict b { color: var(--accent); }
+
+  .facts { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: .35rem 1rem; margin: 1rem 0; }
+  .facts dl { display: grid; grid-template-columns: max-content 1fr; gap: .5rem 1.25rem; margin: .8rem 0; }
+  .facts dt { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); padding-top: .15rem; }
+  .facts dd { margin: 0; }
+
+  @media (max-width: 30rem) {
+    .facts dl { grid-template-columns: 1fr; gap: .15rem; }
+    .facts dd { margin-bottom: .7rem; }
+  }
+  /* Plan label — which itinerary (A: two islands, B: three) a date-bound item falls in */
+  .plan { display: inline-block; white-space: nowrap; font-size: .7rem; font-weight: 650; color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; padding: 0 .3rem; margin-left: .35rem; vertical-align: 1px; }
+</style>
+</head>
+<body>
+<main>
+
+  <header>
+    <h1>Kauaʻi</h1>
+    <div class="meta">Hawaiʻi, USA · Plan A: Dec 19–28, 2026 · Plan B: Dec 22–28, 2026 · researched Nov 5, 2026</div>
+    <div class="meta">Plan A = Oʻahu then Kauaʻi; Plan B = Oʻahu, Maui, Kauaʻi. Date-bound items are labelled with the plan they fall in.</div>
+    <div class="meta">Typical December in Līhuʻe: ~26°/19°C (79°/66°F) highs/lows · the rainy season, with frequent showers and the north shore wettest · sunset about 5:50pm <span class="note">(climate normals, own knowledge)</span></div>
+    <nav class="toc">
+      <a href="#do">Things to do</a><a href="#food">Food</a><a href="#stay">Stay</a><a href="#book">Book ahead</a><a href="#practical">Practical</a><a href="#country">Hawaiʻi</a>
+    </nav>
+  </header>
+  <h2 id="do">Things to do</h2>
+  <div class="callout">Sources this run: <b>Reddit could not be read</b>. The Claude in Chrome extension blocks reddit.com (www and old.reddit.com tried on Nov 5, 2026; every attempt returned "site not allowed"), so there are no Reddit tags or tally. <b>小红书</b> notes rendered as images only, so its tags link to the search results, with the note title and author on hover. Michelin has no Hawaiʻi guide; World of Mouth has no Kauaʻi page; Eater pages could not be fetched. Candidates found only by a Google Maps category search are tagged <i>my pick</i>.</div>
+
+  <p class="callout">Hurricane Lowell (Sept 2026) closed every state park on Kauaʻi. As of DLNR's Nov 2, 2026 notice, only Hāʻena State Park and the main Waimea Canyon Lookout have reopened. Entries below carry their status on that date. Check <a href="https://dlnr.hawaii.gov/dsp/important-park-notices/">dlnr.hawaii.gov/dsp/important-park-notices</a> the week before you fly and again the morning you go.</p>
+
+  <h3>Top picks</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Port+Allen+Small+Boat+Harbor+Kauai">Nā Pali Coast by boat, from Port Allen</a></b>
+      <span class="rating">4.9 ★ <span class="count">(6,159)</span></span>
+      <span class="src">my pick</span>
+      <br>A catamaran up the 17-mile roadless sea-cliff coast. Whale season peaks Dec–Mar, so a December trip is also a whale watch. <a href="https://holoholocharters.com/blog/winter-on-kauai/">Holo Holo Charters</a> also runs a Niʻihau + Nā Pali snorkel trip.
+      <br><span class="note">Winter swells run 5–15 ft. The captain picks the route about an hour before departure and may switch to the calmer side or offer a free reschedule. Some operators drop snorkeling from late-Nov–Apr afternoon trips. Book for early in your stay so a cancelled trip can be rebooked. No outfitters run Nā Pali sea-kayak trips in winter.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Haena+State+Park+Kauai">Hāʻena State Park: Kalalau Trail to Hanakāpīʻai Beach and Falls</a></b>
+      <span class="rating">4.7 ★ <span class="count">(1,164)</span></span>
+      <span class="src"><a href="https://www.atlasobscura.com/places/kalalau-trail">atlas obscura</a></span>
+      <br>The first 2 miles of the Nā Pali cliff trail lead to Hanakāpīʻai Beach. A valley spur continues inland to Hanakāpīʻai Falls, about 8 miles round trip from the trailhead. Kēʻē Beach is at the trailhead.
+      <br><span class="unconfirmed">Status:</span> <span class="note">Open as of Nov 2, 2026 (reopened Oct 15), 7am–6:45pm daily. <b>Kalalau beyond Hanakāpīʻai is conflicting:</b> DLNR says permitted camping reopened Nov 2, but Kauai Now (Nov 5) reports the trail closed past mile 2. Check dlnr.hawaii.gov/dsp/important-park-notices before going.</span>
+      <br><span class="note">Entry, parking or shuttle must be booked on <a href="https://gohaena.com/">gohaena.com</a>. Booking opens 30 days ahead at 12:00am HST: Nov 19 for Dec 19 <span class="plan">Plan A</span>, Nov 22 for Dec 22 <span class="plan">Plan B</span>. Parking sells out instantly; cancellations show up 7–8am. The shuttle from Waipā Park &amp; Ride (Hanalei) is $40 round trip and is refunded if the service is suspended. Hanakāpīʻai stream floods fast in rain, and the beach is not swimmable. Kūhiō Hwy at Hanalei Bridge closed for flooding three times between Sept and Oct 2026, cutting off everything west of it.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Allerton+Garden+Kauai">Allerton Garden (NTBG), Lāwaʻi Valley</a></b>
+      <span class="rating">4.6 ★ <span class="count">(1,716)</span></span>
+      <span class="src"><a href="https://www.lonelyplanet.com/points-of-interest/national-tropical-botanical-garden/1633280">lonely planet</a></span>
+      <br>A guided-only walk through the Allerton family's estate, laid out as outdoor rooms down to the sea, including the buttress-rooted Moreton Bay figs from <i>Jurassic Park</i>. Next door, McBryde Garden is self-guided and leaves from the same South Shore Visitor Center. Spouting Horn, a lava-tube blowhole <span class="src"><a href="https://www.atlasobscura.com/places/spouting-horn">atlas obscura</a></span>, is a short drive down Lāwaʻi Rd.
+      <br><span class="unconfirmed">Status:</span> <span class="note">NTBG is private and not under the DLNR closure, but its post-Lowell status is unconfirmed. Per NTBG, the visitor center is open Tue–Sat; Dec 24–25 hours are unconfirmed. Book at <a href="https://ntbg.org/gardens/">ntbg.org</a>.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Lihue+Airport+helicopter+tours+Kauai">Kauaʻi interior by helicopter, from Līhuʻe</a></b>
+      <span class="src">my pick</span>
+      <br>Overflies Waiʻaleʻale crater, Manawaiopuna ("Jurassic Park") Falls, Waimea Canyon and the Nā Pali valleys. With Kōkeʻe's trails and upper lookouts closed, this is the only way to see the interior this winter. Island Helicopters lands at Manawaiopuna; Jack Harter flies doors-off.
+      <br><span class="unconfirmed">Status:</span> <span class="note">Post-Lowell operations and prices not confirmed. Rain cancels flights, so book early in your stay.</span>
+    </li>
+  </ul>
+
+  <h3>Unique to Kauaʻi</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Hanapepe+Swinging+Bridge+Kauai">Hanapēpē: Swinging Bridge and Friday Art Night</a></b>
+      <span class="rating">4.3 ★ <span class="count">(2,270)</span></span>
+      <span class="src"><a href="https://www.atlasobscura.com/places/hanapepe-swinging-bridge">atlas obscura</a></span>
+      <span class="src">my pick</span>
+      <br>A plank suspension footbridge over the Hanapēpē River, still in daily use, in a one-street plantation town of galleries. On Friday evenings the galleries stay open and food trucks line the street.
+      <br><span class="note">The only Friday in either window is <b>Dec 25</b> <span class="plan">both plans</span>. Whether Art Night runs on Christmas is unconfirmed. The bridge is open any day.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Glass+Beach+Eleele+Kauai">Glass Beach, ʻEleʻele</a></b>
+      <span class="rating">3.4 ★ <span class="count">(927)</span></span>
+      <span class="src"><a href="https://www.atlasobscura.com/places/kauai-glass-beach">atlas obscura</a></span>
+      <br>A cove of tumbled sea glass washed out of an old dump. The lava beds at its south edge are the less-visited part. It is 5 min from the Port Allen boat harbor.
+    </li>
+  </ul>
+
+  <h3>Views and nature</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Waimea+Canyon+Lookout+Kauai">Waimea Canyon Lookout</a></b>
+      <span class="rating">4.9 ★ <span class="count">(4,467)</span></span>
+      <span class="src">my pick</span>
+      <br>The main overlook into a canyon about 10 miles long and 3,000 ft deep, with red-and-green banded walls. It is about 40 min up Waimea Canyon Dr from Waimea town.
+      <br><span class="unconfirmed">Status:</span> <span class="note">Only this lookout is open as of Nov 2, 2026 (reopened Oct 24), and fees are waived. Kōkeʻe Rd beyond it is closed, along with Puʻu Hinahina, Puʻu Ka Pele, the Kalalau and Puʻu o Kila lookouts, and every Kōkeʻe trail. Check dlnr.hawaii.gov/dsp/important-park-notices before going.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Kilauea+Point+National+Wildlife+Refuge">Kīlauea Point National Wildlife Refuge</a></b>
+      <span class="rating">4.7 ★ <span class="count">(1,248)</span></span>
+      <span class="src">my pick</span>
+      <br>A lighthouse headland over nesting seabirds: mōlī (Laysan albatross, arriving from about November), red-footed boobies, and nēnē on the lawns. In season you can also spot whales from the point.
+      <br><span class="note">Open Wed–Sat 10am–4pm, last entry 3:30. Tickets are $10 plus a $1 fee on <a href="https://www.recreation.gov/ticket/facility/300018">recreation.gov</a>, bookable 60 days ahead; Dec dates are already open. Wed–Sat days in the window: Dec 19 <span class="plan">Plan A</span> and Dec 23, 24 and 26 <span class="plan">both plans</span>. Dec 25 hours are unconfirmed. Lighthouse interior tours are suspended. Federal land, not under the DLNR closure, but post-Lowell status is unconfirmed.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Limahuli+Garden+and+Preserve+Haena">Limahuli Garden &amp; Preserve, Hāʻena</a></b>
+      <span class="rating">4.7 ★ <span class="count">(832)</span></span>
+      <span class="src">my pick</span>
+      <br>An NTBG valley garden built around restored ancient loʻi kalo (taro terraces), with Makana peak above. It is self-guided by reservation and just short of the Hāʻena trailhead, so it pairs with the hike.
+      <br><span class="unconfirmed">Status:</span> <span class="note">Not a state park, but its post-Lowell status is unknown, and it has closed after past floods. It sits west of Hanalei Bridge, which closes in floods. Book at <a href="https://ntbg.org/news/limahuli-garden-now-open">ntbg.org</a>.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Mahaulepu+Heritage+Trail+Poipu">Māhāʻulepū Heritage Trail, Poʻipū</a></b>
+      <span class="src">my pick</span>
+      <br>A clifftop coastal walk east from Shipwreck Beach over lithified sand dunes and sea-cut limestone to the undeveloped Māhāʻulepū beaches, about 4 miles round trip. It crosses private land, not a state park, on the driest side of the island in December.
+    </li>
+  </ul>
+  <!-- ── 2. FOOD — Kauai ── -->
+  <h2 id="food">Food</h2>
+
+  <p class="note">Christmas Day falls in <span class="plan">both plans</span>: many family-run places (plate-lunch counters, saimin stands, small markets) close on Dec 25, and some keep short hours on Dec 24 and 26. Check that day's hours before you drive across the island. (Own knowledge.)</p>
+
+  <!-- Venues with their own entry below are only referenced here. -->
+  <h3>Local dishes to try</h3>
+  <ul>
+    <li>
+      <b>Saimin.</b> <span class="src">my pick</span> Thin wheat-and-egg noodles in a clear dashi-style broth with char siu, fishcake and green onion, the plantation-era noodle soup.
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=Hamura+Saimin+Stand+Lihue+Kauai">Hamura Saimin Stand</a> <span class="rating">4.4 ★ <span class="count">(2,114)</span></span> (East, Līhuʻe; see Top picks).
+    </li>
+    <li>
+      <b>Hawaiian plate.</b> <span class="src">my pick</span> Kālua pig, laulau (pork steamed in taro leaf), lomi lomi salmon and poi, served as a plate.
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=Hanalei+Taro+and+Juice+Co+Hanalei+Kauai">Hanalei Taro &amp; Juice Co.</a> <span class="rating">4.6 ★ <span class="count">(167)</span></span> (North, Hanalei), <a href="https://www.google.com/maps/search/?api=1&amp;query=Koloa+Fish+Market+Koloa+Kauai">Kōloa Fish Market</a> <span class="rating">4.6 ★ <span class="count">(1,562)</span></span> (South, Kōloa). Both are in Top picks.
+    </li>
+    <li>
+      <b>Poke.</b> Cubed raw ahi dressed with shoyu, sesame oil, limu (seaweed) and onion, sold by the pound from deli counters.
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=Pono+Market+Kapaa+Kauai">Pono Market</a> <span class="rating">4.7 ★ <span class="count">(1,067)</span></span> (East, Kapaʻa; see Top picks), <a href="https://www.google.com/maps/search/?api=1&amp;query=Foodland+Princeville+Kauai">Foodland</a> (Hawaiʻi's supermarket chain, with stores in Princeville and Kapaʻa) <span class="src"><a href="https://www.hawaiimagazine.com/2026-readers-choices-awards-kauai/">hawaiʻi magazine</a></span>.
+    </li>
+    <li>
+      <b>Musubi.</b> <span class="src">my pick</span> A block of rice topped with seared Spam (or another protein) and wrapped in nori, a convenience-store staple everywhere in Hawaiʻi.
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=The+Musubi+Truck+Kapaa+Kauai">The Musubi Truck</a> <span class="rating">4.8 ★ <span class="count">(822)</span></span> (East, Kapaʻa; see Everyday institutions).
+    </li>
+    <li>
+      <b>Shave ice.</b> Ice shaved as fine as snow, soaked in syrup and often finished with haupia (coconut) cream or a scoop of ice cream underneath.
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=Wailua+Shave+Ice+Kapaa+Kauai">Wailua Shave Ice</a> <span class="rating">4.7 ★ <span class="count">(2,302)</span></span> (East, Kapaʻa; see Creative), <a href="https://www.google.com/maps/search/?api=1&amp;query=JoJos+Shave+Ice+Kauai">JoJo's Shave Ice</a> (Waimea, Hanalei and Wailua; running since 1992, with house syrups and haupia topping) <span class="src"><a href="https://www.hawaiimagazine.com/5-best-shave-ice-stands-on-kauai-in-2024/">hawaiʻi magazine</a></span>.
+    </li>
+  </ul>
+
+  <h3>Top picks</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Pono+Market+Kapaa+Kauai">Pono Market</a></b>
+      <span class="rating">4.7 ★ <span class="count">(1,067)</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/best-plate-lunch-spots-on-kauai/">hawaiʻi magazine</a></span>
+      <span class="note">East · Kapaʻa</span>
+      <br>A local deli that opens at 6am. Build a plate from the hot line (kālua pig, laulau, shoyu chicken) and add a scoop of poke from the case.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Aina+Kauai+Kapaa">ʻĀina Kauaʻi</a></b>
+      <span class="rating">4.7 ★ <span class="count">(132)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/hale-aina-award-winners-the-best-restaurants-in-hawaii/">honolulu magazine</a></span>
+      <span class="note">East · Kapaʻa</span>
+      <br>A fixed tasting menu of about two hours that applies Japanese technique to Kauaʻi and Hawaiian seafood and produce, with courses such as Kauaʻi shrimp in ponzu-dashi gelée and Niʻihau ama ebi in a sauce made from its shells. Menus run $165–215 (2026). Payment is taken in advance with no refunds or changes, and the kitchen does not adjust for allergies or diets.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Koloa+Fish+Market+Koloa+Kauai">Kōloa Fish Market</a></b>
+      <span class="rating">4.6 ★ <span class="count">(1,562)</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/best-plate-lunch-spots-on-kauai/">hawaiʻi magazine</a></span>
+      <span class="note">South · Kōloa</span>
+      <br>A takeout counter doing poke and plate lunch. Order the Hawaiian combo (kālua pig and laulau) or a poke bento with furikake. It sells out early, so go before noon.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Hanalei+Taro+and+Juice+Co+Hanalei+Kauai">Hanalei Taro &amp; Juice Co.</a></b>
+      <span class="rating">4.6 ★ <span class="count">(167)</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/best-plate-lunch-spots-on-kauai/">hawaiʻi magazine</a></span>
+      <span class="note">North · Hanalei</span>
+      <br>Hawaiian food made with taro the family grows in Hanalei. Order the Hawaiian plate with poi, taro mac salad and lomi lomi salmon, and a taro dessert.
+      <span class="note">The Hanalei Bridge closed for flooding on Sept 7, Oct 1 and Oct 31, 2026, and the road can close in heavy rain. Check road status before driving.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Hamura+Saimin+Stand+Lihue+Kauai">Hamura Saimin Stand</a></b>
+      <span class="rating">4.4 ★ <span class="count">(2,114)</span></span>
+      <span class="src"><a href="https://www.jamesbeard.org/stories/americas-classics-alan-wong-on-hamuras-saimin-stand">james beard</a></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/2026-readers-choices-awards-kauai/">hawaiʻi magazine</a></span>
+      <span class="note">East · Līhuʻe</span>
+      <br>A saimin counter open since the early 1950s and now run by the founder's granddaughter. Order the saimin or wonton min, then buy lilikoʻi (passion-fruit) chiffon pie at the counter by the exit.
+    </li>
+  </ul>
+
+  <h3>Everyday institutions</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=The+Musubi+Truck+Kapaa+Kauai">The Musubi Truck</a></b>
+      <span class="rating">4.8 ★ <span class="count">(822)</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/2026-readers-choices-awards-kauai/">hawaiʻi magazine</a></span>
+      <span class="note">East · Kapaʻa</span>
+      <br>A food truck selling musubi and poke salad. Get a couple of musubi with a side of poke salad.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Sueoka+Snack+Shop+Koloa+Kauai">Sueoka Snack Shop</a></b>
+      <span class="rating">4.8 ★ <span class="count">(50)</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/best-plate-lunch-spots-on-kauai/">hawaiʻi magazine</a></span>
+      <span class="note">South · Kōloa</span>
+      <br>A takeout window on the side of the Sueoka grocery store. Order the hamburger steak or mochiko chicken plate.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Kauai+Community+Market+Kauai+Community+College+Puhi">Kauaʻi Community Market</a></b>
+      <span class="rating">4.7 ★ <span class="count">(391)</span></span>
+      <span class="when">Sat Dec 19 <span class="plan">Plan A</span> · Sat Dec 26 <span class="plan">both plans</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/how-to-eat-like-a-local-kauai/">hawaiʻi magazine</a></span>
+      <span class="note">East · Puhi (Kauaʻi Community College)</span>
+      <br>A Saturday farmers market with island fruit stalls and loaves from Midnight Bear Breads. <span class="unconfirmed">Hours of about 9:30am–1pm come from a 2013 source. Confirm the hours, and that it runs on Dec 26.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Marks+Place+Puhi+Lihue+Kauai">Mark's Place</a></b>
+      <span class="rating">4.6 ★ <span class="count">(1,147)</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/best-plate-lunch-spots-on-kauai/">hawaiʻi magazine</a></span>
+      <span class="note">East · Puhi (Līhuʻe)</span>
+      <br>A plate-lunch takeout in an industrial park. Order the mixed plate: chicken katsu, teriyaki beef and beef stew with potato-mac salad.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Kilauea+Fish+Market+Kilauea+Kauai">Kīlauea Fish Market</a></b>
+      <span class="rating">4.5 ★ <span class="count">(1,300)</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/best-plate-lunch-spots-on-kauai/">hawaiʻi magazine</a></span>
+      <span class="note">North · Kīlauea</span>
+      <br>A fish market that also does poke and plates. Order the grilled fish plate or the Hawaiian chili-pepper pork.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Tip+Top+Motel+Cafe+Bakery+Lihue+Kauai">Tip Top Motel Café &amp; Bakery</a></b>
+      <span class="rating">4.4 ★ <span class="count">(1,107)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/day-trip-kauai-das-why/">honolulu magazine</a></span>
+      <span class="src"><a href="https://www.rednote.com/search_result/?keyword=%E5%8F%AF%E7%88%B1%E5%B2%9B%E7%BE%8E%E9%A3%9F" title="夏威夷kauai岛美食/Tiptop牛尾汤名不虚传 — Hhh慢游中">小红书</a></span>
+      <span class="note">East · Līhuʻe</span>
+      <br>An old-school motel diner and bakery serving local breakfast. Order the oxtail soup, and take macadamia-nut cookies from the bakery case.
+    </li>
+  </ul>
+
+  <h3>Creative and interesting</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Wailua+Shave+Ice+Kapaa+Kauai">Wailua Shave Ice</a></b>
+      <span class="rating">4.7 ★ <span class="count">(2,302)</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/5-best-shave-ice-stands-on-kauai-in-2024/">hawaiʻi magazine</a></span>
+      <span class="note">East · Kapaʻa</span>
+      <br>Shave ice with all-natural syrups and no artificial dyes, topped with things like coconut foam and lilikoʻi cream. Order the Lilikoʻi Cream or the Lava Flow.
+    </li>
+  </ul>
+
+  <h3>Cafés and bakeries</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Midnight+Bear+Breads+Kauai">Midnight Bear Breads</a></b>
+      <span class="rating">4.7 ★ <span class="count">(484)</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/2026-readers-choices-awards-kauai/">hawaiʻi magazine</a></span>
+      <span class="note">South · Kalāheo (Kaumualiʻi Hwy)</span>
+      <br>An artisan bakery making naturally leavened bread, the island's sourdough option. Buy a loaf. It also sells at the Saturday Kauaʻi Community Market.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Dark+Horse+Coffee+Roasters+Koloa+Kauai">Dark Horse Coffee Roasters</a></b>
+      <span class="rating">4.7 ★ <span class="count">(376)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/foodie-field-trip-everything-i-ate-and-drank-in-one-day-on-kauai/">honolulu magazine</a></span>
+      <span class="note">South · Kōloa</span>
+      <br>A coffee roaster with its own café. Order the cold brew with haupia foam.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Aloha+Roastery+Lihue+Kauai">Aloha Roastery</a></b>
+      <span class="rating">4.6 ★ <span class="count">(467)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/foodie-field-trip-everything-i-ate-and-drank-in-one-day-on-kauai/">honolulu magazine</a></span>
+      <span class="note">East · Līhuʻe, near the airport</span>
+      <br>A minimal espresso bar that also sells pastries. Order the Iced Beige. It's on the way in from, or out to, the airport.
+    </li>
+  </ul>
+
+  <h3>Cocktail bars and breweries</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Mucho+Aloha+Brewhouse+Koloa+Kauai">Mucho Aloha Brewhouse</a></b>
+      <span class="rating">4.5 ★ <span class="count">(343)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/where-to-find-craft-beer-on-kauai/">honolulu magazine</a></span>
+      <span class="src"><a href="https://kauainownews.com/2023/08/06/kauais-craft-breweries-to-double-from-2-to-4-in-2023-with-a-fifth-in-the-works/">kauai now</a></span>
+      <span class="note">South · Kōloa</span>
+      <br>A brewery serving Baja-style Mexican food, with unusual beers such as a chile-pepper beer and a sour mango.
+    </li>
+  </ul>
+
+  <!-- Asian food and Healthy staples always close the Food section. -->
+  <h3>Asian food</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Kauai+Myanmar+food+and+Sushi+Kapaa">Kauai Myanmar food &amp; Sushi</a></b>
+      <span class="rating">5.0 ★ <span class="count">(414)</span></span>
+      <span class="src">my pick</span>
+      <span class="note">East · Kapaʻa</span>
+      <br>A Burmese kitchen in Kapaʻa that also makes sushi. Order the Burmese fish curry rather than the sushi.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Mama+Lucys+Lihue+Kauai">Mama Lucy's</a></b>
+      <span class="rating">4.6 ★ <span class="count">(164)</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/how-to-eat-like-a-local-kauai/">hawaiʻi magazine</a></span>
+      <span class="note">East · Līhuʻe</span>
+      <br>A Filipino hot line with more than 16 dishes, served as a plate lunch. Order the pork adobo, pancit and pork guisantes. <span class="unconfirmed">The source dates from 2013. Confirm it is still open.</span>
+    </li>
+  </ul>
+
+  <h3>Healthy staples</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Tonys+Catch+Kapaa+Kauai">Tony's Catch</a></b>
+      <span class="rating">4.9 ★ <span class="count">(896)</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/2026-readers-choices-awards-kauai/">hawaiʻi magazine</a></span>
+      <span class="note">East · Kapaʻa</span>
+      <br>A food truck doing poke and fish tacos. A poke bowl is lean protein you can come back to every day.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Kauai+Poke+Co+Poipu">Kauai Poke Co.</a></b>
+      <span class="rating">4.7 ★ <span class="count">(369)</span></span>
+      <span class="src">my pick</span>
+      <span class="note">South · Poʻipū</span>
+      <br>A poke counter in Poʻipū. Order a poke bowl, the south-shore version of the same daily default.
+    </li>
+  </ul>
+<!-- EVENTS (Kauai): section omitted. No candidate had dates confirmed on an official page for Dec 19–28, 2026. See decisions/events.md. Do not render a heading. -->
+  <!-- ── 4. WHERE TO STAY — rules in sections/where-to-stay.md ── -->
+  <h2 id="stay">Where to stay</h2>
+  <p class="note">You need a car wherever you base. Kauaʻi Bus has run a reduced, fare-free, every-two-hours schedule since Hurricane Lowell, and the 900/950 express routes were still suspended as of Nov 5, 2026.</p>
+  <ul>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Kapa%CA%BBa+Kauai">Kapaʻa / Wailua (east)</a>.</b> The island's one real working town, with a coastal path along the water. Wailua gets about 46 in of rain a year, between the dry south and the wet north. <em>Day to day:</em> <a href="https://www.google.com/maps/search/?api=1&query=Foodland+Kapaa+Kauai">Foodland</a> and <a href="https://www.google.com/maps/search/?api=1&query=Safeway+Kapaa+Kauai">Safeway</a> are in town. The <a href="https://www.google.com/maps/search/?api=1&query=Ke+Ala+Hele+Makalae+Kapaa+Kauai">Ke Ala Hele Makalae</a> path is paved and runs along the sea from Kapaʻa to Kealia and Donkey Beach, for running or biking, and you can rent bikes in town. Kapaʻa is on the bus mainline. <em>Tradeoff:</em> Kūhiō Hwy slows to a crawl through Kapaʻa, and some roadside motels are noisy, so pick a place off the highway.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Po%CA%BBip%C5%AB+Kauai">Poʻipū / Kōloa (south)</a>.</b> The driest side in winter, at about 32 in of rain a year, though multi-day downpours still happen. It is a strip of condos and resorts, with Old Kōloa Town a few minutes inland for errands. <em>Day to day:</em> <a href="https://www.google.com/maps/search/?api=1&query=Big+Save+Koloa+Kauai">Big Save</a> in Kōloa for groceries. The <a href="https://www.google.com/maps/search/?api=1&query=Mah%C4%81%CA%BBulep%C5%AB+Heritage+Trail+Kauai">Māhāʻulepū Heritage Trail</a> runs along the bluff past Shipwreck Beach and is the run. This is the one side where the sea is usually swimmable in December. <em>Tradeoff:</em> It feels like a resort more than a place people live, it takes a car to get anywhere, and the north shore is about 40 min away.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&query=Hanalei+Kauai">Hanalei</a> — avoid in December.</b> It is the most beautiful base, which is why it gets booked. But Hanalei gets about 85 in of rain a year, the winter surf makes its beaches unswimmable, and Kūhiō Hwy at the Hanalei Bridge closed for flooding on Sept 7, Oct 1 and Oct 31, 2026. Each closure cut off the town and everything west of it from the rest of the island. HDOT is also rebuilding the Wainiha River Bridge No. 3 abutment, further west. <a href="https://www.google.com/maps/search/?api=1&query=Princeville+Kauai">Princeville</a> is on the near side of the bridge and has a Foodland, so it stays connected. It is just as wet, though, and it is a golf and condo development with a water-conservation notice in nearby ʻAnini. Visit the north shore on dry-forecast days.</li>
+  </ul>
+  <p><span class="plan">Plan A</span> Nine nights is enough to split the stay, about five in Poʻipū for the dry weather and the Port Allen winter boats, then four in Kapaʻa for town life and shorter drives to the early Hāʻena shuttle and Kīlauea. <span class="plan">Plan B</span> For six nights, stay in one place: Kapaʻa if the north shore matters most, Poʻipū if beach days do.</p>
+  <p class="note">Christmas week is usually the island's most-booked week. That is our own knowledge, and availability for Dec 2026 was not checked, so book the base early.</p>
+  <!-- ── 5. BOOK AHEAD ── -->
+  <h2 id="book">Book ahead</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>What</th><th>Lead time</th><th>How</th><th>Why we know</th></tr>
+      </thead>
+      <tbody>
+        <tr class="urgent">
+          <td><a href="https://www.google.com/maps/search/?api=1&amp;query=Haena+State+Park+Kauai">Hāʻena State Park</a> entry, parking or shuttle (Kēʻē Beach, the Hanakāpīʻai trail)</td>
+          <td class="lead">30 days ahead at midnight HST: Nov 19–28 for Plan A days (Dec 19–28); Nov 22–28 for Plan B days (Dec 22–28)</td>
+          <td><a href="https://gohaena.com/">gohaena.com</a>. Parking slots sell out first, so the shuttle from Waipā (Hanalei) is the fallback. No refunds for rain or closure inside 48h; the shuttle is refunded if suspended.</td>
+          <td>gohaena FAQ: bookings open 30 days ahead at 12:00am HST and parking sells out instantly; check 7–8am daily for cancellations. On Nov 5 the site showed "No Self-Parking | Book Shuttle" during a high-surf advisory.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- ── 6. PRACTICAL ────────────────────────────────── -->
+  <h2 id="practical">Practical</h2>
+
+  <div class="callout">
+    <b>Hurricane Lowell (Sept 6–8, 2026), current conditions as of Nov 5, 2026.</b>
+    Open: Hāʻena State Park (reopened Oct 15, 2026) and the Waimea Canyon Lookout only (reopened Oct 24, 2026).
+    Closed: Kōkeʻe Road beyond that lookout, every other Kōkeʻe and Waimea Canyon lookout and trail, all Kauaʻi state-park camping, and “all other Kauaʻi state parks” (DLNR notice of Nov 2, 2026).
+    Wailua River is open to paddlers, but Fern Grotto (except by the licensed tour boat) and Uluwehi (Secret) Falls are closed (DLNR, Oct 30, 2026).
+    Kalalau: DLNR's Nov 2, 2026 notice reports permitted camping reopened, but Kauai Now's Nov 5, 2026 update says camping and the trail past mile 2 are still closed. Treat it as unresolved.
+    Roads: HDOT is rebuilding the abutment of Wainiha River Bridge No. 3 on Kūhiō Hwy past Hanalei (Kauai Now, Nov 5, 2026). Separately, Kūhiō Hwy at the Hanalei Bridge closed in flash floods on Sept 7, Oct 1 and Oct 31, 2026, cutting off everything west of it.
+    <br>Check before any outdoor day:
+    <a href="https://dlnr.hawaii.gov/dsp/important-park-notices/">DLNR park notices</a> ·
+    <a href="https://kauairecovers.org/visitor">County visitor page (Kauai Recovers)</a> ·
+    road conditions 808-241-1725 · DLNR Kauaʻi 808-274-3444 · Ocean Safety 808-241-4984.
+  </div>
+
+  <div class="facts">
+    <dl>
+      <dt>Tap water</dt><dd>Drinkable from county mains <span class="note">(my knowledge)</span>. Caveat: the county issued a water-conservation notice for ʻAnini after the storm <span class="note">(as of Nov 5, 2026)</span>. Brown-water advisories after heavy rain apply to the ocean, not the tap. Check the DOH viewer before swimming near stream mouths.</dd>
+      <dt>Tipping</dt><dd>Expected. Sit-down restaurants: 20% is standard in resort areas, and the Hawaii average was 18.8% in Q2 2026 (Toast). Bars: $1 per beer or wine, about 20% on cocktails. Valet: $2–5 <span class="note">(2026 guides)</span>. Check the bill for an automatic 18–20% gratuity on large parties. State minimum wage is $16/hr <span class="note">(from Jan 1, 2026)</span>.</dd>
+      <dt>Cash &amp; cards</dt><dd>Contactless cards work almost everywhere. Carry small bills for Sunshine Markets farmers' market stalls, roadside fruit stands and the bus, which gives no change <span class="note">(my knowledge; bus rule per county)</span>.</dd>
+    </dl>
+  </div>
+
+  <h3>Getting around</h3>
+  <div class="facts">
+    <dl>
+      <dt>Transit</dt><dd>
+        One network, the <b>Kauaʻi Bus</b>. It is a commuter system along the coastal highway, running roughly Kekaha–Līhuʻe–Kapaʻa–Hanalei. It does not reach Hāʻena, Waimea Canyon or Kīlauea Point <span class="note">(route reach is my knowledge)</span>. The 900/950 express routes were not running <span class="note">(as of Nov 5, 2026)</span>. The post-storm fare waiver ended, and regular fares returned on Oct 1, 2026.
+        Pay by exact cash (no change given), the <b>Kauaʻi Bus Mobile Ticketing App</b> or a <b>Holomua</b> smart card. Day passes are sold at Big Save and Times. I could not confirm whether the bus takes contactless bank cards.
+        Single $2 · day pass $5 · monthly $50 <span class="note">(2026; county fare page, checked Nov 5, 2026)</span>. Could not confirm evening or Sunday hours.
+        The one transit option that reaches a sight is the <b>Hāʻena shuttle</b> from Waipā Park &amp; Ride in Hanalei. It runs every 20 min from 7:20am to 12:40pm and costs $40 round trip for ages 16+, park entry included <span class="note">(2026, gohaena.com)</span>.
+      </dd>
+      <dt>Rides</dt><dd>
+        <b>Uber</b> and <b>Lyft</b> operate and pick up at Līhuʻe Airport (LIH), and the local <b>Holoholo</b> app also runs. Drivers are scarce early in the morning and on the north and west shores, and there's no street-hailing.
+        Uber's own estimates from LIH: Līhuʻe town $15 · Kapaʻa $27 · Poʻipū (Grand Hyatt) $29 <span class="note">(undated Uber page, seen Nov 2026 — could not confirm year)</span>. Could not confirm north-shore fares.
+      </dd>
+    </dl>
+  </div>
+  <div class="verdict">
+    <b>Verdict: rent a car at LIH.</b> The $5 bus day pass is cheap but stops at Hanalei, misses Hāʻena, Waimea Canyon and Kīlauea Point, and is short its express routes. A single Uber leg costs $15–29 even on the busy east–south corridor, and you can't count on a ride back from the north or west shore. There is no walkable centre. Old Kapaʻa town and the paved Ke Ala Hele Makalae coastal path north of it are the only stretches that work on foot or on a rented bike. There's no bike-share scheme <span class="note">(my knowledge)</span>. If you stay on the north shore, use the Hāʻena shuttle rather than trying for the scarce parking slots.
+  </div>
+  <!-- ── 7. COUNTRY BACKGROUND — State of Hawaiʻi (shared by Oahu / Maui / Kauai) ── -->
+  <h2 id="country">Hawaiʻi (the state)</h2>
+  <div class="facts">
+    <dl>
+      <dt>GDP</dt><dd>$117.6B nominal total <span class="note">(<a href="https://fred.stlouisfed.org/series/HINGSP">BEA via FRED, 2024</a>)</span> · about $81k per capita <span class="note">(derived here: $117.6B ÷ 1,446,146 midyear population, 2024; no published nominal per-capita GDP figure was found). Per capita personal income was $69,520 in 2024, 96% of the US figure (<a href="https://files.hawaii.gov/dbedt/economic/databook/2024-individual/13/130724.pdf">DBEDT Data Book 2024</a>).</span></dd>
+      <dt>Economy</dt><dd>Tourism, about 16.1% of GDP; federal government, about 11.1%; military, about 5.7% <span class="note">(all 2024, <a href="https://data.capitol.hawaii.gov/sessions/session2026/testimony/Info_Testimony_WAM_01-07-26_Outlook.pdf">UHERO/DBEDT chart in Jan 2026 legislative testimony</a>)</span>. Visitor spending was $21.75B in 2025 on 9.64M arrivals, down 0.6% from 2024 and still below the pre-pandemic peak <span class="note">(<a href="https://www.thegardenisland.com/2026/02/02/business/hawaii-visitor-arrivals-end-2025-well-below-pre-pandemic-peak/">DBEDT via Garden Island, 2025</a>)</span>. Agriculture is small: the last sugar plantation (Maui) closed in 2016, and seed corn was the top crop at about $114M in 2022, ahead of cattle and coffee. DBEDT's Dec 2025 forecast was +1.5% growth for 2026.</dd>
+      <dt>Languages</dt><dd>English and Hawaiian are both official state languages <span class="note">(own knowledge)</span>. English works everywhere. Hawaiian shows up on signs, place names and menus, and Pidgin (Hawaiʻi Creole English) is the everyday local speech.</dd>
+    </dl>
+  </div>
+
+  <h3>Tech scene</h3>
+  <p class="note">Small. No Hawaiʻi-based unicorn turned up in current searches, and the figures below come from startup-database listings, so treat them as soft. Concentration is in tourism software, defense software and ocean/ag-tech; no fintech or semiconductor cluster was found.</p>
+  <ul>
+    <li><b><a href="https://builtin.com/companies/location/na/usa/hi/honolulu">FareHarbor</a></b> — Honolulu tour and activity booking software, about 960 employees per Built In (2026). Acquired by Booking Holdings in 2018 <span class="note">(own knowledge; price not verified)</span>.</li>
+    <li><b><a href="https://builtin.com/companies/location/na/usa/hi/type/software-startups">Onebrief</a></b> — military planning and collaboration software, about 180 employees, remote-first. Funding not confirmed.</li>
+    <li><b><a href="https://seedtable.com/best-startups-in-kailua">Symbrosia</a></b> — Kailua seaweed-based feed additive for cattle; named as the lead of seven tracked Kailua startups that raised $65M combined <span class="note">(Seedtable, aggregator; its own raise not confirmed)</span>.</li>
+    <li><b><a href="https://www.zoominfo.com/financial/olelo-intelligence-inc/1340545686">Olelo AI</a></b> — $1M pre-seed from Hawaii Angels (Jan 2026, ZoomInfo).</li>
+  </ul>
+
+  <h3>History</h3>
+  <ul>
+    <li><b>Settlement and kingdom.</b> Polynesian voyagers settled the islands; the date is contested, with AD 1000–1200 the best-supported range <span class="note">(Kirch's review of the archaeology)</span>. Kamehameha I, a chief from Hawaiʻi Island, united the islands as one kingdom by 1810, when Kauaʻi ceded.</li>
+    <li><b>Missionaries and sugar.</b> American Protestant missionaries arrived in 1820, and sugar plantations followed in the 1820s–30s, importing Chinese, Japanese, Portuguese and Filipino labor. This is why the population and the food are as mixed as they are. In 1980 there were 14 sugar and 4 pineapple plantations on more than 300,000 acres; by 2017 both crops were under 5,000 acres.</li>
+    <li><b>Overthrow to statehood.</b> On 17 January 1893 sugar and pineapple businessmen, backed by US troops, overthrew Queen Liliʻuokalani. The US annexed Hawaiʻi in 1898, made it a territory in 1900 and admitted it as the 50th state on 21 August 1959 (about 92–93% voted yes). Some Native Hawaiian groups contest the legality of the annexation.</li>
+    <li><b>Hawaiian Renaissance.</b> From the 1970s, hula, the Hawaiian language and traditional voyaging were revived, and Kahoʻolawe, used as a bombing range, was returned to the state in 2003 after protests. The voyaging canoe Hōkūleʻa first sailed to Tahiti in 1976 <span class="note">(Hōkūleʻa date: own knowledge)</span>. Immersion preschools began in 1982.</li>
+    <li><b>Lahaina and now.</b> The 8 August 2023 Maui wildfire killed 102 people (CBS reports 101), damaged or destroyed about 2,200 structures and displaced about 12,000. A $4.037B global settlement was announced in August 2024; payment status is not confirmed from a primary source. Construction began on the 60 Front Street homes on 3 October 2026, and a blessing marked the first commercial rebuild on Front Street on 13 October 2026. Tourism has not recovered to its pre-pandemic arrivals.</li>
+  </ul>
+
+  <h3>Culture</h3>
+  <ul>
+    <li><b>Kapu signs and heiau.</b> A kapu sign means off-limits, and heiau (stone temple platforms) are living religious sites, not ruins. Where no boundary is marked, the outer edge of the structure is the limit; do not climb the stones, take anything, or stack rocks, since offerings (hoʻokupu) are left there. <span class="note">(<a href="https://dlnr.hawaii.gov/dsp/files/2022/12/Wahi-Pana-brochure-1.pdf">DLNR Wahi Pana brochure</a>)</span></li>
+    <li><b>Hawaiian on every sign.</b> Place names are written with the ʻokina (ʻ) and kahakō (macron), and Hawaiian words are in daily English: <i>mahalo</i>, <i>kōkua</i> (help), and <i>mauka</i>/<i>makai</i> (toward the mountain/toward the sea) used as directions <span class="note">(own knowledge)</span>. The language was nearly lost; ʻAha Pūnana Leo immersion preschools began in 1982, and about 3,000 students were in 28 public immersion schools in 2023. Honolulu Magazine puts native-level speakers at roughly 10,000, under 1% of the state; other counts run higher depending on how speakers are defined. <span class="note">(<a href="https://www.nationalgeographic.com/culture/article/hawaii-native-language-efforts-to-preserve-revive">National Geographic</a>, <a href="https://www.honolulumagazine.com/?p=30151">Honolulu Magazine</a>)</span></li>
+    <li><b>Pidgin.</b> Hawaiʻi Creole English grew on the plantations from Hawaiian, English, Portuguese, Cantonese, Japanese and Filipino. You will hear it in shops and from drivers. The Census Bureau recognized it in 2015 but counted only about 1,600 speakers, while Ethnologue's estimate is about 600,000 first-language speakers (date not confirmed), so the numbers are unreliable. <span class="note">(<a href="https://www.nbcnews.com/news/asian-america/hawaiian-language-pidgin-data-revealed-new-u-s-census-bureau-n495006">NBC News</a>)</span></li>
+  </ul>
+
+  <!-- Phrase set and style in sections/country.md. -->
+  <h3>Phrases <span class="note">— Hawaiian, from own knowledge, not searched. English is understood everywhere, so counter words (bill, card, "English") are just said in English.</span></h3>
+  <table class="phrases">
+    <tr><td class="native">E ʻoluʻolu</td><td class="phon">eh oh-LOO-oh-LOO</td><td>please</td></tr>
+    <tr><td class="native">Mahalo</td><td class="phon">mah-HAH-loh</td><td>thank you</td></tr>
+    <tr><td class="native">Kala mai</td><td class="phon">KAH-lah MY</td><td>sorry / excuse me</td></tr>
+    <tr><td class="native">ʻAe</td><td class="phon">AH-eh</td><td>yes</td></tr>
+    <tr><td class="native">ʻAʻole</td><td class="phon">ah-OH-leh</td><td>no</td></tr>
+    <tr><td class="native">Lua</td><td class="phon">LOO-ah</td><td>bathroom (the everyday word)</td></tr>
+    <tr><td class="native">ʻOno</td><td class="phon">OH-noh</td><td>delicious</td></tr>
+    <tr><td class="native">Aloha</td><td class="phon">ah-LOH-hah</td><td>hello / goodbye</td></tr>
+  </table>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oʻahu — Travel Brief</title>
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --text: #1c1b19;
+    --muted: #6b6863;
+    --line: #e5e1db;
+    --accent: #9a5b34;
+    --flag-bg: #fdf3ec;
+    --star: #b5892f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1917;
+      --surface: #232220;
+      --text: #ece9e4;
+      --muted: #a09b93;
+      --line: #35332f;
+      --accent: #d99b6c;
+      --flag-bg: #2c241d;
+      --star: #d8b25e;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem 1.25rem 4rem;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
+  }
+  main { max-width: 46rem; margin: 0 auto; }
+
+  header { border-bottom: 2px solid var(--text); padding-bottom: 1rem; margin-bottom: 2.5rem; }
+  h1 { font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1.1; margin: 0 0 .4rem; letter-spacing: -.02em; }
+  .meta { color: var(--muted); font-size: .85rem; }
+
+  /* Anchor nav — one tap to each section on a phone */
+  .toc { margin-top: .75rem; font-size: .8rem; line-height: 1.9; }
+  .toc a { color: var(--muted); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: .15rem .6rem; margin: 0 .25rem .25rem 0; display: inline-block; white-space: nowrap; }
+  .toc a:hover { color: var(--accent); border-color: var(--accent); }
+  h2 { scroll-margin-top: 1rem; }
+
+  h2 {
+    font-size: 1.3rem; margin: 3rem 0 .25rem; letter-spacing: -.01em;
+    padding-bottom: .4rem; border-bottom: 1px solid var(--line);
+  }
+  h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 1.75rem 0 .5rem; }
+  p { margin: .6rem 0; }
+
+  ul { padding-left: 1.1rem; margin: .5rem 0; }
+  li { margin: .75rem 0; }
+  li b { font-weight: 650; }
+
+  a { color: inherit; text-underline-offset: 2px; text-decoration-color: var(--line); }
+  a:hover { text-decoration-color: var(--accent); }
+
+  /* Rating badge — sits inline after a place name. Omit entirely if unconfirmed. */
+  .rating {
+    display: inline-block; white-space: nowrap;
+    font-size: .78rem; font-weight: 600; color: var(--star);
+    margin-left: .35rem;
+  }
+  .rating .count { color: var(--muted); font-weight: 400; }
+
+  /* Date badge — events only. Confirmed dates for the travel year, never a guess. */
+  .when {
+    display: inline-block; white-space: nowrap;
+    font-size: .78rem; font-weight: 650; color: var(--accent);
+    margin-left: .35rem;
+  }
+
+  /* Source tag — required on every Things-to-do, Food and Events entry.
+     Stack several when a place shows up in more than one source. */
+  .src {
+    display: inline-block; font-size: .7rem; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--muted); border: 1px solid var(--line); border-radius: 4px;
+    padding: .05rem .3rem; margin-left: .35rem; vertical-align: 1px;
+  }
+  .src a { text-decoration: none; }
+
+  .note { color: var(--muted); font-size: .85rem; font-style: italic; }
+  .unconfirmed { color: var(--accent); font-weight: 600; }
+
+  /* Callout — use to flag a source category that was unreachable this run */
+  .callout {
+    background: var(--flag-bg); border: 1px solid var(--line); border-radius: 8px;
+    padding: .7rem 1rem; margin: 1rem 0; font-size: .88rem; color: var(--muted);
+  }
+
+  /* Book-ahead table — must stay scrollable on narrow screens */
+  .table-wrap { overflow-x: auto; margin: 1rem 0; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: .92rem; }
+  th, td { text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 600; }
+  td.lead { white-space: nowrap; font-weight: 650; }
+  tr.urgent td.lead { color: var(--accent); }
+
+  .phrases { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  .phrases td { padding: .45rem .6rem .45rem 0; border-bottom: 1px solid var(--line); }
+  .phrases .native { font-weight: 600; }
+  .phrases .phon { color: var(--muted); font-style: italic; white-space: nowrap; }
+
+  /* Verdict — the transit-vs-rides call at the end of Getting around */
+  .verdict {
+    border-left: 3px solid var(--accent); background: var(--surface);
+    border-radius: 0 8px 8px 0; padding: .7rem 1rem; margin: 1rem 0; font-size: .92rem;
+  }
+  .verdict b { color: var(--accent); }
+
+  .facts { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: .35rem 1rem; margin: 1rem 0; }
+  .facts dl { display: grid; grid-template-columns: max-content 1fr; gap: .5rem 1.25rem; margin: .8rem 0; }
+  .facts dt { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); padding-top: .15rem; }
+  .facts dd { margin: 0; }
+
+  @media (max-width: 30rem) {
+    .facts dl { grid-template-columns: 1fr; gap: .15rem; }
+    .facts dd { margin-bottom: .7rem; }
+  }
+  /* Plan label — which itinerary (A: two islands, B: three) a date-bound item falls in */
+  .plan { display: inline-block; white-space: nowrap; font-size: .7rem; font-weight: 650; color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; padding: 0 .3rem; margin-left: .35rem; vertical-align: 1px; }
+</style>
+</head>
+<body>
+<main>
+
+  <header>
+    <h1>Oʻahu</h1>
+    <div class="meta">Hawaiʻi, USA · Plan A: Dec 10–19, 2026 · Plan B: Dec 10–16, 2026 · researched Nov 5, 2026</div>
+    <div class="meta">Plan A = Oʻahu then Kauaʻi; Plan B = Oʻahu, Maui, Kauaʻi. Date-bound items are labelled with the plan they fall in.</div>
+    <div class="meta">Typical December in Honolulu: ~27°/19°C (80°/67°F) highs/lows · the wetter season, with brief showers on about a third of days (more on the windward side) · sunset about 5:55pm <span class="note">(climate normals, own knowledge)</span></div>
+    <nav class="toc">
+      <a href="#do">Things to do</a><a href="#food">Food</a><a href="#events">Events</a><a href="#stay">Stay</a><a href="#book">Book ahead</a><a href="#practical">Practical</a><a href="#country">Hawaiʻi</a>
+    </nav>
+  </header>
+  <h2 id="do">Things to do</h2>
+  <div class="callout">Sources this run: <b>Reddit could not be read</b>. The Claude in Chrome extension blocks reddit.com (www and old.reddit.com tried on Nov 5, 2026; every attempt returned "site not allowed"), so there are no Reddit tags or tally. <b>小红书</b> notes rendered as images only, so its tags link to the search results, with the note title and author on hover. Michelin has no Hawaiʻi guide; World of Mouth has no Honolulu page; Eater pages could not be fetched. Candidates found only by a Google Maps category search are tagged <i>my pick</i>.</div>
+
+  <h3>Top picks</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Pearl+Harbor+National+Memorial+Honolulu">Pearl Harbor — USS Arizona Memorial</a></b>
+      <span class="rating">4.8 ★ <span class="count">(27,830)</span></span>
+      <span class="note">· Pearl Harbor (west)</span>
+      <span class="src"><a href="https://www.nps.gov/perl/uss-arizona-memorial-programs.htm">nps</a></span>
+      <br>An NPS boat takes you out to the memorial, which spans the sunken battleship.
+      <br><span class="note">The program is free, but timed tickets on Recreation.gov carry a $1 fee each. They release 56 days ahead, plus a next-day release, at 3pm HST. There are no walk-up tickets, and standby is not guaranteed. Skyline's Makalapa station serves the site.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Waimea+Bay+Beach+Park+Oahu">North Shore winter surf — Waimea Bay and ʻEhukai (Pipeline)</a></b>
+      <span class="rating">4.8 ★ <span class="count">(6,709)</span></span>
+      <span class="note">· North Shore</span>
+      <span class="plan">both plans</span>
+      <span class="src"><a href="https://staradvertiser.com/?p=383338">star-advertiser</a></span>
+      <br>From October to March, north swells break on the reefs off Waimea Bay, Pipeline and Sunset, and you watch from the sand. The NWS issues an advisory at 15 ft and a warning at 25 ft. Watch from a beach park with a lifeguard tower; Waimea and <a href="https://www.google.com/maps/search/?api=1&amp;query=Ehukai+Beach+Park+Oahu">ʻEhukai</a> <span class="rating">4.8 ★ <span class="count">(1,247)</span></span> both have one.
+      <br><span class="note">Officials say do not swim or snorkel anywhere on the North Shore in winter, including Sharks Cove and Three Tables. Swells arrive suddenly after flat spells. The one road, Kamehameha Hwy, jams on big-swell days. Check hawaiibeachsafety.com and the NWS Honolulu surf forecast the night before (my pick).</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Iolani+Palace+Honolulu">ʻIolani Palace</a></b>
+      <span class="rating">4.6 ★ <span class="count">(6,106)</span></span>
+      <span class="note">· Downtown Honolulu</span>
+      <span class="src">atlas obscura</span>
+      <span class="src"><a href="https://www.iolanipalace.org/visit/tours-admission/">ʻiolani palace</a></span>
+      <br>The only royal palace on US soil. King Kalākaua had it electrified in 1882, and after the 1895 overthrow Queen Liliʻuokalani was imprisoned in an upstairs room. Take the docent-led tour (60–90 min) rather than the audio one.
+      <br><span class="note">Tickets are sold online only, with no walk-ups and no same-day bookings. Sources disagree on which days run docent tours, so check when you book.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Hanauma+Bay+Nature+Preserve+Oahu">Hanauma Bay Nature Preserve</a></b>
+      <span class="rating">4.4 ★ <span class="count">(2,568)</span></span>
+      <span class="note">· Southeast (Hawaiʻi Kai)</span>
+      <span class="src"><a href="https://www.rednote.com/search_result/?keyword=%E6%AC%A7%E8%83%A1%E5%B2%9B%E6%94%BB%E7%95%A5" title="夏威夷欧湖岛游玩项目从夯到拉排名 — 大好人.">小红书</a></span>
+      <span class="src"><a href="https://staradvertiser.com/?p=383338">star-advertiser</a></span>
+      <br>Snorkeling inside a flooded volcanic crater, after a mandatory reef-education video. It faces southeast, so it stays snorkelable in December when the North Shore is closed to swimmers.
+      <br><span class="note">Nonresidents $25 plus a 2.35% online fee, and $3 parking (2026, official). Reservations open at 7am HST two days ahead and sell out within minutes. Closed Mon and Tue. The lot can fill and turn cars away even with a reservation, and the water is clearest before 9am.</span>
+    </li>
+  </ul>
+
+  <h3>Unique to Oahu</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Byodo-In+Temple+Kaneohe">Byōdō-In, Valley of the Temples</a></b>
+      <span class="rating">4.7 ★ <span class="count">(7,918)</span></span>
+      <span class="note">· Windward (Kāneʻohe)</span>
+      <span class="src"><a href="https://www.atlasobscura.com/things-to-do/kailua-hawaii">atlas obscura</a></span>
+      <br>A concrete replica of Uji's Byōdō-in temple, set inside a Kāneʻohe cemetery.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Healer+Stones+of+Kapaemahu+Waikiki">Healer Stones of Kapaemahu</a></b>
+      <span class="rating">4.7 ★ <span class="count">(65)</span></span>
+      <span class="note">· Waikīkī</span>
+      <span class="src"><a href="https://www.atlasobscura.com/things-to-do/honolulu-hawaii">atlas obscura</a></span>
+      <br>Four boulders on Waikīkī Beach honoring four māhū healers from Tahiti, whom the story describes as dual male and female in spirit.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Ulupo+Heiau+Kailua">Ulupō Heiau</a></b>
+      <span class="rating">4.6 ★ <span class="count">(186)</span></span>
+      <span class="note">· Windward (Kailua)</span>
+      <span class="src"><a href="https://www.atlasobscura.com/things-to-do/kailua-hawaii">atlas obscura</a></span>
+      <br>A terraced stone temple platform, centuries old, behind the Windward YMCA. It is still treated as sacred, so stay off the walls. It is a short stop on a Kailua or Lanikai day.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Hawaii+Daijingu+Temple+Honolulu">Hawaiʻi Daijingu Temple</a></b>
+      <span class="rating">4.4 ★ <span class="count">(122)</span></span>
+      <span class="note">· Honolulu</span>
+      <span class="src"><a href="https://www.atlasobscura.com/things-to-do/kailua-hawaii">atlas obscura</a></span>
+      <br>A Shinto shrine that enshrines George Washington and Abraham Lincoln as kami.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Waikiki+Beach+Walk+Plaza+Honolulu">Free lei-making and hula classes, Waikīkī</a></b>
+      <span class="note">· Waikīkī</span>
+      <span class="src"><a href="https://www.honolulumagazine.com/?p=720381">honolulu magazine</a></span>
+      <br>Free morning classes, first come, first served. Waikiki Beach Walk Plaza runs hula from 9 to 10am and lei making with Outrigger. The Royal Hawaiian Center and Alohilani Resort run lei and intro-hula sessions too.
+      <br><span class="note">December 2026 dates are not confirmed; check each venue's weekly calendar once you arrive.</span>
+    </li>
+  </ul>
+
+  <h3>Views and nature</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Koko+Crater+Trail+Oahu">Koko Crater Trail (Koko Head Stairs)</a></b>
+      <span class="rating">4.9 ★ <span class="count">(2,373)</span></span>
+      <span class="note">· Southeast (Hawaiʻi Kai)</span>
+      <span class="src"><a href="https://www.atlasobscura.com/places/koko-crater-trail">atlas obscura</a></span>
+      <span class="src"><a href="https://www.rednote.com/search_result/?keyword=%E6%AC%A7%E8%83%A1%E5%B2%9B%E6%94%BB%E7%95%A5" title="欧胡岛最虐腿：1048阶Koko Head — 慢慢懂了">小红书</a></span>
+      <br>A WWII tramway line of 1,048 railway ties that climbs straight up the crater, with views over Hawaiʻi Kai and Hanauma Bay at the top. It is free, needs no reservation and has no shade, so go at dawn.
+      <br><span class="note">The summit bunkers have been taped off since a fall in July 2025. You can't do the climb and Hanauma on the same morning.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Diamond+Head+State+Monument+Honolulu">Diamond Head State Monument</a></b>
+      <span class="rating">4.7 ★ <span class="count">(17,403)</span></span>
+      <span class="note">· Honolulu (Waikīkī edge)</span>
+      <span class="src"><a href="https://dlnr.hawaii.gov/dsp/parks/oahu/diamond-head-state-monument/">hawaii state parks</a></span>
+      <span class="src"><a href="https://www.rednote.com/search_result/?keyword=%E6%AC%A7%E8%83%A1%E5%B2%9B%E6%94%BB%E7%95%A5" title="🌺J人的欧胡岛6天5夜不绕路攻略 — 火鍋大王">小红书</a></span>
+      <br>A trail of about 1.6 mi round trip from the crater floor to the rim, past WWII bunkers, ending above Waikīkī and the city.
+      <br><span class="note">Nonresidents pay $5 entry, plus $10 per vehicle if driving (2026, official). Reserve ahead at <a href="https://gostateparks.hawaii.gov/diamondhead">gostateparks.hawaii.gov</a>, credit card only. Open 6am–6pm, last entry 4:30pm.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Manoa+Falls+Trail+Honolulu">Mānoa Falls</a></b>
+      <span class="rating">4.7 ★ <span class="count">(5,480)</span></span>
+      <span class="note">· Mānoa Valley</span>
+      <span class="src"><a href="https://www.honolulumagazine.com/?p=37561">honolulu magazine</a></span>
+      <br>A muddy rainforest trail of about 1.6 mi round trip to a 150-ft falls at the head of Mānoa Valley. Swimming at the falls is prohibited because of leptospirosis and rockfall, and the trail can flash-flood after heavy rain.
+      <br><span class="note">The Paradise Park lot costs about $7 (2026, secondary); free street parking lower on Mānoa Rd adds about 1 mi each way.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Lanikai+Pillbox+Hike+Kailua">Lanikai Pillbox (Kaiwa Ridge)</a></b>
+      <span class="note">· Windward (Kailua)</span>
+      <span class="src"><a href="https://www.honolulumagazine.com/?p=40906">honolulu magazine</a></span>
+      <br>A steep 30–45 minute climb to WWII pillboxes above the two Mokulua islets, best at sunrise. It is slick after rain.
+      <br><span class="note"><span class="unconfirmed">Unconfirmed:</span> blogs report that parking on the Lanikai loop has been banned since July 1, 2026. Plan to park in Kailua town and walk or bike in.</span>
+    </li>
+  </ul>
+
+  <h3>Museums and galleries</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Shangri+La+Museum+of+Islamic+Art+Culture+Design+Honolulu">Shangri La (Doris Duke estate)</a></b>
+      <span class="rating">4.7 ★ <span class="count">(460)</span></span>
+      <span class="note">· Black Point</span>
+      <span class="src"><a href="https://www.atlasobscura.com/things-to-do/honolulu-hawaii">atlas obscura</a></span>
+      <br>Doris Duke's estate, built around Islamic art and architecture. The only way in is a guided tour that leaves from the Honolulu Museum of Art.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Bishop+Museum+Honolulu">Bishop Museum</a></b>
+      <span class="rating">4.6 ★ <span class="count">(5,726)</span></span>
+      <span class="note">· Kalihi</span>
+      <span class="src"><a href="https://www.atlasobscura.com/things-to-do/honolulu-hawaii">atlas obscura</a></span>
+      <br>The state museum of Hawaiian and Pacific culture. The main draw is Hawaiian Hall, and there is also a planetarium.
+    </li>
+  </ul>
+  <!-- ── 2. FOOD ── -->
+  <h2 id="food">Food</h2>
+
+  <h3>Local dishes to try</h3>
+  <ul>
+    <li>
+      <b>Hawaiian food.</b> Kālua pig (pit-roasted pork), laulau (pork steamed in taro and ti leaves), poi, lomi salmon, squid lūʻau and pipikaula (dried beef), ordered as a set plate.
+      <em>Where:</em> Helena's Hawaiian Food (top pick, below),
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Highway+Inn+Kakaako+Honolulu">Highway Inn Kakaʻako</a> <span class="rating">4.5 ★ <span class="count">(2,794)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/where-to-eat-on-your-first-visit-to-oahu/">honolulu magazine</a></span> — the laulau platter.
+    </li>
+    <li>
+      <b>Poke.</b> Raw fish (usually ʻahi) cubed and dressed with shoyu, sesame oil, limu seaweed and inamona (roasted kukui nut), sold by the pound at fish counters and supermarkets.
+      <em>Where:</em> Ono Seafood and Off the Hook Poke Market (Healthy staples, below);
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Tamashiro+Market+Honolulu">Tamashiro Market</a>
+      <span class="src"><a href="https://www.honolulumagazine.com/where-to-eat-on-your-first-visit-to-oahu/">honolulu magazine</a></span> — a Kalihi fish market, the spicy ʻahi negi toro;
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Foodland+Honolulu">Foodland</a>
+      <span class="src"><a href="https://www.honolulumagazine.com/best-of-honolulu-2026-food-drink/">honolulu magazine</a></span>
+      <span class="src"><a href="https://www.rednote.com/search_result/?keyword=%E6%AA%80%E9%A6%99%E5%B1%B1%E7%BE%8E%E9%A3%9F" title="Poke原来这么撑人 — 老代在旅行">小红书</a></span> — the supermarket chain's poke counter.
+    </li>
+    <li>
+      <b>Plate lunch.</b> Two scoops of rice, a scoop of mac salad and a protein (shoyu chicken, BBQ beef, chicken katsu); its offshoots are the loco moco (hamburger patty and fried egg on rice under brown gravy) and Spam musubi (grilled Spam pressed onto rice, wrapped in nori).
+      <em>Where:</em> Rainbow Drive-In and Liliha Bakery's loco moco (Everyday institutions, below), Fukuya's okazuya case (top pick, below);
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Musubi+Cafe+Iyasume+Honolulu">Musubi Café Iyasume</a>
+      <span class="src"><a href="https://www.honolulumagazine.com/best-of-honolulu-2026-food-drink/">honolulu magazine</a></span> — musubi with fried egg or Spam katsu.
+    </li>
+    <li>
+      <b>Saimin.</b> Hawaii's plantation-era noodle soup: thin wheat-and-egg noodles in a dashi broth, topped with kamaboko, char siu and green onion, often ordered with teriyaki beef sticks.
+      <em>Where:</em> Shige's Saimin Stand (Everyday institutions, below);
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Palace+Saimin+Honolulu">Palace Saimin</a> <span class="rating">4.7 ★ <span class="count">(515)</span></span>
+      <span class="src">my pick</span> — a Kalihi counter that serves only saimin, udon, won ton and beef sticks.
+    </li>
+    <li>
+      <b>Malasadas.</b> Portuguese yeast doughnuts brought by Madeiran plantation workers, fried to order, rolled in sugar and often filled with custard or haupia (coconut pudding).
+      <em>Where:</em> Leonard's Bakery (Everyday institutions, below);
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Agnes+Portuguese+Bake+Shop+Kailua">Agnes' Portuguese Bakeshop truck</a>
+      <span class="src"><a href="https://www.honolulumagazine.com/dishes-that-define-oahu/">honolulu magazine</a></span> — Kailua, thin crisp malasada discs with a hole.
+    </li>
+  </ul>
+
+  <h3>Top picks</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Fukuya+Delicatessen+Honolulu">Fukuya Deli</a></b>
+      <span class="rating">4.6 ★ <span class="count">(215)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/dishes-that-define-oahu/">honolulu magazine</a></span>
+      <br><em>Mōʻiliʻili.</em> An okazuya — Japanese-local deli where you build a box by the piece from the morning case — running about 87 years; nori chicken, shiraae, bread hash, chow fun, shoyu tuna makizushi.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Helena%27s+Hawaiian+Food+Honolulu">Helena's Hawaiian Food</a></b>
+      <span class="rating">4.5 ★ <span class="count">(3,686)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/hale-aina-award-winners-the-best-restaurants-in-hawaii/">honolulu magazine</a></span>
+      <br><em>Kalihi.</em> Hawaiian sit-down, about 80 years old; Menu D brings kālua pig, lomi salmon, squid lūʻau and pipikaula short ribs.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Mud+Hen+Water+Honolulu">Mud Hen Water</a></b>
+      <span class="rating">4.5 ★ <span class="count">(873)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/?p=831205">james beard 2026 semifinalist</a></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/dishes-that-define-oahu/">honolulu magazine</a></span>
+      <span class="src"><a href="https://www.eater.com/maps/best-honolulu-restaurants">eater</a></span>
+      <br><em>Kaimukī.</em> Ed Kenney's local home cooking rebuilt around Hawaiian staples: fried ʻulu (breadfruit) or paʻiʻai with chili mayo, pohole fern salad, corned beef–kalo hash, chicken long rice croquettes.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=The+Pig+and+the+Lady+Kaimuki+Honolulu">The Pig &amp; the Lady</a></b>
+      <span class="rating">4.4 ★ <span class="count">(2,714)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/?p=831205">james beard 2026 semifinalist</a></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/where-eat-not-first-time-oahu/">honolulu magazine</a></span>
+      <span class="src"><a href="https://www.eater.com/maps/best-honolulu-restaurants">eater</a></span>
+      <br><em>Kaimukī (moved from Chinatown, Dec 2025).</em> Andrew Le's family Vietnamese cooking crossed with Hawaii: pho French dip, Laotian fried chicken, Molokaʻi venison tartare; ask for the off-menu Hanoi egg coffee.
+    </li>
+  </ul>
+
+  <h3>Everyday institutions</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Shige%27s+Saimin+Stand+Wahiawa">Shige's Saimin Stand</a></b>
+      <span class="rating">4.7 ★ <span class="count">(860)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/dishes-that-define-oahu/">honolulu magazine</a></span>
+      <br><em>Wahiawā (central Oʻahu, on the drive to the North Shore).</em> Noodles made in-house and dashi broth since 1990; saimin with a burger, fried saimin, teri beef sticks.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Leonard%27s+Bakery+Honolulu">Leonard's Bakery</a></b>
+      <span class="rating">4.6 ★ <span class="count">(13,637)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/where-to-eat-on-your-first-visit-to-oahu/">honolulu magazine</a></span>
+      <br><em>Kapahulu.</em> Malasadas fried to order; get one plain sugar and one custard- or haupia-filled.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Liliha+Bakery+Kuakini+St+Honolulu">Liliha Bakery</a></b>
+      <span class="rating">4.6 ★ <span class="count">(4,829)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/dishes-that-define-oahu/">honolulu magazine</a></span>
+      <br><em>Liliha (the original Kuakini St. counter).</em> Bakery with a diner counter: loco moco at the counter, then a box of Coco Puffs — chocolate cream puffs under a buttery chantilly frosting.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Waiola+Shave+Ice+Honolulu">Waiola Shave Ice</a></b>
+      <span class="rating">4.6 ★ <span class="count">(2,143)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/dishes-that-define-oahu/">honolulu magazine</a></span>
+      <br><em>Mōʻiliʻili.</em> Shave ice since 1940: finely shaved block ice under classic syrups, with azuki beans, mochi or ice cream underneath.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Sing+Cheong+Yuan+Bakery+Honolulu">Sing Cheong Yuan Bakery</a></b>
+      <span class="rating">4.6 ★ <span class="count">(578)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/where-to-eat-on-your-first-visit-to-oahu/">honolulu magazine</a></span>
+      <br><em>Chinatown.</em> Chinese bakery on Maunakea St.; manapua (Hawaii's char siu bao) and dumplings from the case.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Rainbow+Drive-In+Honolulu">Rainbow Drive-In</a></b>
+      <span class="rating">4.3 ★ <span class="count">(8,093)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/where-to-eat-on-your-first-visit-to-oahu/">honolulu magazine</a></span>
+      <br><em>Kapahulu.</em> Walk-up plate-lunch window just outside Waikīkī; shoyu chicken, BBQ beef, or the mixed plate.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Romy%27s+Kahuku+Prawns+%26+Shrimp+Kahuku">Romy's Kahuku Prawns &amp; Shrimp</a></b>
+      <span class="rating">3.8 ★ <span class="count">(1,599)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/where-to-eat-on-your-first-visit-to-oahu/">honolulu magazine</a></span>
+      <br><em>Kahuku (North Shore).</em> Garlic shrimp plate from a stand beside the family's own prawn ponds; regular or spicy. Expect a long line.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Zippy%27s+Honolulu">Zippy's</a></b>
+      <span class="src"><a href="https://www.eater.com/maps/best-honolulu-restaurants">eater</a></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/hale-aina-award-winners-the-best-restaurants-in-hawaii/">honolulu magazine</a></span>
+      <br><em>Islandwide.</em> Local diner chain; Zip Pac bento, chili with rice, saimin.
+    </li>
+  </ul>
+
+  <h3>Creative and interesting</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Senia+Honolulu">Senia</a></b>
+      <span class="rating">4.6 ★ <span class="count">(851)</span></span>
+      <span class="src"><a href="https://www.the50.com/discovery/Establishments/US/Honolulu/Senia.html">50 best discovery</a></span>
+      <br><em>Chinatown.</em> Chris Kajioka and Anthony Rush's modern American kitchen working Hawaii produce; à la carte, plus a 12-course tasting menu on Fri–Sat. Smoked ʻahi cigars.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=MW+Restaurant+Honolulu">MW Restaurant</a></b>
+      <span class="rating">4.5 ★ <span class="count">(797)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/best-restaurants-in-honolulu/">honolulu magazine</a></span>
+      <br><em>Kakaʻako.</em> Wade Ueoka and Michelle Karr-Ueoka's upscale take on local food: pork hash and foie gras wontons, mochi-crusted fish, miso-honey butterfish, the MW candy bar. Artizen downstairs is their casual café.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Kapa+Hale+Honolulu">Kapa Hale</a></b>
+      <span class="rating">4.5 ★ <span class="count">(258)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/dishes-that-define-oahu/">honolulu magazine</a></span>
+      <br><em>Kāhala.</em> Keaka Lee's local menu built from Hawaii's mixed plate of cuisines: Haku Lei Poʻo salad with Kona coffee crumble, char siu tako (octopus), bulgogi pork Bolognese.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Giovedi+Honolulu">Giovedì</a></b>
+      <span class="rating">4.5 ★ <span class="count">(148)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/?p=831205">james beard 2026 semifinalist</a></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/hale-aina-award-winners-the-best-restaurants-in-hawaii/">honolulu magazine</a></span>
+      <br><em>Chinatown.</em> Bao Tran's Italian pasta technique carrying pan-Asian flavours, with a cocktail list to match.
+    </li>
+  </ul>
+
+  <h3>Cafés and bakeries</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Tradition+Coffee+Roasters+Kailua">Tradition Coffee Roasters</a></b>
+      <span class="rating">4.9 ★ <span class="count">(621)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/new-coffee-culture/">honolulu magazine</a></span>
+      <br><em>Kailua (windward side).</em> Coffee: a roaster that runs tours and brewing classes at the roastery.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=DRiP+STUDiO+HNL+Honolulu">Drip Studio</a></b>
+      <span class="rating">4.9 ★ <span class="count">(245)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/drip-studio-coffee-honolulu/">honolulu magazine</a></span>
+      <br><em>Downtown, Fort Street Mall.</em> Coffee: a coffee-nerd shop that runs monthly "Sunday Service" tasting sessions.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=The+Local+General+Store+Kaimuki+Honolulu">The Local General Store</a></b>
+      <span class="rating">4.8 ★ <span class="count">(112)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/?p=831205">james beard 2026 semifinalist</a></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/dishes-that-define-oahu/">honolulu magazine</a></span>
+      <br><em>Kaimukī.</em> Pastry: laminated croissant dough folded around local fillings — order the char siu croissant.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Halekulani+Bakery+Honolulu">Halekūlani Bakery</a></b>
+      <span class="rating">4.4 ★ <span class="count">(359)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/best-of-honolulu-2026-food-drink/">honolulu magazine</a></span>
+      <br><em>Waikīkī.</em> Pastry: the Pabana croissant (lilikoʻi, banana, mango).
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Cream+%26+Sugar+Hawaii+Honolulu">Cream &amp; Sugar Hawaiʻi</a></b>
+      <span class="src"><a href="https://www.honolulumagazine.com/best-of-honolulu-2026-food-drink/">honolulu magazine</a></span>
+      <br>Sourdough: the plain boule and the cranberry-walnut loaf.
+    </li>
+  </ul>
+
+  <h3>Cocktail bars and breweries</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Ko+Hana+Rum+Kunia">Kō Hana Rum</a></b>
+      <span class="rating">4.8 ★ <span class="count">(823)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/best-of-honolulu-2026-food-drink/">honolulu magazine</a></span>
+      <br><em>Kunia (central Oʻahu).</em> Distillery making agricole rum from fresh-pressed heirloom Hawaiian sugarcane varieties, with tours and tastings by single cane variety.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Bar+Leather+Apron+Honolulu">Bar Leather Apron</a></b>
+      <span class="rating">4.7 ★ <span class="count">(463)</span></span>
+      <span class="src">50 best bars #81 north america 2026</span>
+      <span class="src"><a href="https://www.theworlds50best.com/discovery/Establishments/US/Honolulu/Bar-Leather-Apron.html">50 best discovery</a></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/new-generation-mixologists-craft-cocktails/">honolulu magazine</a></span>
+      <br><em>Downtown.</em> Justin Park's bar, the same bartender who writes the cocktail pairings for the Bar Maze omakase in Kakaʻako.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Little+Plum+Honolulu">Little Plum</a></b>
+      <span class="rating">4.6 ★ <span class="count">(129)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/new-generation-mixologists-craft-cocktails/">honolulu magazine</a></span>
+      <br><em>Mānoa.</em> Kuʻulei Akuna's drinks built on local snack-aisle flavours: Corn Pops–infused rye with senbei (Breakfast of Champions), a Green River soda reduction (Jolly Rojah).
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Aloha+Beer+Co+Honolulu">Aloha Beer Co.</a></b>
+      <span class="rating">4.5 ★ <span class="count">(1,350)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/drink-local-guide-where-to-get-locally-brewed-craft-beer-in-honolulu/">honolulu magazine</a></span>
+      <br><em>Kakaʻako.</em> Brewpub; the Makai Pier Gose is brewed with ocean water. <span class="note">Beer detail from 2017 — check the current tap list.</span>
+    </li>
+  </ul>
+
+  <h3>Asian food</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Le%27s+Banh+Mi+808+Center+Honolulu">Le's Banh Mi</a></b>
+      <span class="rating">4.8 ★ <span class="count">(219)</span></span>
+      <span class="src"><a href="https://www.eater.com/maps/best-honolulu-restaurants">eater</a></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/best-restaurants-in-honolulu/">honolulu magazine</a></span>
+      <br><em>Ala Moana, 808 Center.</em> Vietnamese bánh mì counter; the crispy pork or the Saigon Special.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Kaimuki+Shokudo+Honolulu">Kaimukī Shokudo</a></b>
+      <span class="rating">4.7 ★ <span class="count">(520)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/where-eat-not-first-time-oahu/">honolulu magazine</a></span>
+      <span class="src"><a href="https://www.rednote.com/search_result/?keyword=%E6%AC%A7%E8%83%A1%E5%B2%9B%E5%BD%93%E5%9C%B0%E4%BA%BA%E6%8E%A8%E8%8D%90%E7%BE%8E%E9%A3%9F%E5%A4%A9%E8%8A%B1%E6%9D%BF" title="📍 欧胡岛当地人推荐美食天花板（中）🍣🍱 — vivi的夏威夷日记">小红书</a></span>
+      <br><em>Kaimukī.</em> Japanese shokudo: soba at lunch (duck or uni soba, ikura-salmon don), izakaya at night (goma hamachi, Okinawan sweet potato salad with ikura).
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Onoya+Ramen+Kapahulu+Honolulu">Onoya Ramen</a></b>
+      <span class="rating">4.6 ★ <span class="count">(716)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/hale-aina-award-winners-the-best-restaurants-in-hawaii/">honolulu magazine</a></span>
+      <br><em>Kapahulu.</em> Japanese ramen shop near Leonard's and Rainbow.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Sushi+Sho+Ritz-Carlton+Waikiki">Sushi Sho</a></b>
+      <span class="rating">4.6 ★ <span class="count">(426)</span></span>
+      <span class="src"><a href="https://www.theworlds50best.com/discovery/Establishments/US/Honolulu/Sushi-Sho.html">50 best discovery</a></span>
+      <span class="src"><a href="https://www.rednote.com/search_result/?keyword=%E6%AA%80%E9%A6%99%E5%B1%B1%E7%BE%8E%E9%A3%9F" title="期待很满的檀香山这份sushi sho — 曼迪酱">小红书</a></span>
+      <br><em>Waikīkī, Ritz-Carlton.</em> Keiji Nakazawa's 16-seat Edomae sushi omakase.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Olay%27s+Thai+Lao+Cuisine+Honolulu">Olay's Thai-Lao Cuisine</a></b>
+      <span class="rating">4.5 ★ <span class="count">(744)</span></span>
+      <span class="src"><a href="https://www.eater.com/maps/best-honolulu-restaurants">eater</a></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/best-restaurants-in-honolulu/">honolulu magazine</a></span>
+      <br><em>Chinatown.</em> Lao and Isaan cooking: khao poon (red curry rice-noodle soup), lemongrass pork sausage, crispy rice salad (nam khao).
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Elena%27s+Restaurant+Waipahu">Elena's Restaurant</a></b>
+      <span class="rating">4.4 ★ <span class="count">(466)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/dishes-that-define-oahu/">honolulu magazine</a></span>
+      <br><em>Waipahu (west, the Filipino community's hub).</em> Filipino-local family diner, 50+ years; the pork adobo fried rice omelet.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Yi+Xin+Cafe+Market+City+Honolulu">Yi Xin Café</a></b>
+      <span class="rating">4.4 ★ <span class="count">(177)</span></span>
+      <span class="src"><a href="https://www.eater.com/maps/best-honolulu-restaurants">eater</a></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/best-restaurants-in-honolulu/">honolulu magazine</a></span>
+      <br><em>Kapahulu, Market City.</em> Singaporean-Malaysian: Singapore chili crab, curry crab, salted egg yolk wings.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Hawaii+Dim+Sum+%26+Seafood+Restaurant+Honolulu">Hawaiʻi Dim Sum &amp; Seafood</a></b>
+      <span class="rating">4.3 ★ <span class="count">(235)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/where-eat-not-first-time-oahu/">honolulu magazine</a></span>
+      <br><em>Chinatown.</em> Cantonese kitchen under chef Rui Zhang: char siu (order 48 hours ahead), tofu with abalone sauce, sizzling casseroles.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Wu+Wei+Chong+Qing+Cuisine+Honolulu">Wu Wei Chong Qing Cuisine</a></b>
+      <span class="src"><a href="https://www.honolulumagazine.com/best-restaurants-in-honolulu/">honolulu magazine</a></span>
+      <br><em>McCully.</em> Chongqing Sichuan: boiled fish with preserved mustard greens and noodles, twice-cooked pork belly.
+    </li>
+  </ul>
+
+  <h3>Healthy staples</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Off+the+Hook+Poke+Market+Honolulu">Off the Hook Poke Market</a></b>
+      <span class="rating">4.7 ★ <span class="count">(1,077)</span></span>
+      <span class="src"><a href="https://www.honolulumagazine.com/best-of-honolulu-2026-food-drink/">honolulu magazine</a></span>
+      <br><em>Mānoa.</em> Poke counter: an ʻahi bowl over brown rice or greens — raw fish, seaweed, little else.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Ono+Seafood+Kapahulu+Honolulu">Ono Seafood</a></b>
+      <span class="rating">4.6 ★ <span class="count">(2,811)</span></span>
+      <span class="src">my pick</span>
+      <br><em>Kapahulu, 10 min from Waikīkī.</em> Small takeout poke counter; shoyu ʻahi bowl, half rice.
+    </li>
+  </ul>
+  <h2 id="events">Events <span class="note">— during your dates (Plan A: Dec 10–19 · Plan B: Dec 10–16)</span></h2>
+
+  <h3>Cultural</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.worldsurfleague.com/events/2026/ct/446/lexus-pipe-masters/main">Lexus Pipe Masters</a></b>
+      <span class="when">waiting period Dec 8–20, 2026</span> <span class="plan">both plans</span>
+      <span class="src"><a href="https://www.worldsurfleague.com/events/2026/ct/446/lexus-pipe-masters/main">world surf league</a> <a href="https://freesurfmagazine.com/wsl-2026-championship-tour-schedule/">freesurf magazine</a></span>
+      <br>The final stop of the 2026 WSL Championship Tour, men's and women's fields, surfed on the reef at Banzai Pipeline; it runs only on the days the swell allows inside the waiting period — check the WSL event page for the day's call. Watched from the sand at
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Ehukai+Beach+Park+Banzai+Pipeline+Oahu">ʻEhukai Beach Park</a> <span class="rating">4.8 ★ <span class="count">(1,247)</span></span> (North Shore).
+      <em>Tickets:</em> none — free beach viewing.
+    </li>
+  </ul>
+
+  <h3>Music</h3>
+  <ul>
+    <li>
+      <b><a href="https://hawaiitheatre.my.salesforce-sites.com/ticket/#/events/a0SUl00000AgOeVMAV">The 5th Annual Kalani Peʻa Hawaiian Christmas Show</a></b>
+      <span class="when">Sat Dec 19, 2026</span> <span class="plan">Plan A</span>
+      <span class="src"><a href="https://hawaiitheatre.my.salesforce-sites.com/ticket/#/events/a0SUl00000AgOeVMAV">hawaiʻi theatre</a></span>
+      <br>Holiday concert of Hawaiian-language and Christmas songs by Kalani Peʻa, a Hawaiian-language vocalist and Grammy winner (Grammy = my knowledge). At
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Hawaii+Theatre+Center+Honolulu">Hawaiʻi Theatre Center</a> <span class="rating">4.6 ★ <span class="count">(821)</span></span>, Chinatown.
+      <em>Tickets:</em> Hawaiʻi Theatre box office online; an annual holiday draw in a ~1,400-seat house — book ahead.
+    </li>
+    <li>
+      <b><a href="https://blaisdellcenter.com/event/hapa-holiday-extravaganza/">Hapa Holiday Extravaganza</a></b>
+      <span class="when">Wed Dec 16, 2026, 7:30pm</span> <span class="plan">Plan A</span> <span class="note">(Plan B moves to Maui that day)</span>
+      <span class="src"><a href="https://blaisdellcenter.com/event/hapa-holiday-extravaganza/">blaisdell center</a></span>
+      <br>Holiday program with the Hawaiʻi Symphony Orchestra; Hapa is a long-running slack-key guitar and vocal group (Hapa description = my knowledge). At
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Blaisdell+Concert+Hall+Honolulu">Blaisdell Concert Hall</a> <span class="rating">4.3 ★ <span class="count">(2,719)</span></span>, Kakaʻako/Ala Moana.
+      <em>Tickets:</em> $35–85 via Ticketmaster, Blaisdell box office, or myhso.org.
+    </li>
+    <li>
+      <b><a href="https://blaisdellcenter.com/event/a-perfect-circle/">A Perfect Circle</a></b>
+      <span class="when">Sat Dec 19, 2026, 8pm (doors 7pm)</span> <span class="plan">Plan A</span>
+      <span class="src"><a href="https://blaisdellcenter.com/event/a-perfect-circle/">blaisdell center</a></span>
+      <br>Maynard James Keenan's alt-rock band, the final date of its Pacific run after Japan; tour press lists Puscifer as the second act, but the venue page does not. At
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Neal+S+Blaisdell+Arena+Honolulu">Blaisdell Arena</a> <span class="rating">4.3 ★ <span class="count">(2,719)</span></span> (~8,800 capacity).
+      <em>Tickets:</em> Ticketmaster or Blaisdell box office, limit 6 per household — book ahead.
+    </li>
+    <li>
+      <b><a href="https://event.outrigger.com/outrigger-reef-waikiki-beach-resort/events/honolulu/live-music-every-night-at-kani-ka-pila-grille">Live Hawaiian music at Kani Ka Pila Grille</a></b>
+      <span class="when">nightly 6–9pm, listed through Dec 31, 2026</span> <span class="plan">both plans</span>
+      <span class="src"><a href="https://event.outrigger.com/outrigger-reef-waikiki-beach-resort/events/honolulu/live-music-every-night-at-kani-ka-pila-grille">outrigger</a></span>
+      <br>Poolside open-air stage at the Outrigger Reef where contemporary Hawaiian and slack-key players rotate nightly (Nathan Aweau held the Sunday slot in March 2026); the nightly lineup is not posted for December. At
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Kani+Ka+Pila+Grille+Outrigger+Reef+Waikiki">Kani Ka Pila Grille</a> <span class="rating">4.3 ★ <span class="count">(727)</span></span>, Waikīkī.
+      <em>Tickets:</em> none listed; walk in, buy a drink or dinner.
+    </li>
+  </ul>
+
+  <h3>Shows</h3>
+  <ul>
+    <li>
+      <b><a href="https://blaisdellcenter.com/event/john-mulaney-mister-whatever/">John Mulaney: Mister Whatever</a></b>
+      <span class="when">Thu Dec 17, 2026 (doors 6pm; page lists both 7pm and 7:30pm start)</span> <span class="plan">Plan A</span>
+      <span class="src"><a href="https://blaisdellcenter.com/event/john-mulaney-mister-whatever/">blaisdell center</a></span>
+      <br>Stand-up from his 2026 tour, one of its last dates (Maui follows the next night). At
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Neal+S+Blaisdell+Arena+Honolulu">Blaisdell Arena</a> <span class="rating">4.3 ★ <span class="count">(2,719)</span></span>.
+      <em>Tickets:</em> Ticketmaster or Blaisdell box office; on sale since June 5 — book ahead.
+    </li>
+  </ul>
+
+  <h3>Exhibitions</h3>
+  <ul>
+    <li>
+      <b><a href="https://underground.bishopmuseum.org/grand-opening">UNDER/GROUND</a></b>
+      <span class="when">opened Nov 20–21, 2026; closing date not announced</span> <span class="plan">both plans</span>
+      <span class="src"><a href="https://underground.bishopmuseum.org/grand-opening">bishop museum</a></span>
+      <br>Walk-through street-art and hip-hop exhibition that rebuilds street environments inside the Castle Memorial Building — murals, sculpture and installations, co-curated by Jasper and Amy Wong of World Wide Walls. At
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Bishop+Museum+Honolulu">Bishop Museum</a> <span class="rating">4.6 ★ <span class="count">(5,726)</span></span>, Kalihi.
+      <em>Tickets:</em> museum admission.
+    </li>
+    <li>
+      <b><a href="https://www.bishopmuseum.org/eiwa/">Ea Mai ʻEiwa: Patterns of Practice</a></b>
+      <span class="when">opened Apr 18, 2026; no closing date listed</span> <span class="plan">both plans</span>
+      <span class="src"><a href="https://www.bishopmuseum.org/eiwa/">bishop museum</a></span>
+      <br>Work by Nālani Kanakaʻole, Sig Zane and Kūhaʻoʻīmaikalani Zane, a Hilo family of hula practitioners and textile designers. In the J.M. Long Gallery at
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Bishop+Museum+Honolulu">Bishop Museum</a> <span class="rating">4.6 ★ <span class="count">(5,726)</span></span>.
+      <em>Tickets:</em> museum admission.
+    </li>
+    <li>
+      <b><a href="https://honolulumuseum.org/fellow-travelers-joseph-e-yoakum-and-ray-yoshida-qwgt">Fellow Travelers: Joseph E. Yoakum &amp; Ray Yoshida</a></b>
+      <span class="when">Oct 2, 2026 – Feb 7, 2027</span> <span class="plan">both plans</span>
+      <span class="src"><a href="https://honolulumuseum.org/fellow-travelers-joseph-e-yoakum-and-ray-yoshida-qwgt">honolulu museum of art</a></span>
+      <br>Yoakum's visionary landscape drawings beside paintings by the Hawaiʻi-born Chicago Imagist Ray Yoshida (description = my knowledge). At
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Honolulu+Museum+of+Art">Honolulu Museum of Art</a> <span class="rating">4.6 ★ <span class="count">(1,971)</span></span>.
+      <em>Tickets:</em> museum admission.
+    </li>
+  </ul>
+  <!-- ── 4. WHERE TO STAY — rules in sections/where-to-stay.md ── -->
+  <h2 id="stay">Where to stay</h2>
+  <ul>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=Kapiolani+Park+Waikiki+Honolulu">Waikīkī, Diamond Head end</a></b> <span class="note">(Kapahulu / Kapiʻolani Park side)</span>. The legal hotel zone, and the only part of it that settles down at night. The quiet-end call is my pick and unverified.
+      <em>Day to day:</em> ABC Stores for basics and Foodland for a full shop. You can run around <a href="https://www.google.com/maps/search/?api=1&amp;query=Kapiolani+Park+Honolulu">Kapiʻolani Park</a>, do the Kapahulu–Ala Wai loop or go round Diamond Head. Swimming at Waikīkī is safe in winter. The W Line bus runs straight from the airport. Kaimukī's Waiʻalae Ave food strip is about 1.5 mi up Kapahulu, with buses along the way.
+      <em>Tradeoff:</em> it is still a resort strip. Hotel parking costs $30–55/night (2026). Rent a car only for the North Shore and windward days, and park it at the Waikiki Shell lot on Monsarrat Ave (~$6/day, Jan 2026). <span class="unconfirmed">Avoid:</span> rooms on Kalākaua or Kūhiō in mid-Waikīkī. They look central on the map but are loud late into the night.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=Kakaako+Honolulu">Kakaʻako</a></b>. A condo district of mid- and high-rises between downtown and Ala Moana, with Honolulu's highest Walk Score (94).
+      <em>Day to day:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=Whole+Foods+Market+Queen+Honolulu">Whole Foods Queen</a> is on site. You can run along <a href="https://www.google.com/maps/search/?api=1&amp;query=Kakaako+Waterfront+Park+Honolulu">Kakaʻako Waterfront Park</a> or the <a href="https://www.google.com/maps/search/?api=1&amp;query=Ala+Moana+Beach+Park+Honolulu">Ala Moana Beach Park</a> loop, and Ala Moana is also safe for swimming in winter. Buses run along Ala Moana Blvd and Kapiʻolani Blvd, and the W Line from the airport stops here.
+      <em>Tradeoff:</em> legal places to stay are hard to find. Outside resort zones, Honolulu's short-term-rental minimum is 90 days (my pick, verify). Rail doesn't reach Kakaʻako until 2031. People sleeping rough are visible in the parks (my pick).</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=Kailua+Oahu">Kailua</a></b> <span class="note">(windward side)</span>. A flat beach town over the Pali from Honolulu, and one of the island's most walkable.
+      <em>Day to day:</em> Whole Foods, Target, Times and Foodland are in town. It's easy by bike. <a href="https://www.google.com/maps/search/?api=1&amp;query=Kailua+Beach+Park+Oahu">Kailua Beach</a> is on the trade-wind side, so it usually stays swimmable in December, though Portuguese man-o'-war wash in on onshore days (my pick, verify). You can walk to the Lanikai Pillbox trailhead, where car parking is banned from Jul 2026 (blogs, unconfirmed).
+      <em>Tradeoff:</em> Honolulu is ~30 min away by car or bus 67 (route number my pick, verify). Vacation-rental limits leave few legal places to stay. Plan to rent a car for the whole time you're based here.</li>
+  </ul>
+  <p><b>Splitting:</b> for Plan B's 6 nights, pick one town base. For Plan A's 9 nights, ~6 in Waikīkī or Kakaʻako plus 3 in Kailua is worth it if you would rent a car for those days anyway. In December the North Shore is a day trip rather than a base: winter surf closes its water to swimming and Kamehameha Hwy jams on big-swell days.</p>
+  <!-- ── 5. BOOK AHEAD ── -->
+  <h2 id="book">Book ahead</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>What</th><th>Lead time</th><th>How</th><th>Why we know</th></tr>
+      </thead>
+      <tbody>
+        <tr class="urgent">
+          <td><a href="https://www.google.com/maps/search/?api=1&amp;query=Hanauma+Bay+Nature+Preserve+Honolulu">Hanauma Bay</a> snorkel entry <span class="plan">both plans</span></td>
+          <td class="lead">2 days before, 7:00am HST</td>
+          <td>Online only, via the City &amp; County of Honolulu reservation page (honolulu.gov/parks). Closed Mon &amp; Tue: for Wed Dec 16, book Mon Dec 14 at 7:00am.</td>
+          <td>Reservations open 2 days ahead at 7am HST and sell out in minutes (<a href="https://www.hawaii-guide.com/oahu/sights/hanauma-bay-reservations">hawaii-guide</a>; a Honolulu resident on 小红书 gives the same rule). The lot also turns cars away when full, even with a reservation, so arrive early.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- ── 6. PRACTICAL ────────────────────────────────── -->
+  <h2 id="practical">Practical</h2>
+  <div class="facts">
+    <dl>
+      <dt>Tap water</dt><dd>Potable. Honolulu Board of Water Supply water is groundwater from the island's aquifers <span class="note">(own knowledge, not searched)</span>.</dd>
+      <dt>Tipping</dt><dd>Expected at sit-down restaurants, at about 18–20% of the pre-tax bill. Hawaiʻi's full-service average was 18.8% <span class="note">(<a href="https://beatofhawaii.com/hawaii-restaurants-suggest-25-tips-diners-are-paying-less/">Toast, Q2 2026</a>)</span>. Large parties are often billed an 18–20% auto-gratuity, so check the bill before you add a tip. At bars, tip $1 a drink for beer or wine and about 20% on cocktails. Valet gets $2–5 <span class="note">(<a href="https://www.thisweekhawaii.com/hawaii-travel-tips/tipping-guide">guides, 2026</a>)</span>. The state minimum wage is $16/hr <span class="note">(from Jan 1, 2026)</span>.</dd>
+      <dt>Cash &amp; cards</dt><dd>Cards and phone tap-to-pay work almost everywhere <span class="note">(own knowledge)</span>. Carry some cash for food trucks and farmers-market stalls <span class="note">(own knowledge)</span> and for the bus if you have no HOLO card (exact change). Two places run the other way: Skyline rail takes no cash, and Diamond Head entry is card-only <span class="note">(<a href="https://dlnr.hawaii.gov/dsp/parks/oahu/diamond-head-state-monument/">DLNR, 2026</a>)</span>.</dd>
+    </dl>
+  </div>
+
+  <h3>Getting around</h3>
+  <div class="facts">
+    <dl>
+      <dt>Sun Dec 13</dt><dd>Honolulu Marathon morning <span class="plan">both plans</span>: expect road closures through Waikīkī, around Diamond Head and along Kalanianaʻole Hwy until early afternoon. Avoid driving that morning <span class="note">(route closures: own knowledge; check honolulumarathon.org)</span>.</dd>
+      <dt>Transit</dt><dd><b>TheBus</b> covers the island, including the city, Windward and the North Shore. <b>Skyline</b> rail runs from Kualakaʻi (East Kapolei) to Kahauiki (Kalihi) and stops short of downtown, Ala Moana and Waikīkī. For a visitor, it is useful only for the airport (Lelepaua) and Pearl Harbor (Makalapa). From the airport, the <b>W Line</b> bus runs to Downtown, Kakaʻako, Ala Moana and Waikīkī every 10–15 min (every 30 after 7pm). It allows one medium suitcase plus a carry-on <span class="note">(<a href="https://airports.hawaii.gov/hnl/the-bus-and-skyline/">HNL airport</a>)</span>. Pay with a <b>HOLO card</b> ($2), sold at Skyline station machines (including the airport) and Waikīkī ABC Stores. Tap it when you board the bus and at the Skyline gates in and out. The reader takes the first chip it sees, so keep the HOLO card away from your bank cards <span class="note">(<a href="https://holocard.net/help">HOLO</a>)</span>. Whether a contactless bank card works on the readers could not be confirmed. Fares: a 2-hour pass is $3.00 (unlimited TheBus and Skyline), and daily charges stop at $7.50. The 3-day pass is $20 and the 7-day $45. Cash is $3.25 a boarding, with exact change and no transfers <span class="note">(<a href="https://www.thebus.org/Fare202607/FareTran_TheBusFares.asp">thebus.org, effective Jul 1, 2026</a>)</span>. Skyline runs 4am–10pm daily. Bus late-night service could not be confirmed.</dd>
+      <dt>Rides</dt><dd><b>Uber</b> and <b>Lyft</b> both operate <span class="note">(<a href="https://www.shakaguide.com/article/hawaii-uber-and-lyft-guide">Shaka Guide</a>)</span>. Street-hailing isn't done here <span class="note">(own knowledge)</span>, and taxi supply has thinned. On Uber's own page, UberX between Diamond Head and the airport averaged about <b>$32</b>, about 11 mi and 23 min <span class="note">(<a href="https://www.uber.com/global/en/airports/hnl/">Uber, 1-month average, Nov 2026</a>)</span>. The airport-to-Waikīkī fare should be similar, about ten times the $3 bus. A short cross-town fare could not be confirmed.</dd>
+    </dl>
+  </div>
+  <div class="verdict">
+    <b>Verdict:</b> walk and bus in town, and rent a car for one or two days to reach the far coasts. Waikīkī is about 2 mi end to end, roughly 40 min on foot <span class="note">(own knowledge)</span>, and Kakaʻako is the city's most walkable district. Riding TheBus every day costs at most $7.50 a day, against about $32 for one airport Uber. Take the W Line in from the airport unless you have more than one big bag. For the North Shore and the Windward side (Kailua, Lanikai), a car beats both the slow bus and repeated $30-plus rides. Waikīkī hotels charge $30–55 a night to park, so rent only for those days. <b>Biki</b> bike share is $5 per 30 min, but about 800 bikes were missing in mid-2026 and many docks are empty <span class="note">(<a href="https://civilbeat.org/2026/06/where-oh-where-have-the-bikis-gone-oahu-is-missing-800-bikes/">Civil Beat, Jun 2026</a>)</span>. Treat it as a bonus if you find a bike, not a plan.
+  </div>
+  <!-- ── 7. COUNTRY BACKGROUND — State of Hawaiʻi (shared by Oahu / Maui / Kauai) ── -->
+  <h2 id="country">Hawaiʻi (the state)</h2>
+  <div class="facts">
+    <dl>
+      <dt>GDP</dt><dd>$117.6B nominal total <span class="note">(<a href="https://fred.stlouisfed.org/series/HINGSP">BEA via FRED, 2024</a>)</span> · about $81k per capita <span class="note">(derived here: $117.6B ÷ 1,446,146 midyear population, 2024; no published nominal per-capita GDP figure was found). Per capita personal income was $69,520 in 2024, 96% of the US figure (<a href="https://files.hawaii.gov/dbedt/economic/databook/2024-individual/13/130724.pdf">DBEDT Data Book 2024</a>).</span></dd>
+      <dt>Economy</dt><dd>Tourism, about 16.1% of GDP; federal government, about 11.1%; military, about 5.7% <span class="note">(all 2024, <a href="https://data.capitol.hawaii.gov/sessions/session2026/testimony/Info_Testimony_WAM_01-07-26_Outlook.pdf">UHERO/DBEDT chart in Jan 2026 legislative testimony</a>)</span>. Visitor spending was $21.75B in 2025 on 9.64M arrivals, down 0.6% from 2024 and still below the pre-pandemic peak <span class="note">(<a href="https://www.thegardenisland.com/2026/02/02/business/hawaii-visitor-arrivals-end-2025-well-below-pre-pandemic-peak/">DBEDT via Garden Island, 2025</a>)</span>. Agriculture is small: the last sugar plantation (Maui) closed in 2016, and seed corn was the top crop at about $114M in 2022, ahead of cattle and coffee. DBEDT's Dec 2025 forecast was +1.5% growth for 2026.</dd>
+      <dt>Languages</dt><dd>English and Hawaiian are both official state languages <span class="note">(own knowledge)</span>. English works everywhere. Hawaiian shows up on signs, place names and menus, and Pidgin (Hawaiʻi Creole English) is the everyday local speech.</dd>
+    </dl>
+  </div>
+
+  <h3>Tech scene</h3>
+  <p class="note">Small. No Hawaiʻi-based unicorn turned up in current searches, and the figures below come from startup-database listings, so treat them as soft. Concentration is in tourism software, defense software and ocean/ag-tech; no fintech or semiconductor cluster was found.</p>
+  <ul>
+    <li><b><a href="https://builtin.com/companies/location/na/usa/hi/honolulu">FareHarbor</a></b> — Honolulu tour and activity booking software, about 960 employees per Built In (2026). Acquired by Booking Holdings in 2018 <span class="note">(own knowledge; price not verified)</span>.</li>
+    <li><b><a href="https://builtin.com/companies/location/na/usa/hi/type/software-startups">Onebrief</a></b> — military planning and collaboration software, about 180 employees, remote-first. Funding not confirmed.</li>
+    <li><b><a href="https://seedtable.com/best-startups-in-kailua">Symbrosia</a></b> — Kailua seaweed-based feed additive for cattle; named as the lead of seven tracked Kailua startups that raised $65M combined <span class="note">(Seedtable, aggregator; its own raise not confirmed)</span>.</li>
+    <li><b><a href="https://www.zoominfo.com/financial/olelo-intelligence-inc/1340545686">Olelo AI</a></b> — $1M pre-seed from Hawaii Angels (Jan 2026, ZoomInfo).</li>
+  </ul>
+
+  <h3>History</h3>
+  <ul>
+    <li><b>Settlement and kingdom.</b> Polynesian voyagers settled the islands; the date is contested, with AD 1000–1200 the best-supported range <span class="note">(Kirch's review of the archaeology)</span>. Kamehameha I, a chief from Hawaiʻi Island, united the islands as one kingdom by 1810, when Kauaʻi ceded.</li>
+    <li><b>Missionaries and sugar.</b> American Protestant missionaries arrived in 1820, and sugar plantations followed in the 1820s–30s, importing Chinese, Japanese, Portuguese and Filipino labor. This is why the population and the food are as mixed as they are. In 1980 there were 14 sugar and 4 pineapple plantations on more than 300,000 acres; by 2017 both crops were under 5,000 acres.</li>
+    <li><b>Overthrow to statehood.</b> On 17 January 1893 sugar and pineapple businessmen, backed by US troops, overthrew Queen Liliʻuokalani. The US annexed Hawaiʻi in 1898, made it a territory in 1900 and admitted it as the 50th state on 21 August 1959 (about 92–93% voted yes). Some Native Hawaiian groups contest the legality of the annexation.</li>
+    <li><b>Hawaiian Renaissance.</b> From the 1970s, hula, the Hawaiian language and traditional voyaging were revived, and Kahoʻolawe, used as a bombing range, was returned to the state in 2003 after protests. The voyaging canoe Hōkūleʻa first sailed to Tahiti in 1976 <span class="note">(Hōkūleʻa date: own knowledge)</span>. Immersion preschools began in 1982.</li>
+    <li><b>Lahaina and now.</b> The 8 August 2023 Maui wildfire killed 102 people (CBS reports 101), damaged or destroyed about 2,200 structures and displaced about 12,000. A $4.037B global settlement was announced in August 2024; payment status is not confirmed from a primary source. Construction began on the 60 Front Street homes on 3 October 2026, and a blessing marked the first commercial rebuild on Front Street on 13 October 2026. Tourism has not recovered to its pre-pandemic arrivals.</li>
+  </ul>
+
+  <h3>Culture</h3>
+  <ul>
+    <li><b>Kapu signs and heiau.</b> A kapu sign means off-limits, and heiau (stone temple platforms) are living religious sites, not ruins. Where no boundary is marked, the outer edge of the structure is the limit; do not climb the stones, take anything, or stack rocks, since offerings (hoʻokupu) are left there. <span class="note">(<a href="https://dlnr.hawaii.gov/dsp/files/2022/12/Wahi-Pana-brochure-1.pdf">DLNR Wahi Pana brochure</a>)</span></li>
+    <li><b>Hawaiian on every sign.</b> Place names are written with the ʻokina (ʻ) and kahakō (macron), and Hawaiian words are in daily English: <i>mahalo</i>, <i>kōkua</i> (help), and <i>mauka</i>/<i>makai</i> (toward the mountain/toward the sea) used as directions <span class="note">(own knowledge)</span>. The language was nearly lost; ʻAha Pūnana Leo immersion preschools began in 1982, and about 3,000 students were in 28 public immersion schools in 2023. Honolulu Magazine puts native-level speakers at roughly 10,000, under 1% of the state; other counts run higher depending on how speakers are defined. <span class="note">(<a href="https://www.nationalgeographic.com/culture/article/hawaii-native-language-efforts-to-preserve-revive">National Geographic</a>, <a href="https://www.honolulumagazine.com/?p=30151">Honolulu Magazine</a>)</span></li>
+    <li><b>Pidgin.</b> Hawaiʻi Creole English grew on the plantations from Hawaiian, English, Portuguese, Cantonese, Japanese and Filipino. You will hear it in shops and from drivers. The Census Bureau recognized it in 2015 but counted only about 1,600 speakers, while Ethnologue's estimate is about 600,000 first-language speakers (date not confirmed), so the numbers are unreliable. <span class="note">(<a href="https://www.nbcnews.com/news/asian-america/hawaiian-language-pidgin-data-revealed-new-u-s-census-bureau-n495006">NBC News</a>)</span></li>
+  </ul>
+
+  <!-- Phrase set and style in sections/country.md. -->
+  <h3>Phrases <span class="note">— Hawaiian, from own knowledge, not searched. English is understood everywhere, so counter words (bill, card, "English") are just said in English.</span></h3>
+  <table class="phrases">
+    <tr><td class="native">E ʻoluʻolu</td><td class="phon">eh oh-LOO-oh-LOO</td><td>please</td></tr>
+    <tr><td class="native">Mahalo</td><td class="phon">mah-HAH-loh</td><td>thank you</td></tr>
+    <tr><td class="native">Kala mai</td><td class="phon">KAH-lah MY</td><td>sorry / excuse me</td></tr>
+    <tr><td class="native">ʻAe</td><td class="phon">AH-eh</td><td>yes</td></tr>
+    <tr><td class="native">ʻAʻole</td><td class="phon">ah-OH-leh</td><td>no</td></tr>
+    <tr><td class="native">Lua</td><td class="phon">LOO-ah</td><td>bathroom (the everyday word)</td></tr>
+    <tr><td class="native">ʻOno</td><td class="phon">OH-noh</td><td>delicious</td></tr>
+    <tr><td class="native">Aloha</td><td class="phon">ah-LOH-hah</td><td>hello / goodbye</td></tr>
+  </table>
+
+</main>
+</body>
+</html>

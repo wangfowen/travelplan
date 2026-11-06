@@ -104,6 +104,27 @@
       "file": "briefs/warsaw-2026-08-14.html",
       "trip": "Aug 13–16, 2026",
       "published": "2026-08-14"
+    },
+    {
+      "type": "brief",
+      "city": "Oʻahu",
+      "file": "briefs/oahu-2026-11-05.html",
+      "trip": "Plan A: Dec 10–19, 2026 · Plan B: Dec 10–16, 2026",
+      "published": "2026-11-05"
+    },
+    {
+      "type": "brief",
+      "city": "Maui",
+      "file": "briefs/maui-2026-11-05.html",
+      "trip": "Plan B only: Dec 16–22, 2026",
+      "published": "2026-11-05"
+    },
+    {
+      "type": "brief",
+      "city": "Kauaʻi",
+      "file": "briefs/kauai-2026-11-05.html",
+      "trip": "Plan A: Dec 19–28, 2026 · Plan B: Dec 22–28, 2026",
+      "published": "2026-11-05"
     }
   ]
 }

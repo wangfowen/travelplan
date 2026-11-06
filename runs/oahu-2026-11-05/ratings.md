@@ -1,0 +1,47 @@
+# Oahu — Google Maps verification (browser, 2026-11-05)
+Format: name — rating (count) — status. Also use every rating in dossier/maps.md (same date, live Maps).
+- Mud Hen Water — 4.5 (873)
+- The Pig and The Lady (Kaimukī) — 4.4 (2,714)
+- Shige's Saimin Stand — 4.7 (860)
+- Romy's Kahuku Prawns & Shrimp — 3.8 (1,599)
+- Asato Family Shop — 4.9 (153) — PERMANENTLY CLOSED → cut
+- Kapa Hale — 4.5 (258)
+- MW Restaurant — 4.5 (797)
+- Giovedi — 4.5 (148)
+- Tradition Coffee Roasters — 4.9 (621)
+- Hawaii Dim Sum & Seafood — 4.3 (235)
+- Senia — 4.6 (851)
+- The Local General Store — 4.8 (112)
+- Halekulani Bakery — 4.4 (359)
+- Bar Leather Apron — 4.7 (463)
+- Little Plum — 4.6 (129)
+- ELEVEN (Foodland Farms Ala Moana) — 4.2 (111) — PERMANENTLY CLOSED → cut
+- Kō Hana Distillers — 4.8 (823)
+- Aloha Beer Company — 4.5 (1,350)
+- Sushi Sho — 4.6 (426)
+- Kaimuki Shokudo — 4.7 (520)
+- "Wu Wei Chong Qing" → Maps returns "Chong Qing Cuisine" 4.6 (473) — name mismatch; use the rating only if the drafter's address matches, else leave unrated
+- Olay's Thai Lao Cuisine — 4.5 (744)
+- Yi Xin Cafe — 4.4 (177)
+- Le's Banh Mi — 4.8 (219)
+- Cream & Sugar Hawaii — not found on Maps → no rating found
+- Hanauma Bay — 4.4 (2,568)
+- ʻIolani Palace — 4.6 (6,106)
+- Pearl Harbor National Memorial — 4.8 (27,830)
+- ʻEhukai Beach Park — 4.8 (1,247)
+- Waimea Bay Beach Park — 4.8 (6,709)
+- Daijingu Temple of Hawaii — 4.4 (122) — 61 Puiwa Rd, Honolulu (Nuʻuanu) — location confirmed Honolulu
+- Byōdō-In Temple — 4.7 (7,918)
+- Ulupō Heiau State Historic Site — 4.6 (186)
+- Kapaemahu (Maps lists as "The Stones of Life") — 4.7 (65)
+- Koko Crater Railway Trailhead — 4.9 (2,373)
+- Diamond Head State Monument — 4.7 (17,403)
+- Lanikai Pillbox — no single place on Maps → no rating found
+- Mānoa Falls Trail — 4.7 (5,480)
+- Bishop Museum — 4.6 (5,726)
+- Shangri La Museum — 4.7 (460)
+- Hawaii Theatre — 4.6 (821)
+- Neal S. Blaisdell Center — 4.3 (2,719)
+- Kani Ka Pila Grille — 4.3 (727)
+- Honolulu Museum of Art — 4.6 (1,971)
+- Not looked up (dish-line mentions only, no badge needed): Tamashiro Market, Foodland, Musubi Café Iyasume, Agnes' truck, Zippy's

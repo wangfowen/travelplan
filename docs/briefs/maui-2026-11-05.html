@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maui — Travel Brief</title>
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --text: #1c1b19;
+    --muted: #6b6863;
+    --line: #e5e1db;
+    --accent: #9a5b34;
+    --flag-bg: #fdf3ec;
+    --star: #b5892f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1917;
+      --surface: #232220;
+      --text: #ece9e4;
+      --muted: #a09b93;
+      --line: #35332f;
+      --accent: #d99b6c;
+      --flag-bg: #2c241d;
+      --star: #d8b25e;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem 1.25rem 4rem;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
+  }
+  main { max-width: 46rem; margin: 0 auto; }
+
+  header { border-bottom: 2px solid var(--text); padding-bottom: 1rem; margin-bottom: 2.5rem; }
+  h1 { font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1.1; margin: 0 0 .4rem; letter-spacing: -.02em; }
+  .meta { color: var(--muted); font-size: .85rem; }
+
+  /* Anchor nav — one tap to each section on a phone */
+  .toc { margin-top: .75rem; font-size: .8rem; line-height: 1.9; }
+  .toc a { color: var(--muted); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: .15rem .6rem; margin: 0 .25rem .25rem 0; display: inline-block; white-space: nowrap; }
+  .toc a:hover { color: var(--accent); border-color: var(--accent); }
+  h2 { scroll-margin-top: 1rem; }
+
+  h2 {
+    font-size: 1.3rem; margin: 3rem 0 .25rem; letter-spacing: -.01em;
+    padding-bottom: .4rem; border-bottom: 1px solid var(--line);
+  }
+  h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 1.75rem 0 .5rem; }
+  p { margin: .6rem 0; }
+
+  ul { padding-left: 1.1rem; margin: .5rem 0; }
+  li { margin: .75rem 0; }
+  li b { font-weight: 650; }
+
+  a { color: inherit; text-underline-offset: 2px; text-decoration-color: var(--line); }
+  a:hover { text-decoration-color: var(--accent); }
+
+  /* Rating badge — sits inline after a place name. Omit entirely if unconfirmed. */
+  .rating {
+    display: inline-block; white-space: nowrap;
+    font-size: .78rem; font-weight: 600; color: var(--star);
+    margin-left: .35rem;
+  }
+  .rating .count { color: var(--muted); font-weight: 400; }
+
+  /* Date badge — events only. Confirmed dates for the travel year, never a guess. */
+  .when {
+    display: inline-block; white-space: nowrap;
+    font-size: .78rem; font-weight: 650; color: var(--accent);
+    margin-left: .35rem;
+  }
+
+  /* Source tag — required on every Things-to-do, Food and Events entry.
+     Stack several when a place shows up in more than one source. */
+  .src {
+    display: inline-block; font-size: .7rem; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--muted); border: 1px solid var(--line); border-radius: 4px;
+    padding: .05rem .3rem; margin-left: .35rem; vertical-align: 1px;
+  }
+  .src a { text-decoration: none; }
+
+  .note { color: var(--muted); font-size: .85rem; font-style: italic; }
+  .unconfirmed { color: var(--accent); font-weight: 600; }
+
+  /* Callout — use to flag a source category that was unreachable this run */
+  .callout {
+    background: var(--flag-bg); border: 1px solid var(--line); border-radius: 8px;
+    padding: .7rem 1rem; margin: 1rem 0; font-size: .88rem; color: var(--muted);
+  }
+
+  /* Book-ahead table — must stay scrollable on narrow screens */
+  .table-wrap { overflow-x: auto; margin: 1rem 0; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: .92rem; }
+  th, td { text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 600; }
+  td.lead { white-space: nowrap; font-weight: 650; }
+  tr.urgent td.lead { color: var(--accent); }
+
+  .phrases { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  .phrases td { padding: .45rem .6rem .45rem 0; border-bottom: 1px solid var(--line); }
+  .phrases .native { font-weight: 600; }
+  .phrases .phon { color: var(--muted); font-style: italic; white-space: nowrap; }
+
+  /* Verdict — the transit-vs-rides call at the end of Getting around */
+  .verdict {
+    border-left: 3px solid var(--accent); background: var(--surface);
+    border-radius: 0 8px 8px 0; padding: .7rem 1rem; margin: 1rem 0; font-size: .92rem;
+  }
+  .verdict b { color: var(--accent); }
+
+  .facts { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: .35rem 1rem; margin: 1rem 0; }
+  .facts dl { display: grid; grid-template-columns: max-content 1fr; gap: .5rem 1.25rem; margin: .8rem 0; }
+  .facts dt { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); padding-top: .15rem; }
+  .facts dd { margin: 0; }
+
+  @media (max-width: 30rem) {
+    .facts dl { grid-template-columns: 1fr; gap: .15rem; }
+    .facts dd { margin-bottom: .7rem; }
+  }
+  /* Plan label — which itinerary (A: two islands, B: three) a date-bound item falls in */
+  .plan { display: inline-block; white-space: nowrap; font-size: .7rem; font-weight: 650; color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; padding: 0 .3rem; margin-left: .35rem; vertical-align: 1px; }
+</style>
+</head>
+<body>
+<main>
+
+  <header>
+    <h1>Maui</h1>
+    <div class="meta">Hawaiʻi, USA · Plan B only: Dec 16–22, 2026 · researched Nov 5, 2026</div>
+    <div class="meta">Plan A = Oʻahu then Kauaʻi; Plan B = Oʻahu, Maui, Kauaʻi. Date-bound items are labelled with the plan they fall in.</div>
+    <div class="meta">Typical December in Kahului/Kīhei: ~27°/18°C (80°/64°F) highs/lows · Kīhei dry, the Hāna side and upcountry showery · Haleakalā summit near 0–5°C at sunrise · sunset about 5:50pm <span class="note">(climate normals, own knowledge)</span></div>
+    <nav class="toc">
+      <a href="#do">Things to do</a><a href="#food">Food</a><a href="#events">Events</a><a href="#stay">Stay</a><a href="#book">Book ahead</a><a href="#practical">Practical</a><a href="#country">Hawaiʻi</a>
+    </nav>
+  </header>
+  <h2 id="do">Things to do</h2>
+  <div class="callout">Sources this run: <b>Reddit could not be read</b>. The Claude in Chrome extension blocks reddit.com (www and old.reddit.com tried on Nov 5, 2026; every attempt returned "site not allowed"), so there are no Reddit tags or tally. <b>小红书</b> notes rendered as images only, so its tags link to the search results, with the note title and author on hover. Michelin has no Hawaiʻi guide; World of Mouth has no Maui page; Eater pages could not be fetched. Candidates found only by a Google Maps category search are tagged <i>my pick</i>.</div>
+
+  <h3>Top picks</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Haleakala+National+Park+Summit+District+Maui">Haleakalā summit at sunrise</a></b>
+      <span class="rating">4.9 ★ <span class="count">(12,278)</span></span>
+      <span class="src"><a href="https://www.nps.gov/hale/planyourvisit/haleakala-sunrise-reservations-faq.htm">nps</a></span>
+      <span class="src"><a href="https://mauinow.com/2026/09/28/haleakala-national-park-reopens-as-tropical-storm-nolo-passes/">maui now</a></span>
+      <span class="src">my pick</span>
+      <br>Sunrise from the ~10,000 ft summit; afterward, the Keoneheʻeheʻe (Sliding Sands) trail drops from the visitor center into the crater. The descent is easy; the climb back at altitude is the hard part (trail detail from own knowledge).
+      <br><span class="unconfirmed">Sunrise reservation <span class="plan">Plan B</span>:</span> required to enter the Summit District 3:00–7:00 a.m.; recreation.gov only (no phone, no gate sales). Released 60 days ahead at 7:00 a.m. HST and sells out in ~15 min. For Dec 16–22 those dates (~Oct 17–23) have passed, so use the smaller batch released 2 days ahead at 7:00 a.m. HST: Dec 14 for Dec 16, through Dec 20 for Dec 22. $1.00/vehicle, non-refundable even for weather; one reservation per account per 3-day period. <a href="https://www.recreation.gov/ticket/facility/253731">Book on recreation.gov</a>.
+      <br><span class="note">Entrance is separate: $30/private vehicle, valid 3 days (2026), and the same pass covers Kīpahulu. The park closed twice in the 2026 storms (Aug and Sept); check <a href="https://www.nps.gov/hale/planyourvisit/conditions.htm">nps.gov/hale conditions</a> before you go.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Pipiwai+Trail+Kipahulu+Maui">Road to Hāna → Kīpahulu: Pīpīwai Trail</a></b>
+      <span class="rating">4.8 ★ <span class="count">(490)</span></span>
+      <span class="src"><a href="https://www.nps.gov/hale/planyourvisit/hiking.htm">nps</a></span>
+      <span class="src"><a href="https://mauinow.com/2026/10/30/the-kipahulu-district-reopens-after-heavy-rains-and-flooding-campground-remains-closed/">maui now</a></span>
+      <span class="src"><a href="https://www.atlasobscura.com/things-to-do/hawaii">atlas obscura</a></span>
+      <br>At the far end of the Hāna Highway, in Haleakalā's coastal Kīpahulu District: 2 mi each way (~4 mi round trip, moderately strenuous) through a bamboo forest to 400-ft Waimoku Falls. The trail starts at ʻOheʻo Gulch, where tiered pools drop into the ocean. NPS advises against swimming there (flash floods, rockfall), and the pools are often closed.
+      <br><span class="unconfirmed">Status <span class="plan">Plan B</span>:</span> Kīpahulu reopened ~Oct 30, 2026 after flooding; the campground was still closed. No dated notice on the Hāna Highway itself was found after the late-October rain. Check before going: <a href="https://www.nps.gov/hale/planyourvisit/conditions.htm">nps.gov/hale conditions</a>.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Pacific+Whale+Foundation+Maalaea+Maui">Pacific Whale Foundation — Molokini snorkel and whale watch</a></b>
+      <span class="rating">4.7 ★ <span class="count">(3,068)</span></span>
+      <span class="src"><a href="https://mauinow.com/2026/02/04/pacific-whale-foundation-and-norwegian-cruise-line-partners-to-expand-keiki-whale-watches-on-maui/">maui now</a></span>
+      <br>A research and education nonprofit that runs naturalist-led boats from Māʻalaea. It offers two formats: the Molokini &amp; Turtle Arches snorkel, at a submerged crescent crater off Mākena, and a 2-hr whale watch. <span class="plan">Plan B</span> Humpback season officially opens Dec 15, but numbers are still low in mid-December and build through Jan–Mar. Take the snorkel trip as the main outing, and count any whales as a bonus.
+      <br><span class="note">Check in at the PWF store, 300 Maalaea Rd; harbor parking is paid. Prices and operating days could not be confirmed, so check <a href="https://www.pacificwhale.org/">pacificwhale.org</a>. Lahaina Harbor has run limited commercial tours since a phased reopening in Dec 2025. Free shore option: spotting scopes on the lawn at the <a href="https://www.google.com/maps/search/?api=1&amp;query=Hawaiian+Islands+Humpback+Whale+National+Marine+Sanctuary+Kihei">humpback whale sanctuary visitor center</a> <span class="rating">4.8 ★ <span class="count">(232)</span></span> in Kīhei (my pick; 2026 hours not confirmed).</span>
+    </li>
+  </ul>
+
+  <h3>Unique to Maui</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Old+Lahaina+Luau+Maui">Old Lāhainā Lūʻau</a></b>
+      <span class="rating">4.7 ★ <span class="count">(5,017)</span></span>
+      <span class="src"><a href="https://hawaiisbesttravel.com/visiting-lahaina-maui-2026/">hawaii's best travel</a></span>
+      <br>A nightly lūʻau in Lahaina, reported operating in 2026.
+      <br><span class="unconfirmed">Lahaina status:</span> Front Street reopened to vehicles Aug 1, 2026 (Pāpalaua to Shaw), with no street parking on Front. There are free 3-hr county lots at 500 Front St and 116 Prison St. The burn zone and the Banyan Tree are off-limits; it is a working recovery zone, so don't drive through to look or photograph ruins.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Hui+No%27eau+Visual+Arts+Center+Makawao">Hui Noʻeau Visual Arts Center — lei-making workshop</a></b>
+      <span class="rating">4.7 ★ <span class="count">(53)</span></span>
+      <span class="src"><a href="https://mauinow.com/?p=395153">maui now</a></span>
+      <br>Three-hour hands-on ti-leaf and kaunaʻoa lei workshops at the Kaluanui estate in upcountry Makawao, 2841 Baldwin Ave. Bring clippers; ~$72–83 (2024 pricing).
+      <span class="note">The 2026 schedule could not be found; check <a href="https://huinoeau.com">huinoeau.com</a> for a date Dec 16–22.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Olowalu+Petroglyphs+Maui">Olowalu Petroglyphs (Puʻu Kīlea)</a></b>
+      <span class="rating">4.2 ★ <span class="count">(258)</span></span>
+      <span class="src"><a href="https://www.atlasobscura.com/places/olowalu-petroglyphs">atlas obscura</a></span>
+      <br>Figures carved into a basalt cliff at Olowalu, on the West Maui road south of Lahaina; the easiest petroglyph site on Maui to reach. <span class="note">2026 access could not be confirmed.</span>
+    </li>
+  </ul>
+
+  <h3>Views and nature</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Waianapanapa+State+Park+Hana+Maui">Waiʻānapanapa State Park</a></b>
+      <span class="rating">4.7 ★ <span class="count">(5,018)</span></span>
+      <span class="src"><a href="https://dlnr.hawaii.gov/dsp/parks/maui/waianapanapa-state-park/">dlnr</a></span>
+      <br>A black-sand beach, a sea cave, and a coastal trail across lava rock near Hāna, on the same drive as Kīpahulu.
+      <br><span class="unconfirmed">Reservation <span class="plan">Plan B</span>:</span> nonresidents need a timed entry plus parking slot from <a href="https://gostateparks.hawaii.gov/waianapanapa">gostateparks.hawaii.gov/waianapanapa</a>. Slots open up to 30 days ahead, so Dec 16 opens ~Nov 16. Fees are reported at $5/person plus $10/vehicle (2026), not confirmed on the official page. All Maui state parks closed for Tropical Storm Nolo on Sept 25, 2026; check <a href="https://dlnr.hawaii.gov/dsp/important-park-notices/">DLNR park notices</a> before going.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Iao+Valley+State+Monument+Wailuku+Maui">ʻĪao Valley State Monument</a></b>
+      <span class="rating">4.6 ★ <span class="count">(5,553)</span></span>
+      <span class="src"><a href="https://dlnr.hawaii.gov/dsp/important-park-notices/">dlnr</a></span>
+      <span class="src"><a href="https://mauinow.com/2026/04/21/work-to-start-on-pedestrian-bridge-at-ʻiao-valley-state-monument-park-closure-continues-since-march-storms/">maui now</a></span>
+      <br>The ʻĪao Needle lookout and an ethnobotanical loop, at the head of a valley above Wailuku.
+      <br><span class="unconfirmed">Status:</span> closed since late April 2026 for pedestrian-bridge work, and the reopening date kept slipping. A DLNR notice dated Nov 2, 2026 still lists it as closed but gives a reopening of "Sunday 11/1", so the two dates conflict. Check before going: <a href="https://dlnr.hawaii.gov/dsp/important-park-notices/">DLNR park notices</a>. If it is open, nonresidents must reserve at <a href="https://gostateparks.hawaii.gov/iao-valley/about">gostateparks.hawaii.gov/iao-valley</a>, up to 30 days ahead, with no walk-ups; arrive within the first 30 min of your slot.
+    </li>
+  </ul>
+
+  <h3>Museums and galleries</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Alexander+%26+Baldwin+Sugar+Museum+Puunene+Maui">Alexander &amp; Baldwin Sugar Museum</a></b>
+      <span class="rating">4.3 ★ <span class="count">(624)</span></span>
+      <span class="src"><a href="https://www.atlasobscura.com/places/alexander-baldwin-sugar-museum">atlas obscura</a></span>
+      <br>A small museum next to the former Puʻunēnē sugar mill near Kahului, covering the plantation era: labor camps and irrigation ditches.
+    </li>
+  </ul>
+  <h2 id="food">Food</h2>
+
+  <h3>Local dishes to try</h3>
+  <ul>
+    <li>
+      <b>Dry mein.</b> <span class="src">my pick</span> Maui's own noodle dish: saimin-style noodles served without soup, the dashi in a cup on the side.
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=Sam+Sato%27s+Wailuku+Maui">Sam Sato's</a> <span class="rating">4.6 ★ <span class="count">(974)</span></span> (below),
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Tin+Roof+Maui+Kahului">Tin Roof</a> <span class="rating">4.6 ★ <span class="count">(3,369)</span></span> (below),
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Bamboo+Grille+Wailuku+Maui">Bamboo Grille</a> <span class="rating">4.5 ★ <span class="count">(588)</span></span>, Wailuku.
+    </li>
+    <li>
+      <b>Plate lunch.</b> <span class="src">my pick</span> Two scoops rice, mac salad and a main: mochiko chicken, shoyu chicken, teriyaki, hamburger steak or loco moco.
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=Tin+Roof+Maui+Kahului">Tin Roof</a>, <a href="https://www.google.com/maps/search/?api=1&amp;query=Kalei%27s+Lunchbox+Maui">Kalei's Lunchbox</a>, <a href="https://www.google.com/maps/search/?api=1&amp;query=Aloha+Mixed+Plate+Lahaina">Aloha Mixed Plate</a>, <a href="https://www.google.com/maps/search/?api=1&amp;query=Da+Kitchen+Kihei+Maui">Da Kitchen</a> (all below).
+    </li>
+    <li>
+      <b>Poke.</b> <span class="src">my pick</span> Cubed raw ʻahi dressed with shoyu, sesame oil, onion and limu, sold by the pound at fish counters and supermarket delis.
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=South+Maui+Fish+Company+Kihei">South Maui Fish Company</a> <span class="rating">4.8 ★ <span class="count">(1,964)</span></span>, Kīhei;
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Tobi%27s+Poke+%26+Shave+Ice+Paia+Maui">Tobi's Poke &amp; Shave Ice</a> <span class="rating">4.7 ★ <span class="count">(942)</span></span>, Pāʻia (spicy wasabi, shoyu);
+      the counters at <a href="https://www.google.com/maps/search/?api=1&amp;query=Tamura%27s+Market+Kahului+Maui">Tamura's Market</a>, Kahului, and any <a href="https://www.google.com/maps/search/?api=1&amp;query=Foodland+Maui">Foodland</a>.
+    </li>
+    <li>
+      <b>Shave ice.</b> <span class="src">my pick</span> Ice shaved fine as snow over a scoop of ice cream, syrup on top, a snow cap of condensed milk.
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=Ululani%27s+Hawaiian+Shave+Ice+Kihei+Maui">Ululani's Hawaiian Shave Ice</a> <span class="rating">4.8 ★ <span class="count">(2,147)</span></span>, Kīhei (also Kahului, Maui Lani);
+      Tobi's, Pāʻia.
+    </li>
+    <li>
+      <b>Guri guri.</b> <span class="src">my pick</span> A Maui-only sherbet, somewhere between ice cream and shave ice, made in two flavours: strawberry and pineapple.
+      <em>Where:</em> <a href="https://www.google.com/maps/search/?api=1&amp;query=Tasaka+Guri+Guri+Kahului+Maui">Tasaka Guri Guri</a>, Maui Mall, Kahului.
+    </li>
+  </ul>
+
+  <h3>Top picks</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Tin+Roof+Maui+Kahului">Tin Roof</a></b>
+      <span class="rating">4.6 ★ <span class="count">(3,369)</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/2026-readers-choice-awards-maui/">hawaiʻi magazine</a></span>
+      <br>Kahului · Sheldon Simeon's takeout counter, 10 minutes from the airport. Mochiko chicken, dry mein, fat chow funn with pork, chocolate butter mochi.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Komoda+Store+and+Bakery+Makawao+Maui">T. Komoda Store &amp; Bakery</a></b>
+      <span class="rating">4.6 ★ <span class="count">(1,063)</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/15-iconic-maui-dishes/">hawaiʻi magazine</a></span>
+      <br>Makawao (upcountry) · Family bakery since 1916. Cream puffs filled with vanilla custard and doughnuts on a stick; sells out early, so go in the morning.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Sam+Sato%27s+Wailuku+Maui">Sam Sato's</a></b>
+      <span class="rating">4.6 ★ <span class="count">(974)</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/15-iconic-maui-dishes/">hawaiʻi magazine</a></span>
+      <br>Wailuku · Noodle counter running since 1933, breakfast and lunch only. Dry mein is the order; add a manju from the bakery side.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Lineage+Wailea+Maui">Lineage</a></b>
+      <span class="rating">4.5 ★ <span class="count">(831)</span></span>
+      <span class="src"><a href="https://www.mauimagazine.net/2025-aipono-award-winners/">ʻaipono 2025</a></span>
+      <span class="src"><a href="https://www.hawaiitribune-herald.com/2022/03/17/hawaii-news/simeon-a-finalist-for-a-james-beard-award/amp/">james beard</a></span>
+      <span class="src"><a href="https://www.rednote.com/search_result/?keyword=%E8%8C%82%E5%AE%9C%E5%B2%9B%E7%BE%8E%E9%A3%9F" title="夏威夷🌺茂宜岛必吃餐厅Lineage — 纽漂Hanna">小红书</a></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/2026-readers-choice-awards-maui/">hawaiʻi magazine</a></span>
+      <br>Wailea (The Shops at Wailea) · Sheldon Simeon's sit-down restaurant: the home cooking of Hawaiʻi's local families reworked and served family-style.
+    </li>
+  </ul>
+
+  <h3>Everyday institutions</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Pukalani+Superette+Maui">Pukalani Superette</a></b>
+      <span class="rating">4.6 ★ <span class="count">(640)</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/15-iconic-maui-dishes/">hawaiʻi magazine</a></span>
+      <br>Pukalani (upcountry) · Family grocery since 1955 with a hot deli; the order is chili chicken (fried thighs) and a deli plate.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Kalei%27s+Lunchbox+Maui">Kalei's Lunchbox</a></b>
+      <span class="rating">4.6 ★ <span class="count">(353)</span></span>
+      <span class="src"><a href="https://www.mauimagazine.net/2025-aipono-award-winners/">ʻaipono 2025</a></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/the-best-cheap-eats-on-maui-in-2025/">hawaiʻi magazine</a></span>
+      <span class="src"><a href="https://mauinow.com/2025/06/17/kaleis-lahaina-opens-new-location-with-familiar-flavors/">maui now</a></span>
+      <br>Pukalani, Maui Lani and Lahaina · Plate lunch: furikake mochiko chicken, breaded pork teriyaki, hamburger steak, loco moco.
+      <span class="note">Lahaina status: new branch opened June 2025 in Lahaina Cannery Mall.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Aloha+Mixed+Plate+Lahaina">Aloha Mixed Plate</a></b>
+      <span class="rating">4.5 ★ <span class="count">(3,964)</span></span>
+      <span class="src"><a href="https://www.mauimagazine.net/2025-aipono-award-winners/">ʻaipono 2025</a></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/9-must-try-new-and-reopened-lahaina-restaurants/">hawaiʻi magazine</a></span>
+      <span class="src"><a href="https://www.mauimagazine.net/whats-open-lahaina/">maui nō ka ʻoi</a></span>
+      <br>Lahaina, 1285 Front St, on the water · Plate lunch: shoyu chicken, fried-rice loco moco, the Aliʻi plate.
+      <span class="note">Lahaina status: reopened at its original site (north of the burn zone); open per 2024–2026 sources.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Da+Kitchen+Kihei+Maui">Da Kitchen</a></b>
+      <span class="rating">4.5 ★ <span class="count">(2,332)</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/15-iconic-maui-dishes/">hawaiʻi magazine</a></span>
+      <br>Kīhei, 1215 S Kīhei Rd · Plate lunch house; order the deep-fried spam musubi.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Upcountry+Farmers+Market+Kulamalu+Pukalani+Maui">Upcountry Farmers Market</a></b>
+      <span class="when">Sat Dec 19, 7–11am</span> <span class="plan">Plan B</span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/this-charming-farmers-market-on-maui-is-uniquely-upcountry/">hawaiʻi magazine</a></span>
+      <span class="src"><a href="https://mauinow.com/events/event/w1c6b2n8g2b4b/">maui now</a></span>
+      <br>Kulamalu Town Center, Pukalani · Saturday market of 100+ vendors: upcountry produce and prepared foods to eat on the spot.
+    </li>
+  </ul>
+
+  <h3>Creative and interesting</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Coco+Deck+Lahaina+Kitchen+Bar">Coco Deck Lahaina Kitchen + Bar</a></b>
+      <span class="rating">4.6 ★ <span class="count">(627)</span></span>
+      <span class="src"><a href="https://www.mauimagazine.net/2025-aipono-award-winners/">ʻaipono 2025</a></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/9-must-try-new-and-reopened-lahaina-restaurants/">hawaiʻi magazine</a></span>
+      <span class="src"><a href="https://mauinow.com/2026/08/26/coco-deck-lahaina-celebrates-two-years-on-sept-5/">maui now</a></span>
+      <br>Lahaina, 1312 Front St · Chef Alvin Savella's local-fusion menu: crispy poke doughnut, birria ramen.
+      <span class="note">Lahaina status: new since the fire, opened Sept 2024; marked two years open Sept 2026.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Star+Noodle+Lahaina+Maui">Star Noodle</a></b>
+      <span class="rating">4.4 ★ <span class="count">(3,928)</span></span>
+      <span class="src"><a href="https://www.mauimagazine.net/2025-aipono-award-winners/">ʻaipono 2025</a></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/9-must-try-new-and-reopened-lahaina-restaurants/">hawaiʻi magazine</a></span>
+      <span class="src"><a href="https://www.mauimagazine.net/whats-open-lahaina/">maui nō ka ʻoi</a></span>
+      <br>Lahaina, 1287 Front St · Local-style noodle house: hand-pulled noodles, pork buns, miso butterfish.
+      <span class="note">Lahaina status: reopened, relocated from the industrial park to the oceanfront Front St row; open per 2024–2026 sources.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Ko+Fairmont+Kea+Lani+Wailea+Maui">Kō</a></b>
+      <span class="rating">4.4 ★ <span class="count">(754)</span></span>
+      <span class="src"><a href="https://www.mauimagazine.net/2025-aipono-award-winners/">ʻaipono 2025</a></span>
+      <br>Wailea (Fairmont Kea Lani) · A menu built on the plantation-era kitchens of Maui's immigrant groups, mixed the way local food mixes them.
+    </li>
+  </ul>
+
+  <h3>Cafés and bakeries</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Leoda%27s+Kitchen+and+Pie+Shop+Olowalu+Maui">Leoda's Kitchen and Pie Shop</a></b>
+      <span class="rating">4.7 ★ <span class="count">(5,238)</span></span>
+      <span class="src"><a href="https://www.mauimagazine.net/2025-aipono-award-winners/">ʻaipono 2025</a></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/15-iconic-maui-dishes/">hawaiʻi magazine</a></span>
+      <br>Olowalu, south of Lahaina town · Pie shop: coconut cream pie, banana bread. Local specialty bake.
+      <span class="note">West Maui status: reopened Dec 2023, four months after the fire.</span>
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Akamai+Coffee+Co+Maui">Akamai Coffee Co.</a></b>
+      <span class="rating">4.6 ★ <span class="count">(896)</span></span>
+      <span class="src"><a href="https://www.mauimagazine.net/2025-aipono-award-winners/">ʻaipono 2025</a></span>
+      <br>Several cafés · Maui roaster with its own café chain. Coffee.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Stillwell%27s+Bakery+Kahului+Maui">Stillwell's Bakery &amp; Cafe</a></b>
+      <span class="rating">4.6 ★ <span class="count">(672)</span></span>
+      <span class="src"><a href="https://www.mauimagazine.net/2025-aipono-award-winners/">ʻaipono 2025</a></span>
+      <br>Kahului · Local bakery; order the cream horns. Pastry.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Maui+Coffee+Roasters+Kahului">Maui Coffee Roasters</a></b>
+      <span class="rating">4.5 ★ <span class="count">(951)</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/2026-readers-choice-awards-maui/">hawaiʻi magazine</a></span>
+      <br>Kahului, 444 Hāna Hwy · Roaster-café near the airport; order an island-grown coffee. Coffee.
+    </li>
+  </ul>
+
+  <h3>Cocktail bars and breweries</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Tikehau+Lounge+Maui">Tikehau Lounge</a></b>
+      <span class="rating">4.9 ★ <span class="count">(304)</span></span>
+      <span class="src"><a href="https://www.mauimagazine.net/2025-aipono-award-winners/">ʻaipono 2025</a></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/2026-readers-choice-awards-maui/">hawaiʻi magazine</a></span>
+      <br>Kīhei · Tahitian-style lounge: poisson cru (raw fish in lime and coconut milk) and Tahitian poke alongside the cocktail list.
+    </li>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Maui+Brewing+Co+Kihei">Maui Brewing Co.</a></b>
+      <span class="rating">4.3 ★ <span class="count">(2,931)</span></span>
+      <span class="src"><a href="https://www.hawaiimagazine.com/2026-readers-choice-awards-maui/">hawaiʻi magazine</a></span>
+      <span class="src">my pick</span>
+      <br>Kīhei production brewery and taproom · Brews with island ingredients; the Coconut Hiwa Porter uses toasted coconut. <span class="note">Beer detail from own knowledge.</span>
+    </li>
+  </ul>
+
+  <h3>Healthy staples</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.google.com/maps/search/?api=1&amp;query=Fork+%26+Salad+Kihei+Maui">Fork &amp; Salad</a></b>
+      <span class="rating">4.5 ★ <span class="count">(542)</span></span>
+      <span class="src"><a href="https://www.mauimagazine.net/2025-aipono-award-winners/">ʻaipono 2025</a></span>
+      <span class="src"><a href="https://mauinow.com/2025/10/29/fork-salad-maui-opens-in-lahaina-with-high-tech-perks/">maui now</a></span>
+      <br>Kīhei and Lahaina · Salads and bowls built to order; add a protein.
+      <span class="note">Lahaina status: branch opened Oct 2025 in Lahaina Cannery Mall.</span>
+    </li>
+  </ul>
+  <h2 id="events">Events <span class="note">— during your dates</span></h2>
+
+  <h3>Music</h3>
+  <ul>
+    <li>
+      <b><a href="https://www.slackkeyshow.com/">Slack Key Show – Masters of Hawaiian Music</a></b>
+      <span class="when">Wed Dec 16, 2026 · doors 5:45pm, show 6:30–8:00pm</span>
+      <span class="plan">Plan B</span>
+      <span class="src">hawaii public radio</span>
+      <br>A weekly kī hōʻalu (slack-key guitar) evening presented by George Kahumoku Jr. and hosted by Shem Kahawaii, with hula by Wainani Kealoha and a rotating guest guitarist. Past guests include Led Kaapana and Sonny Lim. Held in the open-air Aloha Pavilion at
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Napili+Kai+Beach+Resort+Lahaina+Maui">Napili Kai Beach Resort</a> <span class="rating">4.7 ★ <span class="count">(1,416)</span></span> (Nāpili, West Maui). It is your Maui arrival day, so it only works on an early flight. <span class="note">December guests are not posted yet; check the <a href="https://www.slackkeyshow.com/show-schedule/">show schedule</a>.</span>
+      <em>Tickets:</em> priority seating (first four rows) $65, advance GA $45, $50 at the door, $40 kamaʻāina (2026), via <a href="https://kahumoku.com/musicians/masters-of-hawaiian-music-tour/">kahumoku.com</a>. The venue is small, so buy in advance.
+    </li>
+  </ul>
+
+  <h3>Shows</h3>
+  <ul>
+    <li>
+      <b><a href="https://mauiarts.org/john-mulaney2026">John Mulaney: Mister Whatever</a></b>
+      <span class="when">Fri Dec 18, 2026 · 6:30pm</span>
+      <span class="plan">Plan B</span>
+      <span class="src"><a href="https://mauinow.com/2026/06/02/john-mulaney-mister-whatever-adds-maui-to-stand-up-comedy-tour-dec-18-2026/">maui now</a></span>
+      <br>Stand-up from his current world tour, in the Castle Theater at
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Maui+Arts+%26+Cultural+Center+Kahului">Maui Arts &amp; Cultural Center</a> <span class="rating">4.7 ★ <span class="count">(1,007)</span></span>, Kahului. MACC asks patrons to bring non-perishable food for the Maui Food Bank.
+      <em>Tickets:</em> $164 / $214 / $414 VIP, fees included (2026), via MACC. On sale since June 5, so the cheaper tiers may already be gone.
+    </li>
+  </ul>
+  <!-- ── 4. WHERE TO STAY — rules in sections/where-to-stay.md ── -->
+  <h2 id="stay">Where to stay</h2>
+  <p class="note">Six nights, Dec 16–22 <span class="plan">Plan B</span>. You need a car from any of these. Haleakalā sunrise and the Road to Hāna both start on the central and upcountry side of the island, so stay there or on the south shore, not in the west.</p>
+  <ul>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=Pa%CA%BBia+Maui">Paʻia</a>.</b> A small north-shore surf town you can walk end to end, at the start of the Hāna Highway and about 15 min from the airport. <em>Day to day:</em> Mana Foods, a large health-food grocer, is in town. Baldwin Beach is a long stretch of sand for walks and runs. The Haʻikū Islander bus (Route 35) runs to Kahului and the airport. For Hāna you are already at the start of the road, and Baldwin Ave climbs from town to Makawao and the Haleakalā road. <em>Tradeoff:</em> crowded in the daytime with Hāna traffic and day-trippers. In December, north swells make swimming at Baldwin and Hoʻokipa dangerous, so this is a base for walking the beach, not swimming at it.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=K%C4%ABhei+Maui">Kīhei</a>.</b> A long strip along the south shore and the driest, sunniest base in winter, with the calmest water for swimming. <em>Day to day:</em> Foodland, Safeway and Times supermarkets, gyms, and the beach walks along Kamaʻole and Keawakapu. The Kīhei Islander bus (Route 10) is one of the island's busiest routes and has added evening trips. The Humpback Whale Sanctuary visitor center lawn is in town for watching whales from shore. <em>Tradeoff:</em> strip-mall sprawl along South Kīhei Rd, and bars cluster around south Kīhei near Kalama Park, so book away from that stretch. Of these three bases it is the farthest from Hāna and from the summit (my estimate), so those days start earliest from here.</li>
+    <li><b><a href="https://www.google.com/maps/search/?api=1&amp;query=Makawao+Maui">Makawao</a> (upcountry).</b> A paniolo (cowboy) ranch town in upcountry farm country, which sits at about 2,000–4,000 ft, with the shortest drive to the Haleakalā summit for the 3 a.m. sunrise start. <em>Day to day:</em> a small town center, with Hui Noʻeau Visual Arts Center (lei and art workshops) just outside town. The Upcountry Islander bus (Route 40) runs to the airport, and the big Kahului stores are about 20 min down the hill (my estimate). <em>Tradeoff:</em> you drive almost everywhere outside the town center, nights are cool, and the nearest swimmable beach is a long drive away. Polipoli forest above Kula is closed as of Oct 30, 2026.</li>
+  </ul>
+  <p><b>Skip West Maui (Kāʻanapali, Nāpili, Kapalua) on this itinerary.</b> The resorts there are open, but Kahului is 45–60 min away along one road, the Honoapiʻilani Hwy, and the route passes Lahaina. Lahaina is still rebuilding after the August 2023 fire. Front Street reopened to vehicles on Aug 1, 2026, but the burn zone and the Banyan Tree remain off-limits. Each pre-dawn Haleakalā start or Hāna day from the west adds that drive both ways. In December, the north-facing parts of Nāpili and Kapalua are also the wettest and windiest on that coast.</p>
+  <!-- ── 5. BOOK AHEAD ── -->
+  <h2 id="book">Book ahead</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>What</th><th>Lead time</th><th>How</th><th>Why we know</th></tr>
+      </thead>
+      <tbody>
+        <tr class="urgent">
+          <td><a href="https://www.google.com/maps/search/?api=1&amp;query=Haleakala+National+Park+Maui">Haleakalā</a> sunrise vehicle reservation <span class="plan">Plan B</span></td>
+          <td class="lead">2 days before, 7:00am HST (Dec 14–20 for sunrises Dec 16–22)</td>
+          <td>Recreation.gov only. $1/vehicle, non-refundable, one per account per 3 days. Park entry is separate: $30/vehicle (2026).</td>
+          <td>The main release (60 days ahead, 7am HST) sells out in about 15 minutes, and for these dates it was in mid-late October and has passed. A smaller batch is released 2 days ahead (NPS via the Maui city research).</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- ── 6. PRACTICAL ────────────────────────────────── -->
+  <h2 id="practical">Practical</h2>
+  <div class="facts">
+    <dl>
+      <dt>Tap water</dt><dd>Potable from the county system island-wide; refill a bottle rather than buy. Ask locally before drinking tap water in rebuilt parts of Lahaina, where post-fire water advisories have applied <span class="note">(my pick, own knowledge)</span>.</dd>
+      <dt>Tipping</dt><dd>Expected. Sit-down restaurants 18–20%: the average full-service tip in Hawaii was 18.8% in Q2 2026 against 19.1% nationally <span class="note">(Toast data via <a href="https://beatofhawaii.com/hawaii-restaurants-suggest-25-tips-diners-are-paying-less/">Beat of Hawaii</a>, 2026)</span>. About $1 a drink for beer or wine, 20% on cocktails, $2–5 for valet <span class="note">(<a href="https://www.hawaii-guide.com/blog/tipping-in-hawaii-visitor-guide">Hawaii Guide</a>, 2026)</span>. Servers get the full state minimum wage of $16/hr from 1 Jan 2026 <span class="note">(<a href="https://www.thisweekhawaii.com/hawaii-travel-tips/tipping-guide">This Week Hawaii</a>, 2026)</span>. Check the bill for an 18–20% auto-gratuity on large parties, and for added service charges, before you tip on top.</dd>
+      <dt>Cash &amp; cards</dt><dd>Cards and tap-to-pay work almost everywhere. Carry small bills for honor-box fruit and banana-bread stands on the Road to Hāna, farmers-market stalls, some food trucks and cash fares on the bus <span class="note">(my pick)</span>.</dd>
+    </dl>
+  </div>
+
+  <h3>Getting around</h3>
+  <div class="facts">
+    <dl>
+      <dt>Transit</dt><dd>The county's <a href="https://www.mauicounty.gov/609/Transportation">Maui Bus</a> runs buses only, roughly hourly, linking towns such as Kahului, Wailuku, Kīhei, Lahaina/Kāʻanapali, Paʻia and Makawao. It is a commuter network and does not reach Haleakalā summit, the Road to Hāna, trailheads or most beaches. The Haʻikū Islander (35) and Upcountry Islander (40) stop at the airport, but luggage is restricted. Pay in cash on board, with no change given (unconfirmed for 2026), or buy passes in the <b>Token Transit</b> app. Could not confirm whether bank cards can be tapped on board. Single $2.00 · day pass $4.00 <span class="note">(fares effective 1 Mar 2024, no 2026 change found)</span>. Most routes stop running in the evening, around 7:30 p.m. on the Kīhei Islander according to an undated route table. Could not confirm the 2026 last-bus times.</dd>
+      <dt>Rides</dt><dd><b>Uber</b> and <b>Lyft</b> both operate. Lyft lets you schedule rides up to 90 days ahead. Use the airport (OGG) pickup zone outside baggage claim and follow the app for the exact spot. Uber's own averages are OGG–Kahului about $13 and OGG–Lahaina about $73 <span class="note">(<a href="https://www.uber.com/global/en/r/airports/ogg/">Uber</a>, 2026)</span>. Could not confirm OGG–Kīhei or a typical short in-town fare. Cars are plentiful around Kahului, Kīhei and Kāʻanapali. Upcountry, in Hāna and at Haleakalā they are scarce, and you can get stranded at a trailhead.</dd>
+    </dl>
+  </div>
+  <div class="verdict">
+    <b>Verdict:</b> rent a car at OGG. A $4 bus day pass beats a $73 Uber to Lahaina, but the bus stops in the evening and misses everything the trip is for. Haleakalā sunrise needs you at the gate by 3–7 a.m., which no bus or reliable ride covers. Even a few airport-scale rides cost more than several days of a rental. Maui has no walkable centre. Paʻia, Makawao and Wailuku's old town can each be walked end to end in about 10–15 minutes, but the towns themselves are 20–60 minutes apart by road.
+  </div>
+  <!-- ── 7. COUNTRY BACKGROUND — State of Hawaiʻi (shared by Oahu / Maui / Kauai) ── -->
+  <h2 id="country">Hawaiʻi (the state)</h2>
+  <div class="facts">
+    <dl>
+      <dt>GDP</dt><dd>$117.6B nominal total <span class="note">(<a href="https://fred.stlouisfed.org/series/HINGSP">BEA via FRED, 2024</a>)</span> · about $81k per capita <span class="note">(derived here: $117.6B ÷ 1,446,146 midyear population, 2024; no published nominal per-capita GDP figure was found). Per capita personal income was $69,520 in 2024, 96% of the US figure (<a href="https://files.hawaii.gov/dbedt/economic/databook/2024-individual/13/130724.pdf">DBEDT Data Book 2024</a>).</span></dd>
+      <dt>Economy</dt><dd>Tourism, about 16.1% of GDP; federal government, about 11.1%; military, about 5.7% <span class="note">(all 2024, <a href="https://data.capitol.hawaii.gov/sessions/session2026/testimony/Info_Testimony_WAM_01-07-26_Outlook.pdf">UHERO/DBEDT chart in Jan 2026 legislative testimony</a>)</span>. Visitor spending was $21.75B in 2025 on 9.64M arrivals, down 0.6% from 2024 and still below the pre-pandemic peak <span class="note">(<a href="https://www.thegardenisland.com/2026/02/02/business/hawaii-visitor-arrivals-end-2025-well-below-pre-pandemic-peak/">DBEDT via Garden Island, 2025</a>)</span>. Agriculture is small: the last sugar plantation (Maui) closed in 2016, and seed corn was the top crop at about $114M in 2022, ahead of cattle and coffee. DBEDT's Dec 2025 forecast was +1.5% growth for 2026.</dd>
+      <dt>Languages</dt><dd>English and Hawaiian are both official state languages <span class="note">(own knowledge)</span>. English works everywhere. Hawaiian shows up on signs, place names and menus, and Pidgin (Hawaiʻi Creole English) is the everyday local speech.</dd>
+    </dl>
+  </div>
+
+  <h3>Tech scene</h3>
+  <p class="note">Small. No Hawaiʻi-based unicorn turned up in current searches, and the figures below come from startup-database listings, so treat them as soft. Concentration is in tourism software, defense software and ocean/ag-tech; no fintech or semiconductor cluster was found.</p>
+  <ul>
+    <li><b><a href="https://builtin.com/companies/location/na/usa/hi/honolulu">FareHarbor</a></b> — Honolulu tour and activity booking software, about 960 employees per Built In (2026). Acquired by Booking Holdings in 2018 <span class="note">(own knowledge; price not verified)</span>.</li>
+    <li><b><a href="https://builtin.com/companies/location/na/usa/hi/type/software-startups">Onebrief</a></b> — military planning and collaboration software, about 180 employees, remote-first. Funding not confirmed.</li>
+    <li><b><a href="https://seedtable.com/best-startups-in-kailua">Symbrosia</a></b> — Kailua seaweed-based feed additive for cattle; named as the lead of seven tracked Kailua startups that raised $65M combined <span class="note">(Seedtable, aggregator; its own raise not confirmed)</span>.</li>
+    <li><b><a href="https://www.zoominfo.com/financial/olelo-intelligence-inc/1340545686">Olelo AI</a></b> — $1M pre-seed from Hawaii Angels (Jan 2026, ZoomInfo).</li>
+  </ul>
+
+  <h3>History</h3>
+  <ul>
+    <li><b>Settlement and kingdom.</b> Polynesian voyagers settled the islands; the date is contested, with AD 1000–1200 the best-supported range <span class="note">(Kirch's review of the archaeology)</span>. Kamehameha I, a chief from Hawaiʻi Island, united the islands as one kingdom by 1810, when Kauaʻi ceded.</li>
+    <li><b>Missionaries and sugar.</b> American Protestant missionaries arrived in 1820, and sugar plantations followed in the 1820s–30s, importing Chinese, Japanese, Portuguese and Filipino labor. This is why the population and the food are as mixed as they are. In 1980 there were 14 sugar and 4 pineapple plantations on more than 300,000 acres; by 2017 both crops were under 5,000 acres.</li>
+    <li><b>Overthrow to statehood.</b> On 17 January 1893 sugar and pineapple businessmen, backed by US troops, overthrew Queen Liliʻuokalani. The US annexed Hawaiʻi in 1898, made it a territory in 1900 and admitted it as the 50th state on 21 August 1959 (about 92–93% voted yes). Some Native Hawaiian groups contest the legality of the annexation.</li>
+    <li><b>Hawaiian Renaissance.</b> From the 1970s, hula, the Hawaiian language and traditional voyaging were revived, and Kahoʻolawe, used as a bombing range, was returned to the state in 2003 after protests. The voyaging canoe Hōkūleʻa first sailed to Tahiti in 1976 <span class="note">(Hōkūleʻa date: own knowledge)</span>. Immersion preschools began in 1982.</li>
+    <li><b>Lahaina and now.</b> The 8 August 2023 Maui wildfire killed 102 people (CBS reports 101), damaged or destroyed about 2,200 structures and displaced about 12,000. A $4.037B global settlement was announced in August 2024; payment status is not confirmed from a primary source. Construction began on the 60 Front Street homes on 3 October 2026, and a blessing marked the first commercial rebuild on Front Street on 13 October 2026. Tourism has not recovered to its pre-pandemic arrivals.</li>
+  </ul>
+
+  <h3>Culture</h3>
+  <ul>
+    <li><b>Kapu signs and heiau.</b> A kapu sign means off-limits, and heiau (stone temple platforms) are living religious sites, not ruins. Where no boundary is marked, the outer edge of the structure is the limit; do not climb the stones, take anything, or stack rocks, since offerings (hoʻokupu) are left there. <span class="note">(<a href="https://dlnr.hawaii.gov/dsp/files/2022/12/Wahi-Pana-brochure-1.pdf">DLNR Wahi Pana brochure</a>)</span></li>
+    <li><b>Hawaiian on every sign.</b> Place names are written with the ʻokina (ʻ) and kahakō (macron), and Hawaiian words are in daily English: <i>mahalo</i>, <i>kōkua</i> (help), and <i>mauka</i>/<i>makai</i> (toward the mountain/toward the sea) used as directions <span class="note">(own knowledge)</span>. The language was nearly lost; ʻAha Pūnana Leo immersion preschools began in 1982, and about 3,000 students were in 28 public immersion schools in 2023. Honolulu Magazine puts native-level speakers at roughly 10,000, under 1% of the state; other counts run higher depending on how speakers are defined. <span class="note">(<a href="https://www.nationalgeographic.com/culture/article/hawaii-native-language-efforts-to-preserve-revive">National Geographic</a>, <a href="https://www.honolulumagazine.com/?p=30151">Honolulu Magazine</a>)</span></li>
+    <li><b>Pidgin.</b> Hawaiʻi Creole English grew on the plantations from Hawaiian, English, Portuguese, Cantonese, Japanese and Filipino. You will hear it in shops and from drivers. The Census Bureau recognized it in 2015 but counted only about 1,600 speakers, while Ethnologue's estimate is about 600,000 first-language speakers (date not confirmed), so the numbers are unreliable. <span class="note">(<a href="https://www.nbcnews.com/news/asian-america/hawaiian-language-pidgin-data-revealed-new-u-s-census-bureau-n495006">NBC News</a>)</span></li>
+  </ul>
+
+  <!-- Phrase set and style in sections/country.md. -->
+  <h3>Phrases <span class="note">— Hawaiian, from own knowledge, not searched. English is understood everywhere, so counter words (bill, card, "English") are just said in English.</span></h3>
+  <table class="phrases">
+    <tr><td class="native">E ʻoluʻolu</td><td class="phon">eh oh-LOO-oh-LOO</td><td>please</td></tr>
+    <tr><td class="native">Mahalo</td><td class="phon">mah-HAH-loh</td><td>thank you</td></tr>
+    <tr><td class="native">Kala mai</td><td class="phon">KAH-lah MY</td><td>sorry / excuse me</td></tr>
+    <tr><td class="native">ʻAe</td><td class="phon">AH-eh</td><td>yes</td></tr>
+    <tr><td class="native">ʻAʻole</td><td class="phon">ah-OH-leh</td><td>no</td></tr>
+    <tr><td class="native">Lua</td><td class="phon">LOO-ah</td><td>bathroom (the everyday word)</td></tr>
+    <tr><td class="native">ʻOno</td><td class="phon">OH-noh</td><td>delicious</td></tr>
+    <tr><td class="native">Aloha</td><td class="phon">ah-LOH-hah</td><td>hello / goodbye</td></tr>
+  </table>
+
+</main>
+</body>
+</html>

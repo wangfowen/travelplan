@@ -1,0 +1,23 @@
+# Kauai — Google Maps verification (browser, 2026-11-05)
+Also use every rating in dossier/maps.md (same date, live Maps). None of the places below is marked closed on Maps.
+- Hamura Saimin — 4.4 (2,114)
+- Hanalei Taro (Hanalei Taro & Juice) — 4.6 (167)
+- Āina Kauai Restaurant — 4.7 (132)
+- Tip Top Motel, Cafe, And Bakery — 4.4 (1,107)
+- Sueoka's Snack Shop — 4.8 (50) — 5392 Kōloa Rd
+- Kilauea Fish Market — 4.5 (1,300)
+- Dark Horse Coffee Roasters — 4.7 (376)
+- Aloha Roastery — 4.6 (467) — 3100 Kūhiō Hwy (Līhuʻe)
+- Mucho Aloha Brewhouse — 4.5 (343)
+- Mama Lucy's Kitchen — 4.6 (164) — open per Maps
+- Kauai Community Market — 4.7 (391) — Saturdays from 9:30am per Maps
+- Hāʻena State Park — 4.7 (1,164)
+- McBryde & Allerton Garden (NTBG) — 4.6 (1,716) — not marked closed on Maps
+- Limahuli Garden & Preserve (NTBG) — 4.7 (832) — not marked closed on Maps
+- Kīlauea Point National Wildlife Refuge — 4.7 (1,248)
+- Waimea Canyon Lookout — 4.9 (4,467)
+- Holoholo Charters — 4.9 (6,159)
+- Island Helicopters Kauai — 4.8 (2,077)
+- Hanapēpē Swinging Bridge — 4.3 (2,270)
+- Glass Beach — 3.4 (927)
+- Māhāʻulepū Heritage Trail — no rating found
